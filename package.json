@@ -1,5 +1,5 @@
 {
-  "name": "interfolio-api",
+  "name": "@sas-irad/interfolio-api",
   "version": "1.0.0-alpha.1",
   "description": "Library which contains methods that utilize Interfolio's API to retrieve data from an Interfolio instance",
   "main": "index.js",
@@ -46,5 +46,8 @@
     "lib/**/*"
   ],
   "prepare": "npm run build",
-  "preversion": "npm run lint"
+  "preversion": "npm run lint",
+  "publishConfig": {
+    "access": "public"
+  }
 }
