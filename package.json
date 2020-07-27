@@ -1,7 +1,7 @@
 {
   "name": "interfolio-api",
   "version": "1.0.0-alpha.0",
-  "description": "Library which contains methods which utilize Interfolio's API to retrieve data from an Interfolio instance",
+  "description": "Library which contains methods that utilize Interfolio's API to retrieve data from an Interfolio instance",
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register --timeout 20000 tests/*.ts tests/**/*.ts",
@@ -21,7 +21,7 @@
   "keywords": [
     "interfolio",
     "api",
-    "middelware"
+    "middleware"
   ],
   "author": "J. Reuben Wetherbee",
   "license": "MIT",
