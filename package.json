@@ -1,0 +1,50 @@
+{
+  "name": "interfolio-api",
+  "version": "1.0.0-alpha.0",
+  "description": "Library which contains methods which utilize Interfolio's API to retrieve data from an Interfolio instance",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register --timeout 20000 tests/*.ts tests/**/*.ts",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.test.ts\"",
+    "lint": "eslint . --ext .ts",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sas-irad/interfolio-api.git"
+  },
+  "keywords": [
+    "interfolio",
+    "api",
+    "middelware"
+  ],
+  "author": "J. Reuben Wetherbee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sas-irad/interfolio-api/issues"
+  },
+  "homepage": "https://github.com/sas-irad/interfolio-api#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.26",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "chai": "^4.2.0",
+    "eslint": "^7.5.0",
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "prepare": "npm run build",
+  "preversion": "npm run lint"
+}
