@@ -1,4 +1,4 @@
-import ApiRequest from "./api-request";
+import ApiRequest from './api-request';
 
 export default class API {
   private request: ApiRequest;
@@ -9,10 +9,9 @@ export default class API {
 }
 
 export type ApiConfig = {
-  restUrl:    string;
+  restUrl: string;
   graphQlUrl: string;
-  tenantId:   number;
-  publicKey:  string;
+  tenantId: number;
+  publicKey: string;
   privateKey: string;
-}
-
+};
