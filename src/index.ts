@@ -1,11 +1,18 @@
+import ApiRequest from "./api-request";
+
 export default class API {
-  private attribute: string;
+  private request: ApiRequest;
 
-  constructor(params: { attribute: string }) {
-    this.attribute = params.attribute;
-  }
-
-  public getAttribute(): string {
-    return this.attribute;
+  constructor(config: ApiConfig) {
+    this.request = new ApiRequest(config);
   }
 }
+
+export type ApiConfig = {
+  restUrl:    string;
+  graphQlUrl: string;
+  tenantId:   number;
+  publicKey:  string;
+  privateKey: string;
+}
+

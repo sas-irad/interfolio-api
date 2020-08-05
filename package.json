@@ -49,5 +49,8 @@
   "preversion": "npm run lint",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "got": "^11.5.1"
   }
 }
