@@ -1,7 +1,6 @@
-import ApiRequest, {INTERFOLIO_CORE_URL_V1} from "../src/api-request";
-import { expect } from "chai";
-import config from "./config/test-config.json";
-
+import ApiRequest, { INTERFOLIO_CORE_URL_V1 } from '../src/api-request';
+import { expect } from 'chai';
+import Config from './config/test-config.json';
 
 /**
  * Test for ApiRequest class
@@ -9,24 +8,22 @@ import config from "./config/test-config.json";
 describe('API Request Test', () => {
   //Test the rest request endpoint
   it('rest api request', async () => {
-    const request = new ApiRequest(config);
-    const url = INTERFOLIO_CORE_URL_V1 + "/units/usage";
+    const request = new ApiRequest(Config.apiConfig);
+    const url = INTERFOLIO_CORE_URL_V1 + '/units/usage';
     const response = await request.executeRest({ url });
-    expect(typeof response.user).to.equal("object", "Api returns an object with attribute user and type of object");
+    expect(typeof response.user).to.equal('object', 'Api returns an object with attribute user and type of object');
   });
 
-
-  //Api Request Failure
+  //Api Request Failure - test to make sure the error is returned
   it('rest api request failure', async () => {
     try {
-      const request = new ApiRequest(config);
-      const url = INTERFOLIO_CORE_URL_V1 + "/badUrl";
+      const request = new ApiRequest(Config.apiConfig);
+      const url = INTERFOLIO_CORE_URL_V1 + '/badUrl';
       await request.executeRest({ url });
-      throw("no error thrown");
+      throw 'no error thrown';
+    } catch (error) {
+      expect(error).to.equal('Invalid URL or method', 'error message not thrown');
     }
-    catch (error) {
-      expect(error).to.equal("Invalid URL or method", "error message not thrown");
-     }
   });
 
   //Test a Graphql endpoint
