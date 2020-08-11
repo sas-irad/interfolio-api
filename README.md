@@ -106,5 +106,20 @@ is converted to
 }
 ```
 
+## Unit API
 
+### getUnits()
+Function which retrieves all of the units over which the API User has administrative access
+```js
+let units = API.Unit.getUnits();
+```
+
+### findUnit({name, parentUnitId})
+Function which searches all units and finds the first one matching the name parameter (and parentUnitId if specified).
+
+If no matching unit is found an exception is thrown
+```js
+let unit = API.findUnit({name: "My Unit Name"});
+let childUnit = API.findUnit({name: "My Child Unit Name", parentUnitId: 99999})
+```
 
