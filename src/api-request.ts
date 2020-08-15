@@ -15,6 +15,17 @@ export const INTERFOLIO_CORE_URL_V1 = '/byc/core/tenure/{tenant_id}';
 // export const INTERFOLIO_BYC_TENURE_V1 = '/byc-tenure/{tenant_id}';
 // export const INTERFOLIO_BYC_TENURE_V2 = '/byc-tenure/v2/{tenant_id}';
 
+export const INTERFOLIO_REST_URLS = {
+  PRODUCTION: 'https://logic.interfolio.com',
+  SANDBOX: 'https://logic-sandbox.interfolio.com',
+  BETA: 'https://logic-beta.interfoio.com',
+};
+
+export const INTERFOLIO_GRAPHQL_URLS = {
+  PRODUCTION: 'https://caasbox.interfolio.com',
+  SANDBOX: 'https://caasbox-sandbox.interfolio.com',
+  BETA: 'https://caasbox-beta.interfoio.com',
+};
 
 /**
  * @property {string} url  The relative url for the endpoint
@@ -31,12 +42,10 @@ export type RestRequest = {
   body?: string | Readable | Buffer | undefined;
 };
 
-
 /**
  * Class to handle requests to the Interfolio API
  */
 export class ApiRequest {
-
   /** @type ApiConfig */
   private config: ApiConfig;
 
@@ -137,7 +146,6 @@ export class ApiRequest {
   private replaceSlugs(url: string): string {
     return url.replace(/{tenant_id}/g, this.config.tenantId.toString());
   }
-
 
   /**
    * Get the authnorization http header value for interfolio hmac authentication

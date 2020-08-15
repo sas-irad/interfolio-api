@@ -1,6 +1,4 @@
-import ApiRequest from './api-request';
-import UnitApi from "./unit/unit-api";
-
+import UnitApi from './unit/unit-api';
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -40,4 +38,3 @@ export type ApiConfig = {
   publicKey: string;
   privateKey: string;
 };
-
