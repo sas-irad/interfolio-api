@@ -1,0 +1,414 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>&quot;api-request&quot; | @sas-irad/interfolio-api</title>
+	<meta name="description" content="Documentation for @sas-irad/interfolio-api">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@sas-irad/interfolio-api</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_api_request_.html">&quot;api-request&quot;</a>
+				</li>
+			</ul>
+			<h1>Module &quot;api-request&quot;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_api_request_.apirequest.html" class="tsd-kind-icon">Api<wbr>Request</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_api_request_.html#graphqlrequest" class="tsd-kind-icon">Graph<wbr>QlRequest</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_api_request_.html#restrequest" class="tsd-kind-icon">Rest<wbr>Request</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_api_request_.html#interfolio_core_url_v1" class="tsd-kind-icon">INTERFOLIO_<wbr>CORE_<wbr>URL_<wbr><wbr>V1</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="_api_request_.html#interfolio_graphql_urls" class="tsd-kind-icon">INTERFOLIO_<wbr>GRAPHQL_<wbr>URLS</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="_api_request_.html#interfolio_rest_urls" class="tsd-kind-icon">INTERFOLIO_<wbr>REST_<wbr>URLS</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="graphqlrequest" class="tsd-anchor"></a>
+					<h3>Graph<wbr>QlRequest</h3>
+					<div class="tsd-signature tsd-kind-icon">Graph<wbr>QlRequest<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>operationName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>variables<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L59">api-request.ts:59</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The definition of the paramenters necessary for a GraphQL Api Call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>operation<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The operation name e.g. &quot;getForms&quot;</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The GraphQL query itself e.g. &quot;query getForms($searchText: String!) {forms(searchText: $searchText...) {results {description id }}}</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> variables<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Any variables required for the query  e.g. {searchText: &quot;Form Name&quot;}</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="restrequest" class="tsd-anchor"></a>
+					<h3>Rest<wbr>Request</h3>
+					<div class="tsd-signature tsd-kind-icon">Rest<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">; </span>form<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">; </span>json<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">; </span>method<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Method</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L43">api-request.ts:43</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The definition of the parameters necessary for a REST API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The body of the request</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> form<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The form elements to submit with the request</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> json<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The json object to submit with the request</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> method<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Method</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The http method to execute</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The relative url for the endpoint</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="interfolio_core_url_v1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> INTERFOLIO_<wbr>CORE_<wbr>URL_<wbr><wbr>V1</h3>
+					<div class="tsd-signature tsd-kind-icon">INTERFOLIO_<wbr>CORE_<wbr>URL_<wbr><wbr>V1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"/byc/core/tenure/{tenant_id}"</span><span class="tsd-signature-symbol"> = &quot;/byc/core/tenure/{tenant_id}&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L10">api-request.ts:10</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The v1 core interfolio url</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="interfolio_graphql_urls" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> INTERFOLIO_<wbr>GRAPHQL_<wbr>URLS</h3>
+					<div class="tsd-signature tsd-kind-icon">INTERFOLIO_<wbr>GRAPHQL_<wbr>URLS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L31">api-request.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The current Interfolio base URLs for GraphQL Calls</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_graphql_urls.beta" class="tsd-anchor"></a>
+						<h3>BETA</h3>
+						<div class="tsd-signature tsd-kind-icon">BETA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://caasbox-beta.interfoio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L37">api-request.ts:37</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The BETA GraphQL URL</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_graphql_urls.production" class="tsd-anchor"></a>
+						<h3>PRODUCTION</h3>
+						<div class="tsd-signature tsd-kind-icon">PRODUCTION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://caasbox.interfolio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L33">api-request.ts:33</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The Production GraphQL URL</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_graphql_urls.sandbox" class="tsd-anchor"></a>
+						<h3>SANDBOX</h3>
+						<div class="tsd-signature tsd-kind-icon">SANDBOX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://caasbox-sandbox.interfolio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L35">api-request.ts:35</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The Sandbox GraphQL URL</p>
+							</div>
+						</div>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="interfolio_rest_urls" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> INTERFOLIO_<wbr>REST_<wbr>URLS</h3>
+					<div class="tsd-signature tsd-kind-icon">INTERFOLIO_<wbr>REST_<wbr>URLS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L19">api-request.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The current Interfolio base urls for REST calls</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_rest_urls.beta-1" class="tsd-anchor"></a>
+						<h3>BETA</h3>
+						<div class="tsd-signature tsd-kind-icon">BETA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://logic-beta.interfoio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L25">api-request.ts:25</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The BETA REST URL</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_rest_urls.production-1" class="tsd-anchor"></a>
+						<h3>PRODUCTION</h3>
+						<div class="tsd-signature tsd-kind-icon">PRODUCTION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://logic.interfolio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L21">api-request.ts:21</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The production REST URL</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interfolio_rest_urls.sandbox-1" class="tsd-anchor"></a>
+						<h3>SANDBOX</h3>
+						<div class="tsd-signature tsd-kind-icon">SANDBOX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://logic-sandbox.interfolio.com&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/1cdb92f/src/api-request.ts#L23">api-request.ts:23</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The Sandbox REST URL</p>
+							</div>
+						</div>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_api_request_.html">&quot;api-<wbr>request&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_unit_unit_api_.html">&quot;unit/unit-<wbr>api&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_api_request_.apirequest.html" class="tsd-kind-icon">Api<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_api_request_.html#graphqlrequest" class="tsd-kind-icon">Graph<wbr>QlRequest</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_api_request_.html#restrequest" class="tsd-kind-icon">Rest<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_api_request_.html#interfolio_core_url_v1" class="tsd-kind-icon">INTERFOLIO_<wbr>CORE_<wbr>URL_<wbr><wbr>V1</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="_api_request_.html#interfolio_graphql_urls" class="tsd-kind-icon">INTERFOLIO_<wbr>GRAPHQL_<wbr>URLS</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="_api_request_.html#interfolio_rest_urls" class="tsd-kind-icon">INTERFOLIO_<wbr>REST_<wbr>URLS</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

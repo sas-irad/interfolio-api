@@ -20,6 +20,10 @@ export type InterfolioUnit = {
 
 /**
  * Class representing the Interfolio Unit
+ *
+ * ```javascript
+ * let units = await api.Unit.getUnits();
+ * ```
  */
 export class UnitApi {
   /**
@@ -67,7 +71,7 @@ export class UnitApi {
 
   /**
    * Delete a unit
-   * @param unitId
+   * @param unitId The id of the unit to delete
    */
   public async deleteUnit(unitId: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -79,9 +83,9 @@ export class UnitApi {
   }
 
   /**
-   * Find a unit with the matching name (and parent unit if specified)
-   * @param unitName {string}  The name of the unit to find
-   * @param parentUnitId {number} The id of the parent unit to search in
+   * Find a unit with the matching name (and parent unit if specified).
+   * @param unitName      The name of the unit to find
+   * @param parentUnitId  The id of the parent unit to search in
    * @return Promise<InterfolioUnit | null>
    */
   public async findUnit({

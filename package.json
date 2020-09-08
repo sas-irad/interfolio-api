@@ -4,7 +4,7 @@
   "description": "Library which contains methods that utilize Interfolio's API to retrieve data from an Interfolio instance",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register --timeout 20000 tests/*.ts tests/unit/*.ts",
+    "test": "mocha -r ts-node/register --timeout 20000 tests/*.test.ts tests/**/*test.ts",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.test.ts\" \"tests/*.ts\"",
     "lint": "eslint . --ext .ts",
@@ -13,7 +13,8 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "init-tests": "tsc -p ./tests --esModuleInterop && node lib-tests/tests/config/setup-config.js"
+    "init-tests": "tsc -p ./tests --esModuleInterop && node lib-tests/tests/config/setup-config.js",
+    "make-docs": "typedoc --out docs src"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "prettier": "^2.0.5",
     "prompts": "^2.3.2",
     "ts-node": "^8.10.2",
+    "typedoc": "^0.19.1",
     "typescript": "^3.9.7"
   },
   "files": [

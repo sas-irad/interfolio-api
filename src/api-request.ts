@@ -6,52 +6,75 @@ import { Readable } from 'stream';
 
 /**
  * The v1 core interfolio url
- *
- * @constant
- * @type {string}
  */
 export const INTERFOLIO_CORE_URL_V1 = '/byc/core/tenure/{tenant_id}';
 // export const INTERFOLIO_CORE_URL_V2 = '/byc/core/v2/tenure/{tenant_id}';
 // export const INTERFOLIO_BYC_TENURE_V1 = '/byc-tenure/{tenant_id}';
 // export const INTERFOLIO_BYC_TENURE_V2 = '/byc-tenure/v2/{tenant_id}';
 
+/**
+ * The current Interfolio base urls for REST calls
+ */
 export const INTERFOLIO_REST_URLS = {
+  /** The production REST URL */
   PRODUCTION: 'https://logic.interfolio.com',
+  /** The Sandbox REST URL */
   SANDBOX: 'https://logic-sandbox.interfolio.com',
+  /** The BETA REST URL */
   BETA: 'https://logic-beta.interfoio.com',
 };
 
+/**
+ * The current Interfolio base URLs for GraphQL Calls
+ */
 export const INTERFOLIO_GRAPHQL_URLS = {
+  /** The Production GraphQL URL */
   PRODUCTION: 'https://caasbox.interfolio.com',
+  /** The Sandbox GraphQL URL */
   SANDBOX: 'https://caasbox-sandbox.interfolio.com',
+  /** The BETA GraphQL URL */
   BETA: 'https://caasbox-beta.interfoio.com',
 };
 
 /**
- * @property {string} url  The relative url for the endpoint
- * @property {Method} method  The http method to execute
- * @property {string | any | undefined} form The form elements to submit with the request
- * @property {any | undefined} json The json object to submit with the request
- * @property {string | Readable | Buffer | undefined } The body of the
+ * The definition of the parameters necessary for a REST API call
  */
 export type RestRequest = {
+  /** The relative url for the endpoint */
   url: string;
+  /** The http method to execute */
   method?: Method;
+  /** The form elements to submit with the request */
   form?: string | any | undefined;
+  /** The json object to submit with the request */
   json?: any | undefined;
+  /** The body of the request */
   body?: string | Readable | Buffer | undefined;
+};
+
+/**
+ * The definition of the paramenters necessary for a GraphQL Api Call
+ */
+export type GraphQlRequest = {
+  /** The operation name e.g. "getForms" */
+  operationName: string;
+  /** Any variables required for the query  e.g. {searchText: "Form Name"} */
+  variables?: any;
+  /** The GraphQL query itself e.g. "query getForms($searchText: String!) {forms(searchText: $searchText...) {results {description id }}}*/
+  query: string;
 };
 
 /**
  * Class to handle requests to the Interfolio API
  */
 export class ApiRequest {
-  /** @type ApiConfig */
+  /** The API Config  */
   private config: ApiConfig;
 
   /**
    * Initialize the request object with the necessary config options
-   * @param config ApiConfig
+   *
+   * @param config The API Configuration settings (keys and base urls)
    * @constructor
    */
   constructor(config: ApiConfig) {
@@ -60,6 +83,7 @@ export class ApiRequest {
 
   /**
    * Execute the api using Got.js
+   *
    * @param {Options} got.js options
    */
   private async execute(options: Options): Promise<any> {
@@ -83,12 +107,6 @@ export class ApiRequest {
 
   /**
    * Execute an API request against the REST (logic) data endpoint
-   *
-   * @param url {string} Url of the endpoint (should start with / )
-   * @param method {Method} the HTTP method - defaults to 'GET'
-   * @param form {any} form data to submit as object
-   * @param body {string} form data to submit as string
-   * @param json {string} form data to submit as json
    */
   public async executeRest({
     url,
@@ -103,12 +121,12 @@ export class ApiRequest {
   }
 
   /**
-   * Execute an API request against the REST (logic) data endpoint
+   * Execute an API request against the GraphQL (caas-box) data endpoint
    *
    * @param gqlRequest
    * @param gqlReust.operationName  {string}
    */
-  public async executeGraphQl(gqlRequest: { operationName: string; variables?: any; query: string }): Promise<any> {
+  public async executeGraphQl(gqlRequest: GraphQlRequest): Promise<any> {
     const url = this.replaceSlugs('/{tenant_id}/graphql');
     const options = this.getRequestOptions({ method: 'POST', host: this.config.graphQlUrl, url, form: gqlRequest });
     return await this.execute(options);
@@ -116,7 +134,7 @@ export class ApiRequest {
 
   /**
    * Tests if a string is parsable JSON
-   * @param str {string} the string to test
+   * @param str the string to test for json parseability
    */
   public static isJson(str: string): boolean {
     try {
@@ -130,8 +148,8 @@ export class ApiRequest {
   /**
    * encode a string for url/form values
    *
-   * @param str {string}
-   * @return {string}
+   * @param str The string to encode
+   * @return The encoded string
    */
   public static rfc3986EncodeURIComponent(str: string): string {
     return encodeURIComponent(str).replace(/[!'()*]/g, escape);
@@ -140,7 +158,7 @@ export class ApiRequest {
   /**
    * Replace standard slugs (tenant id) a given url
    *
-   * @param url {string}
+   * @param url   The url which contains the slugs to replace
    * @return {string}
    */
   private replaceSlugs(url: string): string {
@@ -148,11 +166,11 @@ export class ApiRequest {
   }
 
   /**
-   * Get the authnorization http header value for interfolio hmac authentication
+   * Get the authorization http header value for interfolio hmac authentication
    *
-   * @param method {string}
-   * @param requestString {string}
-   * @return {string} The Authorization header needed for HMAC authentication
+   * @param method         The HTTP Method
+   * @param requestString  The request string
+   * @return The Authorization header needed for HMAC authentication
    */
   private getAuthorizationHeader(method: string, requestString: string) {
     const hmac = crypto.createHmac('sha1', this.config.privateKey);
@@ -162,8 +180,8 @@ export class ApiRequest {
 
   /**
    * Get the Request
-   * @param method
-   * @param requestString
+   * @param method          The Method of the Request (e.g. GET, POST etc)
+   * @param requestString   The request string (i.e. everything that follows the domain name in the url)
    */
   private getRequestHeaders(method: Method, requestString: string) {
     return {
