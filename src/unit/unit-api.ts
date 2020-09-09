@@ -8,13 +8,18 @@ import { INTERFOLIO_CORE_URL_V1 } from '../api-request';
 export const UNITS_URL = INTERFOLIO_CORE_URL_V1 + '/units';
 
 /**
- * @type {Object}
+ * An Interfolio Unit definition
  */
 export type InterfolioUnit = {
+  /** ID of the unit */
   id: number;
+  /** Name of the unit */
   name: string;
+  /** ID of the institution level unit to which this unit belongs */
   ancestor_institution_id: number;
+  /** ID of the parent unit */
   parent_unit_id: number;
+  /** IDs of all child units */
   child_unit_ids: number[];
 };
 
@@ -27,24 +32,28 @@ export type InterfolioUnit = {
  */
 export class UnitApi {
   /**
-   * the request object
+   * API request object for making the actual http requests
    */
   private readonly apiRequest: ApiRequest;
 
   /**
    * Constructor for the object
-   * @param apiConfig {ApiConfig}  The configuration for api calls
+   * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
   }
 
   /**
-   * Create a new unit
-   * @param unitName {string}  The Name of the unit
-   * @param parentUnitId {number}  The ID of the parent in which to create the unit
+   * Create a new Interfolio Unit
    *
-   * @return Promise<InterfolioUnit>
+   * @param unitName      Name of the unit
+   * @param parentUnitId  ID of the parent in which to create the unit
+   *
+   * @example
+   * ```javascript
+   * let newUnit = await api.Unit.createUnit({parentUnitId: 9999, unitName: "New Unit Name"});
+   * ```
    */
   public async createUnit({
     unitName,
@@ -72,6 +81,12 @@ export class UnitApi {
   /**
    * Delete a unit
    * @param unitId The id of the unit to delete
+   *
+   *
+   * @example
+   * ```javascript
+   * await api.Unit.deleteUnit(9999);
+   * ````
    */
   public async deleteUnit(unitId: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -86,7 +101,11 @@ export class UnitApi {
    * Find a unit with the matching name (and parent unit if specified).
    * @param unitName      The name of the unit to find
    * @param parentUnitId  The id of the parent unit to search in
-   * @return Promise<InterfolioUnit | null>
+   *
+   * @example
+   * ```javascript
+   * let unit = await api.Unit.findUnit({unitName: "Biology"});
+   * ```
    */
   public async findUnit({
     unitName,
@@ -116,7 +135,12 @@ export class UnitApi {
   }
 
   /**
-   * Get the units which the user has access to
+   * Get the units which the user has access to.  Based upon administrative access
+   *
+   * @example
+   * ```javascript
+   * let units = api.Unit.getUnits();
+   * ```
    */
   public async getUnits(): Promise<Array<InterfolioUnit>> {
     return this.apiRequest.executeRest({ url: UNITS_URL + '/usage' }).then((response) => {

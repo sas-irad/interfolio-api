@@ -1,0 +1,10 @@
+{
+  "out": "docs",
+  "mode": "file",
+  "excludePrivate": true,
+  "stripInternal": true,
+  "theme": "minimal",
+  "name": "Interfolio API",
+  "readme": "docs/README_docs.md",
+  "disableOutputCheck": true
+}

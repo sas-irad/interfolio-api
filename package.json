@@ -14,7 +14,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "init-tests": "tsc -p ./tests --esModuleInterop && node lib-tests/tests/config/setup-config.js",
-    "make-docs": "typedoc --out docs src"
+    "make-docs": "typedoc"
   },
   "repository": {
     "type": "git",

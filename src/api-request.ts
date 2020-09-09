@@ -65,7 +65,8 @@ export type GraphQlRequest = {
 };
 
 /**
- * Class to handle requests to the Interfolio API
+ * Class to handle requests to the Interfolio API.  Generally not called directly but used by API functions to
+ * actually make the call
  */
 export class ApiRequest {
   /** The API Config  */
@@ -117,6 +118,7 @@ export class ApiRequest {
   }: RestRequest): Promise<any> {
     url = this.replaceSlugs(url);
     const options = this.getRequestOptions({ method, url, body, form, json, host: this.config.restUrl });
+    console.log(options);
     return await this.execute(options);
   }
 

@@ -10,6 +10,15 @@ to be utilized there are many which have not yet been implemented.  Most of the 
  related to the "Review Promotion and Tenure (RPT)" module.  You are free to use and further 
  development is certainly encourged.  Visit the project wiki for information on how to contribute.
  
+
+## Uses
+
+The primary purpose of this library is to provide a typescript/javascript interface to the Interfolio API.
+This library takes the grunt work out of actually making the calls to Interfolio.  It can be used as 
+middle-ware to help script backend integrations.  Since the instantiation of the library
+requires a private key to acheive authentication, it is not intended for use in a public 
+front end application. 
+
 ## Installation
 
 ```bash
@@ -18,11 +27,8 @@ npm install @sas-irad/interfolio-api
 
 ## Getting Started
 
-To initiate the API it is necessary to supply the urls, tenantId and public/private keys.  
-The reason to supply the urls is to allow testing against endpoints such as ```https://logic-sandbox.interfolio.com```
-
-.js initialization 
-```js
+JavaScript Projects
+```javascript
 const INTERFOLIO_API = require('@sas-irad/interfolio-api/lib');
 
 let api = new INTERFOLIO_API.API({
@@ -34,7 +40,7 @@ let api = new INTERFOLIO_API.API({
 });
 ```
 
-.ts initialization
+TypeScript Projects
 ```typescript
 import API from '@sas-irad/interfolio-api/lib';
 
@@ -46,6 +52,18 @@ let api = new API({
   "publicKey": "Interfolio supplied Public Key"
 });
 ```
+
+Once the ```api``` object has been instantiated you can run any of the implemented Interfolio API functions e.g.
+```javascript
+let units = await api.Units.getUnits();
+```
+
+## API Documentation
+
+Documentation for all of the implemented API calls can be found on the (github documentation site)[https://sas-irad.github.io/interfolio-api]
+
+
+##
 
 ## A Note on CamelCase vs. Underscore
 
@@ -104,22 +122,5 @@ is converted to
     }
   ]
 }
-```
-
-## Unit API
-
-### getUnits()
-Function which retrieves all of the units over which the API User has administrative access
-```js
-let units = API.Unit.getUnits();
-```
-
-### findUnit({name, parentUnitId})
-Function which searches all units and finds the first one matching the name parameter (and parentUnitId if specified).
-
-If no matching unit is found an exception is thrown
-```js
-let unit = API.findUnit({name: "My Unit Name"});
-let childUnit = API.findUnit({name: "My Child Unit Name", parentUnitId: 99999})
 ```
 
