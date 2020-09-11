@@ -118,7 +118,6 @@ export class ApiRequest {
   }: RestRequest): Promise<any> {
     url = this.replaceSlugs(url);
     const options = this.getRequestOptions({ method, url, body, form, json, host: this.config.restUrl });
-    console.log(options);
     return await this.execute(options);
   }
 

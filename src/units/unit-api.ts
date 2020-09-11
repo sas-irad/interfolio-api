@@ -11,13 +11,13 @@ export const UNITS_URL = INTERFOLIO_CORE_URL_V1 + '/units';
  * An Interfolio Unit definition
  */
 export type InterfolioUnit = {
-  /** ID of the unit */
+  /** ID of the units */
   id: number;
-  /** Name of the unit */
+  /** Name of the units */
   name: string;
-  /** ID of the institution level unit to which this unit belongs */
+  /** ID of the institution level units to which this units belongs */
   ancestor_institution_id: number;
-  /** ID of the parent unit */
+  /** ID of the parent units */
   parent_unit_id: number;
   /** IDs of all child units */
   child_unit_ids: number[];
@@ -27,7 +27,7 @@ export type InterfolioUnit = {
  * Class representing the Interfolio Unit
  *
  * ```javascript
- * let units = await api.Unit.getUnits();
+ * let units = await api.Units.getUnits();
  * ```
  */
 export class UnitApi {
@@ -47,12 +47,12 @@ export class UnitApi {
   /**
    * Create a new Interfolio Unit
    *
-   * @param unitName      Name of the unit
-   * @param parentUnitId  ID of the parent in which to create the unit
+   * @param unitName      Name of the units
+   * @param parentUnitId  ID of the parent in which to create the units
    *
    * @example
    * ```javascript
-   * let newUnit = await api.Unit.createUnit({parentUnitId: 9999, unitName: "New Unit Name"});
+   * let newUnit = await api.Units.createUnit({parentUnitId: 9999, unitName: "New Unit Name"});
    * ```
    */
   public async createUnit({
@@ -79,13 +79,13 @@ export class UnitApi {
   }
 
   /**
-   * Delete a unit
-   * @param unitId The id of the unit to delete
+   * Delete a units
+   * @param unitId The id of the units to delete
    *
    *
    * @example
    * ```javascript
-   * await api.Unit.deleteUnit(9999);
+   * await api.Units.deleteUnit(9999);
    * ````
    */
   public async deleteUnit(unitId: number): Promise<boolean> {
@@ -98,13 +98,13 @@ export class UnitApi {
   }
 
   /**
-   * Find a unit with the matching name (and parent unit if specified).
-   * @param unitName      The name of the unit to find
-   * @param parentUnitId  The id of the parent unit to search in
+   * Find a units with the matching name (and parent units if specified).
+   * @param unitName      The name of the units to find
+   * @param parentUnitId  The id of the parent units to search in
    *
    * @example
    * ```javascript
-   * let unit = await api.Unit.findUnit({unitName: "Biology"});
+   * let units = await api.Units.findUnit({unitName: "Biology"});
    * ```
    */
   public async findUnit({
@@ -126,8 +126,8 @@ export class UnitApi {
         }
       }
     }
-    //throw exception if no unit found
-    let message = 'No unit with the name "' + unitName + '" found';
+    //throw exception if no units found
+    let message = 'No units with the name "' + unitName + '" found';
     if (parentUnitId) {
       message += ' with parent_unit_id ' + parentUnitId;
     }
@@ -139,7 +139,7 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * let units = api.Unit.getUnits();
+   * let units = api.Units.getUnits();
    * ```
    */
   public async getUnits(): Promise<Array<InterfolioUnit>> {

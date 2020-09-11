@@ -2,7 +2,7 @@ import prompts = require("prompts");
 import fs  = require('fs');
 import setupConfigApi from "./setup-config-api";
 import {ApiConfig} from "../../src";
-import {InterfolioUnit} from "../../src/unit/unit-api";
+import {InterfolioUnit} from "../../src/units/unit-api";
 import setupConfigUnit from "./setup-config-unit";
 
 export type TestConfig = {

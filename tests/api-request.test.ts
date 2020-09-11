@@ -7,7 +7,7 @@ import Config from './config/test-config.json';
  */
 describe('API Request Test', () => {
   //Test the rest request endpoint
-  it.only('rest api request', async () => {
+  it('rest api request', async () => {
     const request = new ApiRequest(Config.apiConfig);
     const url = INTERFOLIO_CORE_URL_V1 + '/units/usage';
     const response = await request.executeRest({ url });

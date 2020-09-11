@@ -13,7 +13,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     const update = await prompts({
       type: "select",
       name: "update",
-      message: "The test unit unit information exists (" + config.unit.name + ")  Would you like to overwrite?",
+      message: "The test units units information exists (" + config.unit.name + ")  Would you like to overwrite?",
       choices: [
         {title: 'No', value: false},
         {title: 'Yes', value: true}
@@ -60,19 +60,19 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     {
       type: 'autocomplete',
       name: 'parentUnitId',
-      message: 'Pick the parent unit for the Test API Unit',
+      message: 'Pick the parent units for the Test API Unit',
       choices: unitLookup,
       initial: defaultParentName,
     },
     {
       type: "text",
       name: "unitName",
-      message: "Choose the name for the test unit",
+      message: "Choose the name for the test units",
       initial: defaultUnitName
     }
   ]);
 
-  //look to see if the test unit already exists
+  //look to see if the test units already exists
   const parentUnit = units[unitMap[responses.parentUnitId]];
   for(const childUnitId of parentUnit.child_unit_ids) {
     const childUnit = units[unitMap[childUnitId]];
@@ -82,7 +82,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     }
   }
 
-  //unit must not exist so create it
+  //units must not exist so create it
   const unit = await api.Unit.createUnit(responses)
   const subUnit1 = await api.Unit.createUnit({unitName: "Test SubUnit 1 for API", parentUnitId: unit.id});
   const subUnit2 = await api.Unit.createUnit({unitName: "Test Subunit 2 for API", parentUnitId: unit.id});
@@ -94,7 +94,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     ancestor_institution_id: config.apiConfig.tenantId,
     child_unit_ids: [subUnit1.id, subUnit2.id]
   };
-  console.log("creating unit id");
+  console.log("creating units id");
 
 
 

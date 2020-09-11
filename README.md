@@ -38,6 +38,7 @@ let api = new INTERFOLIO_API.API({
   "privateKey": "Interfolio supplied Private Key",
   "publicKey": "Interfolio supplied Public Key"
 });
+let units = await api.Unit.getUnits();
 ```
 
 TypeScript Projects
@@ -51,6 +52,7 @@ let api = new API({
   "privateKey": "Interfolio supplied Private Key",
   "publicKey": "Interfolio supplied Public Key"
 });
+let units = await api.Unit.getUnits();
 ```
 
 Once the ```api``` object has been instantiated you can run any of the implemented Interfolio API functions e.g.
@@ -60,7 +62,7 @@ let units = await api.Units.getUnits();
 
 ## API Documentation
 
-Documentation for all of the implemented API calls can be found on the (github documentation site)[https://sas-irad.github.io/interfolio-api]
+Documentation for all of the implemented API calls can be found on the [github documentation site](https://sas-irad.github.io/interfolio-api).
 
 
 ##

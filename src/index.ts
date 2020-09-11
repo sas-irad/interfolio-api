@@ -1,4 +1,4 @@
-import UnitApi from './unit/unit-api';
+import UnitApi from './units/unit-api';
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -34,7 +34,7 @@ export class API {
   /**
    * Handle to the Unit Api calls
    */
-  public readonly Unit: UnitApi;
+  public readonly Units: UnitApi;
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -43,7 +43,7 @@ export class API {
    * @param config The ApiConfig containing connection information
    */
   constructor(config: ApiConfig) {
-    this.Unit = new UnitApi(config);
+    this.Units = new UnitApi(config);
   }
 }
 export default API;

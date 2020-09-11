@@ -104,7 +104,7 @@
 				<div class="lead">
 					<p>Class representing the Interfolio Unit</p>
 				</div>
-				<pre><code class="language-javascript"><span class="hljs-keyword">let</span> units = <span class="hljs-keyword">await</span> api.Unit.getUnits();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">let</span> units = <span class="hljs-keyword">await</span> api.Units.getUnits();</code></pre>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
@@ -149,7 +149,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/aa0e6fe/src/unit/unit-api.ts#L37">unit/unit-api.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/341756d/src/units/unit-api.ts#L37">units/unit-api.ts:37</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -185,7 +185,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/aa0e6fe/src/unit/unit-api.ts#L58">unit/unit-api.ts:58</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/341756d/src/units/unit-api.ts#L58">units/unit-api.ts:58</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -194,7 +194,7 @@
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> newUnit = <span class="hljs-keyword">await</span> api.Unit.createUnit({<span class="hljs-attr">parentUnitId</span>: <span class="hljs-number">9999</span>, <span class="hljs-attr">unitName</span>: <span class="hljs-string">&quot;New Unit Name&quot;</span>});</code></pre>
+								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> newUnit = <span class="hljs-keyword">await</span> api.Units.createUnit({<span class="hljs-attr">parentUnitId</span>: <span class="hljs-number">9999</span>, <span class="hljs-attr">unitName</span>: <span class="hljs-string">&quot;New Unit Name&quot;</span>});</code></pre>
 								</dd>
 							</dl>
 						</div>
@@ -206,13 +206,13 @@
 									<li class="tsd-parameter">
 										<h5>parent<wbr>Unit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 										<div class="tsd-comment tsd-typography">
-											<p>ID of the parent in which to create the unit</p>
+											<p>ID of the parent in which to create the units</p>
 										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>unit<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 										<div class="tsd-comment tsd-typography">
-											<p>Name of the unit</p>
+											<p>Name of the units</p>
 										</div>
 									</li>
 								</ul>
@@ -232,16 +232,16 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/aa0e6fe/src/unit/unit-api.ts#L91">unit/unit-api.ts:91</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/341756d/src/units/unit-api.ts#L91">units/unit-api.ts:91</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Delete a unit</p>
+								<p>Delete a units</p>
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span class="hljs-keyword">await</span> api.Unit.deleteUnit(<span class="hljs-number">9999</span>);</code></pre>
+								<dd><pre><code class="language-javascript"><span class="hljs-keyword">await</span> api.Units.deleteUnit(<span class="hljs-number">9999</span>);</code></pre>
 								</dd>
 							</dl>
 						</div>
@@ -250,7 +250,7 @@
 							<li>
 								<h5>unitId: <span class="tsd-signature-type">number</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>The id of the unit to delete</p>
+									<p>The id of the units to delete</p>
 								</div>
 							</li>
 						</ul>
@@ -268,16 +268,16 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/aa0e6fe/src/unit/unit-api.ts#L110">unit/unit-api.ts:110</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/341756d/src/units/unit-api.ts#L110">units/unit-api.ts:110</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Find a unit with the matching name (and parent unit if specified).</p>
+								<p>Find a units with the matching name (and parent units if specified).</p>
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> unit = <span class="hljs-keyword">await</span> api.Unit.findUnit({<span class="hljs-attr">unitName</span>: <span class="hljs-string">&quot;Biology&quot;</span>});</code></pre>
+								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> units = <span class="hljs-keyword">await</span> api.Units.findUnit({<span class="hljs-attr">unitName</span>: <span class="hljs-string">&quot;Biology&quot;</span>});</code></pre>
 								</dd>
 							</dl>
 						</div>
@@ -289,13 +289,13 @@
 									<li class="tsd-parameter">
 										<h5>parent<wbr>Unit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 										<div class="tsd-comment tsd-typography">
-											<p>The id of the parent unit to search in</p>
+											<p>The id of the parent units to search in</p>
 										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>unit<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 										<div class="tsd-comment tsd-typography">
-											<p>The name of the unit to find</p>
+											<p>The name of the units to find</p>
 										</div>
 									</li>
 								</ul>
@@ -315,7 +315,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/aa0e6fe/src/unit/unit-api.ts#L145">unit/unit-api.ts:145</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/341756d/src/units/unit-api.ts#L145">units/unit-api.ts:145</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -324,7 +324,7 @@
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> units = api.Unit.getUnits();</code></pre>
+								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> units = api.Units.getUnits();</code></pre>
 								</dd>
 							</dl>
 						</div>
