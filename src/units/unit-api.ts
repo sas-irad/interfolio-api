@@ -10,7 +10,7 @@ export const UNITS_URL = INTERFOLIO_CORE_URL_V1 + '/units';
 /**
  * An Interfolio Unit definition
  */
-export type InterfolioUnit = {
+export type Unit = {
   /** ID of the units */
   id: number;
   /** Name of the units */
@@ -26,6 +26,7 @@ export type InterfolioUnit = {
 /**
  * Class representing the Interfolio Unit
  *
+ * @example
  * ```javascript
  * let units = await api.Units.getUnits();
  * ```
@@ -52,16 +53,10 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * let newUnit = await api.Units.createUnit({parentUnitId: 9999, unitName: "New Unit Name"});
+   * let newUnit = await api.Units.create({parentUnitId: 9999, unitName: "New Unit Name"});
    * ```
    */
-  public async createUnit({
-    unitName,
-    parentUnitId,
-  }: {
-    unitName: string;
-    parentUnitId: number;
-  }): Promise<InterfolioUnit> {
+  public async create({ unitName, parentUnitId }: { unitName: string; parentUnitId: number }): Promise<Unit> {
     return new Promise((resolve, reject) => {
       this.apiRequest
         .executeRest({
@@ -85,10 +80,10 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * await api.Units.deleteUnit(9999);
+   * await api.Units.delete(9999);
    * ````
    */
-  public async deleteUnit(unitId: number): Promise<boolean> {
+  public async delete(unitId: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.apiRequest
         .executeRest({ url: UNITS_URL + '/' + unitId.toString(), method: 'DELETE' })
@@ -107,13 +102,7 @@ export class UnitApi {
    * let units = await api.Units.findUnit({unitName: "Biology"});
    * ```
    */
-  public async findUnit({
-    unitName,
-    parentUnitId,
-  }: {
-    unitName: string;
-    parentUnitId?: number;
-  }): Promise<InterfolioUnit> {
+  public async findUnit({ unitName, parentUnitId }: { unitName: string; parentUnitId?: number }): Promise<Unit> {
     const units = await this.getUnits();
     for (const unit of units) {
       if (unit.name === unitName) {
@@ -142,9 +131,9 @@ export class UnitApi {
    * let units = api.Units.getUnits();
    * ```
    */
-  public async getUnits(): Promise<Array<InterfolioUnit>> {
+  public async getUnits(): Promise<Array<Unit>> {
     return this.apiRequest.executeRest({ url: UNITS_URL + '/usage' }).then((response) => {
-      const units: Array<InterfolioUnit> = [];
+      const units: Array<Unit> = [];
       for (const unit of response.user.administrator_units) {
         units.push(unit.administrator_unit);
       }

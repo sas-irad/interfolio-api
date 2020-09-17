@@ -15,11 +15,11 @@ describe('Unit API Test', () => {
 
   it('Create - Delete Unit', async () => {
     const unitName = 'Create Unit Test';
-    const createdUnit = await unitApi.createUnit({ unitName, parentUnitId: Config.unit.id });
+    const createdUnit = await unitApi.create({ unitName, parentUnitId: Config.unit.id });
     expect(createdUnit.name).to.equal(unitName, 'Created Unit name matches');
 
     //delete the units
-    const deleteSuccess = await unitApi.deleteUnit(createdUnit.id);
+    const deleteSuccess = await unitApi.delete(createdUnit.id);
     expect(deleteSuccess).to.equal(true, 'Expect the delete call to return a true value');
   });
 

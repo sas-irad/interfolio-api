@@ -1,4 +1,6 @@
 import UnitApi from './units/unit-api';
+import CommitteeApi from './committees/committee-api';
+import UserApi from './users/user-api';
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -31,10 +33,12 @@ import UnitApi from './units/unit-api';
  * ```
  */
 export class API {
-  /**
-   * Handle to the Unit Api calls
-   */
+  /** Handle to the Committee Api calls */
+  public readonly Committees: CommitteeApi;
+  /** Handle to the Unit Api calls */
   public readonly Units: UnitApi;
+  /** Handle to the User Api calls */
+  public readonly Users: UserApi;
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -43,7 +47,9 @@ export class API {
    * @param config The ApiConfig containing connection information
    */
   constructor(config: ApiConfig) {
+    this.Committees = new CommitteeApi(config);
     this.Units = new UnitApi(config);
+    this.Users = new UserApi(config);
   }
 }
 export default API;

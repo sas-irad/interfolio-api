@@ -8,8 +8,8 @@ import { Readable } from 'stream';
  * The v1 core interfolio url
  */
 export const INTERFOLIO_CORE_URL_V1 = '/byc/core/tenure/{tenant_id}';
-// export const INTERFOLIO_CORE_URL_V2 = '/byc/core/v2/tenure/{tenant_id}';
-// export const INTERFOLIO_BYC_TENURE_V1 = '/byc-tenure/{tenant_id}';
+export const INTERFOLIO_CORE_URL_V2 = '/byc/core/v2/tenure/{tenant_id}';
+export const INTERFOLIO_BYC_TENURE_V1 = '/byc-tenure/{tenant_id}';
 // export const INTERFOLIO_BYC_TENURE_V2 = '/byc-tenure/v2/{tenant_id}';
 
 /**
@@ -50,6 +50,13 @@ export type RestRequest = {
   json?: any | undefined;
   /** The body of the request */
   body?: string | Readable | Buffer | undefined;
+};
+
+/**
+ * The general type of response that is returned from an API Call
+ */
+export type ApiResponse = {
+  [key: string]: ApiResponse | ApiResponse[] | string | string[] | number | number[] | boolean;
 };
 
 /**

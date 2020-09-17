@@ -1,21 +1,30 @@
-import prompts = require("prompts");
-import fs  = require('fs');
-import setupConfigApi from "./setup-config-api";
-import {ApiConfig} from "../../src";
-import {InterfolioUnit} from "../../src/units/unit-api";
-import setupConfigUnit from "./setup-config-unit";
+import prompts = require('prompts');
+import fs = require('fs');
+import setupConfigApi from './setup-config-api';
+import { ApiConfig } from '../../src';
+import { Unit } from '../../src/units/unit-api';
+import setupConfigUnit from './setup-config-unit';
+import { Committee } from '../../src/committees/committee-api';
+import setupConfigCommittee from './setup-config-committee';
+import { User } from '../../src/users/user-api';
+import setupConfigUser from './setup-config-user';
+import { CommitteeMember } from '../../src/committees/committee_members/committee-member-api';
+import setupConfigCommitteeMember from './setup-config-committee-member';
 
 export type TestConfig = {
-  apiConfig?: ApiConfig,
-  unit?: InterfolioUnit
-}
+  apiConfig?: ApiConfig;
+  unit?: Unit;
+  user?: User;
+  committee?: Committee;
+  committeeMember?: CommitteeMember;
+};
 
-export const createConfig = async (): Promise<{filename: string, config: TestConfig} | null> => {
+export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
   const fileResponse = await prompts.prompt({
-    type: "text",
-    name: "filename",
-    initial: __dirname + "/test-config.json",
-    message: "Config filename"
+    type: 'text',
+    name: 'filename',
+    initial: __dirname.replace('lib-tests/tests', 'tests') + '/test-config.json',
+    message: 'Config filename',
   });
 
   const filename: string = fileResponse.filename;
@@ -24,45 +33,40 @@ export const createConfig = async (): Promise<{filename: string, config: TestCon
     const file = await fs.readFileSync(filename);
     const config = JSON.parse(file.toString());
     const overwrite = await prompts.prompt({
-      type: "select",
-      name: "overwrite",
-      message: "File already exists.  Would you like to update?",
+      type: 'select',
+      name: 'overwrite',
+      message: 'File already exists.  Would you like to update?',
       choices: [
-        {title: 'Yes', value: true},
-        {title: 'No/Cancel', value: false}
-      ]
+        { title: 'Yes', value: true },
+        { title: 'No/Cancel', value: false },
+      ],
     });
 
-    if(overwrite.overwrite) {
+    if (overwrite.overwrite) {
       return {
         filename,
-        config
+        config,
       };
-    }
-    else {
+    } else {
       return null;
     }
-
-
-  }
-  catch (error) {
+  } catch (error) {
     const createNew = await prompts.prompt({
-      type: "select",
-      name: "createNew",
-      message: "File does not exist or is unparseable.  Would you like to overwrite/create new?",
+      type: 'select',
+      name: 'createNew',
+      message: 'File does not exist or is unparseable.  Would you like to overwrite/create new?',
       choices: [
-        {title: 'Yes', value: true},
-        {title: 'Cancel', value: false}
-      ]
+        { title: 'Yes', value: true },
+        { title: 'Cancel', value: false },
+      ],
     });
 
-    if(createNew.createNew) {
+    if (createNew.createNew) {
       return {
         filename,
-        config: {}
+        config: {},
       };
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -72,23 +76,23 @@ export const run = async (): Promise<void> => {
   try {
     //get the file and the config
     const fileAndConfig = await createConfig();
-    if(fileAndConfig === null) return;
+    if (fileAndConfig === null) return;
 
     const config = fileAndConfig.config;
 
     //setup connection
     await setupConfigApi(config);
     await setupConfigUnit(config);
+    await setupConfigUser(config);
+    await setupConfigCommittee(config);
+    await setupConfigCommitteeMember(config);
 
-    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(fileAndConfig.config, null, '  '));
-
-
-  }
-  catch(error) {
-    console.log("There was an error");
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+    console.log('Config File Saved');
+  } catch (error) {
+    console.log('There was an error');
     console.log(error);
   }
 };
-
 
 run();
