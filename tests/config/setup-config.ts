@@ -10,6 +10,10 @@ import { User } from '../../src/users/user-api';
 import setupConfigUser from './setup-config-user';
 import { CommitteeMember } from '../../src/committees/committee_members/committee-member-api';
 import setupConfigCommitteeMember from './setup-config-committee-member';
+import { PacketTemplate } from '../../src/packet-templates/packet-template-api';
+import { PacketType } from '../../src/packet-types/packet-type-api';
+import setupConfigPacketType from './setup-config-packet-type';
+import setupConfigPacketTemplate from './setup-config-packet-template';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -17,6 +21,8 @@ export type TestConfig = {
   user?: User;
   committee?: Committee;
   committeeMember?: CommitteeMember;
+  packetType?: PacketType;
+  packetTemplate?: PacketTemplate;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
@@ -86,6 +92,8 @@ export const run = async (): Promise<void> => {
     await setupConfigUser(config);
     await setupConfigCommittee(config);
     await setupConfigCommitteeMember(config);
+    await setupConfigPacketType(config);
+    await setupConfigPacketTemplate(config);
 
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
     console.log('Config File Saved');

@@ -36,7 +36,7 @@ const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
     const user = await api.Users.findUserByEmail({ email: 'api-test@example.com' });
     config.user = user;
   } catch (e) {
-    const user = await api.Users.createUser({
+    const user = await api.Users.create({
       firstName: 'API Test',
       lastName: 'Test',
       email: 'api-test@example.com',

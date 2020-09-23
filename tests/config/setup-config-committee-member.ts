@@ -52,7 +52,7 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
   //if we haven't yet found a committee member then create one
   if (committeeMember === null) {
     try {
-      const member = await api.Committees.CommitteeMembers.createCommitteeMember({
+      const member = await api.Committees.CommitteeMembers.create({
         committeeId: config.committee.id,
         userId: config.user.id,
         manager: true,

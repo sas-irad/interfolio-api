@@ -1,6 +1,8 @@
 import UnitApi from './units/unit-api';
 import CommitteeApi from './committees/committee-api';
 import UserApi from './users/user-api';
+import PacketTemplateApi from './packet-templates/packet-template-api';
+import PacketTypeApi from './packet-types/packet-type-api';
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -39,6 +41,10 @@ export class API {
   public readonly Units: UnitApi;
   /** Handle to the User Api calls */
   public readonly Users: UserApi;
+  /** Handle to the PacketTemplate Api */
+  public readonly PacketTemplates: PacketTemplateApi;
+  /** Handle to the PacketType api */
+  public readonly PacketTypes: PacketTypeApi;
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -50,6 +56,8 @@ export class API {
     this.Committees = new CommitteeApi(config);
     this.Units = new UnitApi(config);
     this.Users = new UserApi(config);
+    this.PacketTemplates = new PacketTemplateApi(config);
+    this.PacketTypes = new PacketTypeApi(config);
   }
 }
 export default API;

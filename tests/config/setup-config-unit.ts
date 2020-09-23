@@ -81,9 +81,9 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
   }
 
   //units must not exist so create it
-  const unit = await api.Units.createUnit(responses);
-  const subUnit1 = await api.Units.createUnit({ unitName: 'Test SubUnit 1 for API', parentUnitId: unit.id });
-  const subUnit2 = await api.Units.createUnit({ unitName: 'Test Subunit 2 for API', parentUnitId: unit.id });
+  const unit = await api.Units.create(responses);
+  const subUnit1 = await api.Units.create({ unitName: 'Test SubUnit 1 for API', parentUnitId: unit.id });
+  const subUnit2 = await api.Units.create({ unitName: 'Test Subunit 2 for API', parentUnitId: unit.id });
 
   config.unit = {
     id: unit.id,
