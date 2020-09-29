@@ -69,19 +69,19 @@ export type User = {
   /** Flag indicating if the user is external */
   external_user: boolean;
   /** First name of the user */
-  first_name: 'ANNIKA';
+  first_name: string;
   /** ID of the user */
-  id: 160284;
+  id: number;
   /** inistitutions the user is affiliated with */
   institution_affiliations: { id: number; name: string }[];
   //institutions_branding: []
   /** Last name of the user */
-  last_name: 'AAHREN';
+  last_name: string;
   /** Legacy PID of the user */
-  legacy_pid: '3120637';
+  legacy_pid: number;
   //permissions: []
   /** PID of the user */
-  pid: '3120637';
+  pid: number;
   /** Flag indicating if this user is a super user */
   superuser: false;
   /** ids for which this user has access */
