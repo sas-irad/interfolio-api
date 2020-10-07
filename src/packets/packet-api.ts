@@ -3,9 +3,7 @@ import { ApiConfig } from '../index';
 
 export const PACKET_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packets';
 export const PACKET_URL = PACKET_BASE_URL + '/{packet_id}';
-
-/** attributes common to both Packet and PacketDetail */
-type PacketBase = {};
+export const PACKET_CREATE_FROM_TEMPLATE_URL = PACKET_BASE_URL + '/create_from_template';
 
 /** Packet Data that is returned after packet creation */
 export type Packet = {
@@ -206,6 +204,30 @@ export type PacketDetail = {
 };
 
 /**
+ * Defines the parameters needed to create a packet from a packet template
+ */
+export type CreatePacketFromTemplateParams = {
+  /** Id of the packet template to create from */
+  packetId: number;
+  /** Unit Id to create the case in */
+  unitId: number;
+  /** Candidate's first name */
+  candidateFirstName: string;
+  /** Candidate's Last name */
+  candidateLastName: string;
+  /** Candidate Email address */
+  candidateEmail: string;
+  /** If the candidate will be involved in the case */
+  candidateInvolvement: boolean;
+  /** Due date of the packet */
+  dueDate?: string;
+  /** unknown */
+  name?: string;
+  /** unknown */
+  eppn?: string;
+};
+
+/**
  * Class representing Packet calls
  */
 export class PacketApi {
@@ -265,6 +287,102 @@ export class PacketApi {
       this.apiRequest
         .executeRest({ url, form, method: 'POST' })
         .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Create a new Case from a case template
+   * @param packetId ID of the Packet Template
+   * @param unitId ID of the unit for the case
+   * @param candidateFirstName  Candidate's first name
+   * @param candidateLastName  Candidate's last name
+   * @param candidateEmail Candidate's email
+   * @param candidateInvolvement  If the candidate will be involved in the case
+   * @param name  ???
+   * @param dueDate Due date for the case
+   * @param eppn  ???
+   *
+   * @example
+   * ```javascript
+   * let case = await api.Packets.createFromTemplate({
+   *   packetId: 9999,
+   *   unitId: 9999,
+   *   candidateFirstName: "Holly",
+   *   candidateLastName: "Doe",
+   *   candidateEmail: "holly.doe@example.com"
+   *   candidateInvolvement: false
+   * });
+   * ```
+   */
+  public async createFromTemplate({
+    packetId,
+    unitId,
+    candidateFirstName,
+    candidateLastName,
+    candidateEmail,
+    candidateInvolvement,
+    name,
+    dueDate,
+    eppn,
+  }: CreatePacketFromTemplateParams): Promise<PacketDetail> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_CREATE_FROM_TEMPLATE_URL;
+      const form: any & { due_date?: string; name?: string; eppn?: string } = {
+        'packet[packet_id]': packetId,
+        'packet[unit_id]': unitId,
+        'packet[candidate_first_name]': candidateFirstName,
+        'packet[candidate_last_name]': candidateLastName,
+        'packet[candidate_email]': candidateEmail,
+        'packet[candidate_involvement]': candidateInvolvement,
+      };
+      if (dueDate) form.due_date = dueDate;
+      if (name) form.name = name;
+      if (eppn) form.eppn = eppn;
+      this.apiRequest
+        .executeRest({ url, form, method: 'POST' })
+        .then(async (response) => {
+          resolve(this.getPacket({ id: response.id }));
+        })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Delete the case (note: can only be performed when API user has root unit admin permissions)
+   * @param id
+   *
+   * @example
+   * ```javascript
+   * await api.Packets.delete({id: 9999});
+   * ```
+   */
+  public async delete({ id }: { id: number }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_URL.replace('{packet_id}', id.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'DELETE' })
+        .then(() => resolve(true))
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Get the packet detail information
+   *
+   * @param id Id of the packet
+   *
+   * @example
+   * ```javascript
+   * let packet = await Api.Packets.getPacket({id: 9999});
+   * ```
+   */
+  public async getPacket({ id }: { id: number }): Promise<PacketDetail> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_URL.replace('{packet_id}', id.toString());
+      this.apiRequest
+        .executeRest({ url })
+        .then((response) => resolve(response.packet))
         .catch((error) => reject(error));
     });
   }
