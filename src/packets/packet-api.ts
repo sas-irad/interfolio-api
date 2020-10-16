@@ -1,9 +1,14 @@
-import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
+import ApiRequest, {ApiResponse, INTERFOLIO_BYC_TENURE_V1} from '../api-request';
 import { ApiConfig } from '../index';
 
 export const PACKET_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packets';
 export const PACKET_URL = PACKET_BASE_URL + '/{packet_id}';
 export const PACKET_CREATE_FROM_TEMPLATE_URL = PACKET_BASE_URL + '/create_from_template';
+
+//Imported after url consts since WorkflowStep uses them
+import WorkflowStepApi, {WorkflowStep} from "./workflow-steps/workflow-step-api";
+import Utils, {DeNestingDef} from "../utils";
+
 
 /** Packet Data that is returned after packet creation */
 export type Packet = {
@@ -169,6 +174,8 @@ export type PacketDetail = {
   internal_form_responses: any[];
   /** flag indicating if hte internal sections should appear after candidate sections */
   internal_sections_on_bottom: boolean;
+  /** name from template */
+  name: string;
   /** the next workflow step */
   next_workflow_step: any;
   /** packet attachments */
@@ -176,7 +183,30 @@ export type PacketDetail = {
   /** flag indicating if packet downloading is allowed */
   packet_downloading_allowed: boolean;
   /** list of packet sections */
-  packet_sections: any[];
+  packet_sections: {
+    /** id of the section */
+    "id": number,
+    /** name of the section */
+    "name": string,
+    /** due date for the section */
+    "due_date": string,
+    /** flag if additional documents are allowed */
+    "allow_additional_documents": boolean,
+    /** the packet section sort order */
+    "requirement_sort_order": number,
+    /** the interal sort order */
+    "internal_sort_order": number,
+    /** the type (eg. Requirement Section / Evaluator Section  */
+    "type": string,
+    /** Description of the packet section */
+    "description": null,
+    /** if update is allowed */
+    "allow_update": true,
+    /** if the section is in use */
+    "in_use": false,
+    /** if this is a committee evaluation section */
+    "committee_evaluation_section": false
+  }[];
   /** id of the packet template */
   packet_template_id: number;
   /** id of the type of packet */
@@ -186,7 +216,26 @@ export type PacketDetail = {
   /** previous workflow step */
   previous_workflow_step: any;
   /** list of required documents for candidate */
-  required_documents: any[];
+  required_documents: {
+    /** id of the required document */
+    id: number,
+    /** name of the required document */
+    name: string,
+    /** minimum required */
+    lower_limint: number;
+    /** maximim allowed (-1 for no max) */
+    upper_limit: number,
+    /** enforecment level e.g. optional etc */
+    enforcement_lelve: number,
+    /** note for the required document */
+    note: string,
+    /** if the requirement is in use */
+    in_use: boolean,
+    /** string version of enforcement level value */
+    enforecement_level_value: string,
+    /** if a placeholder for additional documents */
+    for_additional_documents: boolean
+  }[];
   /** list of requirements by section */
   requirements_by_section: any[];
   /** status of the case */
@@ -200,7 +249,7 @@ export type PacketDetail = {
   /** list of committees that this case is waiting on */
   waiting_on_committee: any[];
   /** list of workflow steps */
-  workflow_steps: any[];
+  workflow_steps: WorkflowStep[];
 };
 
 /**
@@ -236,12 +285,14 @@ export class PacketApi {
    */
   private readonly apiRequest: ApiRequest;
 
+  public WorkflowStep: WorkflowStepApi;
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
+    this.WorkflowStep = new WorkflowStepApi(apiConfig);
   }
 
   /**
@@ -382,9 +433,52 @@ export class PacketApi {
       const url = PACKET_URL.replace('{packet_id}', id.toString());
       this.apiRequest
         .executeRest({ url })
-        .then((response) => resolve(response.packet))
+        .then((response) => {
+          resolve(PacketApi.removePacketDetailNesting(response.packet))
+        })
         .catch((error) => reject(error));
     });
+  }
+
+  /**
+   * Remove the cumbersome second level for various nested values
+   * @param apiResponse  The response from the API to remove the nesting from
+   */
+  public static removePacketDetailNesting(apiResponse: ApiResponse): PacketDetail {
+    const denestDef: DeNestingDef = {
+      workflow_steps: {
+        type: 'DENEST_ARRAY',
+        nestedAttributeName: 'workflow_step',
+        nestedDefs: {
+          committees: {
+            type: 'DENEST_ARRAY',
+            nestedAttributeName: "committee"
+          }
+        }
+      },
+      required_documents: {
+        type: 'DENEST_ARRAY',
+        nestedAttributeName: "required_document"
+      },
+      packet_sections: {
+        type: "DENEST_ARRAY",
+        nestedAttributeName: "packet_section"
+      },
+      next_workflow_step: {
+        type: "DENEST_CHILD_OBJECT",
+        nestedAttributeName: "",
+        nestedDefs: {
+          committees: {
+            type: "DENEST_ARRAY",
+            nestedAttributeName: "committee"
+          }
+        }
+      }
+
+    };
+    const packetDetail: PacketDetail = Utils.deNest(apiResponse, denestDef) as PacketDetail;
+
+    return packetDetail;
   }
 }
 

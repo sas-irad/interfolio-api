@@ -56,7 +56,7 @@ export type RestRequest = {
  * The general type of response that is returned from an API Call
  */
 export type ApiResponse = {
-  [key: string]: ApiResponse | ApiResponse[] | string | string[] | number | number[] | boolean;
+  [key: string]: ApiResponse | ApiResponse[] | string | string[] | number | number[] | boolean | unknown[];
 };
 
 /**
@@ -107,7 +107,7 @@ export class ApiRequest {
     } catch (error) {
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
-        throw error.response.body.errors[0].message;
+        throw Error(error.response.body.errors[0].message);
       }
       throw error;
     }

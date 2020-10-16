@@ -28,6 +28,7 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
   if (config.apiConfig === undefined)
     throw Error('To run template test setup the apiConfig (keys & urls) must first be defined');
   if (config.unit === undefined) throw Error('To run template test setup the unit test config must already be defined');
+  if (config.committee === undefined) throw Error('To run template test setup the committee test config must already be defined');
   if (config.packetType === undefined)
     throw Error('To run template test setup the packet type test config must already be defined');
 
@@ -49,7 +50,21 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       packetTypeId: config.packetType.id,
     });
 
-    config.packetTemplate = packetTemplate;
+    await api.Packets.WorkflowStep.addWorkflowStepStanding({
+      packetId: packetTemplate.id,
+      workflowStepName: "Workflow Step 1",
+      committeeId: config.committee.id,
+      workflowStepNote: "Workflow Step Note"
+    });
+
+    await api.Packets.WorkflowStep.addWorkflowStepStanding({
+      packetId: packetTemplate.id,
+      workflowStepName: "Workflow Step 2",
+      committeeId: config.committee.id,
+      workflowStepNote: "Workflow Step Note 2"
+    });
+
+    config.packetTemplate = await api.PacketTemplates.getTemplate({id: packetTemplate.id});
   }
 
   return config;

@@ -1,6 +1,6 @@
 import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
 import { ApiConfig } from '../index';
-import { Packet } from '../packets/packet-api';
+import {PacketApi, Packet, PacketDetail} from '../packets/packet-api';
 
 /** Base url for template api calls */
 export const TEMPLATE_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packet_templates';
@@ -98,7 +98,7 @@ export class PacketTemplateApi {
    *   email: email address of the user
    * }
    */
-  public findUnitTemplate({ name, unitId }: { name: string; unitId: number }): Promise<Packet> {
+  public findUnitTemplate({ name, unitId }: { name: string; unitId: number }): Promise<PacketDetail> {
     return new Promise((resolve, reject) => {
       const url = TEMPLATE_SEARCH_URL.replace('{limit}', '100')
         .replace('{search_text}', ApiRequest.rfc3986EncodeURIComponent(name))
@@ -136,13 +136,14 @@ export class PacketTemplateApi {
    * let template = await api.PacketTemplates.getTemplate({id: 9999});
    * ```
    */
-  public async getTemplate({ id }: { id: number }): Promise<Packet> {
+  public async getTemplate({ id }: { id: number }): Promise<PacketDetail> {
     return new Promise((resolve, reject) => {
       const url = TEMPLATE_URL.replace('{packet_template_id}', id.toString());
       this.apiRequest
         .executeRest({ url })
         .then((response) => {
-          resolve(response.packet_template);
+          let packetDetail = PacketApi.removePacketDetailNesting(response.packet_template);
+          resolve(packetDetail);
         })
         .catch((error) => {
           reject(error);

@@ -23,7 +23,7 @@ export type TestConfig = {
   committee?: Committee;
   committeeMember?: CommitteeMember;
   packetType?: PacketType;
-  packetTemplate?: Packet;
+  packetTemplate?: PacketDetail;
   packet?: PacketDetail;
 };
 
