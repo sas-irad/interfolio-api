@@ -10,8 +10,8 @@
     "lint": "eslint . --ext .ts",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint && npm run make-docs",
-    "version": "npm run format && git add -A src && git add -A docs",
+    "preversion": "npm test && npm run lint",
+    "version": "npm run format && npm run make-docs && git add -A src && git add -A docs",
     "postversion": "git push && git push --tags",
     "init-tests": "tsc -p ./tests --esModuleInterop && node lib-tests/tests/config/setup-config.js",
     "make-docs": "typedoc"

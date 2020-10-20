@@ -112,7 +112,7 @@ export class WorkflowStepApi {
    * let step = await Api.Packets.WorkflowSteps.addWorkflowStepStanding({
    *   packetId: 9999,
    *   workflowStepName: "Workflow Step 3",
-   *   committee: 9999,
+   *   committeeId: 9999,
    *   workflowStepNote: "Please review and send forward"
    * };
    */
