@@ -22,7 +22,7 @@ describe('API Request Test', () => {
       await request.executeRest({ url });
       throw 'no error thrown';
     } catch (error) {
-      expect(error).to.equal('Invalid URL or method', 'error message not thrown');
+      expect(error.message).to.equal('Invalid URL or method', 'error message not thrown');
     }
   });
 

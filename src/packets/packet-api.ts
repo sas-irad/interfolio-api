@@ -1,14 +1,15 @@
-import ApiRequest, {ApiResponse, INTERFOLIO_BYC_TENURE_V1} from '../api-request';
+import ApiRequest, { ApiResponse, INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
 import { ApiConfig } from '../index';
 
 export const PACKET_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packets';
 export const PACKET_URL = PACKET_BASE_URL + '/{packet_id}';
 export const PACKET_CREATE_FROM_TEMPLATE_URL = PACKET_BASE_URL + '/create_from_template';
+export const PACKET_MOVE_FORWARD_URL = PACKET_URL + '/move_forward';
+export const PACKET_MOVE_BACKWARD_URL = PACKET_URL + '/move_backward';
 
 //Imported after url consts since WorkflowStep uses them
-import WorkflowStepApi, {WorkflowStep} from "./workflow-steps/workflow-step-api";
-import Utils, {DeNestingDef} from "../utils";
-
+import WorkflowStepApi, { WorkflowStep } from './workflow-steps/workflow-step-api';
+import Utils, { DeNestingDef } from '../utils';
 
 /** Packet Data that is returned after packet creation */
 export type Packet = {
@@ -147,7 +148,7 @@ export type PacketDetail = {
   /** committeess assigned to the current user */
   current_users_assigned_committees: { id: number; name: string }[];
   /** current workflow step */
-  current_workflow_step: any;
+  current_workflow_step: WorkflowStep;
   /** custom forms attached to this case */
   custom_forms: any[];
   /** list of documents by application section */
@@ -177,7 +178,7 @@ export type PacketDetail = {
   /** name from template */
   name: string;
   /** the next workflow step */
-  next_workflow_step: any;
+  next_workflow_step: WorkflowStep;
   /** packet attachments */
   packet_attachments: any[];
   /** flag indicating if packet downloading is allowed */
@@ -185,27 +186,27 @@ export type PacketDetail = {
   /** list of packet sections */
   packet_sections: {
     /** id of the section */
-    "id": number,
+    id: number;
     /** name of the section */
-    "name": string,
+    name: string;
     /** due date for the section */
-    "due_date": string,
+    due_date: string;
     /** flag if additional documents are allowed */
-    "allow_additional_documents": boolean,
+    allow_additional_documents: boolean;
     /** the packet section sort order */
-    "requirement_sort_order": number,
+    requirement_sort_order: number;
     /** the interal sort order */
-    "internal_sort_order": number,
+    internal_sort_order: number;
     /** the type (eg. Requirement Section / Evaluator Section  */
-    "type": string,
+    type: string;
     /** Description of the packet section */
-    "description": null,
+    description: null;
     /** if update is allowed */
-    "allow_update": true,
+    allow_update: true;
     /** if the section is in use */
-    "in_use": false,
+    in_use: false;
     /** if this is a committee evaluation section */
-    "committee_evaluation_section": false
+    committee_evaluation_section: false;
   }[];
   /** id of the packet template */
   packet_template_id: number;
@@ -218,23 +219,23 @@ export type PacketDetail = {
   /** list of required documents for candidate */
   required_documents: {
     /** id of the required document */
-    id: number,
+    id: number;
     /** name of the required document */
-    name: string,
+    name: string;
     /** minimum required */
     lower_limint: number;
     /** maximim allowed (-1 for no max) */
-    upper_limit: number,
+    upper_limit: number;
     /** enforecment level e.g. optional etc */
-    enforcement_lelve: number,
+    enforcement_lelve: number;
     /** note for the required document */
-    note: string,
+    note: string;
     /** if the requirement is in use */
-    in_use: boolean,
+    in_use: boolean;
     /** string version of enforcement level value */
-    enforecement_level_value: string,
+    enforecement_level_value: string;
     /** if a placeholder for additional documents */
-    for_additional_documents: boolean
+    for_additional_documents: boolean;
   }[];
   /** list of requirements by section */
   requirements_by_section: any[];
@@ -274,6 +275,20 @@ export type CreatePacketFromTemplateParams = {
   name?: string;
   /** unknown */
   eppn?: string;
+};
+
+/**
+ * Defines the parameters needed to move a packet forward/backward
+ */
+export type MoveParams = {
+  /** id of the packet */
+  id: number;
+  /** if a notification should be sent */
+  sendNotification: boolean;
+  /** subject for the notification message  */
+  notificationSubject?: string;
+  /** body of the notification message */
+  notificationBody?: string;
 };
 
 /**
@@ -434,9 +449,120 @@ export class PacketApi {
       this.apiRequest
         .executeRest({ url })
         .then((response) => {
-          resolve(PacketApi.removePacketDetailNesting(response.packet))
+          resolve(PacketApi.removePacketDetailNesting<PacketDetail>(response.packet));
         })
         .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Send the case forward to the next workflow step
+   * @param id  Packet id of the case
+   * @param sendNotification  If a notification should be sent to the receiving committee
+   * @param notificationSubject  Subject of the notification
+   * @param notificationBody  Body of the notification
+   *
+   *
+   * @example
+   * ```javascript
+   * await Api.Packets.moveBackward({id: 9999, sendNotification: false"});
+   * await Api.Packets.moveBackward({id: 9999,
+   *   sendNotifcation: true,
+   *   selectedCommitteeId: 9999,
+   *   notificationSubject:"Returned Case",
+   *   notificationBody:"Case Returned for Corrections"
+   * });
+   * ```
+   */
+  public async moveBackward({
+    id,
+    sendNotification,
+    notificationSubject,
+    notificationBody,
+  }: MoveParams): Promise<PacketDetail> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_MOVE_BACKWARD_URL.replace('{packet_id}', id.toString());
+      const form: {
+        send_step_change_notification: boolean;
+        step_change_notification_subject?: string;
+        step_change_notification_body?: string;
+      } = {
+        send_step_change_notification: sendNotification,
+      };
+      if (sendNotification === true) {
+        form.step_change_notification_subject = notificationSubject
+          ? notificationSubject
+          : 'Interfolio Case Ready for Review';
+        form.step_change_notification_body = notificationBody
+          ? notificationBody
+          : 'An Interfolio Case has been added to your queue for Review';
+      }
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', form: form })
+        .then(() => {
+          this.getPacket({ id })
+            .then((response) => resolve(response))
+            .catch((error) => reject(error));
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Send the case forward to the next workflow step
+   * @param id  Packet id of the case
+   * @param sendNotification  If a notification should be sent to the receiving committee
+   * @param notificationSubject  Subject of the notification
+   * @param notificationBody  Body of the notification
+   *
+   *
+   * @example
+   * ```javascript
+   * await Api.Packets.moveForward({id: 9999, sendNotification: false"});
+   * await Api.Packets.moveForward({
+   *   id: 9999,
+   *   sendNotifcation: true,
+   *   selectedCommitteeId: 9999,
+   *   notificationSubject:"Review Case",
+   *   notificationBody:"Here is a case to review"
+   * });
+   * ```
+   */
+  public async moveForward({
+    id,
+    sendNotification,
+    notificationSubject,
+    notificationBody,
+  }: MoveParams): Promise<PacketDetail> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_MOVE_FORWARD_URL.replace('{packet_id}', id.toString());
+      const form: {
+        send_step_change_notification: boolean;
+        step_change_notification_subject?: string;
+        step_change_notification_body?: string;
+      } = {
+        send_step_change_notification: sendNotification,
+      };
+      if (sendNotification === true) {
+        form.step_change_notification_subject = notificationSubject
+          ? notificationSubject
+          : 'Interfolio Case Ready for Review';
+        form.step_change_notification_body = notificationBody
+          ? notificationBody
+          : 'An Interfolio Case has been added to your queue for Review';
+      }
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', form: form })
+        .then(() => {
+          this.getPacket({ id })
+            .then((response) => resolve(response))
+            .catch((error) => reject(error));
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -444,7 +570,7 @@ export class PacketApi {
    * Remove the cumbersome second level for various nested values
    * @param apiResponse  The response from the API to remove the nesting from
    */
-  public static removePacketDetailNesting(apiResponse: ApiResponse): PacketDetail {
+  public static removePacketDetailNesting<T>(apiResponse: ApiResponse): T {
     const denestDef: DeNestingDef = {
       workflow_steps: {
         type: 'DENEST_ARRAY',
@@ -452,33 +578,42 @@ export class PacketApi {
         nestedDefs: {
           committees: {
             type: 'DENEST_ARRAY',
-            nestedAttributeName: "committee"
-          }
-        }
+            nestedAttributeName: 'committee',
+          },
+        },
       },
       required_documents: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: "required_document"
+        nestedAttributeName: 'required_document',
       },
       packet_sections: {
-        type: "DENEST_ARRAY",
-        nestedAttributeName: "packet_section"
+        type: 'DENEST_ARRAY',
+        nestedAttributeName: 'packet_section',
       },
       next_workflow_step: {
-        type: "DENEST_CHILD_OBJECT",
-        nestedAttributeName: "",
+        type: 'DENEST_CHILD_OBJECT',
+        nestedAttributeName: '',
         nestedDefs: {
           committees: {
-            type: "DENEST_ARRAY",
-            nestedAttributeName: "committee"
-          }
-        }
-      }
-
+            type: 'DENEST_ARRAY',
+            nestedAttributeName: 'committee',
+          },
+        },
+      },
+      current_workflow_step: {
+        type: 'DENEST_CHILD_OBJECT',
+        nestedAttributeName: '',
+        nestedDefs: {
+          committees: {
+            type: 'DENEST_ARRAY',
+            nestedAttributeName: 'committee',
+          },
+        },
+      },
     };
-    const packetDetail: PacketDetail = Utils.deNest(apiResponse, denestDef) as PacketDetail;
+    const packetDetail: unknown = Utils.deNest(apiResponse, denestDef);
 
-    return packetDetail;
+    return packetDetail as T;
   }
 }
 

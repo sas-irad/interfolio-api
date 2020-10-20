@@ -43,7 +43,9 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     unitId: config.unit.id,
   });
 
-  config.packet = packetDetail;
+  const movedPacket = await api.Packets.moveForward({ id: packetDetail.id, sendNotification: false });
+
+  config.packet = movedPacket;
 
   return config;
 };

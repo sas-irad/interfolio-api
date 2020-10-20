@@ -1,12 +1,13 @@
 import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
 import { ApiConfig } from '../index';
-import {PacketApi, Packet, PacketDetail} from '../packets/packet-api';
+import { PacketApi, Packet, PacketDetail } from '../packets/packet-api';
 
 /** Base url for template api calls */
 export const TEMPLATE_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packet_templates';
 export const TEMPLATE_URL = TEMPLATE_BASE_URL + '/{packet_template_id}';
 export const TEMPLATE_SEARCH_URL = TEMPLATE_BASE_URL + '?limit={limit}&unit_id={unit_id}&search_text={search_text}';
 
+export type PacketTemplateDetail = PacketDetail & { description: string };
 /**
  * Class representing the an RPT Case Template
  *
@@ -98,7 +99,7 @@ export class PacketTemplateApi {
    *   email: email address of the user
    * }
    */
-  public findUnitTemplate({ name, unitId }: { name: string; unitId: number }): Promise<PacketDetail> {
+  public findUnitTemplate({ name, unitId }: { name: string; unitId: number }): Promise<PacketTemplateDetail> {
     return new Promise((resolve, reject) => {
       const url = TEMPLATE_SEARCH_URL.replace('{limit}', '100')
         .replace('{search_text}', ApiRequest.rfc3986EncodeURIComponent(name))
@@ -136,13 +137,13 @@ export class PacketTemplateApi {
    * let template = await api.PacketTemplates.getTemplate({id: 9999});
    * ```
    */
-  public async getTemplate({ id }: { id: number }): Promise<PacketDetail> {
+  public async getTemplate({ id }: { id: number }): Promise<PacketTemplateDetail> {
     return new Promise((resolve, reject) => {
       const url = TEMPLATE_URL.replace('{packet_template_id}', id.toString());
       this.apiRequest
         .executeRest({ url })
         .then((response) => {
-          let packetDetail = PacketApi.removePacketDetailNesting(response.packet_template);
+          const packetDetail = PacketApi.removePacketDetailNesting<PacketTemplateDetail>(response.packet_template);
           resolve(packetDetail);
         })
         .catch((error) => {

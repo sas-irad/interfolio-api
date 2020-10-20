@@ -64,4 +64,14 @@ describe('Packet API Test', () => {
     expect(packetDetail.candidate_last_name).to.eq(Config.user.last_name);
     expect(packetDetail.unit_name).to.eq(Config.unit.name);
   });
+
+  /**
+   * Send the case forward and backward
+   */
+  it('Send forward/backward', async () => {
+    const packetDetail = await api.moveForward({ id: Config.packet.id, sendNotification: false });
+    expect(packetDetail.current_workflow_step.step_number).to.eq(2, 'Step number moved to step 2');
+    const packetDetail2 = await api.moveBackward({ id: Config.packet.id, sendNotification: false });
+    expect(packetDetail2.current_workflow_step.step_number).to.eq(1, 'Step number moved to step 1');
+  });
 });

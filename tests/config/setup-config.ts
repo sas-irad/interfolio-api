@@ -13,8 +13,9 @@ import setupConfigCommitteeMember from './setup-config-committee-member';
 import { PacketType } from '../../src/packet-types/packet-type-api';
 import setupConfigPacketType from './setup-config-packet-type';
 import setupConfigPacketTemplate from './setup-config-packet-template';
-import { Packet, PacketDetail } from '../../src/packets/packet-api';
+import { PacketDetail } from '../../src/packets/packet-api';
 import setupConfigPacket from './setup-config-packet';
+import { PacketTemplateDetail } from '../../src/packet-templates/packet-template-api';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -23,7 +24,7 @@ export type TestConfig = {
   committee?: Committee;
   committeeMember?: CommitteeMember;
   packetType?: PacketType;
-  packetTemplate?: PacketDetail;
+  packetTemplate?: PacketTemplateDetail;
   packet?: PacketDetail;
 };
 
