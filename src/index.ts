@@ -4,6 +4,7 @@ import UserApi from './users/user-api';
 import PacketTemplateApi from './packet-templates/packet-template-api';
 import PacketTypeApi from './packet-types/packet-type-api';
 import PacketApi from './packets/packet-api';
+import ReportApi from './reports/report-api';
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -48,6 +49,8 @@ export class API {
   public readonly PacketTemplates: PacketTemplateApi;
   /** Handle to the PacketType api */
   public readonly PacketTypes: PacketTypeApi;
+  /** Handle to the Report api */
+  public readonly Reports: ReportApi;
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -62,6 +65,7 @@ export class API {
     this.Packets = new PacketApi(config);
     this.PacketTemplates = new PacketTemplateApi(config);
     this.PacketTypes = new PacketTypeApi(config);
+    this.Reports = new ReportApi(config);
   }
 }
 export default API;

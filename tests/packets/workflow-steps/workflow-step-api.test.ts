@@ -13,7 +13,7 @@ describe('Packet Workflow Step API Test', () => {
     expect(typeof api).to.equal('object', 'API created with type of object');
   });
 
-  it.only('Add/Delete Workflow Step', async () => {
+  it('Add/Delete Workflow Step', async () => {
     const step = await api.addWorkflowStepStanding({
       packetId: Config.packet.id,
       workflowStepName: 'Test Insert Workflow Step',
