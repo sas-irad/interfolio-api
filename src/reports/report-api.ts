@@ -3,6 +3,48 @@ import { ApiConfig } from '../index';
 
 export const REPORT_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/reports';
 export const REPORT_PACKET_SEARCH_URL = REPORT_BASE_URL + '/packet_search';
+export const REPORT_FORM_URL = INTERFOLIO_BYC_TENURE_V1 + "/forms/report";
+
+/**
+ * Data returned from a form report
+ */
+export type FormReportData = {
+  /** the column names of the returned data */
+  column_names: string[];
+  /** the form name */
+  form_name: string;
+  /** the name of the unit this form is associated with */
+  form_unit_name: string;
+  /** the max number of records returned */
+  limit: number;
+  /** the page that these records belong to */
+  page: number;
+  /** the results of the form */
+  results: {
+    /** the packet id of the case */
+    packet_id: string,
+    /** the data ordered according to the column_names listed above */
+    table_cells: string[]
+  }[];
+  /** the total number of records available for the data queried */
+  total_count: number;
+}
+
+/**
+ * Params to query the form report
+ */
+export type FormReportParams = {
+  /** the id of the form */
+  form_id: number;
+  /** the type of the form (e.g. committee) */
+  form_type: string;
+  /** the packet ids for the forms of the data to be returned */
+  packet_ids: number[];
+  /** the number of records to be returned - default = 100 */
+  limit?: number;
+  /** the page number of the records to be returned - default = 1*/
+  page?: number;
+}
 
 /**
  * Data returned from the Packet Search
@@ -103,6 +145,7 @@ export type PacketSearchParams = {
     direction: string;
   };
 };
+
 /**
  * Class representing Report calls
  */
@@ -118,6 +161,28 @@ export class ReportApi {
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
+  }
+
+  public formReport({form_id, form_type, packet_ids, limit, page}: FormReportParams): Promise<FormReportData> {
+    return new Promise((resolve, reject) => {
+      //handle optional params
+      if(!page) page = 1;
+      if(!limit) limit = 100;
+
+      const url = REPORT_FORM_URL;
+      const formData = {
+        limit: limit,
+        form_id: form_id,
+        form_type: form_type,
+        "packet_ids[]": packet_ids,
+        page: page
+      }
+      this.apiRequest.executeRest({url: url, method: "POST", json: formData})
+        .then(results => {
+          resolve(results);
+        })
+        .catch(error => reject(error));
+    });
   }
 
   /**

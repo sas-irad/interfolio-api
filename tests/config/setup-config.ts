@@ -16,6 +16,8 @@ import setupConfigPacketTemplate from './setup-config-packet-template';
 import { PacketDetail } from '../../src/packets/packet-api';
 import setupConfigPacket from './setup-config-packet';
 import { PacketTemplateDetail } from '../../src/packet-templates/packet-template-api';
+import setupConfigForm from './setup-config-form';
+import {Form} from "../../src/forms/form-api";
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -26,6 +28,7 @@ export type TestConfig = {
   packetType?: PacketType;
   packetTemplate?: PacketTemplateDetail;
   packet?: PacketDetail;
+  form?: Form;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
@@ -95,6 +98,7 @@ export const run = async (): Promise<void> => {
     await setupConfigUser(config);
     await setupConfigCommittee(config);
     await setupConfigCommitteeMember(config);
+    await setupConfigForm(config);
     await setupConfigPacketType(config);
     await setupConfigPacketTemplate(config);
     await setupConfigPacket(config);

@@ -1,10 +1,27 @@
-import UnitApi from './units/unit-api';
 import CommitteeApi from './committees/committee-api';
-import UserApi from './users/user-api';
+import FormApi from "./forms/form-api";
 import PacketTemplateApi from './packet-templates/packet-template-api';
 import PacketTypeApi from './packet-types/packet-type-api';
 import PacketApi from './packets/packet-api';
 import ReportApi from './reports/report-api';
+import UnitApi from './units/unit-api';
+import UserApi from './users/user-api';
+
+/**
+ * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
+ */
+export type ApiConfig = {
+  /** The Rest URL endpoint root with no final slash(e.g. https://logic.interfolio.com) */
+  restUrl: string;
+  /** The GraphQL URL endpoint root with not final slash (e.g. https://caasbox.interfolio.com) */
+  graphQlUrl: string;
+  /** The Interfolio tenant id */
+  tenantId: number;
+  /** The public key provided by Interfolio for API access */
+  publicKey: string;
+  /** The private key provided by Interfolio for API access */
+  privateKey: string;
+};
 
 /**
  * Class which has references to all implemented Interfolio API calls
@@ -39,10 +56,8 @@ import ReportApi from './reports/report-api';
 export class API {
   /** Handle to the Committee Api calls */
   public readonly Committees: CommitteeApi;
-  /** Handle to the Unit Api calls */
-  public readonly Units: UnitApi;
-  /** Handle to the User Api calls */
-  public readonly Users: UserApi;
+  /** Handle to the Forms Api calls */
+  public readonly Forms: FormApi;
   /** Handle to the Packet Api */
   public readonly Packets: PacketApi;
   /** Handle to the PacketTemplate Api */
@@ -51,6 +66,10 @@ export class API {
   public readonly PacketTypes: PacketTypeApi;
   /** Handle to the Report api */
   public readonly Reports: ReportApi;
+  /** Handle to the Unit Api calls */
+  public readonly Units: UnitApi;
+  /** Handle to the User Api calls */
+  public readonly Users: UserApi;
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -60,28 +79,14 @@ export class API {
    */
   constructor(config: ApiConfig) {
     this.Committees = new CommitteeApi(config);
-    this.Units = new UnitApi(config);
-    this.Users = new UserApi(config);
+    this.Forms = new FormApi(config);
     this.Packets = new PacketApi(config);
     this.PacketTemplates = new PacketTemplateApi(config);
     this.PacketTypes = new PacketTypeApi(config);
     this.Reports = new ReportApi(config);
+    this.Units = new UnitApi(config);
+    this.Users = new UserApi(config);
   }
 }
 export default API;
 
-/**
- * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
- */
-export type ApiConfig = {
-  /** The Rest URL endpoint root with no final slash(e.g. https://logic.interfolio.com) */
-  restUrl: string;
-  /** The GraphQL URL endpoint root with not final slash (e.g. https://caasbox.interfolio.com) */
-  graphQlUrl: string;
-  /** The Interfolio tenant id */
-  tenantId: number;
-  /** The public key provided by Interfolio for API access */
-  publicKey: string;
-  /** The private key provided by Interfolio for API access */
-  privateKey: string;
-};

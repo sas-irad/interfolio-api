@@ -97,9 +97,13 @@ export class ApiRequest {
   private async execute(options: Options): Promise<any> {
     try {
       const response: any = await got(options);
-
       //if we got a response
       if (response.body && typeof response.body === 'object') {
+        //check for interfolio errors in the response body
+        if(Object.hasOwnProperty.call(response.body, 'errors')) {
+          throw({response});
+        }
+        //return the response body
         return response.body;
       } else {
         return {};
@@ -136,7 +140,7 @@ export class ApiRequest {
    */
   public async executeGraphQl(gqlRequest: GraphQlRequest): Promise<any> {
     const url = this.replaceSlugs('/{tenant_id}/graphql');
-    const options = this.getRequestOptions({ method: 'POST', host: this.config.graphQlUrl, url, form: gqlRequest });
+    const options = this.getRequestOptions({ method: 'POST', host: this.config.graphQlUrl, url, json: gqlRequest });
     return await this.execute(options);
   }
 
