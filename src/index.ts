@@ -1,5 +1,5 @@
 import CommitteeApi from './committees/committee-api';
-import FormApi from "./forms/form-api";
+import FormApi from './forms/form-api';
 import PacketTemplateApi from './packet-templates/packet-template-api';
 import PacketTypeApi from './packet-types/packet-type-api';
 import PacketApi from './packets/packet-api';
@@ -89,4 +89,3 @@ export class API {
   }
 }
 export default API;
-

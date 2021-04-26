@@ -100,8 +100,8 @@ export class ApiRequest {
       //if we got a response
       if (response.body && typeof response.body === 'object') {
         //check for interfolio errors in the response body
-        if(Object.hasOwnProperty.call(response.body, 'errors')) {
-          throw({response});
+        if (Object.hasOwnProperty.call(response.body, 'errors')) {
+          throw { response };
         }
         //return the response body
         return response.body;

@@ -9,6 +9,7 @@ export const PACKET_MOVE_BACKWARD_URL = PACKET_URL + '/move_backward';
 
 //Imported after url consts since WorkflowStep uses them
 import WorkflowStepApi, { WorkflowStep } from './workflow-steps/workflow-step-api';
+import PlatformFormApi from './platform-forms/platform-form-api';
 import Utils, { DeNestingDef } from '../utils';
 
 /** Packet Data that is returned after packet creation */
@@ -300,13 +301,19 @@ export class PacketApi {
    */
   private readonly apiRequest: ApiRequest;
 
+  /** handle to PlatformFormApi */
+  public PlatformForm: PlatformFormApi;
+
+  /** handle to WorkflowStepApi */
   public WorkflowStep: WorkflowStepApi;
+
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
+    this.PlatformForm = new PlatformFormApi(apiConfig);
     this.WorkflowStep = new WorkflowStepApi(apiConfig);
   }
 

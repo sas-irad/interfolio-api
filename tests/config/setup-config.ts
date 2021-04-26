@@ -17,7 +17,7 @@ import { PacketDetail } from '../../src/packets/packet-api';
 import setupConfigPacket from './setup-config-packet';
 import { PacketTemplateDetail } from '../../src/packet-templates/packet-template-api';
 import setupConfigForm from './setup-config-form';
-import {Form} from "../../src/forms/form-api";
+import { Form } from '../../src/forms/form-api';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;

@@ -3,7 +3,7 @@ import { ApiConfig } from '../index';
 
 export const REPORT_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/reports';
 export const REPORT_PACKET_SEARCH_URL = REPORT_BASE_URL + '/packet_search';
-export const REPORT_FORM_URL = INTERFOLIO_BYC_TENURE_V1 + "/forms/report";
+export const REPORT_FORM_URL = INTERFOLIO_BYC_TENURE_V1 + '/forms/report';
 
 /**
  * Data returned from a form report
@@ -22,13 +22,13 @@ export type FormReportData = {
   /** the results of the form */
   results: {
     /** the packet id of the case */
-    packet_id: string,
+    packet_id: string;
     /** the data ordered according to the column_names listed above */
-    table_cells: string[]
+    table_cells: string[];
   }[];
   /** the total number of records available for the data queried */
   total_count: number;
-}
+};
 
 /**
  * Params to query the form report
@@ -44,7 +44,7 @@ export type FormReportParams = {
   limit?: number;
   /** the page number of the records to be returned - default = 1*/
   page?: number;
-}
+};
 
 /**
  * Data returned from the Packet Search
@@ -163,25 +163,26 @@ export class ReportApi {
     this.apiRequest = new ApiRequest(apiConfig);
   }
 
-  public formReport({form_id, form_type, packet_ids, limit, page}: FormReportParams): Promise<FormReportData> {
+  public formReport({ form_id, form_type, packet_ids, limit, page }: FormReportParams): Promise<FormReportData> {
     return new Promise((resolve, reject) => {
       //handle optional params
-      if(!page) page = 1;
-      if(!limit) limit = 100;
+      if (!page) page = 1;
+      if (!limit) limit = 100;
 
       const url = REPORT_FORM_URL;
       const formData = {
         limit: limit,
         form_id: form_id,
         form_type: form_type,
-        "packet_ids[]": packet_ids,
-        page: page
-      }
-      this.apiRequest.executeRest({url: url, method: "POST", json: formData})
-        .then(results => {
+        'packet_ids[]': packet_ids,
+        page: page,
+      };
+      this.apiRequest
+        .executeRest({ url: url, method: 'POST', json: formData })
+        .then((results) => {
           resolve(results);
         })
-        .catch(error => reject(error));
+        .catch((error) => reject(error));
     });
   }
 

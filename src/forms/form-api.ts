@@ -1,4 +1,4 @@
-import ApiRequest, {GraphQlRequest} from '../api-request';
+import ApiRequest, { GraphQlRequest } from '../api-request';
 import { ApiConfig } from '../index';
 
 /**
@@ -12,7 +12,7 @@ export type FormField = {
   /** label for the question */
   label: string;
   /** additioanl data about the field */
-  meta: {maxlength?: number, type: string};
+  meta: { maxlength?: number; type: string };
   /** name of the field (similar to id) */
   name: string;
   /** flag indicating the field is required */
@@ -39,8 +39,8 @@ export type FormVersion = {
     id: string;
     /** the name of the form */
     name: string;
-  }
-}
+  };
+};
 
 /**
  * Type defining a Form
@@ -62,7 +62,6 @@ export type Form = {
   unitId: number;
 };
 
-
 /**
  * Listing returned from the getForms call
  */
@@ -82,11 +81,10 @@ export type FormListing = {
   /** title of the form */
   title: string;
   /** unitId of the form */
-  unitId: number
+  unitId: number;
   /** unit name of the form */
   unitName: string;
-}
-
+};
 
 export class FormApi {
   /**
@@ -108,14 +106,23 @@ export class FormApi {
    * @param description
    * @param unitId
    */
-  public async createForm({title, description, unitId}: {title: string, description: string, unitId: number}) : Promise<number> {
+  public async createForm({
+    title,
+    description,
+    unitId,
+  }: {
+    title: string;
+    description: string;
+    unitId: number;
+  }): Promise<number> {
     return new Promise((resolve, reject) => {
       reject('Create Form Not Enabled via API');
       return;
-      const formId = title.replace(' ', '_').toLowerCase() + "_" + Date.now().toString();
+      const formId = title.replace(' ', '_').toLowerCase() + '_' + Date.now().toString();
       const gqlReq: GraphQlRequest = {
-        operationName: "createForm",
-        query: "mutation createForm($input: CreateFormAttributes!) {createForm(input: $input) {form {id\n      tenantId\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n",
+        operationName: 'createForm',
+        query:
+          'mutation createForm($input: CreateFormAttributes!) {createForm(input: $input) {form {id\n      tenantId\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n',
         variables: {
           input: {
             title: title,
@@ -126,13 +133,14 @@ export class FormApi {
               description: description,
               id: formId,
               name: title,
-              fieldsets: [ {id: formId + '_fieldset', fields: []} ]
-            }
-          }
-        }
+              fieldsets: [{ id: formId + '_fieldset', fields: [] }],
+            },
+          },
+        },
       };
 
-      this.apiRequest.executeGraphQl(gqlReq)
+      this.apiRequest
+        .executeGraphQl(gqlReq)
         .then((response) => {
           resolve(response);
         })
@@ -146,39 +154,41 @@ export class FormApi {
    * Delete the Form (not yet available via API call
    * @param id
    */
-  public async deleteForm({id}: {id: number}) : Promise<boolean> {
+  public async deleteForm({ id }: { id: number }): Promise<boolean> {
     return new Promise((resolve, reject) => {
       reject('Delete Form Not Enabled via API');
       return;
       const gqlReq: GraphQlRequest = {
-        operationName: "deleteForm",
-        query: "mutation deleteForm($id: Int!) {\n  deleteForm(id: $id) {\n    deleted\n    __typename\n  }\n}\n",
-        variables: {id}
+        operationName: 'deleteForm',
+        query: 'mutation deleteForm($id: Int!) {\n  deleteForm(id: $id) {\n    deleted\n    __typename\n  }\n}\n',
+        variables: { id },
       };
-      this.apiRequest.executeGraphQl(gqlReq)
-        .then(response => {
+      this.apiRequest
+        .executeGraphQl(gqlReq)
+        .then((response) => {
           resolve(response);
         })
-      .catch(error => {
-        reject(error);
-      })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
-
 
   /**
    * Find a Commmittee form in a particular unit
    * @param title
    * @param unitId
    */
-  public async findCommitteeForm({title, unitId}: {title: string, unitId: number}): Promise<FormListing> {
+  public async findCommitteeForm({ title, unitId }: { title: string; unitId: number }): Promise<FormListing> {
     return new Promise<FormListing>((resolve, reject) => {
       const gqlRequest: GraphQlRequest = {
-        "operationName": "getForms",
-        "variables": {"searchText": title},
-        "query": "query getForms($searchText: String!) {forms(limit: 50, page: 1, sortBy: id, searchText: $searchText, sortOrder: DESC, unitId: null) {results {description id title unitId __typename}__typename}}"
+        operationName: 'getForms',
+        variables: { searchText: title },
+        query:
+          'query getForms($searchText: String!) {forms(limit: 50, page: 1, sortBy: id, searchText: $searchText, sortOrder: DESC, unitId: null) {results {description id title unitId __typename}__typename}}',
       };
-      this.apiRequest.executeGraphQl(gqlRequest)
+      this.apiRequest
+        .executeGraphQl(gqlRequest)
         .then((response) => {
           let found = false;
           //loop through results and check to see if it matches
@@ -197,15 +207,16 @@ export class FormApi {
     });
   }
 
-
-  public async getForm({id}: {id: number}): Promise<Form> {
+  public async getForm({ id }: { id: number }): Promise<Form> {
     return new Promise<Form>((resolve, reject) => {
       const gqlRequest: GraphQlRequest = {
-        "operationName": "getForm",
-        "variables": {id},
-        "query": "query getForm($id: Int!) {\n  form(id: $id) {\n    id\n    unitId\n    title\n    description\n    canAdminister\n    currentVersion {\n      id\n      versionData\n    }\n     }\n}\n"
+        operationName: 'getForm',
+        variables: { id },
+        query:
+          'query getForm($id: Int!) {\n  form(id: $id) {\n    id\n    unitId\n    title\n    description\n    canAdminister\n    currentVersion {\n      id\n      versionData\n    }\n     }\n}\n',
       };
-      this.apiRequest.executeGraphQl(gqlRequest)
+      this.apiRequest
+        .executeGraphQl(gqlRequest)
         .then((response) => {
           resolve(response.data.form);
         })
