@@ -10,6 +10,8 @@ import Utils, { DeNestingDef } from '../../utils';
 export const WORKFLOW_STEP_BASE_URL = PACKET_URL + '/workflow_steps';
 export const WORKFLOW_STEP_URL = WORKFLOW_STEP_BASE_URL + '/{workflow_step_id}';
 
+import WorkflowStepCommitteeApi from './committees/workflow-step-committee-api';
+
 /**
  * Workflow step
  */
@@ -96,12 +98,15 @@ export class WorkflowStepApi {
    */
   private readonly apiRequest: ApiRequest;
 
+  /** Handle to the WorkflowStepCommitteeApi */
+  public Committee: WorkflowStepCommitteeApi;
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
+    this.Committee = new WorkflowStepCommitteeApi(apiConfig);
   }
 
   /**

@@ -23,6 +23,7 @@ export type TestConfig = {
   apiConfig?: ApiConfig;
   unit?: Unit;
   user?: User;
+  currentUser?: User;
   committee?: Committee;
   committeeMember?: CommitteeMember;
   packetType?: PacketType;

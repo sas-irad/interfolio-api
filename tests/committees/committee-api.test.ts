@@ -28,7 +28,7 @@ describe('Committee API Test', () => {
     const record = await api.getCommittee({ id: Config.committee.id });
     expect(record.name).to.eq(Config.committee.name, 'Committee name matches');
     expect(record.unit_id).to.eq(Config.committee.unit_id, 'Committee unit id matches');
-    expect(record.committee_members[0].user_id).to.eq(Config.user.id, 'Committee Member user id matches');
+    expect(record.committee_members[0].user_id).to.eq(Config.currentUser.id, 'Committee Member user id matches');
   });
 
   it('Find Unit Standing Committee', async () => {
@@ -38,7 +38,7 @@ describe('Committee API Test', () => {
     });
     expect(record.name).to.eq(Config.committee.name, 'Committee name matches');
     expect(record.unit_id).to.eq(Config.committee.unit_id, 'Committee unit id matches');
-    expect(record.committee_members[0].user_id).to.eq(Config.user.id, 'Committee Member user id matches');
+    expect(record.committee_members[0].user_id).to.eq(Config.currentUser.id, 'Committee Member user id matches');
 
     //catch error for negative case
     const badName = 'bad committee name';

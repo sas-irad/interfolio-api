@@ -1,9 +1,13 @@
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
 import { PACKET_URL } from '../packet-api';
+import { FormVersion } from '../../forms/form-api';
 
 export const PLATFORM_FORM_BASE_URL = PACKET_URL + '/platform_forms';
 export const PLATFORM_FORM_URL = PLATFORM_FORM_BASE_URL + '/{platform_form_id}';
+export const PLATFORM_FORM_RESPONSE_BASE_URL = PLATFORM_FORM_URL + '/responses';
+export const PLATFORM_FORM_RESPONSE_URL = PLATFORM_FORM_RESPONSE_BASE_URL + '/{response_id}';
+export const PLATFORM_FORM_EXCLUDE_URL = PLATFORM_FORM_URL + '/exclusions/{committee_member_id}';
 
 export type PlatformForm = {
   /** id of the form type */
@@ -35,6 +39,59 @@ export type PlatformForm = {
   /** id of the workflow step to which this form instance belongs */
   workflow_step_id: number;
 };
+
+/** The responses to submit to a platform form */
+export type PlatformFormSubmission = {
+  /** the form version number */
+  form_version_id: number;
+  /** if the form should be submitted and marked as complete */
+  submitted: boolean;
+  /** the responses to the form */
+  response_data: any;
+};
+
+/**
+ * Response recieved when updating a form
+ */
+export type PlatformFormSubmissionResponse = {
+  /** id of the form response */
+  id: number;
+  /** id of the form instance assigned to the packet */
+  originId: number;
+  /** not sure  */
+  originType: string;
+  /** the response data */
+  responseData: any;
+  /** if the form has been submitted */
+  submitted: boolean;
+  /** id of the user who created the form */
+  createdBy: number;
+  /** date when the form was created */
+  createdAt: string;
+  /** id of the user who last updated the form response */
+  updatedBy: number;
+  /** date when the form was updated */
+  updatedAt: string;
+  /** response statistics */
+  statistics: {
+    /** the number of questions on the form */
+    total_questions: number;
+    /** the total number of answered questions */
+    total_answered_questions: number;
+    /** the number of required questions on the form */
+    required_questions: number;
+    /** the number of required questions answered */
+    required_questions_answered: number;
+  };
+  /** the version of the form submitted */
+  formVersion: FormVersion;
+  /** the title and id of the form that was submitted */
+  form: {
+    id: number;
+    title: string;
+  };
+};
+
 /**
  * Params needed to add a form to a packet workflow step
  */
@@ -81,6 +138,19 @@ export class PlatformFormApi {
    * @param packetId
    * @param sectionId
    * @param workflowStepId
+   *
+   * @example
+   * ```javascript
+   * let form = await api.Packets.PlatformForms.addWorkflowStepForm({
+   *   committeeId: 9999,
+   *   committeeManagerOnlySubmission: false,
+   *   formAccessLevel: 1,
+   *   formId: 9999,
+   *   packetId: 9999,
+   *   sectionId: 9999
+   *   workflowStepId: 9999
+   * });
+   * ```
    */
   async addWorkflowStepForm({
     committeeId,
@@ -117,6 +187,11 @@ export class PlatformFormApi {
    * Delete a platform form
    * @param id          id of the form instance
    * @param packetId    id of the case packet
+   *
+   * @example
+   * ```javascript
+   *  let deleted = await api.Packets.PlatformForms.delete({id: 9999, packetId: 9999});
+   * ```
    */
   async deleteForm({ id, packetId }: { id: number; packetId: number }): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -128,6 +203,38 @@ export class PlatformFormApi {
         .executeRest({ url, method: 'DELETE' })
         .then(() => resolve(true))
         .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   *
+   * @param packetId
+   * @param platformFormId
+   * @param submission
+   */
+  submitFormResponse({
+    packetId,
+    platformFormId,
+    submission,
+  }: {
+    packetId: number;
+    platformFormId: number;
+    submission: PlatformFormSubmission;
+  }): Promise<PlatformFormSubmissionResponse> {
+    return new Promise((resolve, reject) => {
+      const url = PLATFORM_FORM_RESPONSE_BASE_URL.replace('{packet_id}', packetId.toString()).replace(
+        '{platform_form_id}',
+        platformFormId.toString(),
+      );
+
+      this.apiRequest
+        .executeRest({ url: url, method: 'POST', form: submission })
+        .then((response) => {
+          resolve(response.data.createFormResponse.formResponse);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 }

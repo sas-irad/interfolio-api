@@ -8,7 +8,7 @@ import API from '../../src';
  */
 const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
   //prompt to overwrite
-  if (config.user) {
+  if (config.user && config.currentUser) {
     const update = await prompts({
       type: 'select',
       name: 'update',
@@ -31,7 +31,7 @@ const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
   //go get the current units from the database
   const api = new API(config.apiConfig);
 
-  //look to see if the test committee already exists
+  //look to see if the test user already exists
   try {
     const user = await api.Users.findUserByEmail({ email: 'api-test@example.com' });
     config.user = user;
@@ -44,6 +44,10 @@ const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
     });
     config.user = user;
   }
+
+  //go get the current user
+  const currentUser = await api.Users.currentUser();
+  config.currentUser = currentUser;
 
   return config;
 };

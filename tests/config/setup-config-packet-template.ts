@@ -32,6 +32,8 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
     throw Error('To run template test setup the committee test config must already be defined');
   if (config.packetType === undefined)
     throw Error('To run template test setup the packet type test config must already be defined');
+  if (config.form === undefined)
+    throw Error('To run template test setup the form type test config must already be defined');
 
   //go get the current units from the database
   const api = new API(config.apiConfig);
@@ -51,7 +53,7 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       packetTypeId: config.packetType.id,
     });
 
-    await api.Packets.WorkflowStep.addWorkflowStepStanding({
+    const step1 = await api.Packets.WorkflowStep.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 1',
       committeeId: config.committee.id,
@@ -63,6 +65,18 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       workflowStepName: 'Workflow Step 2',
       committeeId: config.committee.id,
       workflowStepNote: 'Workflow Step Note 2',
+    });
+
+    const packetTemplateFull = await api.PacketTemplates.getTemplate({ id: packetTemplate.id });
+
+    await api.Packets.PlatformForm.addWorkflowStepForm({
+      committeeId: config.committee.id,
+      committeeManagerOnlySubmission: true,
+      formAccessLevel: 1,
+      formId: config.form.id,
+      sectionId: packetTemplateFull.packet_sections[1].id,
+      packetId: packetTemplate.id,
+      workflowStepId: step1.id,
     });
 
     config.packetTemplate = await api.PacketTemplates.getTemplate({ id: packetTemplate.id });

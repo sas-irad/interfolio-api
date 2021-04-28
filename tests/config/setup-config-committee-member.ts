@@ -32,7 +32,7 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
     throw Error('To run committee test setup the apiConfig (keys & urls) must first be defined');
   if (config.unit === undefined)
     throw Error('To run committee test setup the unit test config must already be defined');
-  if (config.user === undefined)
+  if (config.currentUser === undefined)
     throw Error('To run committee test setup the user test config must already be defined');
   if (config.committee === undefined)
     throw Error('To run committee member test setup the committee test config must already be defined');
@@ -44,17 +44,18 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
   let committeeMember: CommitteeMember | null = null;
   if (config.committee.committee_members.length > 0) {
     for (const cm of config.committee.committee_members) {
-      if (cm.user_id === config.user.id) {
+      if (cm.user_id === config.currentUser.id) {
         committeeMember = cm;
       }
     }
   }
   //if we haven't yet found a committee member then create one
   if (committeeMember === null) {
+    console.log('Creating Committee Member: ' + config.currentUser.id.toString());
     try {
       const member = await api.Committees.CommitteeMembers.create({
         committeeId: config.committee.id,
-        userId: config.user.id,
+        userId: config.currentUser.id,
         manager: true,
       });
       config.committeeMember = member;

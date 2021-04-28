@@ -57,6 +57,9 @@
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="platformformapi.html#deleteform" class="tsd-kind-icon">delete<wbr>Form</a>
 				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="platformformapi.html#submitformresponse" class="tsd-kind-icon">submit<wbr>Form<wbr>Response</a>
+				</li>
 			</ul>
 		</li>
 	</ul>
@@ -93,6 +96,7 @@
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="platformformapi.html#addworkflowstepform" class="tsd-kind-icon">add<wbr>Workflow<wbr>Step<wbr>Form</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="platformformapi.html#deleteform" class="tsd-kind-icon">delete<wbr>Form</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="platformformapi.html#submitformresponse" class="tsd-kind-icon">submit<wbr>Form<wbr>Response</a></li>
 						</ul>
 					</section>
 				</div>
@@ -110,7 +114,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/900c8a9/src/packets/platform-forms/platform-form-api.ts#L65">packets/platform-forms/platform-form-api.ts:65</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/59b8551/src/packets/platform-forms/platform-form-api.ts#L122">packets/platform-forms/platform-form-api.ts:122</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -146,13 +150,26 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/900c8a9/src/packets/platform-forms/platform-form-api.ts#L85">packets/platform-forms/platform-form-api.ts:85</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/59b8551/src/packets/platform-forms/platform-form-api.ts#L155">packets/platform-forms/platform-form-api.ts:155</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Add a required form to a workflow step</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span class="hljs-keyword">let</span> form = <span class="hljs-keyword">await</span> api.Packets.PlatformForms.addWorkflowStepForm({
+  <span class="hljs-attr">committeeId</span>: <span class="hljs-number">9999</span>,
+  <span class="hljs-attr">committeeManagerOnlySubmission</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">formAccessLevel</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">formId</span>: <span class="hljs-number">9999</span>,
+  <span class="hljs-attr">packetId</span>: <span class="hljs-number">9999</span>,
+  <span class="hljs-attr">sectionId</span>: <span class="hljs-number">9999</span>
+  <span class="hljs-attr">workflowStepId</span>: <span class="hljs-number">9999</span>
+});</code></pre>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -199,13 +216,18 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/900c8a9/src/packets/platform-forms/platform-form-api.ts#L121">packets/platform-forms/platform-form-api.ts:121</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/59b8551/src/packets/platform-forms/platform-form-api.ts#L196">packets/platform-forms/platform-form-api.ts:196</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Delete a platform form</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"> <span class="hljs-keyword">let</span> deleted = <span class="hljs-keyword">await</span> api.Packets.PlatformForms.delete({<span class="hljs-attr">id</span>: <span class="hljs-number">9999</span>, <span class="hljs-attr">packetId</span>: <span class="hljs-number">9999</span>});</code></pre>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -228,6 +250,44 @@
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="submitformresponse" class="tsd-anchor"></a>
+				<h3>submit<wbr>Form<wbr>Response</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">submit<wbr>Form<wbr>Response<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>platformFormId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>submission<span class="tsd-signature-symbol">: </span><a href="../globals.html#platformformsubmission" class="tsd-signature-type">PlatformFormSubmission</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#platformformsubmissionresponse" class="tsd-signature-type">PlatformFormSubmissionResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/59b8551/src/packets/platform-forms/platform-form-api.ts#L215">packets/platform-forms/platform-form-api.ts:215</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>platformFormId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>submission<span class="tsd-signature-symbol">: </span><a href="../globals.html#platformformsubmission" class="tsd-signature-type">PlatformFormSubmission</a><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>platform<wbr>Form<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>submission<span class="tsd-signature-symbol">: </span><a href="../globals.html#platformformsubmission" class="tsd-signature-type">PlatformFormSubmission</a></h5>
+										<div class="tsd-comment tsd-typography">
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#platformformsubmissionresponse" class="tsd-signature-type">PlatformFormSubmissionResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>

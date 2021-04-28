@@ -45,6 +45,13 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
 
   const movedPacket = await api.Packets.moveForward({ id: packetDetail.id, sendNotification: false });
 
+  /** @todo implement submission of form */
+  //fill out and submit the form
+  // await api.Packets.PlatformForm.submitFormResponse({
+  //   packetId: movedPacket.id,
+  //   platformFormId:
+  // })
+
   config.packet = movedPacket;
 
   return config;

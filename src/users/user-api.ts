@@ -6,6 +6,7 @@ import Utils, { DeNestingDef } from '../utils';
 
 export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1 + '/users';
 export const USER_URL = USER_URL_BASE + '/{user_id}';
+export const USER_CURRENT_URL = '/byc-tenure/{tenant_id}/users/current';
 export const USER_SEARCH_URL =
   INTERFOLIO_CORE_URL_V1 + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}';
 export const USER_SSO_URL = INTERFOLIO_CORE_URL_V2 + '/institutions/{tenant_id}/users/{user_id}/sso_id';
@@ -225,6 +226,19 @@ export class UserApi {
         .executeRest({ url, method: 'POST', form: form })
         .then((response) => {
           resolve(this.getUser(response.id));
+        })
+        .catch((error) => reject(error));
+    });
+  }
+
+  public currentUser(): Promise<User> {
+    console.log(USER_CURRENT_URL);
+    return new Promise((resolve, reject) => {
+      this.apiRequest
+        .executeRest({ url: USER_CURRENT_URL })
+        .then((response) => {
+          const user: User = this.deNest(response.user) as User;
+          resolve(user);
         })
         .catch((error) => reject(error));
     });
