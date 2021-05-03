@@ -99,14 +99,14 @@ export class WorkflowStepApi {
   private readonly apiRequest: ApiRequest;
 
   /** Handle to the WorkflowStepCommitteeApi */
-  public Committee: WorkflowStepCommitteeApi;
+  public Committees: WorkflowStepCommitteeApi;
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
-    this.Committee = new WorkflowStepCommitteeApi(apiConfig);
+    this.Committees = new WorkflowStepCommitteeApi(apiConfig);
   }
 
   /**

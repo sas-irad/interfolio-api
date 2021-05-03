@@ -3,6 +3,7 @@ import got from 'got';
 import { Options, Method } from 'got';
 import { ApiConfig } from './index';
 import { Readable } from 'stream';
+import util from 'util';
 
 /** The v1 core interfolio for global objects such as users and units */
 export const INTERFOLIO_CORE_URL_V1 = '/byc/core/tenure/{tenant_id}';
@@ -80,6 +81,11 @@ export class ApiRequest {
   /** The API Config  */
   private config: ApiConfig;
 
+  /** Flag indicating if options sent to server should be output with console.log */
+  public outputRequestOptions = false;
+
+  /** Flag indicating if the response should be output*/
+  public outputResponse = false;
   /**
    * Initialize the request object with the necessary config options
    *
@@ -96,8 +102,10 @@ export class ApiRequest {
    * @param {Options} got.js options
    */
   private async execute(options: Options): Promise<any> {
+    if (this.outputRequestOptions) console.log(util.inspect(options, { showHidden: false, depth: null }));
     try {
       const response: any = await got(options);
+      if (this.outputResponse) console.log(util.inspect(response, { showHidden: false, depth: null }));
       //if we got a response
       if (response.body && typeof response.body === 'object') {
         //check for interfolio errors in the response body
@@ -110,6 +118,7 @@ export class ApiRequest {
         return {};
       }
     } catch (error) {
+      if (this.outputResponse) console.log(util.inspect(error, { showHidden: false, depth: null }));
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
         throw Error(error.response.body.errors[0].message);

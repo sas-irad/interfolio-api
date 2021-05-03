@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Interfolio API | Interfolio API</title>
+	<title>utils | Interfolio API</title>
 	<meta name="description" content="Documentation for Interfolio API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">Interfolio API</a></strong>
+					<strong><a href="../index.html">Interfolio API</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2704,101 +2704,194 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-reference tsd-parent-kind-module">
+			<a href="utils.html#default" class="tsd-kind-icon">default</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="utils.html#denestingdef" class="tsd-kind-icon">De<wbr>Nesting<wbr>Def</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-module">
+			<a href="utils.html#utils-1" class="tsd-kind-icon">Utils</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-module">
+			<a href="utils.html#denest-1" class="tsd-kind-icon">de<wbr>Nest</a>
+		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<div class="tsd-panel tsd-typography">
-			<a href="#interfolio-api" id="interfolio-api" style="color: inherit; text-decoration: none;">
-				<h1>Interfolio Api</h1>
-			</a>
-			<p>Library which contains methods that utilize Interfolio&#39;s API to view and edit data from an Interfolio instance. </p>
-			<a href="#background" id="background" style="color: inherit; text-decoration: none;">
-				<h2>Background</h2>
-			</a>
-			<p>This API middleware was developed by the University of Pennsylvania School of Arts and Sciences
-				for their integration with Interfolio.  As the integration did not require all available APIs
-				to be utilized there are many which have not yet been implemented.  Most of the endpoints are
-				related to the &quot;Review Promotion and Tenure (RPT)&quot; module.  You are free to use and further
-			development is certainly encouraged.  Visit the project wiki for information on how to contribute.</p>
-			<a href="#uses" id="uses" style="color: inherit; text-decoration: none;">
-				<h2>Uses</h2>
-			</a>
-			<p>The primary purpose of this library is to provide a typescript/javascript interface to the Interfolio API.
-				This library takes the grunt work out of actually making the calls to Interfolio.  It can be used as
-				middle-ware to help script backend integrations.  Since the instantiation of the library
-				requires a private key to acheive authentication, it is not intended for use in a public
-			front end application. </p>
-			<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-				<h2>Installation</h2>
-			</a>
-			<pre><code class="language-bash"><span style="color: #000000">npm install @sas-irad/interfolio-api</span>
-</code></pre>
-			<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
-				<h2>API Documentation</h2>
-			</a>
-			<p>Documentation for all of the implemented API calls can be found on the <a href="https://sas-irad.github.io/interfolio-api">github documentation site</a>.</p>
-			<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-				<h2>Contributing</h2>
-			</a>
-			<p>Developer guide for making (much appreciated) contributions can be found ont the <a href="https://github.com/sas-irad/interfolio-api/wiki">github wiki</a>.</p>
-			<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-				<h2>Getting Started</h2>
-			</a>
-			<p>JavaScript Projects</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">INTERFOLIO_API</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@sas-irad/interfolio-api/lib&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">INTERFOLIO_API</span><span style="color: #000000">.</span><span style="color: #795E26">API</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;restUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://logic.interfolio.com&quot;</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;graphQlUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://caasbox.interfolio.com&quot;</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tenantId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">99999</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
-<span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-			<p>TypeScript Projects</p>
-			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">API</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@sas-irad/interfolio-api/lib&#039;</span><span style="color: #000000">;</span>
-
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">API</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;restUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://logic.interfolio.com&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;graphQlUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://caasbox.interfolio.com&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tenantId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">99999</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
-<span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-			<p>Once the <code>api</code> object has been instantiated you can run any of the implemented Interfolio API functions e.g.</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Units</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-		</div>
-		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Modules</h3>
+						<h3>References</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-module"><a href="modules/api_request.html" class="tsd-kind-icon">api-<wbr>request</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_api.html" class="tsd-kind-icon">committees/committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_members_committee_member_api.html" class="tsd-kind-icon">committees/committee_<wbr>members/committee-<wbr>member-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/forms_form_api.html" class="tsd-kind-icon">forms/form-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/index.html" class="tsd-kind-icon">index</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_templates_packet_template_api.html" class="tsd-kind-icon">packet-<wbr>templates/packet-<wbr>template-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_types_packet_type_api.html" class="tsd-kind-icon">packet-<wbr>types/packet-<wbr>type-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_packet_api.html" class="tsd-kind-icon">packets/packet-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_platform_forms_platform_form_api.html" class="tsd-kind-icon">packets/platform-<wbr>forms/platform-<wbr>form-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_committees_workflow_step_committee_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/committees/workflow-<wbr>step-<wbr>committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_workflow_step_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/workflow-<wbr>step-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/reports_report_api.html" class="tsd-kind-icon">reports/report-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/units_unit_api.html" class="tsd-kind-icon">units/unit-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/users_user_api.html" class="tsd-kind-icon">users/user-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/utils.html" class="tsd-kind-icon">utils</a></li>
+							<li class="tsd-kind-reference tsd-parent-kind-module"><a href="utils.html#default" class="tsd-kind-icon">default</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="utils.html#denestingdef" class="tsd-kind-icon">De<wbr>Nesting<wbr>Def</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Variables</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="utils.html#utils-1" class="tsd-kind-icon">Utils</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Functions</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#denest-1" class="tsd-kind-icon">de<wbr>Nest</a></li>
 						</ul>
 					</section>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>References</h2>
+			<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+				<a name="default" class="tsd-anchor"></a>
+				<h3>default</h3>
+				Renames and exports <a href="utils.html#utils-1">Utils</a>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+				<a name="denestingdef" class="tsd-anchor"></a>
+				<h3>De<wbr>Nesting<wbr>Def</h3>
+				<div class="tsd-signature tsd-kind-icon">De<wbr>Nesting<wbr>Def<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/utils.ts#L6">utils.ts:6</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The definition for de nesting a response retrieved from interfolio</p>
+					</div>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-index-signature">
+							<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-symbol">{ </span>nestedAttributeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nestedDefs<span class="tsd-signature-symbol">?: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;DENEST_ARRAY&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DENEST_CHILD_OBJECT&quot;</span><span class="tsd-signature-symbol"> }</span></h5>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>nested<wbr>Attribute<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> nested<wbr>Defs<span class="tsd-signature-symbol">?: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;DENEST_ARRAY&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DENEST_CHILD_OBJECT&quot;</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+				<a name="utils-1" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> Utils</h3>
+				<div class="tsd-signature tsd-kind-icon">Utils<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>deNest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a>, deNestingDefs<span class="tsd-signature-symbol">: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/utils.ts#L69">utils.ts:69</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>uandle to the functions defined by the utils</p>
+					</div>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter">
+							<h5>de<wbr>Nest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a>, deNestingDefs<span class="tsd-signature-symbol">: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></h5>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-signature">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a>, deNestingDefs<span class="tsd-signature-symbol">: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>Function which takes an object returned from the API and removes unnecessary nesting according the the deNesting definition</p>
+												</div>
+											</div>
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>data: <a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></h5>
+													<div class="tsd-comment tsd-typography">
+														<p>Data (or subdata) returned from an API</p>
+													</div>
+												</li>
+												<li>
+													<h5>deNestingDefs: <a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a></h5>
+													<div class="tsd-comment tsd-typography">
+														<p>Defines which parameters (or subparameters) need to be denested</p>
+													</div>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Functions</h2>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+				<a name="denest-1" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> de<wbr>Nest</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+					<li class="tsd-signature tsd-kind-icon">de<wbr>Nest<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a>, deNestingDefs<span class="tsd-signature-symbol">: </span><a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/utils.ts#L22">utils.ts:22</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Function which takes an object returned from the API and removes unnecessary nesting according the the deNesting definition</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>data: <a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Data (or subdata) returned from an API</p>
+								</div>
+							</li>
+							<li>
+								<h5>deNestingDefs: <a href="utils.html#denestingdef" class="tsd-signature-type" data-tsd-kind="Type alias">DeNestingDef</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Defines which parameters (or subparameters) need to be denested</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="api_request.html#apiresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ApiResponse</a></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

@@ -145,7 +145,11 @@ export class WorkflowStepCommitteeApi {
    *
    * @example
    * ```javascript
-   * let requirements = api.Packets.Workflow
+   * let requirements = await api.Packets.WorkflowSteps.Committees.getRequirements({
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   committeeId: 9999
+   * }
    */
 
   public getRequirements({

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Interfolio API | Interfolio API</title>
+	<title>committees/committee_members/committee-member-api | Interfolio API</title>
 	<meta name="description" content="Documentation for Interfolio API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">Interfolio API</a></strong>
+					<strong><a href="../index.html">Interfolio API</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2704,101 +2704,189 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-reference tsd-parent-kind-module">
+			<a href="committees_committee_members_committee_member_api.html#default" class="tsd-kind-icon">default</a>
+		</li>
+		<li class=" tsd-kind-class tsd-parent-kind-module">
+			<a href="../classes/committees_committee_members_committee_member_api.committeememberapi.html" class="tsd-kind-icon">Committee<wbr>Member<wbr>Api</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="committees_committee_members_committee_member_api.html#committeemember" class="tsd-kind-icon">Committee<wbr>Member</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-module">
+			<a href="committees_committee_members_committee_member_api.html#committee_member_base_url" class="tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>BASE_<wbr>URL</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-module">
+			<a href="committees_committee_members_committee_member_api.html#committee_member_url" class="tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>URL</a>
+		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<div class="tsd-panel tsd-typography">
-			<a href="#interfolio-api" id="interfolio-api" style="color: inherit; text-decoration: none;">
-				<h1>Interfolio Api</h1>
-			</a>
-			<p>Library which contains methods that utilize Interfolio&#39;s API to view and edit data from an Interfolio instance. </p>
-			<a href="#background" id="background" style="color: inherit; text-decoration: none;">
-				<h2>Background</h2>
-			</a>
-			<p>This API middleware was developed by the University of Pennsylvania School of Arts and Sciences
-				for their integration with Interfolio.  As the integration did not require all available APIs
-				to be utilized there are many which have not yet been implemented.  Most of the endpoints are
-				related to the &quot;Review Promotion and Tenure (RPT)&quot; module.  You are free to use and further
-			development is certainly encouraged.  Visit the project wiki for information on how to contribute.</p>
-			<a href="#uses" id="uses" style="color: inherit; text-decoration: none;">
-				<h2>Uses</h2>
-			</a>
-			<p>The primary purpose of this library is to provide a typescript/javascript interface to the Interfolio API.
-				This library takes the grunt work out of actually making the calls to Interfolio.  It can be used as
-				middle-ware to help script backend integrations.  Since the instantiation of the library
-				requires a private key to acheive authentication, it is not intended for use in a public
-			front end application. </p>
-			<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-				<h2>Installation</h2>
-			</a>
-			<pre><code class="language-bash"><span style="color: #000000">npm install @sas-irad/interfolio-api</span>
-</code></pre>
-			<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
-				<h2>API Documentation</h2>
-			</a>
-			<p>Documentation for all of the implemented API calls can be found on the <a href="https://sas-irad.github.io/interfolio-api">github documentation site</a>.</p>
-			<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-				<h2>Contributing</h2>
-			</a>
-			<p>Developer guide for making (much appreciated) contributions can be found ont the <a href="https://github.com/sas-irad/interfolio-api/wiki">github wiki</a>.</p>
-			<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-				<h2>Getting Started</h2>
-			</a>
-			<p>JavaScript Projects</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">INTERFOLIO_API</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@sas-irad/interfolio-api/lib&#039;</span><span style="color: #000000">);</span>
-
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">INTERFOLIO_API</span><span style="color: #000000">.</span><span style="color: #795E26">API</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;restUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://logic.interfolio.com&quot;</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;graphQlUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://caasbox.interfolio.com&quot;</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tenantId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">99999</span><span style="color: #000000">, </span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
-<span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-			<p>TypeScript Projects</p>
-			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">API</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@sas-irad/interfolio-api/lib&#039;</span><span style="color: #000000">;</span>
-
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">API</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;restUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://logic.interfolio.com&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;graphQlUrl&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;https://caasbox.interfolio.com&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;tenantId&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #098658">99999</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
-<span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-			<p>Once the <code>api</code> object has been instantiated you can run any of the implemented Interfolio API functions e.g.</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Units</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
-</code></pre>
-		</div>
-		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Modules</h3>
+						<h3>References</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-module"><a href="modules/api_request.html" class="tsd-kind-icon">api-<wbr>request</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_api.html" class="tsd-kind-icon">committees/committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_members_committee_member_api.html" class="tsd-kind-icon">committees/committee_<wbr>members/committee-<wbr>member-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/forms_form_api.html" class="tsd-kind-icon">forms/form-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/index.html" class="tsd-kind-icon">index</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_templates_packet_template_api.html" class="tsd-kind-icon">packet-<wbr>templates/packet-<wbr>template-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_types_packet_type_api.html" class="tsd-kind-icon">packet-<wbr>types/packet-<wbr>type-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_packet_api.html" class="tsd-kind-icon">packets/packet-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_platform_forms_platform_form_api.html" class="tsd-kind-icon">packets/platform-<wbr>forms/platform-<wbr>form-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_committees_workflow_step_committee_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/committees/workflow-<wbr>step-<wbr>committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_workflow_step_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/workflow-<wbr>step-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/reports_report_api.html" class="tsd-kind-icon">reports/report-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/units_unit_api.html" class="tsd-kind-icon">units/unit-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/users_user_api.html" class="tsd-kind-icon">users/user-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/utils.html" class="tsd-kind-icon">utils</a></li>
+							<li class="tsd-kind-reference tsd-parent-kind-module"><a href="committees_committee_members_committee_member_api.html#default" class="tsd-kind-icon">default</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Classes</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/committees_committee_members_committee_member_api.committeememberapi.html" class="tsd-kind-icon">Committee<wbr>Member<wbr>Api</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="committees_committee_members_committee_member_api.html#committeemember" class="tsd-kind-icon">Committee<wbr>Member</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Variables</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="committees_committee_members_committee_member_api.html#committee_member_base_url" class="tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>BASE_<wbr>URL</a></li>
+							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="committees_committee_members_committee_member_api.html#committee_member_url" class="tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>URL</a></li>
 						</ul>
 					</section>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>References</h2>
+			<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+				<a name="default" class="tsd-anchor"></a>
+				<h3>default</h3>
+				Renames and exports <a href="../classes/committees_committee_members_committee_member_api.committeememberapi.html">CommitteeMemberApi</a>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+				<a name="committeemember" class="tsd-anchor"></a>
+				<h3>Committee<wbr>Member</h3>
+				<div class="tsd-signature tsd-kind-icon">Committee<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>committee_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>first_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>is_current_user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>last_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>manager<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>temporary<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>user_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/committees/committee_members/committee-member-api.ts#L10">committees/committee_members/committee-member-api.ts:10</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Data structure defining the member of a committee</p>
+					</div>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter">
+							<h5>committee_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The ID of the committee</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Email of the committee member</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>first_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>First name of the committee member</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>ID for the committee membership</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>is_<wbr>current_<wbr>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Flag indicating if the members is the current user</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>last_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Last name of the committee member</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>manager<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Flag indicating if the member is a manager of the committee</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Interfolio PID of the member</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>temporary<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Flag indicating if this member is a temporary member of the committee</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>user_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>user_id of the committee member</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+				<a name="committee_member_base_url" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> COMMITTEE_<wbr>MEMBER_<wbr>BASE_<wbr>URL</h3>
+				<div class="tsd-signature tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>BASE_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/committees/committee_members/committee-member-api.ts#L5">committees/committee_members/committee-member-api.ts:5</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+				<a name="committee_member_url" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> COMMITTEE_<wbr>MEMBER_<wbr>URL</h3>
+				<div class="tsd-signature tsd-kind-icon">COMMITTEE_<wbr>MEMBER_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/3a2e99c/src/committees/committee_members/committee-member-api.ts#L6">committees/committee_members/committee-member-api.ts:6</a></li>
+					</ul>
+				</aside>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

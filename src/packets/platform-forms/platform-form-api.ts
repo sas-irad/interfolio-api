@@ -49,7 +49,6 @@ export type PlatformFormSubmission = {
   /** the responses to the form */
   response_data: any;
 };
-
 /**
  * Response recieved when updating a form
  */
@@ -61,7 +60,7 @@ export type PlatformFormSubmissionResponse = {
   /** not sure  */
   originType: string;
   /** the response data */
-  responseData: any;
+  responseData: { [questionKey: string]: string | number };
   /** if the form has been submitted */
   submitted: boolean;
   /** id of the user who created the form */
@@ -119,7 +118,7 @@ export class PlatformFormApi {
   /**
    * API request object for making the actual http requests
    */
-  private readonly apiRequest: ApiRequest;
+  public apiRequest: ApiRequest;
 
   /**
    * Constructor for the object
@@ -207,14 +206,72 @@ export class PlatformFormApi {
   }
 
   /**
+   * Get the form version associated with a form assigned to a workflow step
+   * @param formId  the main form type id of the form
+   * @param originId  the form assignment instance to the workflow step
    *
-   * @param packetId
-   * @param platformFormId
-   * @param submission
+   * @example
+   * ```javascript
+   * let formVersion = await api.Packets.PlatformForms.getFormVersionForWorkflowStep({
+   *  formId: 9999,
+   *  originId: 9999
+   * });
+   */
+  getFormVersionForWorkflowStep({ formId, originId }: { formId: number; originId: number }): Promise<FormVersion> {
+    return new Promise((resolve, reject) => {
+      const gqlRequest = {
+        operationName: 'getFormByOrigin',
+        query:
+          'query getFormByOrigin {formVersionByOrigin(' +
+          'formId: ' +
+          formId.toString() +
+          ', originId: ' +
+          originId.toString() +
+          ', originType: "PacketCommitteeForm")  {id versionData}}',
+      };
+
+      this.apiRequest
+        .executeGraphQl(gqlRequest)
+        .then((response) => {
+          resolve(response.data.formVersionByOrigin);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Submit a form response for the current user
+   *
+   * @param packetId   the packet id
+   * @param platformFormId  id of the platform form
+   * @param submission  the form submission
+   *
+   * @example
+   * ```javascript
+   * let formVersion await api.Packets.PlatformForms.getFormVersionForWorkflowStep({
+   *  formId: 9999,
+   *  originId: 9999
+   * });
+   *
+   * let submission = api.Packets.PlatformForms.formSubmissionFromValues({
+   *   formVersion: formVersion,
+   *   responseValues: [{label: "Question 1", value: "Answer 1}, {label: "Question 2", value: "answer 2"}]
+   * };
+   *
+   * let response = api.Packets.PlatformForms.submitFormResponse({
+   *   packetId: 9999,
+   *   platformFormId: 9999,
+   *   submission: submission
+   * }
+   * ```
+   *
    */
   submitFormResponse({
     packetId,
     platformFormId,
+
     submission,
   }: {
     packetId: number;
@@ -226,9 +283,8 @@ export class PlatformFormApi {
         '{platform_form_id}',
         platformFormId.toString(),
       );
-
       this.apiRequest
-        .executeRest({ url: url, method: 'POST', form: submission })
+        .executeRest({ url: url, method: 'POST', json: submission })
         .then((response) => {
           resolve(response.data.createFormResponse.formResponse);
         })
@@ -236,6 +292,61 @@ export class PlatformFormApi {
           reject(error);
         });
     });
+  }
+
+  /**
+   * given a form version and response values format the form submission
+   * @param formVersion
+   * @param responseValues
+   */
+  public formSubmissionFromValues({
+    formVersion,
+    responseValues,
+  }: {
+    formVersion: FormVersion;
+    responseValues: { label: string; value: string | number }[];
+  }): PlatformFormSubmission {
+    const formSubmission: PlatformFormSubmission = {
+      form_version_id: formVersion.id,
+      response_data: {},
+      submitted: true,
+    };
+
+    for (const responseValue of responseValues) {
+      for (const fieldSet of formVersion.versionData.fieldsets) {
+        for (const field of fieldSet.fields) {
+          if (field.label === responseValue.label) {
+            //get the correct select option
+            if ((field.field_type === 'select' || field.field_type === 'radio') && field.meta.options !== undefined) {
+              for (const option of field.meta.options) {
+                if (option.label === responseValue.value) {
+                  formSubmission.response_data[field.id] = option.value;
+                }
+              }
+            }
+
+            //format the date
+            else if (
+              field.field_type === 'collection' &&
+              field.meta !== undefined &&
+              field.meta.schema !== undefined &&
+              field.meta.schema[0] !== undefined &&
+              field.meta.schema[0].field_type === 'date'
+            ) {
+              formSubmission.response_data[field.id] = { [field.id + '_date']: responseValue.value };
+            }
+
+            //add a simple field response
+            else {
+              formSubmission.response_data[field.id] = responseValue.value;
+            }
+
+            break;
+          }
+        }
+      }
+    }
+    return formSubmission;
   }
 }
 

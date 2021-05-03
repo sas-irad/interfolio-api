@@ -34,4 +34,18 @@ describe('Form API Test', () => {
     const form = await api.getForm({ id: Config.form.id });
     expect(form.title).equal(Config.form.title, 'Title Matches');
   });
+
+  //Check the form responses match
+  it('Get Form Responses', async () => {
+    const responses = await api.getFormResponses({
+      formId: Config.formResponse.form.id,
+      originId: Config.formResponse.originId,
+      originType: Config.formResponse.originType,
+    });
+
+    //loop through response data to see if it matches
+    for (const [field, value] of Object.entries(Config.formResponse.responseData)) {
+      expect(responses[0].responseData[field]).equal(value, 'Field matches Value');
+    }
+  });
 });

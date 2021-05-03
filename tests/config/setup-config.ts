@@ -18,6 +18,8 @@ import setupConfigPacket from './setup-config-packet';
 import { PacketTemplateDetail } from '../../src/packet-templates/packet-template-api';
 import setupConfigForm from './setup-config-form';
 import { Form } from '../../src/forms/form-api';
+import setupConfigPacketForm from './setup-config-packet-form';
+import { PlatformFormSubmissionResponse } from '../../src/packets/platform-forms/platform-form-api';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -29,7 +31,9 @@ export type TestConfig = {
   packetType?: PacketType;
   packetTemplate?: PacketTemplateDetail;
   packet?: PacketDetail;
+  packetForm?: any;
   form?: Form;
+  formResponse?: PlatformFormSubmissionResponse;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
@@ -103,6 +107,7 @@ export const run = async (): Promise<void> => {
     await setupConfigPacketType(config);
     await setupConfigPacketTemplate(config);
     await setupConfigPacket(config);
+    await setupConfigPacketForm(config);
 
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
     console.log('Config File Saved');

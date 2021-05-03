@@ -163,6 +163,14 @@ export class ReportApi {
     this.apiRequest = new ApiRequest(apiConfig);
   }
 
+  /**
+   *
+   * @param form_id      id of the form type
+   * @param form_type    type of form (e.g. "committee_form")
+   * @param packet_ids   array of packet ids
+   * @param limit        number of records to return
+   * @param page         page number of the returned records
+   */
   public formReport({ form_id, form_type, packet_ids, limit, page }: FormReportParams): Promise<FormReportData> {
     return new Promise((resolve, reject) => {
       //handle optional params
@@ -174,7 +182,7 @@ export class ReportApi {
         limit: limit,
         form_id: form_id,
         form_type: form_type,
-        'packet_ids[]': packet_ids,
+        packet_ids: packet_ids,
         page: page,
       };
       this.apiRequest

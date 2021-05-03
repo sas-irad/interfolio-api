@@ -53,14 +53,14 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       packetTypeId: config.packetType.id,
     });
 
-    const step1 = await api.Packets.WorkflowStep.addWorkflowStepStanding({
+    const step1 = await api.Packets.WorkflowSteps.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 1',
       committeeId: config.committee.id,
       workflowStepNote: 'Workflow Step Note',
     });
 
-    await api.Packets.WorkflowStep.addWorkflowStepStanding({
+    await api.Packets.WorkflowSteps.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 2',
       committeeId: config.committee.id,
@@ -69,7 +69,7 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
 
     const packetTemplateFull = await api.PacketTemplates.getTemplate({ id: packetTemplate.id });
 
-    await api.Packets.PlatformForm.addWorkflowStepForm({
+    await api.Packets.PlatformForms.addWorkflowStepForm({
       committeeId: config.committee.id,
       committeeManagerOnlySubmission: true,
       formAccessLevel: 1,

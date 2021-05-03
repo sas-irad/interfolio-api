@@ -12,7 +12,12 @@ export type FormField = {
   /** label for the question */
   label: string;
   /** additioanl data about the field */
-  meta: { maxlength?: number; type: string };
+  meta: {
+    maxlength?: number;
+    type: string;
+    options?: { label: string; value: string | number }[];
+    schema?: { field_type: string }[];
+  };
   /** name of the field (similar to id) */
   name: string;
   /** flag indicating the field is required */
@@ -86,6 +91,33 @@ export type FormListing = {
   unitName: string;
 };
 
+/**
+ * Type representing responses to platform forms
+ */
+export type FormResponse = {
+  /** Date the response was created */
+  createdAt: string;
+  /** user id of the user who submitted the response */
+  createdBy: number;
+  /** id of the form response */
+  id: number;
+  /** origin id referencing the assignment of this form to the user */
+  originId: number;
+  /** Type of form e.g. PacketCommitteeForm */
+  originType: 'PacketCommitteeForm';
+  /** The actual question answers */
+  responseData: { [questionKey: string]: string | number };
+  /** if the form has been submitted */
+  submitted: boolean;
+  /** the date the form response was updated */
+  updatedAt: string;
+  /** user id of the user who updated the response */
+  updatedBy: number;
+};
+
+/**
+ * Class representing calls to the form API (uses graphql endpoints)
+ */
 export class FormApi {
   /**
    * API request object for making the actual http requests
@@ -102,9 +134,15 @@ export class FormApi {
 
   /**
    * Create a new custom form for committees
-   * @param title
-   * @param description
-   * @param unitId
+   *
+   * @param title   title of the form
+   * @param description   description of the form
+   * @param unitId   id of the unit this form is related to
+   *
+   * @expample
+   * ```javascript
+   * let formId = await api.Forms.createForm({title: 'Test form', description: 'Test form Description', unitId: 9999});
+   * ```
    */
   public async createForm({
     title,
@@ -153,6 +191,11 @@ export class FormApi {
   /**
    * Delete the Form (not yet available via API call
    * @param id
+   *
+   * @example
+   * ```javascript
+   * let deleted = api.Forms.deleteForm({id: 9999});
+   * ```
    */
   public async deleteForm({ id }: { id: number }): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -219,6 +262,38 @@ export class FormApi {
         .executeGraphQl(gqlRequest)
         .then((response) => {
           resolve(response.data.form);
+        })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Get the responses that have been submitted for a form
+   * @param formId     id of the overall form
+   * @param originId   id of the form instance assigned to a workflow step
+   * @param originType type of Origin "PacketCommitteeForm"
+   */
+  public async getFormResponses({
+    formId,
+    originId,
+    originType,
+  }: {
+    formId: number;
+    originId: number;
+    originType: string;
+  }): Promise<FormResponse[]> {
+    return new Promise((resolve, reject) => {
+      const gqlRequest: GraphQlRequest = {
+        operationName: 'getFormResponses',
+        variables: { formId, originId, originType },
+        query:
+          'query getFormResponses($formId: Int!, $originId: Int!, $originType: String!) {\n  formResponses(formId: $formId, originId: $originId, originType: $originType) {\n    createdBy\n    createdAt\n    id\n    originId\n    originType\n    responseData\n    submitted\n    updatedBy\n    updatedAt\n    __typename\n  }\n}\n',
+      };
+
+      this.apiRequest
+        .executeGraphQl(gqlRequest)
+        .then((response) => {
+          resolve(response.data.formResponses);
         })
         .catch((error) => reject(error));
     });

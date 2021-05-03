@@ -14,7 +14,7 @@
     "version": "npm run format && npm run make-docs && git add -A src && git add -A docs",
     "postversion": "git push && git push --tags",
     "init-tests": "tsc -p ./tests --esModuleInterop && node lib-tests/tests/config/setup-config.js",
-    "make-docs": "typedoc"
+    "make-docs": "npx typedoc src"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "prettier": "^2.0.5",
     "prompts": "^2.3.2",
     "ts-node": "^8.10.2",
-    "typedoc": "^0.19.1",
+    "typedoc": "^0.20.36",
     "typescript": "^3.9.7"
   },
   "files": [
@@ -56,6 +56,7 @@
     "access": "public"
   },
   "dependencies": {
-    "got": "^11.5.1"
+    "got": "^11.5.1",
+    "util": "^0.12.3"
   }
 }

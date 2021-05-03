@@ -302,10 +302,10 @@ export class PacketApi {
   private readonly apiRequest: ApiRequest;
 
   /** handle to PlatformFormApi */
-  public PlatformForm: PlatformFormApi;
+  public PlatformForms: PlatformFormApi;
 
   /** handle to WorkflowStepApi */
-  public WorkflowStep: WorkflowStepApi;
+  public WorkflowSteps: WorkflowStepApi;
 
   /**
    * Constructor for the object
@@ -313,8 +313,8 @@ export class PacketApi {
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
-    this.PlatformForm = new PlatformFormApi(apiConfig);
-    this.WorkflowStep = new WorkflowStepApi(apiConfig);
+    this.PlatformForms = new PlatformFormApi(apiConfig);
+    this.WorkflowSteps = new WorkflowStepApi(apiConfig);
   }
 
   /**
