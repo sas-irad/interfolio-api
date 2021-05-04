@@ -12,7 +12,7 @@ export const STANDING_COMMITTEES_URL = COMMITTEE_BASE_URL + '/standing_committee
 export const STANDING_COMMITTEE_CREATE_URL = INTERFOLIO_BYC_TENURE_V1 + '/standing_committees';
 
 //Imported after url consts since CommitteeMember uses them
-import CommitteeMemberAPI, { CommitteeMember } from './committee_members/committee-member-api';
+import CommitteeMemberAPI, { CommitteeMember } from './committees/committee-member-api';
 
 /**
  * An Interfolio committee definition

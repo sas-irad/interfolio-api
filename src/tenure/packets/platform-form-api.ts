@@ -1,7 +1,7 @@
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
 import { PACKET_URL } from '../packet-api';
-import { FormVersion } from '../../forms/form-api';
+import { FormVersion } from '../form-api';
 
 export const PLATFORM_FORM_BASE_URL = PACKET_URL + '/platform_forms';
 export const PLATFORM_FORM_URL = PLATFORM_FORM_BASE_URL + '/{platform_form_id}';

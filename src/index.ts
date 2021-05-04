@@ -1,11 +1,11 @@
-import CommitteeApi from './committees/committee-api';
-import FormApi from './forms/form-api';
-import PacketTemplateApi from './packet-templates/packet-template-api';
-import PacketTypeApi from './packet-types/packet-type-api';
-import PacketApi from './packets/packet-api';
-import ReportApi from './reports/report-api';
-import UnitApi from './units/unit-api';
-import UserApi from './users/user-api';
+import CommitteeApi from './tenure/committee-api';
+import FormApi from './tenure/form-api';
+import PacketTemplateApi from './tenure/packet-template-api';
+import PacketTypeApi from './tenure/packet-type-api';
+import PacketApi from './tenure/packet-api';
+import ReportApi from './tenure/report-api';
+import UnitApi from './tenure/unit-api';
+import UserApi from './tenure/user-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio

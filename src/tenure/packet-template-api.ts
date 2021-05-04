@@ -1,6 +1,6 @@
 import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
 import { ApiConfig } from '../index';
-import { PacketApi, Packet, PacketDetail } from '../packets/packet-api';
+import { PacketApi, Packet, PacketDetail } from './packet-api';
 
 /** Base url for template api calls */
 export const TEMPLATE_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packet_templates';

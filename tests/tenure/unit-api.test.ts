@@ -1,4 +1,4 @@
-import UnitApi from '../../src/units/unit-api';
+import UnitApi from '../../src/tenure/unit-api';
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
 

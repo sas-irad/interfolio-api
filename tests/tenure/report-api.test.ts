@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import ReportApi from '../../src/reports/report-api';
+import ReportApi from '../../src/tenure/report-api';
 
 /**
  * Test for Report API

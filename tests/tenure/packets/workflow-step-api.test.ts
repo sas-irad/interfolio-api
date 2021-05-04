@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../../config/test-config.json';
-import WorkflowStepApi from '../../../src/packets/workflow-steps/workflow-step-api';
+import WorkflowStepApi from '../../../src/tenure/packets/workflow-step-api';
 
 /**
  * Test for Packet API

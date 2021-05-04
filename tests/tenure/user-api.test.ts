@@ -1,4 +1,4 @@
-import UserApi from '../../src/users/user-api';
+import UserApi from '../../src/tenure/user-api';
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
 

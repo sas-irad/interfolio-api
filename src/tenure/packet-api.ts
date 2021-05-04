@@ -8,8 +8,8 @@ export const PACKET_MOVE_FORWARD_URL = PACKET_URL + '/move_forward';
 export const PACKET_MOVE_BACKWARD_URL = PACKET_URL + '/move_backward';
 
 //Imported after url consts since WorkflowStep uses them
-import WorkflowStepApi, { WorkflowStep } from './workflow-steps/workflow-step-api';
-import PlatformFormApi from './platform-forms/platform-form-api';
+import WorkflowStepApi, { WorkflowStep } from './packets/workflow-step-api';
+import PlatformFormApi from './packets/platform-form-api';
 import Utils, { DeNestingDef } from '../utils';
 
 /** Packet Data that is returned after packet creation */

@@ -1,4 +1,4 @@
-import CommitteeApi from '../../src/committees/committee-api';
+import CommitteeApi from '../../src/tenure/committee-api';
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
 

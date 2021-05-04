@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import FormApi from '../../src/forms/form-api';
+import FormApi from '../../src/tenure/form-api';
 
 /**
  * Test for Form API

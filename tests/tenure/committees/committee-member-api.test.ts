@@ -1,5 +1,5 @@
-import CommitteeMemberApi from '../../../src/committees/committee_members/committee-member-api';
-import CommitteeApi, { Committee } from '../../../src/committees/committee-api';
+import CommitteeMemberApi from '../../../src/tenure/committees/committee-member-api';
+import CommitteeApi, { Committee } from '../../../src/tenure/committee-api';
 import { expect } from 'chai';
 import Config from '../../config/test-config.json';
 

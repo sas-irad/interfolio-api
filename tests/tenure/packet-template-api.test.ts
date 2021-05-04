@@ -1,4 +1,4 @@
-import PacketTemplateApi from '../../src/packet-templates/packet-template-api';
+import PacketTemplateApi from '../../src/tenure/packet-template-api';
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
 

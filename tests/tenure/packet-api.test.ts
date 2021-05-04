@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import PacketApi from '../../src/packets/packet-api';
+import PacketApi from '../../src/tenure/packet-api';
 
 /**
  * Test for Packet API

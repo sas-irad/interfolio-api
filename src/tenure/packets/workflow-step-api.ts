@@ -3,14 +3,14 @@
  */
 import ApiRequest, { ApiResponse } from '../../api-request';
 import { ApiConfig } from '../../index';
-import { CommitteeMember } from '../../committees/committee_members/committee-member-api';
+import { CommitteeMember } from '../committees/committee-member-api';
 import { PACKET_URL } from '../packet-api';
 import Utils, { DeNestingDef } from '../../utils';
 
 export const WORKFLOW_STEP_BASE_URL = PACKET_URL + '/workflow_steps';
 export const WORKFLOW_STEP_URL = WORKFLOW_STEP_BASE_URL + '/{workflow_step_id}';
 
-import WorkflowStepCommitteeApi from './committees/workflow-step-committee-api';
+import WorkflowStepCommitteeApi from './workflow-steps/workflow-step-committee-api';
 
 /**
  * Workflow step

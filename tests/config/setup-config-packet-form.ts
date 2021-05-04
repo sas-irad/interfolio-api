@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 import { TestConfig } from './setup-config';
 import API from '../../src';
-import { PlatformFormSubmission } from '../../src/packets/platform-forms/platform-form-api';
+import { PlatformFormSubmission } from '../../src/tenure/packets/platform-form-api';
 
 /**
  * prompts user to set up a committee for testing

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../../config/test-config.json';
-import PlatformFormApi from '../../../src/packets/platform-forms/platform-form-api';
+import PlatformFormApi from '../../../src/tenure/packets/platform-form-api';
 
 /**
  * Test for Packet Platform Form API
