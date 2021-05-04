@@ -32,7 +32,7 @@ export class PacketTypeApi {
    *
    * @example
    * ```javascript
-   * let packetTypes = await api.PacketTypes.getList();
+   * let packetTypes = await api.Tenure.PacketTypes.getList();
    * ```
    */
   public async getList(): Promise<PacketType[]> {

@@ -69,6 +69,16 @@ export class WorkflowStepCommitteeApi {
    * @param workflowStepId  id of the workflow step
    * @param committeeId id of the committee
    * @param note note to include as instructions for the committee
+   *
+   *
+   * @example
+   * ```javascript
+   * let added = await api.Tenure.WorkflowStepCommittee.assign({
+   *  packetId: 9999,
+   *  workflowStepId: 9999,
+   *  committeeId: 9999,
+   *  note: "Instructions to Committee"
+   * });
    */
   public assign({
     packetId,
@@ -112,6 +122,14 @@ export class WorkflowStepCommitteeApi {
    * @param packetId   id of the packet
    * @param workflowStepId  id of the workflow step
    * @param committeeId  id of the committee
+   *
+   * @example
+   * ```javascript
+   * let deleted = await api.Tenure.WorkflowStepCommittee.delete({
+   *  packetId: 9999,
+   *  workflowStepId: 9999,
+   *  committeeId: 9999
+   * });
    */
   public delete({
     packetId,
@@ -145,13 +163,12 @@ export class WorkflowStepCommitteeApi {
    *
    * @example
    * ```javascript
-   * let requirements = await api.Packets.WorkflowSteps.Committees.getRequirements({
+   * let requirements = await api.Tenure.WorkflowStepCommittees.getRequirements({
    *   packetId: 9999,
    *   workflowStepId: 9999,
    *   committeeId: 9999
    * }
    */
-
   public getRequirements({
     packetId,
     workflowStepId,

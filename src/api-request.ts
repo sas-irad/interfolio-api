@@ -44,7 +44,7 @@ export const INTERFOLIO_GRAPHQL_URLS = {
 export type RestRequest = {
   /** The relative url for the endpoint */
   url: string;
-  /** The http method to execute */
+  /** The http method to execute -defaults to GET*/
   method?: Method;
   /** The form elements to submit with the request */
   form?: string | any | undefined;
@@ -128,7 +128,13 @@ export class ApiRequest {
   }
 
   /**
-   * Execute an API request against the REST (logic) data endpoint
+   * Execute a request against the REST (logic.interfolio.com) endpoint
+   *
+   * @param url     url to send (should start with /)
+   * @param method  HTTP Method (e.g GET, POST, DELETE)
+   * @param form    Form to include in the body (can include form/body or json).
+   * @param body    TEXT of the Body of the request
+   * @param json    JSON to include as body of request
    */
   public async executeRest({
     url,

@@ -46,7 +46,7 @@ let api = new INTERFOLIO_API.API({
   "privateKey": "Interfolio supplied Private Key",
   "publicKey": "Interfolio supplied Public Key"
 });
-let units = await api.Unit.getUnits();
+let units = await api.Tenure.Unit.getUnits();
 ```
 
 TypeScript Projects
@@ -60,7 +60,7 @@ let api = new API({
   "privateKey": "Interfolio supplied Private Key",
   "publicKey": "Interfolio supplied Public Key"
 });
-let units = await api.Unit.getUnits();
+let units = await api.Tenure.Unit.getUnits();
 ```
 
 Once the ```api``` object has been instantiated you can run any of the implemented Interfolio API functions e.g.

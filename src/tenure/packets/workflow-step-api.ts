@@ -114,7 +114,7 @@ export class WorkflowStepApi {
    *
    * @example
    * ```javascript
-   * let step = await Api.Packets.WorkflowSteps.addWorkflowStepStanding({
+   * let step = await api.Tenure.WorkflowSteps.addWorkflowStepStanding({
    *   packetId: 9999,
    *   workflowStepName: "Workflow Step 3",
    *   committeeId: 9999,
@@ -179,7 +179,7 @@ export class WorkflowStepApi {
    *
    * @example
    * ```javascript
-   * await api.Packets.WorkflowSteps.deleteWorkflowStep({id: 9999, packetId: 9999});
+   * await api.Tenure.WorkflowSteps.deleteWorkflowStep({id: 9999, packetId: 9999});
    * ```
    */
   deleteWorkflowStep({ id, packetId }: { id: number; packetId: number }): Promise<boolean> {
@@ -201,7 +201,12 @@ export class WorkflowStepApi {
 
   /**
    * Get the workflow step
-   * @param params
+   * @param packetId       id of the packet
+   * @param workflowStepId id of the workflow step
+   *
+   * @example
+   * ```javascript
+   * let step = await api.Tenure.WorkflowStep.getWorkflowStep({packetId: 9999, workflowStepId: 9999});
    */
   getWorkflowStep({
     packetId,

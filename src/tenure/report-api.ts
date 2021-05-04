@@ -164,12 +164,23 @@ export class ReportApi {
   }
 
   /**
-   *
+   * Retrieve form responses for a packet
    * @param form_id      id of the form type
    * @param form_type    type of form (e.g. "committee_form")
    * @param packet_ids   array of packet ids
    * @param limit        number of records to return
    * @param page         page number of the returned records
+   *
+   * @example
+   * ```javascript
+   * let responses = await api.Tenure.Reports.formReport({
+   *   form_id: 9999,
+   *   form_type: "committee_form",
+   *   packet_ids: [9999,9998,9997],
+   *   limit: 100,
+   *   page: 1
+   * });
+   * ```
    */
   public formReport({ form_id, form_type, packet_ids, limit, page }: FormReportParams): Promise<FormReportData> {
     return new Promise((resolve, reject) => {
@@ -200,7 +211,7 @@ export class ReportApi {
    *
    * @example
    * ```javascript
-   * let search = await api.Reports.packetSearch({
+   * let search = await api.Tenure.Reports.packetSearch({
    *  from: 0,
    *  size: 100,
    *  search_text: "Test Candidate",

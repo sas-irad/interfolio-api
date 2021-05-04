@@ -2755,7 +2755,7 @@ img {
 <span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
 <span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
 </code></pre>
 			<p>TypeScript Projects</p>
 			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">API</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@sas-irad/interfolio-api/lib&#039;</span><span style="color: #000000">;</span>
@@ -2767,7 +2767,7 @@ img {
 <span style="color: #000000">  </span><span style="color: #A31515">&quot;privateKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Private Key&quot;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #A31515">&quot;publicKey&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Interfolio supplied Public Key&quot;</span>
 <span style="color: #000000">});</span>
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Unit</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
 </code></pre>
 			<p>Once the <code>api</code> object has been instantiated you can run any of the implemented Interfolio API functions e.g.</p>
 			<pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">units</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Units</span><span style="color: #000000">.</span><span style="color: #795E26">getUnits</span><span style="color: #000000">();</span>
@@ -2781,19 +2781,19 @@ img {
 						<h3>Modules</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-module"><a href="modules/api_request.html" class="tsd-kind-icon">api-<wbr>request</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_api.html" class="tsd-kind-icon">committees/committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/committees_committee_members_committee_member_api.html" class="tsd-kind-icon">committees/committee_<wbr>members/committee-<wbr>member-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/forms_form_api.html" class="tsd-kind-icon">forms/form-<wbr>api</a></li>
 							<li class="tsd-kind-module"><a href="modules/index.html" class="tsd-kind-icon">index</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_templates_packet_template_api.html" class="tsd-kind-icon">packet-<wbr>templates/packet-<wbr>template-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packet_types_packet_type_api.html" class="tsd-kind-icon">packet-<wbr>types/packet-<wbr>type-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_packet_api.html" class="tsd-kind-icon">packets/packet-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_platform_forms_platform_form_api.html" class="tsd-kind-icon">packets/platform-<wbr>forms/platform-<wbr>form-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_committees_workflow_step_committee_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/committees/workflow-<wbr>step-<wbr>committee-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/packets_workflow_steps_workflow_step_api.html" class="tsd-kind-icon">packets/workflow-<wbr>steps/workflow-<wbr>step-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/reports_report_api.html" class="tsd-kind-icon">reports/report-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/units_unit_api.html" class="tsd-kind-icon">units/unit-<wbr>api</a></li>
-							<li class="tsd-kind-module"><a href="modules/users_user_api.html" class="tsd-kind-icon">users/user-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_committee_api.html" class="tsd-kind-icon">tenure/committee-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_committees_committee_member_api.html" class="tsd-kind-icon">tenure/committees/committee-<wbr>member-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_form_api.html" class="tsd-kind-icon">tenure/form-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packet_api.html" class="tsd-kind-icon">tenure/packet-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packet_template_api.html" class="tsd-kind-icon">tenure/packet-<wbr>template-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packet_type_api.html" class="tsd-kind-icon">tenure/packet-<wbr>type-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packets_platform_form_api.html" class="tsd-kind-icon">tenure/packets/platform-<wbr>form-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packets_workflow_step_api.html" class="tsd-kind-icon">tenure/packets/workflow-<wbr>step-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_packets_workflow_steps_workflow_step_committee_api.html" class="tsd-kind-icon">tenure/packets/workflow-<wbr>steps/workflow-<wbr>step-<wbr>committee-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_report_api.html" class="tsd-kind-icon">tenure/report-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_unit_api.html" class="tsd-kind-icon">tenure/unit-<wbr>api</a></li>
+							<li class="tsd-kind-module"><a href="modules/tenure_user_api.html" class="tsd-kind-icon">tenure/user-<wbr>api</a></li>
 							<li class="tsd-kind-module"><a href="modules/utils.html" class="tsd-kind-icon">utils</a></li>
 						</ul>
 					</section>

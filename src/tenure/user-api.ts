@@ -125,7 +125,7 @@ export class UserApi {
    *
    * @example
    * ```javascript
-   * let user = await api.Users.findUserByEmail({email: "myemail@example.com"});
+   * let user = await api.Tenure.Users.findUserByEmail({email: "myemail@example.com"});
    * ```
    */
   public findUserByEmail({ email }: { email: string }): Promise<User> {
@@ -163,7 +163,7 @@ export class UserApi {
    *
    * @example
    * ```javascript
-   * let user = await api.Users.getUser({id: 9999});
+   * let user = await api.Tenure.Users.getUser({id: 9999});
    * ```
    */
   public async getUser({ id }: { id: number }): Promise<User> {
@@ -191,7 +191,7 @@ export class UserApi {
    *
    * @example
    * ```javascript
-   * let user = await api.Users.create({firstName: "Jane", lastName: "Doe", email: "janedoe@example.com"};
+   * let user = await api.Tenure.Users.create({firstName: "Jane", lastName: "Doe", email: "janedoe@example.com"};
    * ```
    */
   public async create({
@@ -231,8 +231,15 @@ export class UserApi {
     });
   }
 
+  /**
+   * Get the current API User
+   *
+   * @example
+   * ```javascript
+   * let currentUser = await api.Tenure.Users.currentUser();
+   * ```
+   */
   public currentUser(): Promise<User> {
-    console.log(USER_CURRENT_URL);
     return new Promise((resolve, reject) => {
       this.apiRequest
         .executeRest({ url: USER_CURRENT_URL })
@@ -244,6 +251,11 @@ export class UserApi {
     });
   }
 
+  /**
+   * Denests user object by removeing administrator unit level
+   * @param response
+   * @private
+   */
   private deNest(response: ApiResponse): User {
     const denestDefs: DeNestingDef = {
       administrator_units: {

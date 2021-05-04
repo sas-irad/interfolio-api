@@ -6,6 +6,10 @@ import PacketApi from './tenure/packet-api';
 import ReportApi from './tenure/report-api';
 import UnitApi from './tenure/unit-api';
 import UserApi from './tenure/user-api';
+import CommitteeMemberApi from './tenure/committees/committee-member-api';
+import WorkflowStepApi from './tenure/packets/workflow-step-api';
+import PlatformFormApi from './tenure/packets/platform-form-api';
+import WorkflowStepCommitteeApi from './tenure/packets/workflow-steps/workflow-step-committee-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -54,22 +58,32 @@ export type ApiConfig = {
  * ```
  */
 export class API {
-  /** Handle to the Committee Api calls */
-  public readonly Committees: CommitteeApi;
-  /** Handle to the Forms Api calls */
-  public readonly Forms: FormApi;
-  /** Handle to the Packet Api */
-  public readonly Packets: PacketApi;
-  /** Handle to the PacketTemplate Api */
-  public readonly PacketTemplates: PacketTemplateApi;
-  /** Handle to the PacketType api */
-  public readonly PacketTypes: PacketTypeApi;
-  /** Handle to the Report api */
-  public readonly Reports: ReportApi;
-  /** Handle to the Unit Api calls */
-  public readonly Units: UnitApi;
-  /** Handle to the User Api calls */
-  public readonly Users: UserApi;
+  public readonly Tenure: {
+    /** Handle to the Committee Api calls */
+    Committees: CommitteeApi;
+    /** Handle to the CommitteeMember Api calls */
+    CommitteeMembers: CommitteeMemberApi;
+    /** Handle to the Forms Api calls */
+    Forms: FormApi;
+    /** Handle to the Packet Api */
+    Packets: PacketApi;
+    /** Handle to the PacketTemplate Api */
+    PacketTemplates: PacketTemplateApi;
+    /** Handle to the PacketType api */
+    PacketTypes: PacketTypeApi;
+    /** Handle to the Platform Form Api */
+    PlatformForms: PlatformFormApi;
+    /** Handle to the Report api */
+    Reports: ReportApi;
+    /** Handle to the Unit Api calls */
+    Units: UnitApi;
+    /** Handle to the User Api calls */
+    Users: UserApi;
+    /** Handle to Workflow Step Api calls */
+    WorkflowSteps: WorkflowStepApi;
+    /** Handle to the Workflow Step Committee Api Calls */
+    WorkflowStepCommittees: WorkflowStepCommitteeApi;
+  };
 
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
@@ -78,14 +92,20 @@ export class API {
    * @param config The ApiConfig containing connection information
    */
   constructor(config: ApiConfig) {
-    this.Committees = new CommitteeApi(config);
-    this.Forms = new FormApi(config);
-    this.Packets = new PacketApi(config);
-    this.PacketTemplates = new PacketTemplateApi(config);
-    this.PacketTypes = new PacketTypeApi(config);
-    this.Reports = new ReportApi(config);
-    this.Units = new UnitApi(config);
-    this.Users = new UserApi(config);
+    this.Tenure = {
+      Committees: new CommitteeApi(config),
+      CommitteeMembers: new CommitteeMemberApi(config),
+      Forms: new FormApi(config),
+      Packets: new PacketApi(config),
+      PacketTemplates: new PacketTemplateApi(config),
+      PacketTypes: new PacketTypeApi(config),
+      PlatformForms: new PlatformFormApi(config),
+      Reports: new ReportApi(config),
+      Units: new UnitApi(config),
+      Users: new UserApi(config),
+      WorkflowSteps: new WorkflowStepApi(config),
+      WorkflowStepCommittees: new WorkflowStepCommitteeApi(config),
+    };
   }
 }
 export default API;

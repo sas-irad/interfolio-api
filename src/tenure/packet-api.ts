@@ -328,7 +328,7 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * let case = await api.Packets.create({unitId: 9999, candidateFirstName: "First",
+   * let case = await api.Tenure.Packets.create({unitId: 9999, candidateFirstName: "First",
    *     candidateLastName: "Last", candidateEmail:"firslast@email.com", candidateInvolvement: false, packetTypeId: 9999}):
    * ```
    */
@@ -378,7 +378,7 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * let case = await api.Packets.createFromTemplate({
+   * let case = await api.Tenure.Packets.createFromTemplate({
    *   packetId: 9999,
    *   unitId: 9999,
    *   candidateFirstName: "Holly",
@@ -427,7 +427,7 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * await api.Packets.delete({id: 9999});
+   * await api.Tenure.Packets.delete({id: 9999});
    * ```
    */
   public async delete({ id }: { id: number }): Promise<boolean> {
@@ -447,7 +447,7 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * let packet = await Api.Packets.getPacket({id: 9999});
+   * let packet = await api.Tenure.Packets.getPacket({id: 9999});
    * ```
    */
   public async getPacket({ id }: { id: number }): Promise<PacketDetail> {
@@ -472,8 +472,8 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * await Api.Packets.moveBackward({id: 9999, sendNotification: false"});
-   * await Api.Packets.moveBackward({id: 9999,
+   * await api.Tenure.Packets.moveBackward({id: 9999, sendNotification: false"});
+   * await api.Tenure.Packets.moveBackward({id: 9999,
    *   sendNotifcation: true,
    *   selectedCommitteeId: 9999,
    *   notificationSubject:"Returned Case",
@@ -527,8 +527,8 @@ export class PacketApi {
    *
    * @example
    * ```javascript
-   * await Api.Packets.moveForward({id: 9999, sendNotification: false"});
-   * await Api.Packets.moveForward({
+   * await api.Tenure.Packets.moveForward({id: 9999, sendNotification: false"});
+   * await api.Tenure.Packets.moveForward({
    *   id: 9999,
    *   sendNotifcation: true,
    *   selectedCommitteeId: 9999,

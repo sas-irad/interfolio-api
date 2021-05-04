@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>packets/packet-api | Interfolio API</title>
+	<title>CommitteeApi | Interfolio API</title>
 	<meta name="description" content="Documentation for Interfolio API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2705,1086 +2705,324 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-reference tsd-parent-kind-module">
-			<a href="packets_packet_api.html#default" class="tsd-kind-icon">default</a>
+			<a href="../modules/tenure_committee_api.html#default" class="tsd-kind-icon">default</a>
 		</li>
-		<li class=" tsd-kind-class tsd-parent-kind-module">
-			<a href="../classes/packets_packet_api.packetapi.html" class="tsd-kind-icon">Packet<wbr>Api</a>
+		<li class="current tsd-kind-class tsd-parent-kind-module">
+			<a href="tenure_committee_api.committeeapi.html" class="tsd-kind-icon">Committee<wbr>Api</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#committeemembers" class="tsd-kind-icon">Committee<wbr>Members</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#createstandingcommittee" class="tsd-kind-icon">create<wbr>Standing<wbr>Committee</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#delete" class="tsd-kind-icon">delete</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#findunitstandingcommittee" class="tsd-kind-icon">find<wbr>Unit<wbr>Standing<wbr>Committee</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_committee_api.committeeapi.html#getcommittee" class="tsd-kind-icon">get<wbr>Committee</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="packets_packet_api.html#createpacketfromtemplateparams" class="tsd-kind-icon">Create<wbr>Packet<wbr>From<wbr>Template<wbr>Params</a>
+			<a href="../modules/tenure_committee_api.html#committee" class="tsd-kind-icon">Committee</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="packets_packet_api.html#moveparams" class="tsd-kind-icon">Move<wbr>Params</a>
-		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet" class="tsd-kind-icon">Packet</a>
-		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packetdetail" class="tsd-kind-icon">Packet<wbr>Detail</a>
+			<a href="../modules/tenure_committee_api.html#committeelistsummary" class="tsd-kind-icon">Committee<wbr>List<wbr>Summary</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet_base_url" class="tsd-kind-icon">PACKET_<wbr>BASE_<wbr>URL</a>
+			<a href="../modules/tenure_committee_api.html#committee_base_url" class="tsd-kind-icon">COMMITTEE_<wbr>BASE_<wbr>URL</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet_create_from_template_url" class="tsd-kind-icon">PACKET_<wbr>CREATE_<wbr>FROM_<wbr>TEMPLATE_<wbr>URL</a>
+			<a href="../modules/tenure_committee_api.html#committee_url" class="tsd-kind-icon">COMMITTEE_<wbr>URL</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet_move_backward_url" class="tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>BACKWARD_<wbr>URL</a>
+			<a href="../modules/tenure_committee_api.html#standing_committees_url" class="tsd-kind-icon">STANDING_<wbr>COMMITTEES_<wbr>URL</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet_move_forward_url" class="tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>FORWARD_<wbr>URL</a>
-		</li>
-		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="packets_packet_api.html#packet_url" class="tsd-kind-icon">PACKET_<wbr>URL</a>
+			<a href="../modules/tenure_committee_api.html#standing_committee_create_url" class="tsd-kind-icon">STANDING_<wbr>COMMITTEE_<wbr>CREATE_<wbr>URL</a>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>Class representing an Interfolio Committee</p>
+				</div>
+			</div>
+		</section>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">CommitteeApi</span>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>References</h3>
+						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-reference tsd-parent-kind-module"><a href="packets_packet_api.html#default" class="tsd-kind-icon">default</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
-						<h3>Classes</h3>
+						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/packets_packet_api.packetapi.html" class="tsd-kind-icon">Packet<wbr>Api</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#committeemembers" class="tsd-kind-icon">Committee<wbr>Members</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
-						<h3>Type aliases</h3>
+						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="packets_packet_api.html#createpacketfromtemplateparams" class="tsd-kind-icon">Create<wbr>Packet<wbr>From<wbr>Template<wbr>Params</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="packets_packet_api.html#moveparams" class="tsd-kind-icon">Move<wbr>Params</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="packets_packet_api.html#packet" class="tsd-kind-icon">Packet</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="packets_packet_api.html#packetdetail" class="tsd-kind-icon">Packet<wbr>Detail</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Variables</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="packets_packet_api.html#packet_base_url" class="tsd-kind-icon">PACKET_<wbr>BASE_<wbr>URL</a></li>
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="packets_packet_api.html#packet_create_from_template_url" class="tsd-kind-icon">PACKET_<wbr>CREATE_<wbr>FROM_<wbr>TEMPLATE_<wbr>URL</a></li>
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="packets_packet_api.html#packet_move_backward_url" class="tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>BACKWARD_<wbr>URL</a></li>
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="packets_packet_api.html#packet_move_forward_url" class="tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>FORWARD_<wbr>URL</a></li>
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="packets_packet_api.html#packet_url" class="tsd-kind-icon">PACKET_<wbr>URL</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#createstandingcommittee" class="tsd-kind-icon">create<wbr>Standing<wbr>Committee</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#delete" class="tsd-kind-icon">delete</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#findunitstandingcommittee" class="tsd-kind-icon">find<wbr>Unit<wbr>Standing<wbr>Committee</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_committee_api.committeeapi.html#getcommittee" class="tsd-kind-icon">get<wbr>Committee</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>References</h2>
-			<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-				<a name="default" class="tsd-anchor"></a>
-				<h3>default</h3>
-				Renames and exports <a href="../classes/packets_packet_api.packetapi.html">PacketApi</a>
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Committee<wbr>Api<span class="tsd-signature-symbol">(</span>apiConfig<span class="tsd-signature-symbol">: </span><a href="../modules/index.html#apiconfig" class="tsd-signature-type" data-tsd-kind="Type alias">ApiConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tenure_committee_api.committeeapi.html" class="tsd-signature-type" data-tsd-kind="Class">CommitteeApi</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L75">tenure/committee-api.ts:75</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Constructor for the object</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>apiConfig: <a href="../modules/index.html#apiconfig" class="tsd-signature-type" data-tsd-kind="Type alias">ApiConfig</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Configuration for API calls</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="tenure_committee_api.committeeapi.html" class="tsd-signature-type" data-tsd-kind="Class">CommitteeApi</a></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-				<a name="createpacketfromtemplateparams" class="tsd-anchor"></a>
-				<h3>Create<wbr>Packet<wbr>From<wbr>Template<wbr>Params</h3>
-				<div class="tsd-signature tsd-kind-icon">Create<wbr>Packet<wbr>From<wbr>Template<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>candidateEmail<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidateFirstName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidateInvolvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidateLastName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dueDate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>eppn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>unitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="committeemembers" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> Committee<wbr>Members</h3>
+				<div class="tsd-signature tsd-kind-icon">Committee<wbr>Members<span class="tsd-signature-symbol">:</span> <a href="tenure_committees_committee_member_api.committeememberapi.html" class="tsd-signature-type" data-tsd-kind="Class">CommitteeMemberApi</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L260">packets/packet-api.ts:260</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L75">tenure/committee-api.ts:75</a></li>
 					</ul>
 				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Defines the parameters needed to create a packet from a packet template</p>
-					</div>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter">
-							<h5>candidate<wbr>Email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Candidate Email address</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate<wbr>First<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Candidate&#39;s first name</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate<wbr>Involvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>If the candidate will be involved in the case</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate<wbr>Last<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Candidate&#39;s Last name</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5><span class="tsd-flag ts-flagOptional">Optional</span> due<wbr>Date<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Due date of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5><span class="tsd-flag ts-flagOptional">Optional</span> eppn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>unknown</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5><span class="tsd-flag ts-flagOptional">Optional</span> name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>unknown</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Id of the packet template to create from</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>unit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Unit Id to create the case in</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-				<a name="moveparams" class="tsd-anchor"></a>
-				<h3>Move<wbr>Params</h3>
-				<div class="tsd-signature tsd-kind-icon">Move<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>notificationBody<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>notificationSubject<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>sendNotification<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L284">packets/packet-api.ts:284</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Defines the parameters needed to move a packet forward/backward</p>
-					</div>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter">
-							<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>id of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5><span class="tsd-flag ts-flagOptional">Optional</span> notification<wbr>Body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>body of the notification message</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5><span class="tsd-flag ts-flagOptional">Optional</span> notification<wbr>Subject<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>subject for the notification message</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>send<wbr>Notification<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>if a notification should be sent</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-				<a name="packet" class="tsd-anchor"></a>
-				<h3>Packet</h3>
-				<div class="tsd-signature tsd-kind-icon">Packet<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allow_comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>altered_for_candidate_transparency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_has_submitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>archived<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>archived_on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>associated_data_updated_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>blind_review<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidate_first_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidate_involvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_involvement_confirmed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_last_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>created_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>default_email_from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>deleted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>deleted_on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>due_date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>elastic_search_updated_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>instructions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>internal_sections_on_bottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>internal_sort_order_altered<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packet_template_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packet_type_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>percent_complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>published<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>search_strings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>status_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unit_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>updated_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>withdrawn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L16">packets/packet-api.ts:16</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Packet Data that is returned after packet creation</p>
-					</div>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if comments are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if updates are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>altered_<wbr>for_<wbr>candidate_<wbr>transparency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the packet has been altered for candidate transparency</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>has_<wbr>submitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the applicant has submitted</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the applicant has been notified</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>applicant pid of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>archived<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the template has been archived</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>archived_<wbr>on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>date on which the packet was archived</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>associated_<wbr>data_<wbr>updated_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>data on which associated data was updated</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>blind_<wbr>review<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if review should be blind</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>email of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>first_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>first name of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>involvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the candidate will be submitting case materials</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>involvement_<wbr>confirmed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating that candidate involvement has been confirmed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>last_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Last name of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the packet is complete</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>created_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Time when the packet was created</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>default_<wbr>email_<wbr>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>email from which notifications are sent</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>deleted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if this packet has been deleted</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>deleted_<wbr>on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Time when the packet was deleted</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Description of the case template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>due_<wbr>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Due date for the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>elastic_<wbr>search_<wbr>updated_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Date when the elastic search for this packet was last updated</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>ID of the packet/template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>instructions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Candidate Instructions for the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>internal_<wbr>sections_<wbr>on_<wbr>bottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if hte internal sections should appear after candidate sections</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>internal_<wbr>sort_<wbr>order_<wbr>altered<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the internal sort order has been altered</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Name of the packet template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>template_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Name of the template on which this packet was created</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>type_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>id of the type of packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>percent_<wbr>complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the packet is complete</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>published<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the template is published</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>search_<wbr>strings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of strings for which this packet can be searched</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>status_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>ID of the status for the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>unit_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Unit id of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>updated_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Time the packet was last updated</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>withdrawn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the packet has been withdrawn</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-				<a name="packetdetail" class="tsd-anchor"></a>
-				<h3>Packet<wbr>Detail</h3>
-				<div class="tsd-signature tsd-kind-icon">Packet<wbr>Detail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allow_additional_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_candidate_sections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_can_be_notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_has_been_notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_has_submitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>applicant_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>applicant_pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>application_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>archivable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>archived<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>can_be_moved_forward<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>can_comment_on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>can_edit_comment_settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>can_edit_packet<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>can_edit_packet_settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidate_first_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>candidate_involvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_involvement_confirmed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>candidate_last_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>comments_allowed_by_institution<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>committee_initiated_evaluations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>confidential_attachments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>created_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>current_users_assigned_committees<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>current_workflow_step<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a><span class="tsd-signature-symbol">; </span>custom_forms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>documents_by_applicant_submitted_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>documents_by_evaluator_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>documents_by_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>due_date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>due_date_display<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>form_responses<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>institution_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>instructions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>internal_data_forms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>internal_form_responses<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>internal_sections_on_bottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>next_workflow_step<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a><span class="tsd-signature-symbol">; </span>packet_attachments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>packet_downloading_allowed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>packet_sections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>allow_additional_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>committee_evaluation_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">; </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>due_date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>in_use<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">; </span>internal_sort_order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>requirement_sort_order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>packet_template_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packet_type_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packet_type_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>previous_workflow_step<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>required_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>enforcement_lelve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>enforecement_level_value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>for_additional_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>in_use<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>lower_limint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>note<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>upper_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>requirements_by_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unit_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>unit_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>visible_comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>waiting_on_committee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>workflow_steps<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L96">packets/packet-api.ts:96</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Packet data that is returned from a GET request</p>
-					</div>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>additional_<wbr>documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if additional documents are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>candidate_<wbr>sections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if additional candidate sections are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if comments are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>allow_<wbr>update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if updates are allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>can_<wbr>be_<wbr>notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the applicant can be notified</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>has_<wbr>been_<wbr>notified<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if applicant has been notified</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>has_<wbr>submitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the applicant has submitted</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>ID of the applicant</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>applicant_<wbr>pid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>applicant pid of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>application_<wbr>documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Documents supplied by the applicant</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>archivable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if this case is archivable</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>archived<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the template has been archived</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>can_<wbr>be_<wbr>moved_<wbr>forward<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the case can be moved forward</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>can_<wbr>comment_<wbr>on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the the case can be commented on by the current user</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>can_<wbr>edit_<wbr>comment_<wbr>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the the comment settings can be edited by the current user</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>can_<wbr>edit_<wbr>packet<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the packet can be edited by the current user</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>can_<wbr>edit_<wbr>packet_<wbr>settings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if the packet settings can be edited by the current user</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>email of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>first_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>first name of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>involvement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if the candidate will be submitting case materials</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>involvement_<wbr>confirmed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating that candidate involvement has been confirmed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>candidate_<wbr>last_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Last name of the candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>comments_<wbr>allowed_<wbr>by_<wbr>institution<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Flag indicating if comments are allowed by the institution</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>committee_<wbr>initiated_<wbr>evaluations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of committee initiated evaluations</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>confidential_<wbr>attachments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of confidential attachments</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>created_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Time when the packet was created</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>current_<wbr>users_<wbr>assigned_<wbr>committees<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>committeess assigned to the current user</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>current_<wbr>workflow_<wbr>step<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>current workflow step</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>custom_<wbr>forms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>custom forms attached to this case</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>documents_<wbr>by_<wbr>applicant_<wbr>submitted_<wbr>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of documents by application section</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>documents_<wbr>by_<wbr>evaluator_<wbr>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of documents by evaluator section</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>documents_<wbr>by_<wbr>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of documents by section</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>due_<wbr>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Due date for the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>due_<wbr>date_<wbr>display<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Due date to display</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>form_<wbr>responses<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>responses to forms</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>ID of the packet/template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>institution_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>instutiion id</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>instructions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Candidate Instructions for the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>internal_<wbr>data_<wbr>forms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>internal data forms</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>internal_<wbr>form_<wbr>responses<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>internal form responses</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>internal_<wbr>sections_<wbr>on_<wbr>bottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if hte internal sections should appear after candidate sections</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>name from template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>next_<wbr>workflow_<wbr>step<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>the next workflow step</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>attachments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>packet attachments</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>downloading_<wbr>allowed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>flag indicating if packet downloading is allowed</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>sections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>allow_additional_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>allow_update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>committee_evaluation_section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">; </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>due_date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>in_use<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">; </span>internal_sort_order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>requirement_sort_order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of packet sections</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>template_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>id of the packet template</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>type_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>id of the type of packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>packet_<wbr>type_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>name of the packet type</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>previous_<wbr>workflow_<wbr>step<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>previous workflow step</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>required_<wbr>documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>enforcement_lelve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>enforecement_level_value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>for_additional_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>in_use<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>lower_limint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>note<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>upper_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of required documents for candidate</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>requirements_<wbr>by_<wbr>section<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of requirements by section</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>status of the case</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>unit_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Unit id of the packet</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>unit_<wbr>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>name of the unit for this case</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>visible_<wbr>comments<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of visible comments</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>waiting_<wbr>on_<wbr>committee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of committees that this case is waiting on</p>
-								</div>
-							</div>
-						</li>
-						<li class="tsd-parameter">
-							<h5>workflow_<wbr>steps<span class="tsd-signature-symbol">: </span><a href="packets_workflow_steps_workflow_step_api.html#workflowstep" class="tsd-signature-type" data-tsd-kind="Type alias">WorkflowStep</a><span class="tsd-signature-symbol">[]</span></h5>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>list of workflow steps</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="packet_base_url" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> PACKET_<wbr>BASE_<wbr>URL</h3>
-				<div class="tsd-signature tsd-kind-icon">PACKET_<wbr>BASE_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L4">packets/packet-api.ts:4</a></li>
-					</ul>
-				</aside>
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="createstandingcommittee" class="tsd-anchor"></a>
+				<h3>create<wbr>Standing<wbr>Committee</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Standing<wbr>Committee<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L95">tenure/committee-api.ts:95</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Create a new standing committee</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">committee</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Committees</span><span style="color: #000000">.</span><span style="color: #795E26">createStandingCommittee</span><span style="color: #000000">({</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Committee Name&quot;</span><span style="color: #000000">, </span><span style="color: #001080">unitId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Name of the standing committee</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>unit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Unit Id of the standing committee</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="packet_create_from_template_url" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> PACKET_<wbr>CREATE_<wbr>FROM_<wbr>TEMPLATE_<wbr>URL</h3>
-				<div class="tsd-signature tsd-kind-icon">PACKET_<wbr>CREATE_<wbr>FROM_<wbr>TEMPLATE_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L6">packets/packet-api.ts:6</a></li>
-					</ul>
-				</aside>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="delete" class="tsd-anchor"></a>
+				<h3>delete</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L121">tenure/committee-api.ts:121</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Delete the committee</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Committees</span><span style="color: #000000">.</span><span style="color: #795E26">delete</span><span style="color: #000000">({</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the Committee</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="packet_move_backward_url" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> PACKET_<wbr>MOVE_<wbr>BACKWARD_<wbr>URL</h3>
-				<div class="tsd-signature tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>BACKWARD_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L8">packets/packet-api.ts:8</a></li>
-					</ul>
-				</aside>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="findunitstandingcommittee" class="tsd-anchor"></a>
+				<h3>find<wbr>Unit<wbr>Standing<wbr>Committee</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">find<wbr>Unit<wbr>Standing<wbr>Committee<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>committeeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L144">tenure/committee-api.ts:144</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Find a committee belonging to a particular unit</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>throws</dt>
+								<dd><p>Throws error if no committee is found within the unit</p>
+								</dd>
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">committee</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Committees</span><span style="color: #000000">.</span><span style="color: #795E26">findUnitCommittee</span><span style="color: #000000">({</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Committee Name&quot;</span><span style="color: #000000">, </span><span style="color: #001080">unitId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>committeeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>unitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>committee<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Name of the committee to search for</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>unit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="packet_move_forward_url" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> PACKET_<wbr>MOVE_<wbr>FORWARD_<wbr>URL</h3>
-				<div class="tsd-signature tsd-kind-icon">PACKET_<wbr>MOVE_<wbr>FORWARD_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L7">packets/packet-api.ts:7</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="packet_url" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> PACKET_<wbr>URL</h3>
-				<div class="tsd-signature tsd-kind-icon">PACKET_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/661f30f/src/packets/packet-api.ts#L5">packets/packet-api.ts:5</a></li>
-					</ul>
-				</aside>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="getcommittee" class="tsd-anchor"></a>
+				<h3>get<wbr>Committee</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Committee<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/5a7ef08/src/tenure/committee-api.ts#L189">tenure/committee-api.ts:189</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Get a committee from the committeeId</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">committee</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">Committees</span><span style="color: #000000">.</span><span style="color: #795E26">getCommittee</span><span style="color: #000000">({</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the committee</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/tenure_committee_api.html#committee" class="tsd-signature-type" data-tsd-kind="Type alias">Committee</a><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
@@ -3792,12 +3030,15 @@ img {
 				<h2>Legend</h2>
 				<div class="tsd-legend-group">
 					<ul class="tsd-legend">
+						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+						<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+					</ul>
+					<ul class="tsd-legend">
 						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-					</ul>
-					<ul class="tsd-legend">
-						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 					</ul>
 				</div>
 			</div>

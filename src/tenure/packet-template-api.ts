@@ -8,15 +8,11 @@ export const TEMPLATE_URL = TEMPLATE_BASE_URL + '/{packet_template_id}';
 export const TEMPLATE_SEARCH_URL = TEMPLATE_BASE_URL + '?limit={limit}&unit_id={unit_id}&search_text={search_text}';
 
 export type PacketTemplateDetail = PacketDetail & { description: string };
+
 /**
  * Class representing the an RPT Case Template
  *
- * @example
- * ```javascript
- * let units = await api.Units.getUnits();
- * ```
  */
-
 export class PacketTemplateApi {
   /**
    * API request object for making the actual http requests
@@ -41,7 +37,7 @@ export class PacketTemplateApi {
    *
    * @example
    * ```javascript
-   * let template = await api.PacketTemplates.create({unitId: 9999, name: "Template Name", packetTypeId: 1});
+   * let template = await api.Tenure.PacketTemplates.create({unitId: 9999, name: "Template Name", packetTypeId: 1});
    * ```
    */
   public async create({
@@ -78,7 +74,7 @@ export class PacketTemplateApi {
    *
    * @example
    * ```javascript
-   * let deleteSuccess = await api.PacketTemplates.delete({id: 9999});
+   * let deleteSuccess = await api.Tenure.PacketTemplates.delete({id: 9999});
    * ```
    */
   public async delete({ id }: { id: number }): Promise<boolean> {
@@ -134,7 +130,7 @@ export class PacketTemplateApi {
    *
    * @example
    * ```javascript
-   * let template = await api.PacketTemplates.getTemplate({id: 9999});
+   * let template = await api.Tenure.PacketTemplates.getTemplate({id: 9999});
    * ```
    */
   public async getTemplate({ id }: { id: number }): Promise<PacketTemplateDetail> {

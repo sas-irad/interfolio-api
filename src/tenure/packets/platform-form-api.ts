@@ -140,7 +140,7 @@ export class PlatformFormApi {
    *
    * @example
    * ```javascript
-   * let form = await api.Packets.PlatformForms.addWorkflowStepForm({
+   * let form = await api.Tenure.PlatformForms.addWorkflowStepForm({
    *   committeeId: 9999,
    *   committeeManagerOnlySubmission: false,
    *   formAccessLevel: 1,
@@ -189,7 +189,7 @@ export class PlatformFormApi {
    *
    * @example
    * ```javascript
-   *  let deleted = await api.Packets.PlatformForms.delete({id: 9999, packetId: 9999});
+   *  let deleted = await api.Tenure.PlatformForms.delete({id: 9999, packetId: 9999});
    * ```
    */
   async deleteForm({ id, packetId }: { id: number; packetId: number }): Promise<boolean> {
@@ -212,7 +212,7 @@ export class PlatformFormApi {
    *
    * @example
    * ```javascript
-   * let formVersion = await api.Packets.PlatformForms.getFormVersionForWorkflowStep({
+   * let formVersion = await api.Tenure.PlatformForms.getFormVersionForWorkflowStep({
    *  formId: 9999,
    *  originId: 9999
    * });
@@ -250,17 +250,17 @@ export class PlatformFormApi {
    *
    * @example
    * ```javascript
-   * let formVersion await api.Packets.PlatformForms.getFormVersionForWorkflowStep({
+   * let formVersion await api.Tenure.PlatformForms.getFormVersionForWorkflowStep({
    *  formId: 9999,
    *  originId: 9999
    * });
    *
-   * let submission = api.Packets.PlatformForms.formSubmissionFromValues({
+   * let submission = api.Tenure.PlatformForms.formSubmissionFromValues({
    *   formVersion: formVersion,
    *   responseValues: [{label: "Question 1", value: "Answer 1}, {label: "Question 2", value: "answer 2"}]
    * };
    *
-   * let response = api.Packets.PlatformForms.submitFormResponse({
+   * let response = api.Tenure.PlatformForms.submitFormResponse({
    *   packetId: 9999,
    *   platformFormId: 9999,
    *   submission: submission

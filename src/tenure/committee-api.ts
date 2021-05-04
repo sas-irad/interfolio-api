@@ -89,7 +89,7 @@ export class CommitteeApi {
    *
    * @example
    * ```javascript
-   * let committee = await api.Committees.createStandingCommittee({name: "Committee Name", unitId: 9999});
+   * let committee = await api.Tenure.Committees.createStandingCommittee({name: "Committee Name", unitId: 9999});
    * ```
    */
   public async createStandingCommittee({ name, unitId }: { name: string; unitId: number }): Promise<Committee> {
@@ -115,7 +115,7 @@ export class CommitteeApi {
    *
    * @example
    * ```javascript
-   * await api.Committees.delete({id: 9999});
+   * await api.Tenure.Committees.delete({id: 9999});
    * ```
    */
   public async delete({ id }: { id: number }): Promise<boolean> {
@@ -138,7 +138,7 @@ export class CommitteeApi {
    *
    * @example
    * ```javascript
-   * let committee = await api.Committees.findUnitCommittee({name: "Committee Name", unitId: 9999});
+   * let committee = await api.Tenure.Committees.findUnitCommittee({name: "Committee Name", unitId: 9999});
    * ```
    */
   public async findUnitStandingCommittee({
@@ -183,7 +183,7 @@ export class CommitteeApi {
    *
    * @example
    * ```javascript
-   * let committee = await api.Committees.getCommittee({id: 9999});
+   * let committee = await api.Tenure.Committees.getCommittee({id: 9999});
    * ```
    */
   async getCommittee({ id }: { id: number }): Promise<Committee> {

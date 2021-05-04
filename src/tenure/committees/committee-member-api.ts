@@ -57,7 +57,7 @@ export class CommitteeMemberApi {
    *
    * @example
    * ```javascript
-   * let member = await api.Committees.CommitteeMembers.create({committeeId: 9999, userId: 9999});
+   * let member = await api.Tenure.CommitteeMembers.create({committeeId: 9999, userId: 9999});
    * ```
    */
   public async create({

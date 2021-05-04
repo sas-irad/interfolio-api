@@ -141,7 +141,7 @@ export class FormApi {
    *
    * @expample
    * ```javascript
-   * let formId = await api.Forms.createForm({title: 'Test form', description: 'Test form Description', unitId: 9999});
+   * let formId = await api.Tenure.Forms.createForm({title: 'Test form', description: 'Test form Description', unitId: 9999});
    * ```
    */
   public async createForm({

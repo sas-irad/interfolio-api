@@ -28,7 +28,7 @@ export type Unit = {
  *
  * @example
  * ```javascript
- * let units = await api.Units.getUnits();
+ * let units = await api.Tenure.Units.getUnits();
  * ```
  */
 export class UnitApi {
@@ -53,7 +53,7 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * let newUnit = await api.Units.create({parentUnitId: 9999, unitName: "New Unit Name"});
+   * let newUnit = await api.Tenure.Units.create({parentUnitId: 9999, unitName: "New Unit Name"});
    * ```
    */
   public async create({ unitName, parentUnitId }: { unitName: string; parentUnitId: number }): Promise<Unit> {
@@ -80,7 +80,7 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * await api.Units.delete(9999);
+   * await api.Tenure.Units.delete(9999);
    * ````
    */
   public async delete(unitId: number): Promise<boolean> {
@@ -99,7 +99,7 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * let units = await api.Units.findUnit({unitName: "Biology"});
+   * let units = await api.Tenure.Units.findUnit({unitName: "Biology"});
    * ```
    */
   public async findUnit({ unitName, parentUnitId }: { unitName: string; parentUnitId?: number }): Promise<Unit> {
@@ -128,7 +128,7 @@ export class UnitApi {
    *
    * @example
    * ```javascript
-   * let units = api.Units.getUnits();
+   * let units = await api.Tenure.Units.getUnits();
    * ```
    */
   public async getUnits(): Promise<Array<Unit>> {
