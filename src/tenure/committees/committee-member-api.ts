@@ -27,7 +27,7 @@ export type CommitteeMember = {
   /** Flag indicating if this member is a temporary member of the committee */
   temporary: boolean;
   /** Flag indicating if the members is the current user */
-  is_current_user: boolean;
+  is_current_user?: boolean;
 };
 
 /**

@@ -37,17 +37,17 @@ const setupConfigForm = async (config: TestConfig): Promise<TestConfig> => {
 
   //if form is already defined then just update it
   if (config.form) {
-    config.form = await api.Forms.getForm({ id: Config.form.id });
+    config.form = await api.Tenure.Forms.getForm({ id: Config.form.id });
     keepTrying = false;
   }
   //prompt the user to create the committee form via the interface since it is not yet enabled in API
   while (keepTrying) {
     try {
-      const form = await api.Forms.findCommitteeForm({
+      const form = await api.Tenure.Forms.findCommitteeForm({
         unitId: config.unit.id,
         title: 'Test Committee Form for API',
       });
-      config.form = await api.Forms.getForm({ id: form.id });
+      config.form = await api.Tenure.Forms.getForm({ id: form.id });
       keepTrying = false;
     } catch (e) {
       const manualCreate = await prompts({

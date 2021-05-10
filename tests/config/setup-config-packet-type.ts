@@ -30,7 +30,7 @@ const setupConfigPacketType = async (config: TestConfig): Promise<TestConfig> =>
   //go get the current units from the database
   const api = new API(config.apiConfig);
 
-  const types = await api.PacketTypes.getList();
+  const types = await api.Tenure.PacketTypes.getList();
   if (types.length == 0) {
     throw Error('No packet types are defined in this instance');
   }

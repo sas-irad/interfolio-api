@@ -10,6 +10,7 @@ import CommitteeMemberApi from './tenure/committees/committee-member-api';
 import WorkflowStepApi from './tenure/packets/workflow-step-api';
 import PlatformFormApi from './tenure/packets/platform-form-api';
 import WorkflowStepCommitteeApi from './tenure/packets/workflow-steps/workflow-step-committee-api';
+import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -63,6 +64,8 @@ export class API {
     Committees: CommitteeApi;
     /** Handle to the CommitteeMember Api calls */
     CommitteeMembers: CommitteeMemberApi;
+    /** Handle to Packet Evaluator Section Api calls */
+    EvaluatorSections: EvaluatorSectionApi;
     /** Handle to the Forms Api calls */
     Forms: FormApi;
     /** Handle to the Packet Api */
@@ -95,6 +98,7 @@ export class API {
     this.Tenure = {
       Committees: new CommitteeApi(config),
       CommitteeMembers: new CommitteeMemberApi(config),
+      EvaluatorSections: new EvaluatorSectionApi(config),
       Forms: new FormApi(config),
       Packets: new PacketApi(config),
       PacketTemplates: new PacketTemplateApi(config),

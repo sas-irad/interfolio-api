@@ -33,10 +33,10 @@ const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
 
   //look to see if the test user already exists
   try {
-    const user = await api.Users.findUserByEmail({ email: 'api-test@example.com' });
+    const user = await api.Tenure.Users.findUserByEmail({ email: 'api-test@example.com' });
     config.user = user;
   } catch (e) {
-    const user = await api.Users.create({
+    const user = await api.Tenure.Users.create({
       firstName: 'API Test',
       lastName: 'Test',
       email: 'api-test@example.com',
@@ -46,7 +46,7 @@ const setupConfigUser = async (config: TestConfig): Promise<TestConfig> => {
   }
 
   //go get the current user
-  const currentUser = await api.Users.currentUser();
+  const currentUser = await api.Tenure.Users.currentUser();
   config.currentUser = currentUser;
 
   return config;

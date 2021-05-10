@@ -40,36 +40,36 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
 
   //look to see if the test committee already exists
   try {
-    const template = await api.PacketTemplates.findUnitTemplate({
+    const template = await api.Tenure.PacketTemplates.findUnitTemplate({
       unitId: config.unit.id,
       name: 'Test Template for API',
     });
     config.packetTemplate = template;
   } catch (e) {
-    const packetTemplate = await api.PacketTemplates.create({
+    const packetTemplate = await api.Tenure.PacketTemplates.create({
       name: 'Test Template for API',
       unitId: config.unit.id,
       description: 'Description for the Test Template for the API',
       packetTypeId: config.packetType.id,
     });
 
-    const step1 = await api.Packets.WorkflowSteps.addWorkflowStepStanding({
+    const step1 = await api.Tenure.WorkflowSteps.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 1',
       committeeId: config.committee.id,
       workflowStepNote: 'Workflow Step Note',
     });
 
-    await api.Packets.WorkflowSteps.addWorkflowStepStanding({
+    await api.Tenure.WorkflowSteps.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 2',
       committeeId: config.committee.id,
       workflowStepNote: 'Workflow Step Note 2',
     });
 
-    const packetTemplateFull = await api.PacketTemplates.getTemplate({ id: packetTemplate.id });
+    const packetTemplateFull = await api.Tenure.PacketTemplates.getTemplate({ id: packetTemplate.id });
 
-    await api.Packets.PlatformForms.addWorkflowStepForm({
+    await api.Tenure.PlatformForms.addWorkflowStepForm({
       committeeId: config.committee.id,
       committeeManagerOnlySubmission: true,
       formAccessLevel: 1,
@@ -79,7 +79,7 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       workflowStepId: step1.id,
     });
 
-    config.packetTemplate = await api.PacketTemplates.getTemplate({ id: packetTemplate.id });
+    config.packetTemplate = await api.Tenure.PacketTemplates.getTemplate({ id: packetTemplate.id });
   }
 
   return config;

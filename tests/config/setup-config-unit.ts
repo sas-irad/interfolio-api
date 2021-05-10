@@ -29,7 +29,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
 
   //go get the current units from the database
   const api = new API(config.apiConfig);
-  const units = await api.Units.getUnits();
+  const units = await api.Tenure.Units.getUnits();
 
   //create the unitLookup and unitMap from units
   const unitLookup: { title: string; value: number }[] = [];
@@ -81,9 +81,9 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
   }
 
   //units must not exist so create it
-  const unit = await api.Units.create(responses);
-  const subUnit1 = await api.Units.create({ unitName: 'Test SubUnit 1 for API', parentUnitId: unit.id });
-  const subUnit2 = await api.Units.create({ unitName: 'Test Subunit 2 for API', parentUnitId: unit.id });
+  const unit = await api.Tenure.Units.create(responses);
+  const subUnit1 = await api.Tenure.Units.create({ unitName: 'Test SubUnit 1 for API', parentUnitId: unit.id });
+  const subUnit2 = await api.Tenure.Units.create({ unitName: 'Test Subunit 2 for API', parentUnitId: unit.id });
 
   config.unit = {
     id: unit.id,

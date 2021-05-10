@@ -9,11 +9,11 @@ import { PlatformFormSubmission } from '../../src/tenure/packets/platform-form-a
  */
 const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> => {
   //prompt to overwrite
-  if (config.packetForm) {
+  if (config.formResponse) {
     const update = await prompts({
       type: 'select',
       name: 'update',
-      message: 'The test packet form information exists (' + config.packetForm.id + ')  Would you like to overwrite?',
+      message: 'The test packet form information exists (' + config.formResponse.id + ')  Would you like to overwrite?',
       choices: [
         { title: 'No', value: false },
         { title: 'Yes', value: true },
@@ -35,7 +35,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
   const api = new API(config.apiConfig);
 
   //get the requirements for the workflow step
-  const requirements = await api.Packets.WorkflowSteps.Committees.getRequirements({
+  const requirements = await api.Tenure.WorkflowSteps.Committees.getRequirements({
     packetId: config.packet.id,
     committeeId: config.committee.id,
     workflowStepId: config.packet.workflow_steps[1].id,
@@ -43,7 +43,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
   const form = requirements.required_platform_forms[0];
 
   //get the form version so we can answer the questions
-  const formVersion = await api.Packets.PlatformForms.getFormVersionForWorkflowStep({
+  const formVersion = await api.Tenure.PlatformForms.getFormVersionForWorkflowStep({
     formId: form.caasbox_form_id,
     originId: form.id,
   });
@@ -55,7 +55,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
     formVersion.versionData.fieldsets[0].fields[1].meta !== undefined &&
     formVersion.versionData.fieldsets[0].fields[1].meta.options !== undefined
   ) {
-    const submission: PlatformFormSubmission = api.Packets.PlatformForms.formSubmissionFromValues({
+    const submission: PlatformFormSubmission = api.Tenure.Packets.PlatformForms.formSubmissionFromValues({
       formVersion,
       responseValues: [
         { label: 'Test Form Question 1', value: 'Answer 1' },
@@ -63,7 +63,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
       ],
     });
 
-    const submissionResponse = await api.Packets.PlatformForms.submitFormResponse({
+    const submissionResponse = await api.Tenure.Packets.PlatformForms.submitFormResponse({
       packetId: config.packet.id,
       platformFormId: form.id,
       submission,

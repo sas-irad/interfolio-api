@@ -35,11 +35,11 @@ export type WorkflowStep = {
       /** name of the administrator unit */
       name: string;
       /** parent unit id of the administrator unit */
-      parent_unit_id: number;
+      parent_unit_id: number | null;
     };
     /** user id of the administrator */
     user_id: number;
-  };
+  }[];
   /** committees assigned to this workflow step */
   committees: {
     /** number of members assigned to this committee */
@@ -55,9 +55,9 @@ export type WorkflowStep = {
     /** name of the committee */
     name: string;
     /** note related to the workflow step for this committee */
-    note: string;
+    note: string | null;
     /** list of recused committee members */
-    recused_committee_members: [];
+    recused_committee_members: CommitteeMember[];
     /** list of committee required documents */
     requirements_count: number;
     /** if all committee requiremenst have been fulfilled */
@@ -76,15 +76,15 @@ export type WorkflowStep = {
   /** if this is the currently workflow step */
   current: boolean;
   /** due date for the workflow step */
-  due_date: string;
+  due_date: string | null;
   /** displayed due date */
-  due_date_display: string;
+  due_date_display: string | null;
   /** id of the workflow step */
   id: number;
   /** name of the workflow step */
-  name: string;
+  name: string | null;
   /** note for this workflow step */
-  note: string;
+  note: string | null;
   /** step number order */
   step_number: number;
 };

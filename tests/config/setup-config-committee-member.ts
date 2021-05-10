@@ -53,7 +53,7 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
   if (committeeMember === null) {
     console.log('Creating Committee Member: ' + config.currentUser.id.toString());
     try {
-      const member = await api.Committees.CommitteeMembers.create({
+      const member = await api.Tenure.CommitteeMembers.create({
         committeeId: config.committee.id,
         userId: config.currentUser.id,
         manager: true,

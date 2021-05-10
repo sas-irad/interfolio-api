@@ -8,31 +8,30 @@ import { INTERFOLIO_REST_URLS, INTERFOLIO_GRAPHQL_URLS } from '../../src/api-req
  * @param config
  */
 const setupConfigApi = async (config: TestConfig): Promise<TestConfig> => {
+  const restUrls = [
+    { title: 'production', description: INTERFOLIO_REST_URLS.PRODUCTION, value: INTERFOLIO_REST_URLS.PRODUCTION },
+    { title: 'sandbox', description: INTERFOLIO_REST_URLS.SANDBOX, value: INTERFOLIO_REST_URLS.SANDBOX },
+    { title: 'beta', description: INTERFOLIO_REST_URLS.BETA, value: INTERFOLIO_REST_URLS.BETA },
+  ];
+
+  const graphQlUrls = [
+    { title: 'production', description: INTERFOLIO_GRAPHQL_URLS.PRODUCTION, value: INTERFOLIO_GRAPHQL_URLS.PRODUCTION },
+    { title: 'sandbox', description: INTERFOLIO_GRAPHQL_URLS.SANDBOX, value: INTERFOLIO_GRAPHQL_URLS.SANDBOX },
+    { title: 'beta', description: INTERFOLIO_GRAPHQL_URLS.BETA, value: INTERFOLIO_GRAPHQL_URLS.BETA },
+  ];
   // Set up the basic questions for urls and credentials
   const questions: PromptObject[] = [
     {
       type: 'select',
       name: 'restUrl',
       message: 'Choose the Rest URL',
-      choices: [
-        { title: 'production', description: INTERFOLIO_REST_URLS.PRODUCTION, value: INTERFOLIO_REST_URLS.PRODUCTION },
-        { title: 'sandbox', description: INTERFOLIO_REST_URLS.SANDBOX, value: INTERFOLIO_REST_URLS.SANDBOX },
-        { title: 'beta', description: INTERFOLIO_REST_URLS.BETA, value: INTERFOLIO_REST_URLS.BETA },
-      ],
+      choices: restUrls,
     },
     {
       type: 'select',
       name: 'graphQlUrl',
       message: 'Choose the GraphQL URL',
-      choices: [
-        {
-          title: 'production',
-          description: INTERFOLIO_GRAPHQL_URLS.PRODUCTION,
-          value: INTERFOLIO_GRAPHQL_URLS.PRODUCTION,
-        },
-        { title: 'sandbox', description: INTERFOLIO_GRAPHQL_URLS.SANDBOX, value: INTERFOLIO_GRAPHQL_URLS.SANDBOX },
-        { title: 'beta', description: INTERFOLIO_GRAPHQL_URLS.BETA, value: INTERFOLIO_GRAPHQL_URLS.BETA },
-      ],
+      choices: graphQlUrls,
     },
     {
       type: 'number',
@@ -71,7 +70,7 @@ const setupConfigApi = async (config: TestConfig): Promise<TestConfig> => {
     if (!update.update) {
       return config;
     } else {
-      //set defaults to exists choices
+      //set defaults to existing choices
       switch (config.apiConfig.restUrl) {
         case INTERFOLIO_REST_URLS.PRODUCTION:
           questions[0].initial = 0;
@@ -85,7 +84,7 @@ const setupConfigApi = async (config: TestConfig): Promise<TestConfig> => {
         //add option for exisiting value
         default:
           if (config.apiConfig.restUrl) {
-            if (questions[0].choices === undefined) questions[0].choices = [];
+            questions[0].choices = restUrls;
             questions[0].choices.push({
               title: 'custom',
               description: config.apiConfig.restUrl,
@@ -106,9 +105,9 @@ const setupConfigApi = async (config: TestConfig): Promise<TestConfig> => {
           questions[1].initial = 2;
           break;
         default:
-          //add option for exisiting value
+          //add option for existing value
           if (config.apiConfig.graphQlUrl) {
-            if (questions[1].choices === undefined) questions[1].choices = [];
+            questions[1].choices = graphQlUrls;
             questions[1].choices.push({
               title: 'custom',
               description: config.apiConfig.graphQlUrl,

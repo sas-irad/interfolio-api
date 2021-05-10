@@ -34,7 +34,7 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
   //go get the current units from the database
   const api = new API(config.apiConfig);
 
-  const packetDetail = await api.Packets.createFromTemplate({
+  const packetDetail = await api.Tenure.Packets.createFromTemplate({
     packetId: config.packetTemplate.id,
     candidateFirstName: config.user.first_name,
     candidateLastName: config.user.last_name,
@@ -43,7 +43,7 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     unitId: config.unit.id,
   });
 
-  const movedPacket = await api.Packets.moveForward({ id: packetDetail.id, sendNotification: false });
+  const movedPacket = await api.Tenure.Packets.moveForward({ id: packetDetail.id, sendNotification: false });
 
   /** @todo implement submission of form */
   //fill out and submit the form

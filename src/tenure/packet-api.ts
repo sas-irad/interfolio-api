@@ -10,6 +10,7 @@ export const PACKET_MOVE_BACKWARD_URL = PACKET_URL + '/move_backward';
 //Imported after url consts since WorkflowStep uses them
 import WorkflowStepApi, { WorkflowStep } from './packets/workflow-step-api';
 import PlatformFormApi from './packets/platform-form-api';
+import EvaluatorSectionApi, { EvaluatorSection } from './packets/evaluator-section-api';
 import Utils, { DeNestingDef } from '../utils';
 
 /** Packet Data that is returned after packet creation */
@@ -159,9 +160,9 @@ export type PacketDetail = {
   /** list of documents by section */
   documents_by_section: any[];
   /** Due date for the packet */
-  due_date: string;
+  due_date: string | null;
   /** Due date to display */
-  due_date_display: string;
+  due_date_display: string | null;
   /** responses to forms */
   form_responses: any[];
   /** ID of the packet/template */
@@ -169,7 +170,7 @@ export type PacketDetail = {
   /** instutiion id */
   institution_id: number;
   /** Candidate Instructions for the packet */
-  instructions: string;
+  instructions: string | null;
   /** internal data forms */
   internal_data_forms: any[];
   /** internal form responses */
@@ -177,7 +178,7 @@ export type PacketDetail = {
   /** flag indicating if hte internal sections should appear after candidate sections */
   internal_sections_on_bottom: boolean;
   /** name from template */
-  name: string;
+  name?: string;
   /** the next workflow step */
   next_workflow_step: WorkflowStep;
   /** packet attachments */
@@ -185,36 +186,13 @@ export type PacketDetail = {
   /** flag indicating if packet downloading is allowed */
   packet_downloading_allowed: boolean;
   /** list of packet sections */
-  packet_sections: {
-    /** id of the section */
-    id: number;
-    /** name of the section */
-    name: string;
-    /** due date for the section */
-    due_date: string;
-    /** flag if additional documents are allowed */
-    allow_additional_documents: boolean;
-    /** the packet section sort order */
-    requirement_sort_order: number;
-    /** the interal sort order */
-    internal_sort_order: number;
-    /** the type (eg. Requirement Section / Evaluator Section  */
-    type: string;
-    /** Description of the packet section */
-    description: null;
-    /** if update is allowed */
-    allow_update: true;
-    /** if the section is in use */
-    in_use: false;
-    /** if this is a committee evaluation section */
-    committee_evaluation_section: false;
-  }[];
+  packet_sections: EvaluatorSection[];
   /** id of the packet template */
   packet_template_id: number;
   /** id of the type of packet */
-  packet_type_id: number;
+  packet_type_id: number | null;
   /** name of the packet type */
-  packet_type_name: string;
+  packet_type_name: string | null;
   /** previous workflow step */
   previous_workflow_step: any;
   /** list of required documents for candidate */
@@ -224,24 +202,24 @@ export type PacketDetail = {
     /** name of the required document */
     name: string;
     /** minimum required */
-    lower_limint: number;
+    lower_limit: number;
     /** maximim allowed (-1 for no max) */
     upper_limit: number;
     /** enforecment level e.g. optional etc */
-    enforcement_lelve: number;
+    enforcement_level: number;
     /** note for the required document */
-    note: string;
+    note: string | null;
     /** if the requirement is in use */
     in_use: boolean;
     /** string version of enforcement level value */
-    enforecement_level_value: string;
+    enforcement_level_value: string;
     /** if a placeholder for additional documents */
     for_additional_documents: boolean;
   }[];
   /** list of requirements by section */
   requirements_by_section: any[];
   /** status of the case */
-  status: string;
+  status: string | null;
   /** Unit id of the packet */
   unit_id: number;
   /** name of the unit for this case */
@@ -307,6 +285,8 @@ export class PacketApi {
   /** handle to WorkflowStepApi */
   public WorkflowSteps: WorkflowStepApi;
 
+  public EvaluatorSections: EvaluatorSectionApi;
+
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
@@ -315,6 +295,7 @@ export class PacketApi {
     this.apiRequest = new ApiRequest(apiConfig);
     this.PlatformForms = new PlatformFormApi(apiConfig);
     this.WorkflowSteps = new WorkflowStepApi(apiConfig);
+    this.EvaluatorSections = new EvaluatorSectionApi(apiConfig);
   }
 
   /**

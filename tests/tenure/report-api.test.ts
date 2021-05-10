@@ -42,7 +42,10 @@ describe('Report API Test', () => {
       limit: 100,
       page: 1,
     });
-    expect(forms.form_name).eq(Config.form.title, 'Form Title Matches');
+    expect(forms.form_name).eq(
+      Config.form.title,
+      'Form Title Matches (note: recently created forms may take up to 4 hours to be returned by API)',
+    );
     expect(forms.results[0].packet_id).eq(Config.packet.id.toString(), 'Packet ID for form matches');
 
     //loop through field responses and check that they match
