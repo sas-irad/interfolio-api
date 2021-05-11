@@ -54,8 +54,9 @@ export class EvaluatorSectionApi {
    *
    * @example
    * ```javascript
+   * import EvaluatorSectionApi from "@sas-irad/interfolio-api/lib/tenure/packets/evaluator-section-api";
    * const detail = await api.Tenure.Packets.getDetail(9999);
-   * const section = api.Tenure.EvaluatorSections.findPacketSectionFromName({
+   * const section = EvaluatorSectionApi.findPacketSectionFromName({
    *   packetDetail: detail,
    *   sectionName: "Section Name"
    * };

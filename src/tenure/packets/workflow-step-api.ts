@@ -4,7 +4,7 @@
 import ApiRequest, { ApiResponse } from '../../api-request';
 import { ApiConfig } from '../../index';
 import { CommitteeMember } from '../committees/committee-member-api';
-import { PACKET_URL } from '../packet-api';
+import { PACKET_URL, PacketDetail } from '../packet-api';
 import Utils, { DeNestingDef } from '../../utils';
 
 export const WORKFLOW_STEP_BASE_URL = PACKET_URL + '/workflow_steps';
@@ -230,6 +230,37 @@ export class WorkflowStepApi {
         })
         .catch((error) => reject(error));
     });
+  }
+
+  /**
+   * Get workflow step from packet detail and workflow step name
+   * @param packetDetail      Packet Detail object
+   * @param workflowStepName  Name of the workflow step
+   *
+   * @example
+   * ```javascript
+   * import WorkflowStepApi from "@sas-irad/interfolio-api/lib/tenure/packets/workflow-step-api";
+   * const detail = await api.Tenure.Packets.getDetail(9999);
+   * const workflowStep = WorkflowStepApi.getWorkflowStepFromName({
+   *   packetDetail: detail,
+   *   sectionName: "Section Name"
+   * };
+   * ```
+   *
+   */
+  public static findWorkflowStepFromName({
+    packetDetail,
+    workflowStepName,
+  }: {
+    packetDetail: PacketDetail;
+    workflowStepName: string;
+  }): WorkflowStep | null {
+    for (const step of packetDetail.workflow_steps) {
+      if (step.name === workflowStepName) {
+        return step;
+      }
+    }
+    return null;
   }
 
   /**
