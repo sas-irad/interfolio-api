@@ -79,6 +79,14 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       workflowStepId: step1.id,
     });
 
+    await api.Tenure.WorkflowStepCommittees.addRequiredDocument({
+      packetId: config?.packetTemplate?.id ?? 1,
+      workflowStepId: step1.id,
+      committeeId: config.committee.id,
+      name: 'Test Required Document',
+      description: 'Description for test of the required document',
+    });
+
     config.packetTemplate = await api.Tenure.PacketTemplates.getTemplate({ id: packetTemplate.id });
   }
 

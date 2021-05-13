@@ -147,6 +147,18 @@ export type PacketDetail = {
   confidential_attachments: any[];
   /** Time when the packet was created */
   created_at: string;
+  current_committee?: {
+    id: number;
+    unit_id: number;
+    name: string;
+    standing: boolean;
+    note: string;
+    requirements_fulfilled: boolean;
+    members: [any];
+    restricted: boolean;
+    individual_committee: false;
+    type: string;
+  };
   /** committeess assigned to the current user */
   current_users_assigned_committees: { id: number; name: string }[];
   /** current workflow step */

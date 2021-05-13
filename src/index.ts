@@ -11,6 +11,7 @@ import WorkflowStepApi from './tenure/packets/workflow-step-api';
 import PlatformFormApi from './tenure/packets/platform-form-api';
 import WorkflowStepCommitteeApi from './tenure/packets/workflow-steps/workflow-step-committee-api';
 import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
+import PacketAttachmentApi from './tenure/packets/packet-attachment-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -70,6 +71,8 @@ export class API {
     Forms: FormApi;
     /** Handle to the Packet Api */
     Packets: PacketApi;
+    /** Handle to the PacketAttachment Api */
+    PacketAttachments: PacketAttachmentApi;
     /** Handle to the PacketTemplate Api */
     PacketTemplates: PacketTemplateApi;
     /** Handle to the PacketType api */
@@ -101,6 +104,7 @@ export class API {
       EvaluatorSections: new EvaluatorSectionApi(config),
       Forms: new FormApi(config),
       Packets: new PacketApi(config),
+      PacketAttachments: new PacketAttachmentApi(config),
       PacketTemplates: new PacketTemplateApi(config),
       PacketTypes: new PacketTypeApi(config),
       PlatformForms: new PlatformFormApi(config),

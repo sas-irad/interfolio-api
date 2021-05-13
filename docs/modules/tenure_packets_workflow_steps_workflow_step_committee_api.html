@@ -2711,6 +2711,9 @@ img {
 			<a href="../classes/tenure_packets_workflow_steps_workflow_step_committee_api.workflowstepcommitteeapi.html" class="tsd-kind-icon">Workflow<wbr>Step<wbr>Committee<wbr>Api</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequireddocument" class="tsd-kind-icon">Committee<wbr>Required<wbr>Document</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequirements" class="tsd-kind-icon">Committee<wbr>Requirements</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
@@ -2739,6 +2742,7 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequireddocument" class="tsd-kind-icon">Committee<wbr>Required<wbr>Document</a></li>
 							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequirements" class="tsd-kind-icon">Committee<wbr>Requirements</a></li>
 							<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#requiredplatformform" class="tsd-kind-icon">Required<wbr>Platform<wbr>Form</a></li>
 						</ul>
@@ -2757,19 +2761,95 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Type aliases</h2>
 			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-				<a name="committeerequirements" class="tsd-anchor"></a>
-				<h3>Committee<wbr>Requirements</h3>
-				<div class="tsd-signature tsd-kind-icon">Committee<wbr>Requirements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>required_documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>required_platform_forms<span class="tsd-signature-symbol">: </span><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#requiredplatformform" class="tsd-signature-type" data-tsd-kind="Type alias">RequiredPlatformForm</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+				<a name="committeerequireddocument" class="tsd-anchor"></a>
+				<h3>Committee<wbr>Required<wbr>Document</h3>
+				<div class="tsd-signature tsd-kind-icon">Committee<wbr>Required<wbr>Document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>created_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>description<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packet_attachment_id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>updated_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>workflow_step_committee_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/4beda03/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L44">tenure/packets/workflow-steps/workflow-step-committee-api.ts:44</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/e0790b2/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L51">tenure/packets/workflow-steps/workflow-step-committee-api.ts:51</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A specified type for th</p>
+					</div>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter">
+							<h5>created_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>date requirement was created</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5><span class="tsd-flag ts-flagOptional">Optional</span> description<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>description of the requirement</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>id of the requirement</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>name of the required document</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5><span class="tsd-flag ts-flagOptional">Optional</span> packet_<wbr>attachment_<wbr>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>id of the attachment fulfilling the document</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>updated_<wbr>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>date requirement was updated</p>
+								</div>
+							</div>
+						</li>
+						<li class="tsd-parameter">
+							<h5>workflow_<wbr>step_<wbr>committee_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>name of the workflow step committee id</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+				<a name="committeerequirements" class="tsd-anchor"></a>
+				<h3>Committee<wbr>Requirements</h3>
+				<div class="tsd-signature tsd-kind-icon">Committee<wbr>Requirements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>required_documents<span class="tsd-signature-symbol">: </span><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequireddocument" class="tsd-signature-type" data-tsd-kind="Type alias">CommitteeRequiredDocument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>required_platform_forms<span class="tsd-signature-symbol">: </span><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#requiredplatformform" class="tsd-signature-type" data-tsd-kind="Type alias">RequiredPlatformForm</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/e0790b2/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L68">tenure/packets/workflow-steps/workflow-step-committee-api.ts:68</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
 					<h4>Type declaration</h4>
 					<ul class="tsd-parameters">
 						<li class="tsd-parameter">
-							<h5>required_<wbr>documents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+							<h5>required_<wbr>documents<span class="tsd-signature-symbol">: </span><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#committeerequireddocument" class="tsd-signature-type" data-tsd-kind="Type alias">CommitteeRequiredDocument</a><span class="tsd-signature-symbol">[]</span></h5>
 						</li>
 						<li class="tsd-parameter">
 							<h5>required_<wbr>platform_<wbr>forms<span class="tsd-signature-symbol">: </span><a href="tenure_packets_workflow_steps_workflow_step_committee_api.html#requiredplatformform" class="tsd-signature-type" data-tsd-kind="Type alias">RequiredPlatformForm</a><span class="tsd-signature-symbol">[]</span></h5>
@@ -2783,7 +2863,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Required<wbr>Platform<wbr>Form<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>caasbox_form_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>committee_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>committee_manager_only_submission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>created_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Apr 28; 2021 at 8:33 AM&quot;</span><span class="tsd-signature-symbol">; </span>form_access_level<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>form_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>has_responses<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packet_section_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packet_section_name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>sort_order<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>updated_at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>workflow_step_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/4beda03/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L16">tenure/packets/workflow-steps/workflow-step-committee-api.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/e0790b2/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L19">tenure/packets/workflow-steps/workflow-step-committee-api.ts:19</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">

@@ -25,10 +25,18 @@ describe('Workflow Step Committee API Test', () => {
   });
 
   /**
+   * Test fullfilling a document requirement
+   * @todo Implement
+   */
+  it('Fulfill Document Requirement', async () => {
+    expect(true).equal(false, 'Full requirement not yet implemented');
+  });
+
+  /**
    * Test adding and removing a committee from a workflow step
    * @todo implement
    */
   it('Test assign/remove committee from step', async () => {
-    expect(true).equal(true);
+    expect(true).equal(false, 'Assign Committee Not Yet Implemented');
   });
 });
