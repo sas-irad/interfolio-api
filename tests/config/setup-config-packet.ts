@@ -43,9 +43,6 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     unitId: config.unit.id,
   });
 
-  //move the packet forward to the first step
-  const movedPacket = await api.Tenure.Packets.moveForward({ id: packetDetail.id, sendNotification: false });
-
   const params = {
     packetId: packetDetail.id,
     workflowStepId: packetDetail.workflow_steps[1].id,
@@ -58,17 +55,17 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     packetId: packetDetail.id,
     displayName: 'Required Document Fulfillment',
     sectionId: packetDetail.packet_sections[1].id,
-    file: Buffer.from('File For Doucument Fulfillment'),
-    fileName: 'DocumentRequirementFullfimment.txt',
+    file: Buffer.from('File For Document Fulfillment'),
+    fileName: 'DocumentRequirementFulfillment.txt',
   });
 
-  // await api.Tenure.WorkflowStepCommittees.fulfillRequiredDocument({
-  //   packetId: packetDetail.id,
-  //   workflowStepId: packetDetail.workflow_steps[1].id,
-  //   committeeId: config.committee?.id ?? 1,
-  //   requirementId: reqs.required_documents[0].id,
-  //   attachmentId: doc.id
-  // });
+  await api.Tenure.WorkflowStepCommittees.fulfillDocumentRequirement({
+    packetId: packetDetail.id,
+    workflowStepId: packetDetail.workflow_steps[1].id,
+    committeeId: config.committee?.id ?? 1,
+    requirementId: reqs.required_documents[0].id,
+    attachmentId: doc.id,
+  });
 
   /** @todo implement submission of form */
   //fill out and submit the form
@@ -77,7 +74,7 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
   //   platformFormId:
   // })
 
-  config.packet = movedPacket;
+  config.packet = await api.Tenure.Packets.getPacket({ id: packetDetail.id });
 
   return config;
 };

@@ -51,6 +51,23 @@ const setupConfigCommittee = async (config: TestConfig): Promise<TestConfig> => 
     config.committee = committee;
   }
 
+  //look to see if the test2 committee already exists
+  try {
+    const committee2 = await api.Tenure.Committees.findUnitStandingCommittee({
+      unitId: config.unit.id,
+      committeeName: 'Test Committee for API 2',
+    });
+    config.committee2 = committee2;
+  } catch (e) {
+    const c2 = await api.Tenure.Committees.createStandingCommittee({
+      name: 'Test Committee for API 2',
+      unitId: config.unit.id,
+    });
+    const committee2 = await api.Tenure.Committees.getCommittee({ id: c2.id });
+
+    config.committee2 = committee2;
+  }
+
   return config;
 };
 export { setupConfigCommittee };

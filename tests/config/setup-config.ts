@@ -27,6 +27,7 @@ export type TestConfig = {
   user?: User;
   currentUser?: User;
   committee?: Committee;
+  committee2?: Committee;
   committeeMember?: CommitteeMember;
   packetType?: PacketType;
   packetTemplate?: PacketTemplateDetail;

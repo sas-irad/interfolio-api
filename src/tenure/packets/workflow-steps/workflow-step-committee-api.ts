@@ -9,9 +9,9 @@ const WORKFLOW_STEP_REQUIREMENTS_URL =
   INTERFOLIO_BYC_TENURE_V2 +
   '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees/{committee_id}/committee_required_documents';
 const WORKFLOW_STEP_COMITTEE_ASSIGN_URL = WORKFLOW_STEP_URL + '/assign_committee';
-const COMMITTEE_DOCUMENT_BASE_URL = WORKFLOW_STEP_COMMITTEE_URL + '/committee_required_documents';
-//const COMMITTEE_DOCUMENT_URL = COMMITTEE_DOCUMENT_BASE_URL + '/{document_id}';
-const FULFILL_REQUIREMENT_URL = COMMITTEE_DOCUMENT_BASE_URL + '/{requirement_id}/fulfill';
+const COMMITTEE_REQUIREMENT_BASE_URL = WORKFLOW_STEP_COMMITTEE_URL + '/committee_required_documents';
+const COMMITTEE_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}';
+const FULFILL_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}/fulfill';
 
 /**
  * Data concerning a form which has been assigned as a requirement to a workflow step committee
@@ -76,7 +76,7 @@ export class WorkflowStepCommitteeApi {
   /**
    * API request object for making the actual http requests
    */
-  private readonly apiRequest: ApiRequest;
+  public readonly apiRequest: ApiRequest;
 
   /**
    * Constructor for the object
@@ -86,7 +86,7 @@ export class WorkflowStepCommitteeApi {
     this.apiRequest = new ApiRequest(apiConfig);
   }
 
-  public addRequiredDocument({
+  public addDocumentRequirement({
     packetId,
     workflowStepId,
     committeeId,
@@ -100,7 +100,7 @@ export class WorkflowStepCommitteeApi {
     description?: string;
   }): Promise<CommitteeRequiredDocument> {
     return new Promise((resolve, reject) => {
-      const url = COMMITTEE_DOCUMENT_BASE_URL.replace('{packet_id}', packetId.toString())
+      const url = COMMITTEE_REQUIREMENT_BASE_URL.replace('{packet_id}', packetId.toString())
         .replace('{workflow_step_id}', workflowStepId.toString())
         .replace('{committee_id', committeeId.toString());
       const form: {
@@ -217,6 +217,45 @@ export class WorkflowStepCommitteeApi {
   }
 
   /**
+   * Delete a workflow step committee requirement for a document
+   * @param packetId        ID of the packet
+   * @param workflowStepId  ID of the workflow step
+   * @param committeeId     ID of the committee
+   * @param requirementId   ID of the requirement to delete
+   *
+   * @example
+   * ```javascript
+   * const deleted = await api.Tenure.WorkflowStepCommittee.deleteDocumentRequirement({
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   committeeId: 9999,
+   *   requirementId: 9999
+   * }
+   */
+  public deleteDocumentRequirement({
+    packetId,
+    workflowStepId,
+    committeeId,
+    requirementId,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    committeeId: number;
+    requirementId: number;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = COMMITTEE_REQUIREMENT_URL.replace('{packet_id}', packetId.toString())
+        .replace('{workflow_step_id}', workflowStepId.toString())
+        .replace('{committee_id}', committeeId.toString())
+        .replace('{requirement_id}', requirementId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'DELETE' })
+        .then(() => resolve(true))
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
    * Fulfill a workflow step committee document requirement
    * @param packetId        ID of the packet
    * @param workflowStepId  ID of the workflow step
@@ -226,7 +265,7 @@ export class WorkflowStepCommitteeApi {
    *
    * @todo create example and write test
    */
-  public fulfillRequiredDocument({
+  public fulfillDocumentRequirement({
     packetId,
     workflowStepId,
     committeeId,
@@ -244,10 +283,10 @@ export class WorkflowStepCommitteeApi {
         .replace('{workflow_step_id}', workflowStepId.toString())
         .replace('{committee_id}', committeeId.toString())
         .replace('{requirement_id}', requirementId.toString());
-      const requestParams: { url: string; verb: string; data?: any } = {
+      const requestParams: RestRequest = {
         url: url,
-        verb: 'POST',
-        data: { packet_attachment_id: attachmentId },
+        method: 'POST',
+        form: { packet_attachment_id: attachmentId },
       };
       this.apiRequest
         .executeRest(requestParams)
