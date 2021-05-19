@@ -34,7 +34,7 @@ describe('Report API Test', () => {
   });
 
   //do the form response search
-  it('Report Packet Forms', async () => {
+  it.skip('Report Packet Forms', async () => {
     const forms = await api.formReport({
       form_id: Config.form.id,
       form_type: 'committee_form',
