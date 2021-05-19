@@ -59,6 +59,11 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     fileName: 'DocumentRequirementFulfillment.txt',
   });
 
+  await api.Tenure.Packets.moveForward({
+    id: packetDetail.id,
+    sendNotification: false,
+  });
+
   await api.Tenure.WorkflowStepCommittees.fulfillDocumentRequirement({
     packetId: packetDetail.id,
     workflowStepId: packetDetail.workflow_steps[1].id,
@@ -66,13 +71,6 @@ const setupConfigPacket = async (config: TestConfig): Promise<TestConfig> => {
     requirementId: reqs.required_documents[0].id,
     attachmentId: doc.id,
   });
-
-  /** @todo implement submission of form */
-  //fill out and submit the form
-  // await api.Packets.PlatformForm.submitFormResponse({
-  //   packetId: movedPacket.id,
-  //   platformFormId:
-  // })
 
   config.packet = await api.Tenure.Packets.getPacket({ id: packetDetail.id });
 

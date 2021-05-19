@@ -51,7 +51,6 @@ describe('Workflow Step Committee API Test', () => {
 
   /**
    * Test fullfilling a document requirement
-   * @todo Implement
    */
   it('Fulfill Document Requirement', async () => {
     //add a requirement
@@ -100,6 +99,21 @@ describe('Workflow Step Committee API Test', () => {
    * @todo implement
    */
   it('Test assign/remove committee from step', async () => {
-    expect(true).equal(true, 'Assign Committee Not Yet Implemented');
+    const committee = await api.assign({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[1].id,
+      committeeId: Config.committee2.id,
+      note: 'Committee 2 note',
+    });
+
+    expect(committee).equal(true, 'Assign Committee successful');
+
+    const removed = await api.delete({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[1].id,
+      committeeId: Config.committee2.id,
+    });
+
+    expect(removed).equal(true, 'Remove Committee successful');
   });
 });

@@ -1,6 +1,7 @@
 import prompts from 'prompts';
 import { TestConfig } from './setup-config';
 import API from '../../src';
+import EvaluatorSectionApi from '../../src/tenure/packets/evaluator-section-api';
 
 /**
  * prompts user to set up a committee for testing
@@ -69,12 +70,16 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
 
     const packetTemplateFull = await api.Tenure.PacketTemplates.getTemplate({ id: packetTemplate.id });
 
+    const section = EvaluatorSectionApi.findPacketSectionFromName({
+      packetDetail: packetTemplateFull,
+      sectionName: 'Committee Documents',
+    });
     await api.Tenure.PlatformForms.addWorkflowStepForm({
       committeeId: config.committee.id,
       committeeManagerOnlySubmission: true,
       formAccessLevel: 1,
       formId: config.form.id,
-      sectionId: packetTemplateFull.packet_sections[1].id,
+      sectionId: section?.id || config.packet?.packet_sections[2].id || 1,
       packetId: packetTemplate.id,
       workflowStepId: step1.id,
     });

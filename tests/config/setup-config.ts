@@ -20,6 +20,7 @@ import setupConfigForm from './setup-config-form';
 import { Form } from '../../src/tenure/form-api';
 import setupConfigPacketForm from './setup-config-packet-form';
 import { PlatformFormSubmissionResponse } from '../../src/tenure/packets/platform-form-api';
+import { CommitteeRequirements } from '../../src/tenure/packets/workflow-steps/workflow-step-committee-api';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -35,6 +36,7 @@ export type TestConfig = {
   packetForm?: any;
   form?: Form;
   formResponse?: PlatformFormSubmissionResponse;
+  committeeRequirements?: CommitteeRequirements;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {

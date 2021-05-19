@@ -40,6 +40,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
     committeeId: config.committee.id,
     workflowStepId: config.packet.workflow_steps[1].id,
   });
+  config.committeeRequirements = requirements;
   const form = requirements.required_platform_forms[0];
 
   //get the form version so we can answer the questions
