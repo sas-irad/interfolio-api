@@ -269,6 +269,35 @@ export class WorkflowStepApi {
   }
 
   /**
+   * Reorder the workflow steps
+   * @param packetId                 Id of the packet to reorder the steps for
+   * @param orderedWorkflowStepIds   array of workflow step ids in the desired order (do not include 0th step id)
+   *
+   * @example
+   * ```javascript
+   */
+  public reorderWorkflowSteps({
+    packetId,
+    orderedWorkflowStepIds,
+  }: {
+    packetId: number;
+    orderedWorkflowStepIds: number[];
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      let url = WORKFLOW_STEP_BASE_URL + '/reorder';
+      url = url.replace('{packet_id}', packetId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', json: { workflow_step_ids: orderedWorkflowStepIds } })
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
    * Remove the cumbersome second level for committee members
    * @param apiResponse  The response from the API to remove the nesting from
    */

@@ -1,7 +1,9 @@
-import ApiRequest from '../../api-request';
+import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../../api-request';
 import { ApiConfig } from '../../index';
 import { PacketDetail } from '../packet-api';
 
+export const EVALUATOR_SECTIONS_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/packets/{packet_id}/evaluator_sections';
+export const EVALUATOR_SECTION_URL = EVALUATOR_SECTIONS_BASE_URL + '/{section_id}';
 /**
  * Represents a Packet section to which requirements can be assigned and read by evaluators
  */
@@ -45,6 +47,52 @@ export class EvaluatorSectionApi {
    */
   constructor(apiConfig: ApiConfig) {
     this.apiRequest = new ApiRequest(apiConfig);
+  }
+
+  /**
+   * Update descripiton/name for Packet section for holding attachments
+   * @param packetId    ID of the packet
+   * @param sectionId   ID of the section
+   * @param name        Name of the section
+   * @param description Description of the section
+   *
+   * @example
+   * ```javascript
+   * const updated = await api.Tenure.EvaulatorSections.updateSection({
+   *   packetId: 9999,
+   *   sectionId: 9999,
+   *   name: "Section Name",
+   *   description: "Section Description"
+   * });
+   * ```
+   */
+  public updateSection({
+    packetId,
+    sectionId,
+    name,
+    description,
+  }: {
+    packetId: number;
+    sectionId: number;
+    name: string;
+    description: string;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = EVALUATOR_SECTION_URL.replace('{packet_id}', packetId.toString()).replace(
+        '{section_id}',
+        sectionId.toString(),
+      );
+      this.apiRequest
+        .executeRest({
+          url,
+          method: 'PUT',
+          json: {
+            packet_section: { name, description },
+          },
+        })
+        .then(() => resolve(true))
+        .catch((error) => reject(error));
+    });
   }
 
   /**

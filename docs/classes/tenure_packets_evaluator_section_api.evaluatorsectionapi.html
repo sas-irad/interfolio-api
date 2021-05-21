@@ -2716,6 +2716,9 @@ img {
 				<li class=" tsd-kind-property tsd-parent-kind-class">
 					<a href="tenure_packets_evaluator_section_api.evaluatorsectionapi.html#apirequest" class="tsd-kind-icon">api<wbr>Request</a>
 				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_packets_evaluator_section_api.evaluatorsectionapi.html#updatesection" class="tsd-kind-icon">update<wbr>Section</a>
+				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a href="tenure_packets_evaluator_section_api.evaluatorsectionapi.html#findpacketsectionfromname" class="tsd-kind-icon">find<wbr>Packet<wbr>Section<wbr>From<wbr>Name</a>
 				</li>
@@ -2723,6 +2726,12 @@ img {
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="../modules/tenure_packets_evaluator_section_api.html#evaluatorsection" class="tsd-kind-icon">Evaluator<wbr>Section</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-module">
+			<a href="../modules/tenure_packets_evaluator_section_api.html#evaluator_sections_base_url" class="tsd-kind-icon">EVALUATOR_<wbr>SECTIONS_<wbr>BASE_<wbr>URL</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-module">
+			<a href="../modules/tenure_packets_evaluator_section_api.html#evaluator_section_url" class="tsd-kind-icon">EVALUATOR_<wbr>SECTION_<wbr>URL</a>
 		</li>
 	</ul>
 </nav>
@@ -2762,6 +2771,7 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_evaluator_section_api.evaluatorsectionapi.html#updatesection" class="tsd-kind-icon">update<wbr>Section</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tenure_packets_evaluator_section_api.evaluatorsectionapi.html#findpacketsectionfromname" class="tsd-kind-icon">find<wbr>Packet<wbr>Section<wbr>From<wbr>Name</a></li>
 						</ul>
 					</section>
@@ -2780,7 +2790,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/2773577/src/tenure/packets/evaluator-section-api.ts#L40">tenure/packets/evaluator-section-api.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/evaluator-section-api.ts#L42">tenure/packets/evaluator-section-api.ts:42</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2810,7 +2820,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/2773577/src/tenure/packets/evaluator-section-api.ts#L40">tenure/packets/evaluator-section-api.ts:40</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/evaluator-section-api.ts#L42">tenure/packets/evaluator-section-api.ts:42</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2822,6 +2832,71 @@ img {
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="updatesection" class="tsd-anchor"></a>
+				<h3>update<wbr>Section</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">update<wbr>Section<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>sectionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/evaluator-section-api.ts#L69">tenure/packets/evaluator-section-api.ts:69</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Update descripiton/name for Packet section for holding attachments</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">updated</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">EvaulatorSections</span><span style="color: #000000">.</span><span style="color: #795E26">updateSection</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">sectionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Section Name&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Section Description&quot;</span>
+<span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>sectionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Description of the section</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>Name of the section</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the packet</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>section<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the section</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 				<a name="findpacketsectionfromname" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagStatic">Static</span> find<wbr>Packet<wbr>Section<wbr>From<wbr>Name</h3>
@@ -2832,7 +2907,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/2773577/src/tenure/packets/evaluator-section-api.ts#L65">tenure/packets/evaluator-section-api.ts:65</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/evaluator-section-api.ts#L113">tenure/packets/evaluator-section-api.ts:113</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2881,14 +2956,15 @@ img {
 				<h2>Legend</h2>
 				<div class="tsd-legend-group">
 					<ul class="tsd-legend">
-						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-					</ul>
-					<ul class="tsd-legend">
 						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+						<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>

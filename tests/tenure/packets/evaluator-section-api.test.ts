@@ -34,4 +34,22 @@ describe('Evaluator Section API Test', () => {
     });
     expect(section).equal(null, 'Section search returns null for bad name');
   });
+
+  it('Update Section', async () => {
+    const updated = await api.updateSection({
+      packetId: Config.packet.id,
+      sectionId: Config.packet.packet_sections[1].id,
+      name: 'New Section Name',
+      description: 'New Section Description',
+    });
+    expect(updated).eq(true, 'Section updated');
+
+    //switch back
+    await api.updateSection({
+      packetId: Config.packet.id,
+      sectionId: Config.packet.packet_sections[1].id,
+      name: Config.packet.packet_sections[1].name,
+      description: Config.packet.packet_sections[1].description || '',
+    });
+  });
 });
