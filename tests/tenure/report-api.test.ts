@@ -33,7 +33,9 @@ describe('Report API Test', () => {
     expect(found).eq(true, 'Test packet found by search');
   });
 
-  //do the form response search
+  /**
+   * Note - this is skipped since in sandbox environment often fails
+   */
   it.skip('Report Packet Forms', async () => {
     const forms = await api.formReport({
       form_id: Config.form.id,

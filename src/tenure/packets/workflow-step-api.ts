@@ -13,6 +13,40 @@ export const WORKFLOW_STEP_URL = WORKFLOW_STEP_BASE_URL + '/{workflow_step_id}';
 import WorkflowStepCommitteeApi from './workflow-steps/workflow-step-committee-api';
 
 /**
+ * Summary data for a workflow step committee
+ */
+export type WorkflowStepCommitteeSummary = {
+  /** number of members assigned to this committee */
+  committee_member_count: number;
+  /** list of committee members */
+  committee_members: CommitteeMember[];
+  /** number of form requirements for this committee for this step */
+  form_requirements_count: number;
+  /** id of the committee */
+  id: number;
+  /** if this committee represents an indvidual */
+  individual_committee: boolean;
+  /** name of the committee */
+  name: string;
+  /** note related to the workflow step for this committee */
+  note: string | null;
+  /** list of recused committee members */
+  recused_committee_members: CommitteeMember[];
+  /** list of committee required documents */
+  requirements_count: number;
+  /** if all committee requiremenst have been fulfilled */
+  requirements_fulfilled: boolean;
+  /** if this committee is restricted */
+  restricted: boolean;
+  /** if this is a standing committee */
+  standing: boolean;
+  /** the type of committee eg. StandingCommittee */
+  type: string;
+  /** unit id of the committee */
+  unit_id: number;
+};
+
+/**
  * Workflow step
  */
 export type WorkflowStep = {
@@ -41,36 +75,7 @@ export type WorkflowStep = {
     user_id: number;
   }[];
   /** committees assigned to this workflow step */
-  committees: {
-    /** number of members assigned to this committee */
-    committee_member_count: number;
-    /** list of committee members */
-    committee_members: CommitteeMember[];
-    /** number of form requirements for this committee for this step */
-    form_requirements_count: number;
-    /** id of the committee */
-    id: number;
-    /** if this committee represents an indvidual */
-    individual_committee: boolean;
-    /** name of the committee */
-    name: string;
-    /** note related to the workflow step for this committee */
-    note: string | null;
-    /** list of recused committee members */
-    recused_committee_members: CommitteeMember[];
-    /** list of committee required documents */
-    requirements_count: number;
-    /** if all committee requiremenst have been fulfilled */
-    requirements_fulfilled: boolean;
-    /** if this committee is restricted */
-    restricted: boolean;
-    /** if this is a standing committee */
-    standing: boolean;
-    /** the type of committee eg. StandingCommittee */
-    type: string;
-    /** unit id of the committee */
-    unit_id: number;
-  }[];
+  committees: WorkflowStepCommitteeSummary[];
   /** time the workflow step was created */
   created_at: string;
   /** if this is the currently workflow step */

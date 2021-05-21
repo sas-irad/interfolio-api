@@ -1,7 +1,8 @@
 import ApiRequest, { RestRequest } from '../../../api-request';
 import { ApiConfig } from '../../../index';
-import { WORKFLOW_STEP_URL } from '../workflow-step-api';
+import WorkflowStepApi, { WORKFLOW_STEP_URL, WorkflowStepCommitteeSummary } from '../workflow-step-api';
 import { INTERFOLIO_BYC_TENURE_V2 } from '../../../api-request';
+import PlatformFormApi from '../platform-form-api';
 
 const WORKFLOW_STEP_COMMITTEE_BASE_URL = WORKFLOW_STEP_URL + '/committees';
 const WORKFLOW_STEP_COMMITTEE_URL = WORKFLOW_STEP_COMMITTEE_BASE_URL + '/{committee_id}';
@@ -16,7 +17,7 @@ const FULFILL_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_
 /**
  * Data concerning a form which has been assigned as a requirement to a workflow step committee
  */
-export type RequiredPlatformForm = {
+export type CommitteeFormRequirement = {
   /** Id of the form as assigned to the workflow step */
   id: number;
   /** name of the form */
@@ -48,7 +49,7 @@ export type RequiredPlatformForm = {
 /**
  * A specified type for th
  */
-export type CommitteeRequiredDocument = {
+export type CommitteeDocumentRequirement = {
   /** id of the requirement */
   id: number;
   /** name of the required document */
@@ -65,10 +66,14 @@ export type CommitteeRequiredDocument = {
   packet_attachment_id?: number;
 };
 
+/**
+ * The requirements specified for a workflow step committee
+ */
 export type CommitteeRequirements = {
-  required_documents: CommitteeRequiredDocument[];
-  required_platform_forms: RequiredPlatformForm[];
+  required_documents: CommitteeDocumentRequirement[];
+  required_platform_forms: CommitteeFormRequirement[];
 };
+
 /**
  * Class representing workflow step committee calls
  */
@@ -77,13 +82,17 @@ export class WorkflowStepCommitteeApi {
    * API request object for making the actual http requests
    */
   public readonly apiRequest: ApiRequest;
+  private readonly platformFormApi: PlatformFormApi;
+  private readonly apiConfig: ApiConfig;
 
   /**
    * Constructor for the object
    * @param apiConfig Configuration for API calls
    */
   constructor(apiConfig: ApiConfig) {
+    this.apiConfig = apiConfig;
     this.apiRequest = new ApiRequest(apiConfig);
+    this.platformFormApi = new PlatformFormApi(apiConfig);
   }
 
   public addDocumentRequirement({
@@ -98,7 +107,7 @@ export class WorkflowStepCommitteeApi {
     committeeId: number;
     name: string;
     description?: string;
-  }): Promise<CommitteeRequiredDocument> {
+  }): Promise<CommitteeDocumentRequirement> {
     return new Promise((resolve, reject) => {
       const url = COMMITTEE_REQUIREMENT_BASE_URL.replace('{packet_id}', packetId.toString())
         .replace('{workflow_step_id}', workflowStepId.toString())
@@ -134,7 +143,7 @@ export class WorkflowStepCommitteeApi {
    *
    * @example
    * ```javascript
-   * let added = await api.Tenure.WorkflowStepCommittee.assign({
+   * let added = await api.Tenure.WorkflowStepCommittees.assign({
    *  packetId: 9999,
    *  workflowStepId: 9999,
    *  committeeId: 9999,
@@ -169,13 +178,114 @@ export class WorkflowStepCommitteeApi {
       //add in note if it is supplied
       this.apiRequest
         .executeRest(requestParams)
-        .then(() => {
-          resolve(true);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+        .then(() => resolve(true))
+        .catch((error) => reject(error));
     });
+  }
+
+  /**
+   * Copy all the requirements from one workflow step committee to another workflow step committee assigned to the same step
+   * @param packetId          Id of the packet
+   * @param workflowStepId    ID of the workflow step
+   * @param fromCommitteeId   ID of the committee to copy requirements from
+   * @param toCommitteeId     ID of the committee to copy requirements to
+   *
+   * @example
+   * ```javascript
+   * let newCommittee = await api.Tenure.WorkflowStepCommittees.copy){
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   fromCommitteeId: 9999,
+   *   toCommitteeId: 9999
+   * }
+   * ```
+   */
+  public copyRequirements({
+    packetId,
+    workflowStepId,
+    fromCommitteeId,
+    toCommitteeId,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    fromCommitteeId: number;
+    toCommitteeId: number;
+  }): Promise<WorkflowStepCommitteeSummary> {
+    const reqs = this.getRequirements({ packetId, workflowStepId, committeeId: fromCommitteeId });
+    const docsCopied = reqs.then((reqs) =>
+      this.copyDocumentRequirements({
+        packetId,
+        workflowStepId,
+        toCommitteeId,
+        documentRequirements: reqs.required_documents,
+      }),
+    );
+    const formsCopied = reqs.then((reqs) =>
+      this.copyFormRequirements({
+        packetId,
+        workflowStepId,
+        toCommitteeId,
+        formRequirements: reqs.required_platform_forms,
+      }),
+    );
+
+    return Promise.all([docsCopied, formsCopied]).then(() =>
+      this.getWorkflowStepCommitteeSummary({ packetId, workflowStepId, committeeId: toCommitteeId }),
+    );
+  }
+
+  public copyDocumentRequirements({
+    packetId,
+    workflowStepId,
+    toCommitteeId,
+    documentRequirements,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    toCommitteeId: number;
+    documentRequirements: CommitteeDocumentRequirement[];
+  }): Promise<boolean> {
+    const copyPromises = [];
+    for (const req of documentRequirements) {
+      copyPromises.push(
+        this.addDocumentRequirement({
+          packetId: packetId,
+          workflowStepId: workflowStepId,
+          committeeId: toCommitteeId,
+          name: req.name,
+          description: req.description,
+        }),
+      );
+    }
+    return Promise.all(copyPromises).then(() => true);
+  }
+
+  public copyFormRequirements({
+    packetId,
+    workflowStepId,
+    toCommitteeId,
+    formRequirements,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    toCommitteeId: number;
+    formRequirements: CommitteeFormRequirement[];
+  }): Promise<boolean> {
+    const copyPromises = [];
+    for (const req of formRequirements) {
+      copyPromises.push(
+        this.platformFormApi.addWorkflowStepForm({
+          packetId: packetId,
+          formId: req.caasbox_form_id,
+          workflowStepId: workflowStepId,
+          committeeId: toCommitteeId,
+          sectionId: req.packet_section_id,
+          formAccessLevel: req.form_access_level,
+          committeeManagerOnlySubmission: req.committee_manager_only_submission,
+        }),
+      );
+    }
+    return Promise.all(copyPromises).then(() => true);
   }
 
   /**
@@ -186,7 +296,7 @@ export class WorkflowStepCommitteeApi {
    *
    * @example
    * ```javascript
-   * let deleted = await api.Tenure.WorkflowStepCommittee.delete({
+   * let deleted = await api.Tenure.WorkflowStepCommittees.delete({
    *  packetId: 9999,
    *  workflowStepId: 9999,
    *  committeeId: 9999
@@ -225,7 +335,7 @@ export class WorkflowStepCommitteeApi {
    *
    * @example
    * ```javascript
-   * const deleted = await api.Tenure.WorkflowStepCommittee.deleteDocumentRequirement({
+   * const deleted = await api.Tenure.WorkflowStepCommittees.deleteDocumentRequirement({
    *   packetId: 9999,
    *   workflowStepId: 9999,
    *   committeeId: 9999,
@@ -263,7 +373,14 @@ export class WorkflowStepCommitteeApi {
    * @param requirementId   ID of the requirement
    * @param attachmentId    ID of the attachment
    *
-   * @todo create example and write test
+   * @example
+   * ```javascript
+   * const fulfilled = await api.Tenure.PacketAttachments.fulFillDocumentRequirement({
+   *  packetId: 9999,
+   *  workflowStepId: 9999,
+   *  requirementId: 9999,
+   *  attachmentId: 9999
+   * })
    */
   public fulfillDocumentRequirement({
     packetId,
@@ -330,6 +447,135 @@ export class WorkflowStepCommitteeApi {
         .executeRest({ url: url })
         .then((response) => {
           resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Get the workflow step committee summary
+   * @param packetId        ID of the packet
+   * @param workflowStepId  ID of the workflow step
+   * @param committeeId     ID of the committee
+   *
+   * @example
+   * ```javascript
+   * const committee = await api.Tenure.WorkflowStepCommittees.getWorkflowStepCommitteeSummary({
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   committeeId: 9999
+   * });
+   * ```
+   */
+  public getWorkflowStepCommitteeSummary({
+    packetId,
+    workflowStepId,
+    committeeId,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    committeeId: number;
+  }): Promise<WorkflowStepCommitteeSummary> {
+    return new Promise((resolve, reject) => {
+      const workflowStepApi = new WorkflowStepApi(this.apiConfig);
+      workflowStepApi
+        .getWorkflowStep({ packetId: packetId, workflowStepId: workflowStepId })
+        .then((step) => {
+          let committeeMatch = null;
+          for (const committee of step.committees) {
+            if (committee.id === committeeId) {
+              committeeMatch = committee;
+            }
+          }
+          if (committeeMatch === null) {
+            reject('No committee with id ' + committeeId.toString() + ' found in corresponding workflow step');
+          } else {
+            resolve(committeeMatch);
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+  /**
+   * Insert a workflow step committee and move all the requirements/forms/instructions to the new committee then delete the original committee
+   * @param packetId
+   * @param workflowStepId
+   * @param fromCommitteeId
+   * @param toCommitteeId
+   */
+  public swapCommittees({
+    packetId,
+    workflowStepId,
+    fromCommitteeId,
+    toCommitteeId,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    fromCommitteeId: number;
+    toCommitteeId: number;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      //get the from committee
+      this.getWorkflowStepCommitteeSummary({ packetId, workflowStepId, committeeId: fromCommitteeId })
+        .then((fromCommittee) => {
+          //assign the committee note
+          this.assign({
+            packetId,
+            workflowStepId,
+            committeeId: toCommitteeId,
+            note: fromCommittee.note || '',
+          });
+        })
+        .then(() =>
+          this.copyRequirements({ packetId, workflowStepId, fromCommitteeId, toCommitteeId }).then(() =>
+            this.delete({ packetId, workflowStepId, committeeId: fromCommitteeId }),
+          ),
+        )
+        .then(() => resolve(true))
+        .catch((e) => reject(e));
+    });
+  }
+
+  /**
+   * Update instructions/note for a workflows step committee - uses same call as "assign" function
+   * @param packetId         ID of the packet
+   * @param workflowStepId   ID of the workflow step
+   * @param committeeId      ID of the committee
+   * @param note             Note for committee (can have simple html formatting)
+   *
+   * @example
+   * ```javascript
+   * const updated = await api.Tenure.WorkflowStepCommittees.update({
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   committeeId: 9999,
+   *   note: "<p>here is my note</p><p>With a second paragraph</p>"
+   * }
+   * ```
+   */
+  public update({
+    packetId,
+    workflowStepId,
+    committeeId,
+    note,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    committeeId: number;
+    note: string;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = WORKFLOW_STEP_COMMITTEE_URL.replace('{packet_id}', packetId.toString())
+        .replace('{workflow_step_id}', workflowStepId.toString())
+        .replace('{committee_id}', committeeId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', form: { note: note } })
+        .then(() => {
+          resolve(true);
         })
         .catch((error) => {
           reject(error);
