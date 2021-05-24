@@ -2717,6 +2717,9 @@ img {
 					<a href="tenure_packets_platform_form_api.platformformapi.html#apirequest" class="tsd-kind-icon">api<wbr>Request</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_packets_platform_form_api.platformformapi.html#addcommitteememberexclusion" class="tsd-kind-icon">add<wbr>Committee<wbr>Member<wbr>Exclusion</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="tenure_packets_platform_form_api.platformformapi.html#addworkflowstepform" class="tsd-kind-icon">add<wbr>Workflow<wbr>Step<wbr>Form</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -2727,6 +2730,9 @@ img {
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="tenure_packets_platform_form_api.platformformapi.html#getformversionforworkflowstep" class="tsd-kind-icon">get<wbr>Form<wbr>Version<wbr>For<wbr>Workflow<wbr>Step</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="tenure_packets_platform_form_api.platformformapi.html#removecommitteememberexclusion" class="tsd-kind-icon">remove<wbr>Committee<wbr>Member<wbr>Exclusion</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="tenure_packets_platform_form_api.platformformapi.html#submitformresponse" class="tsd-kind-icon">submit<wbr>Form<wbr>Response</a>
@@ -2798,10 +2804,12 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#addcommitteememberexclusion" class="tsd-kind-icon">add<wbr>Committee<wbr>Member<wbr>Exclusion</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#addworkflowstepform" class="tsd-kind-icon">add<wbr>Workflow<wbr>Step<wbr>Form</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#deleteform" class="tsd-kind-icon">delete<wbr>Form</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#formsubmissionfromvalues" class="tsd-kind-icon">form<wbr>Submission<wbr>From<wbr>Values</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#getformversionforworkflowstep" class="tsd-kind-icon">get<wbr>Form<wbr>Version<wbr>For<wbr>Workflow<wbr>Step</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#removecommitteememberexclusion" class="tsd-kind-icon">remove<wbr>Committee<wbr>Member<wbr>Exclusion</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tenure_packets_platform_form_api.platformformapi.html#submitformresponse" class="tsd-kind-icon">submit<wbr>Form<wbr>Response</a></li>
 						</ul>
 					</section>
@@ -2820,7 +2828,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L121">tenure/packets/platform-form-api.ts:121</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L121">tenure/packets/platform-form-api.ts:121</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2850,7 +2858,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L121">tenure/packets/platform-form-api.ts:121</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L121">tenure/packets/platform-form-api.ts:121</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2863,6 +2871,64 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="addcommitteememberexclusion" class="tsd-anchor"></a>
+				<h3>add<wbr>Committee<wbr>Member<wbr>Exclusion</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Committee<wbr>Member<wbr>Exclusion<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>committeeMemberId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>originId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L259">tenure/packets/platform-form-api.ts:259</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Exclude a particular committee member from submitting a form response</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">omitted</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">PlatformForms</span><span style="color: #000000">.</span><span style="color: #795E26">addCommitteeMemberExclusion</span><span style="color: #000000">({</span>
+<span style="color: #000000"> </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000"> </span><span style="color: #001080">originId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000"> </span><span style="color: #001080">committeeMemberId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span>
+<span style="color: #000000">})</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>committeeMemberId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>originId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>committee<wbr>Member<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the committee member</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>origin<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the form instance attached to workflow step</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the packet</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 				<a name="addworkflowstepform" class="tsd-anchor"></a>
 				<h3>add<wbr>Workflow<wbr>Step<wbr>Form</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2872,7 +2938,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L154">tenure/packets/platform-form-api.ts:154</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L154">tenure/packets/platform-form-api.ts:154</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2914,7 +2980,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L195">tenure/packets/platform-form-api.ts:195</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L195">tenure/packets/platform-form-api.ts:195</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2962,7 +3028,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L302">tenure/packets/platform-form-api.ts:302</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L379">tenure/packets/platform-form-api.ts:379</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3000,7 +3066,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L220">tenure/packets/platform-form-api.ts:220</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L220">tenure/packets/platform-form-api.ts:220</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3042,6 +3108,64 @@ img {
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removecommitteememberexclusion" class="tsd-anchor"></a>
+				<h3>remove<wbr>Committee<wbr>Member<wbr>Exclusion</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Committee<wbr>Member<wbr>Exclusion<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>committeeMemberId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>originId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L298">tenure/packets/platform-form-api.ts:298</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Remove a Previously Submitted Exclusion for a committee member for response</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">nowRequired</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">PlatformForms</span><span style="color: #000000">.</span><span style="color: #001080">removeCommitteeMemberExclusion</span>
+<span style="color: #000000"> packetId: </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000"> originId: </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000"> committeeMemberId: </span><span style="color: #098658">9999</span>
+<span style="color: #000000">})</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>committeeMemberId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>originId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>packetId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>committee<wbr>Member<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the committee member</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>origin<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the form instance</p>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the packet</p>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 				<a name="submitformresponse" class="tsd-anchor"></a>
 				<h3>submit<wbr>Form<wbr>Response</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -3051,7 +3175,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/f36e41a/src/tenure/packets/platform-form-api.ts#L271">tenure/packets/platform-form-api.ts:271</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/80498b8/src/tenure/packets/platform-form-api.ts#L348">tenure/packets/platform-form-api.ts:348</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">

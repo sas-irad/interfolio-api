@@ -1,9 +1,10 @@
-import ApiRequest, { INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
+import ApiRequest, { INTERFOLIO_BYC_TENURE_V1, INTERFOLIO_BYC_TENURE_V2 } from '../api-request';
 import { ApiConfig } from '../index';
 
 export const REPORT_BASE_URL = INTERFOLIO_BYC_TENURE_V1 + '/reports';
 export const REPORT_PACKET_SEARCH_URL = REPORT_BASE_URL + '/packet_search';
 export const REPORT_FORM_URL = INTERFOLIO_BYC_TENURE_V1 + '/forms/report';
+export const REPORT_FORM_INDEX_URL = INTERFOLIO_BYC_TENURE_V2 + '/packets/report_index';
 
 /**
  * Data returned from a form report
@@ -44,6 +45,26 @@ export type FormReportParams = {
   limit?: number;
   /** the page number of the records to be returned - default = 1*/
   page?: number;
+};
+
+/**
+ * Type which is returned when querying for which packets have values in the report
+ */
+export type FormReportIndex = {
+  /** email of the candidate */
+  candidate_email: string;
+  /** first name of the candidate */
+  candidate_first_name: string;
+  /** last name of the candidate */
+  candidate_last_name: string;
+  /** full name of the candidate */
+  candidate_name: string;
+  /** packet id */
+  id: number;
+  /** unit id of the packet */
+  unit_id: number;
+  /** unit name of the packet unit */
+  unit_name: string;
 };
 
 /**
@@ -206,6 +227,53 @@ export class ReportApi {
   }
 
   /**
+   * Get the list of packets that have a submitted form of the type specified
+   * @param formId    id of the form type (caasbox_id)
+   * @param formType  form type (e.g. committee_form)
+   * @param unitIds   unitIds to query from
+   * @param startDate start date to query after
+   * @param endDate   end date to query before
+   */
+  public formReportIndex({
+    formId,
+    formType,
+    unitIds,
+    startDate,
+    endDate,
+  }: {
+    formId: number;
+    formType: string;
+    unitIds: number[];
+    startDate?: string;
+    endDate?: string;
+  }): Promise<FormReportIndex[]> {
+    return new Promise((resolve, reject) => {
+      const url = REPORT_FORM_INDEX_URL;
+      const formData: {
+        form_id: number;
+        form_type: string;
+        unit_ids: number[];
+        start_date?: string;
+        end_date?: string;
+      } = {
+        form_id: formId,
+        form_type: formType,
+        unit_ids: unitIds,
+      };
+      if (startDate) formData.start_date = startDate;
+      if (endDate) formData.end_date = endDate;
+      this.apiRequest
+        .executeRest({ url: url, method: 'POST', json: formData })
+        .then((results) => {
+          resolve(results);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
    * Searches packets by provided criteria
    * @param params
    *
@@ -229,6 +297,34 @@ export class ReportApi {
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
+  }
+
+  /**
+   * Search through the tables cells and return the string in the column matched by any of the supplied headers
+   * @param params
+   *    tableCells: list of values for each table
+   *    allColumnNames: list of all the column names for the table cells
+   *    matchColumnNames: list of all columns names to match -- can be used for questions which have changed over time
+   */
+  public static getFormReportValueFromColumnNames({
+    tableCells,
+    allColumnNames,
+    matchColumnNames,
+  }: {
+    tableCells: string[];
+    allColumnNames: string[];
+    matchColumnNames: string[];
+  }): string {
+    let value = '';
+    //get the column indexes from the possible matches
+    for (const columnIndex in allColumnNames) {
+      if (matchColumnNames.indexOf(allColumnNames[columnIndex]) > -1 && tableCells[columnIndex] !== null) {
+        //add in a space if there are values in more than one column
+        if (value.length > 0 && tableCells[columnIndex].length > 0) value = value + ' ';
+        value = value + tableCells[columnIndex];
+      }
+    }
+    return value;
   }
 }
 

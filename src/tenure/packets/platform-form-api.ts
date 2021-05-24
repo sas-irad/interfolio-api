@@ -242,6 +242,83 @@ export class PlatformFormApi {
   }
 
   /**
+   * Exclude a particular committee member from submitting a form response
+   * @param packetId           ID of the packet
+   * @param originId           ID of the form instance attached to workflow step
+   * @param committeeMemberId  ID of the committee member
+   *
+   * @example
+   * ```javascript
+   * const omitted = await api.Tenure.PlatformForms.addCommitteeMemberExclusion({
+   *  packetId: 9999,
+   *  originId: 9999,
+   *  committeeMemberId: 9999
+   * })
+   * ```
+   */
+  public addCommitteeMemberExclusion({
+    packetId,
+    originId,
+    committeeMemberId,
+  }: {
+    packetId: number;
+    originId: number;
+    committeeMemberId: number;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = PLATFORM_FORM_EXCLUDE_URL.replace('{packet_id}', packetId.toString())
+        .replace('{platform_form_id}', originId.toString())
+        .replace('{committee_member_id}', committeeMemberId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'PUT' })
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Remove a Previously Submitted Exclusion for a committee member for response
+   * @param packetId           ID of the packet
+   * @param originId           ID of the form instance
+   * @param committeeMemberId  ID of the committee member
+   *
+   * @example
+   * ```javascript
+   * const nowRequired = await api.Tenure.PlatformForms.removeCommitteeMemberExclusion
+   *  packetId: 9999,
+   *  originId: 9999,
+   *  committeeMemberId: 9999
+   * })
+   * ```
+   */
+  public removeCommitteeMemberExclusion({
+    packetId,
+    originId,
+    committeeMemberId,
+  }: {
+    packetId: number;
+    originId: number;
+    committeeMemberId: number;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = PLATFORM_FORM_EXCLUDE_URL.replace('{packet_id}', packetId.toString())
+        .replace('{platform_form_id}', originId.toString())
+        .replace('{committee_member_id}', committeeMemberId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'DELETE' })
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+  /**
    * Submit a form response for the current user
    *
    * @param packetId   the packet id

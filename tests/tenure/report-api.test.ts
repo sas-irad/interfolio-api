@@ -62,4 +62,23 @@ describe('Report API Test', () => {
       }
     }
   });
+
+  /**
+   * Test retrieving the info from the packet
+   */
+  it('Report Form Index', async () => {
+    const packets = await api.formReportIndex({
+      formId: Config.form.id,
+      formType: 'committee_form',
+      unitIds: [Config.unit.id],
+    });
+    let found = false;
+    for (const packet of packets) {
+      if (packet.id === Config.packet.id) {
+        found = true;
+        break;
+      }
+    }
+    expect(found).eq(true, 'Packet index found in report form index');
+  });
 });

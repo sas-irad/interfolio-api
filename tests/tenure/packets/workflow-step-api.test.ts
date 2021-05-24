@@ -37,7 +37,7 @@ describe('Packet Workflow Step API Test', () => {
     expect(step.name).to.eq(Config.packet.workflow_steps[1].name);
   });
 
-  //tes to reorder the steps
+  //test to reorder the steps
   it('Reorder workflow steps', async () => {
     await api.reorderWorkflowSteps({
       packetId: Config.packet.id,

@@ -50,4 +50,31 @@ describe('Platform Form API Test', () => {
       }
     }
   });
+
+  it('omit / require committee member form response', async () => {
+    const newForm = await api.addWorkflowStepForm({
+      committeeId: Config.packet.workflow_steps[2].committees[0].id,
+      committeeManagerOnlySubmission: true,
+      formAccessLevel: 1,
+      formId: Config.form.id,
+      packetId: Config.packet.id,
+      sectionId: Config.packet.packet_sections[1].id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+    });
+
+    const omitted = await api.addCommitteeMemberExclusion({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+      committeeMemberId: Config.committeeMember.id,
+    });
+    expect(omitted).eq(true, 'Committee member successfully omitted');
+
+    const required = await api.removeCommitteeMemberExclusion({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+      committeeMemberId: Config.committeeMember.id,
+    });
+    expect(required).eq(true, 'Committee member exclusion removed');
+    await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
+  });
 });
