@@ -51,6 +51,7 @@ describe('Platform Form API Test', () => {
     }
   });
 
+  //test omitting and then requiring committee member form completion requirement
   it('omit / require committee member form response', async () => {
     const newForm = await api.addWorkflowStepForm({
       committeeId: Config.packet.workflow_steps[2].committees[0].id,
@@ -75,6 +76,61 @@ describe('Platform Form API Test', () => {
       committeeMemberId: Config.committeeMember.id,
     });
     expect(required).eq(true, 'Committee member exclusion removed');
+    await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
+  });
+
+  //test getting all form responders
+  it('test getting form responders', async () => {
+    const newForm = await api.addWorkflowStepForm({
+      committeeId: Config.packet.workflow_steps[2].committees[0].id,
+      committeeManagerOnlySubmission: true,
+      formAccessLevel: 1,
+      formId: Config.form.id,
+      packetId: Config.packet.id,
+      sectionId: Config.packet.packet_sections[1].id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+    });
+
+    const responders = await api.getFormResponders({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+    });
+    expect(responders[0].committee_member_id).eq(Config.committeeMember.id, 'Responder user id matches');
+
+    await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
+  });
+
+  //test omitting all all unsubmitted / un-omitted forms
+  it('test excluding unsubmitted responses', async () => {
+    const newForm = await api.addWorkflowStepForm({
+      committeeId: Config.packet.workflow_steps[2].committees[0].id,
+      committeeManagerOnlySubmission: true,
+      formAccessLevel: 1,
+      formId: Config.form.id,
+      packetId: Config.packet.id,
+      sectionId: Config.packet.packet_sections[1].id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+    });
+
+    await api.excludeUnsubmittedResponses({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+    });
+
+    const responders = await api.getFormResponders({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+    });
+    expect(responders[0].omitted).eq(true, 'Responder user id matches');
+
+    //remove exclusion
+    await api.removeCommitteeMemberExclusion({
+      packetId: Config.packet.id,
+      originId: newForm.id,
+      committeeMemberId: Config.committeeMember.id,
+    });
+
+    //clean up form
     await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
   });
 });

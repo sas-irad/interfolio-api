@@ -112,6 +112,34 @@ export type AddWorkflowStepFormParams = {
 };
 
 /**
+ * Type representing the responders assigned to submit a committee workflow step form
+ */
+export type PlatformFormResponder = {
+  /** pid of the user */
+  pid: number;
+  /** id of the committee membership */
+  committee_member_id: number;
+  /** name of the committee member assigned */
+  committee_member_name: string;
+  /** email of the committee member assigned */
+  committee_member_email: string;
+  /** submission status */
+  status: string;
+  /** if the form has been submitted */
+  submitted: boolean;
+  /** total number of questions on form */
+  form_total_questions: number;
+  /** number of questions answers by committee member */
+  form_total_questions_answered: number;
+  /** total number of form questions required */
+  form_total_required_questions: number;
+  /** total number of required questions answered */
+  form_total_required_questions_answered: number;
+  /** if the response requirement has been ommitted */
+  omitted: boolean;
+};
+
+/**
  * Class representing packet workflow step calls
  */
 export class PlatformFormApi {
@@ -273,6 +301,77 @@ export class PlatformFormApi {
         .executeRest({ url, method: 'PUT' })
         .then(() => {
           resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Exclude all unsubmmitted/un-omitted forms from the requirement to submit
+   *
+   * @param packetId  ID of the packet
+   * @param originId  ID of the form instance assigned to the
+   *
+   * @example
+   * ```javascript
+   * const responders = await api.Tenure.PlatformForms.getFormResponder({
+   *  packetId: 9999,
+   *  originId: 9999
+   * });
+   * ```
+   */
+  public excludeUnsubmittedResponses({ packetId, originId }: { packetId: number; originId: number }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.getFormResponders({ packetId, originId })
+        .then((responders) => {
+          //loop through all the
+          const excludePromises: Promise<boolean>[] = [];
+          for (const responder of responders) {
+            if (!responder.submitted && !responder.omitted) {
+              excludePromises.push(
+                this.addCommitteeMemberExclusion({
+                  packetId: packetId,
+                  originId: originId,
+                  committeeMemberId: responder.committee_member_id,
+                }),
+              );
+            }
+          }
+          if (excludePromises.length === 0) {
+            resolve(true);
+          } else {
+            Promise.all(excludePromises).then(() => resolve(true));
+          }
+        })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Get the list of assigned responders for a form instance
+   * @param packetId  ID of the packet
+   * @param originId  ID of the form instance assigned to the workflow step committee
+   *
+   * @example
+   * ```javascript
+   * const responders = await api.Tenure.PlatformForms.getFormResponder({
+   *  packetId: 9999,
+   *  originId: 9999
+   * });
+   * ```
+   */
+  getFormResponders({ packetId, originId }: { packetId: number; originId: number }): Promise<PlatformFormResponder[]> {
+    return new Promise((resolve, reject) => {
+      const url = PLATFORM_FORM_RESPONSE_BASE_URL.replace('{packet_id}', packetId.toString()).replace(
+        '{platform_form_id}',
+        originId.toString(),
+      );
+      this.apiRequest
+        .executeRest({ url: url })
+        .then((response) => {
+          resolve(response.results);
         })
         .catch((error) => {
           reject(error);
