@@ -316,7 +316,7 @@ export class PlatformFormApi {
    *
    * @example
    * ```javascript
-   * const responders = await api.Tenure.PlatformForms.getFormResponder({
+   * const responders = await api.Tenure.PlatformForms.excludeUnsubmittedResponses({
    *  packetId: 9999,
    *  originId: 9999
    * });
@@ -509,7 +509,7 @@ export class PlatformFormApi {
               field.meta.schema[0] !== undefined &&
               field.meta.schema[0].field_type === 'date'
             ) {
-              formSubmission.response_data[field.id] = { [field.id + '_date']: responseValue.value };
+              formSubmission.response_data[field.id] = [{ [field.id + '_date']: responseValue.value }];
             }
 
             //add a simple field response

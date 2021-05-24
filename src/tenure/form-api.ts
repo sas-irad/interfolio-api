@@ -106,7 +106,9 @@ export type FormResponse = {
   /** Type of form e.g. PacketCommitteeForm */
   originType: 'PacketCommitteeForm';
   /** The actual question answers */
-  responseData: { [questionKey: string]: string | number };
+  responseData: {
+    [questionKey: string]: string | number | { [questionKey: string]: string }[];
+  };
   /** if the form has been submitted */
   submitted: boolean;
   /** the date the form response was updated */

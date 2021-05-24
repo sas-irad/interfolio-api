@@ -44,8 +44,26 @@ describe('Form API Test', () => {
     });
 
     //loop through response data to see if it matches
-    for (const [field, value] of Object.entries(Config.formResponse.responseData)) {
-      expect(responses[0].responseData[field]).equal(value, 'Field matches Value');
+    for (const [field, value] of Object.entries(responses[0].responseData)) {
+      //this hacky way to compare values really needs to have a helper function
+      //check for the date matches which are a nested object
+      if (Array.isArray(value)) {
+        let retrivedValue = '';
+        for (const index in value) {
+          for (const field2 in value[index]) {
+            retrivedValue = value[index][field2];
+          }
+        }
+        for (const configField in Config.formResponse.responseData) {
+          if (configField === field) {
+            for (const configField in value[0]) {
+              expect(retrivedValue).eq(value[0][configField], 'Date Field Matches');
+            }
+          }
+        }
+      } else {
+        expect(responses[0].responseData[field]).equal(value, 'Field matches Value');
+      }
     }
   });
 });
