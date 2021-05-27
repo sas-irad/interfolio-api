@@ -1,5 +1,7 @@
-import ApiRequest, { GraphQlRequest } from '../api-request';
+import ApiRequest, { GraphQlRequest, INTERFOLIO_BYC_TENURE_V1 } from '../api-request';
 import { ApiConfig } from '../index';
+
+export const FORM_URL = INTERFOLIO_BYC_TENURE_V1 + '/forms';
 
 /**
  * Type defining the form field
@@ -89,6 +91,15 @@ export type FormListing = {
   unitId: number;
   /** unit name of the form */
   unitName: string;
+};
+
+export type FormListingSummary = {
+  /** ID of the form */
+  id: number;
+  /** Name of the form  */
+  name: string;
+  /** Type of the form [case_data_form/committee_form/cand0date)form] */
+  form_type: string;
 };
 
 /**
@@ -297,6 +308,18 @@ export class FormApi {
         .then((response) => {
           resolve(response.data.formResponses);
         })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Get the list of forms
+   */
+  public getFormSummaryList(): Promise<FormListingSummary[]> {
+    return new Promise((resolve, reject) => {
+      this.apiRequest
+        .executeRest({ url: FORM_URL })
+        .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
   }

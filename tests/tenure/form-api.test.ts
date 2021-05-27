@@ -35,6 +35,19 @@ describe('Form API Test', () => {
     expect(form.title).equal(Config.form.title, 'Title Matches');
   });
 
+  //test form summary
+  it('Get Forms', async () => {
+    const forms = await api.getFormSummaryList();
+    let found = false;
+    for (const form of forms) {
+      if (form.id === Config.form.id) {
+        found = true;
+        expect(form.name).eq(Config.form.title, 'Form Name Matches');
+      }
+    }
+    expect(found).eq(true, 'Form Found');
+  });
+
   //Check the form responses match
   it('Get Form Responses', async () => {
     const responses = await api.getFormResponses({

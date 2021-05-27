@@ -8,7 +8,7 @@ export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1 + '/users';
 export const USER_URL = USER_URL_BASE + '/{user_id}';
 export const USER_CURRENT_URL = '/byc-tenure/{tenant_id}/users/current';
 export const USER_SEARCH_URL =
-  INTERFOLIO_CORE_URL_V1 + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}';
+  INTERFOLIO_CORE_URL_V1 + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}&page={page}';
 export const USER_SSO_URL = INTERFOLIO_CORE_URL_V2 + '/institutions/{tenant_id}/users/{user_id}/sso_id';
 
 /**
@@ -91,11 +91,62 @@ export type User = {
   tenant_requires_sso: boolean;
   /** flag indicating if the tenant allows sso login */
   tenant_uses_sso: boolean;
-  //titles: any[];
+  /**  list of titles assigned to the user */
+  titles: {
+    /** ID of the title assginment */
+    id: number;
+    /** Name of the title */
+    name: string;
+    /** UnitID for the title */
+    unit_id: number;
+    /** Unit Name for the title */
+    unit_name: string;
+  }[];
   /** Lookup mapping for the unit to it's ancestor */
   unit_to_ancestor_lookup: { [key: number]: number };
   /** Date when the user was last updated */
   updated_at: string;
+};
+
+/** Type returnd by searching for a user */
+type UserSearchResults = {
+  limit: number;
+  page: number;
+  total_count: number;
+  results: {
+    /** User ID */
+    id: number;
+    /** User PID */
+    pid: number;
+    /** First Name of User */
+    first_name: string;
+    /** Last Name of User */
+    last_name: string;
+    /** Email of user */
+    email: 'api-test@example.com';
+    /** if user is an external user */
+    external_user: boolean;
+    /** list of unit names the user is administrator for */
+    administrator_unit_names: string[];
+    /** list of institution administrator ids */
+    administrator_institution_ids: number[];
+    /** list of unit ids the user is an administrator for */
+    administrator_unit_ids: number[];
+    /** List of unit names the user is an evaluator for */
+    evaluator_unit_names: string[];
+    /** list of unit ids the user is an evaluator for */
+    evaluator_unit_ids: string[];
+    titles: {
+      /** ID of the title assginment */
+      id: number;
+      /** Name of the title */
+      name: string;
+      /** UnitID for the title */
+      unit_id: number;
+      /** Unit Name for the title */
+      unit_name: string;
+    }[];
+  }[];
 };
 
 /**
@@ -129,13 +180,8 @@ export class UserApi {
    * ```
    */
   public findUserByEmail({ email }: { email: string }): Promise<User> {
-    const apiRequest = this.apiRequest;
-
     return new Promise((resolve, reject) => {
-      const url = USER_SEARCH_URL.replace('{limit}', '100').replace('{search}', email);
-
-      apiRequest
-        .executeRest({ url: url })
+      this.searchUsers({ searchTerm: email })
         .then((response) => {
           //loop through all of the results and make sure that the email matche
           let user = null;
@@ -247,6 +293,39 @@ export class UserApi {
           const user: User = this.deNest(response.user) as User;
           resolve(user);
         })
+        .catch((error) => reject(error));
+    });
+  }
+
+  /**
+   * Search all users by search term
+   * @param searchTerm  String to search by
+   * @param limit       Number of results to return
+   * @param page        Page of results to return if results are greater than the limit
+   *
+   * @example
+   * ```javascript
+   * const searchResults = await api.Tenure.Users.searchUsers({searchTerm: "Bob Jones"});
+   * console.log(searchResults.results[0]);
+   * ```
+   */
+
+  public searchUsers({
+    searchTerm,
+    limit = 100,
+    page = 1,
+  }: {
+    searchTerm: string;
+    limit?: number;
+    page?: number;
+  }): Promise<UserSearchResults> {
+    return new Promise((resolve, reject) => {
+      const url = USER_SEARCH_URL.replace('{limit}', limit.toString())
+        .replace('{page}', page.toString())
+        .replace('{search}', encodeURIComponent(searchTerm));
+      this.apiRequest
+        .executeRest({ url })
+        .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
   }

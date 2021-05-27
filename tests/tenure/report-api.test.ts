@@ -15,7 +15,7 @@ describe('Report API Test', () => {
 
   //Test the packet search
   it('Report Packet Search', async () => {
-    const search = await api.packetSearch({
+    const search = await api.packetReport({
       from: 0,
       size: 100,
       search_text: Config.packet.candidate_first_name + ' ' + Config.packet.candidate_last_name,

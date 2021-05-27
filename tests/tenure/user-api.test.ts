@@ -40,4 +40,20 @@ describe('User API Test', () => {
       expect(e).to.eq('No User found with email = "bademail"');
     }
   });
+
+  //Search for users
+  it('Search Users', async () => {
+    const searchResults = await api.searchUsers({
+      searchTerm: Config.user.first_name + ' ' + Config.user.last_name,
+    });
+    expect(searchResults.total_count).gt(0, 'User search returns at least one user');
+    let found = false;
+    for (const user of searchResults.results) {
+      if (user.id === Config.user.id) {
+        found = true;
+        expect(user.first_name).eq(Config.user.first_name, 'First name of search result matches');
+      }
+    }
+    expect(found).eq(true, 'Search Result Found');
+  });
 });

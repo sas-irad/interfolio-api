@@ -142,7 +142,7 @@ export type ReportFacets = {
 /**
  * Parameters to be sent to the report generate api call
  */
-export type PacketSearchParams = {
+export type PacketReportParams = {
   /** which columns to include */
   criteria?: {
     packet: string[];
@@ -273,6 +273,32 @@ export class ReportApi {
     });
   }
 
+  public static getDefaultPacketReportParams(): PacketReportParams {
+    return {
+      from: 0,
+      size: 100,
+      sort: { column: 'lastname', direction: 'asc' },
+      facets: {
+        unit_names: [],
+      },
+      criteria: {
+        packet: [
+          'id',
+          'firstname',
+          'lastname',
+          'email',
+          'unit_name',
+          'created_date',
+          'closed_date',
+          'status',
+          'closed',
+          'current_workflow_step_name',
+        ],
+      },
+      search_text: '',
+    };
+  }
+
   /**
    * Searches packets by provided criteria
    * @param params
@@ -289,7 +315,7 @@ export class ReportApi {
    * });
    * ```
    */
-  public async packetSearch(params: PacketSearchParams): Promise<{ total: number; data: ReportPacket[] }> {
+  public async packetReport(params: PacketReportParams): Promise<{ total: number; data: ReportPacket[] }> {
     return new Promise((resolve, reject) => {
       const url = REPORT_PACKET_SEARCH_URL;
       this.apiRequest
