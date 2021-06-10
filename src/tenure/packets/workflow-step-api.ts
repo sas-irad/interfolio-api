@@ -107,11 +107,18 @@ export class WorkflowStepApi {
   public Committees: WorkflowStepCommitteeApi;
   /**
    * Constructor for the object
-   * @param apiConfig Configuration for API calls
+   * @param config Configuration for API calls - of type either ApiConfig or ApiRequest
+   *
+   * note pass in ApiRequest to keep all errors in one object instance
    */
-  constructor(apiConfig: ApiConfig) {
-    this.apiRequest = new ApiRequest(apiConfig);
-    this.Committees = new WorkflowStepCommitteeApi(apiConfig);
+  constructor(config: ApiConfig | ApiRequest) {
+    if (config.constructor && config.constructor.name === 'ApiRequest') {
+      this.apiRequest = config as ApiRequest;
+    } else {
+      const apiConfig = config as ApiConfig;
+      this.apiRequest = new ApiRequest(apiConfig);
+    }
+    this.Committees = new WorkflowStepCommitteeApi(config);
   }
 
   /**

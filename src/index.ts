@@ -12,6 +12,7 @@ import PlatformFormApi from './tenure/packets/platform-form-api';
 import WorkflowStepCommitteeApi from './tenure/packets/workflow-steps/workflow-step-committee-api';
 import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
 import PacketAttachmentApi from './tenure/packets/packet-attachment-api';
+import ApiRequest from './api-request';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -60,6 +61,9 @@ export type ApiConfig = {
  * ```
  */
 export class API {
+  /** handle the the apiRequest object **/
+  public readonly apiRequest: ApiRequest;
+  /** RPT (Review, Promotion and Tenure) api calls */
   public readonly Tenure: {
     /** Handle to the Committee Api calls */
     Committees: CommitteeApi;
@@ -95,24 +99,32 @@ export class API {
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
    *
    * @constructor
-   * @param config The ApiConfig containing connection information
+   * @param config Configuration for API calls - of type either ApiConfig or ApiRequest
+   *
+   * note pass in ApiRequest to keep all errors in one object instance
    */
-  constructor(config: ApiConfig) {
+  constructor(config: ApiConfig | ApiRequest) {
+    if (config.constructor && config.constructor.name === 'ApiRequest') {
+      this.apiRequest = config as ApiRequest;
+    } else {
+      const apiConfig = config as ApiConfig;
+      this.apiRequest = new ApiRequest(apiConfig);
+    }
     this.Tenure = {
-      Committees: new CommitteeApi(config),
-      CommitteeMembers: new CommitteeMemberApi(config),
-      EvaluatorSections: new EvaluatorSectionApi(config),
-      Forms: new FormApi(config),
-      Packets: new PacketApi(config),
-      PacketAttachments: new PacketAttachmentApi(config),
-      PacketTemplates: new PacketTemplateApi(config),
-      PacketTypes: new PacketTypeApi(config),
-      PlatformForms: new PlatformFormApi(config),
-      Reports: new ReportApi(config),
-      Units: new UnitApi(config),
-      Users: new UserApi(config),
-      WorkflowSteps: new WorkflowStepApi(config),
-      WorkflowStepCommittees: new WorkflowStepCommitteeApi(config),
+      Committees: new CommitteeApi(this.apiRequest),
+      CommitteeMembers: new CommitteeMemberApi(this.apiRequest),
+      EvaluatorSections: new EvaluatorSectionApi(this.apiRequest),
+      Forms: new FormApi(this.apiRequest),
+      Packets: new PacketApi(this.apiRequest),
+      PacketAttachments: new PacketAttachmentApi(this.apiRequest),
+      PacketTemplates: new PacketTemplateApi(this.apiRequest),
+      PacketTypes: new PacketTypeApi(this.apiRequest),
+      PlatformForms: new PlatformFormApi(this.apiRequest),
+      Reports: new ReportApi(this.apiRequest),
+      Units: new UnitApi(this.apiRequest),
+      Users: new UserApi(this.apiRequest),
+      WorkflowSteps: new WorkflowStepApi(this.apiRequest),
+      WorkflowStepCommittees: new WorkflowStepCommitteeApi(this.apiRequest),
     };
   }
 }

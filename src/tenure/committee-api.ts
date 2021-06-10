@@ -75,11 +75,16 @@ export class CommitteeApi {
   public readonly CommitteeMembers: CommitteeMemberAPI;
   /**
    * Constructor for the object
-   * @param apiConfig Configuration for API calls
+   * @param config Configuration for API calls
    */
-  constructor(apiConfig: ApiConfig) {
-    this.apiRequest = new ApiRequest(apiConfig);
-    this.CommitteeMembers = new CommitteeMemberAPI(apiConfig);
+  constructor(config: ApiConfig | ApiRequest) {
+    if (config.constructor && config.constructor.name === 'ApiRequest') {
+      this.apiRequest = config as ApiRequest;
+    } else {
+      const apiConfig = config as ApiConfig;
+      this.apiRequest = new ApiRequest(apiConfig);
+    }
+    this.CommitteeMembers = new CommitteeMemberAPI(config);
   }
 
   /**

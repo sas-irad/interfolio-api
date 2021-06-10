@@ -83,16 +83,19 @@ export class WorkflowStepCommitteeApi {
    */
   public readonly apiRequest: ApiRequest;
   private readonly platformFormApi: PlatformFormApi;
-  private readonly apiConfig: ApiConfig;
 
   /**
    * Constructor for the object
-   * @param apiConfig Configuration for API calls
+   * @param config Configuration for API calls
    */
-  constructor(apiConfig: ApiConfig) {
-    this.apiConfig = apiConfig;
-    this.apiRequest = new ApiRequest(apiConfig);
-    this.platformFormApi = new PlatformFormApi(apiConfig);
+  constructor(config: ApiConfig | ApiRequest) {
+    if (config.constructor && config.constructor.name === 'ApiRequest') {
+      this.apiRequest = config as ApiRequest;
+    } else {
+      const apiConfig = config as ApiConfig;
+      this.apiRequest = new ApiRequest(apiConfig);
+    }
+    this.platformFormApi = new PlatformFormApi(config);
   }
 
   public addDocumentRequirement({
@@ -479,7 +482,7 @@ export class WorkflowStepCommitteeApi {
     committeeId: number;
   }): Promise<WorkflowStepCommitteeSummary> {
     return new Promise((resolve, reject) => {
-      const workflowStepApi = new WorkflowStepApi(this.apiConfig);
+      const workflowStepApi = new WorkflowStepApi(this.apiRequest);
       workflowStepApi
         .getWorkflowStep({ packetId: packetId, workflowStepId: workflowStepId })
         .then((step) => {
