@@ -88,11 +88,10 @@ export class ApiRequest {
   public outputResponse = false;
 
   /** errors which were encountered */
-  public errors: {error: any, url: string | URL | undefined, headers: any, method: Method | undefined}[];
+  public errors: { error: any; url: string | URL | undefined; headers: any; method: Method | undefined }[];
 
   /** number of retries that should be attempted when encountering an error */
   public maxRetries = 2;
-
 
   /**
    * Initialize the request object with the necessary config options
@@ -127,13 +126,13 @@ export class ApiRequest {
         return {};
       }
     } catch (error) {
-      this.errors.push({error: error, url: options.url, headers: options.headers, method: options.method });
+      this.errors.push({ error: error, url: options.url, headers: options.headers, method: options.method });
       if (this.outputResponse) console.log(util.inspect(error, { showHidden: false, depth: null }));
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
         throw Error(error.response.body.errors[0].message);
       }
-        throw error;
+      throw error;
     }
   }
 
@@ -147,24 +146,20 @@ export class ApiRequest {
    * @param json    JSON to include as body of request
    * @param retryNum The number of retries that this request is currently attempting
    */
-  public async executeRest({
-    url,
-    method = 'GET',
-    form = undefined,
-    body = undefined,
-    json = undefined,
-  }: RestRequest, retryNum= 0): Promise<any> {
+  public async executeRest(
+    { url, method = 'GET', form = undefined, body = undefined, json = undefined }: RestRequest,
+    retryNum = 0,
+  ): Promise<any> {
     url = this.replaceSlugs(url);
     const options = this.getRequestOptions({ method, url, body, form, json, host: this.config.restUrl });
     try {
       return await this.execute(options);
-    }
-    catch(error) {
+    } catch (error) {
       retryNum++;
-      if(retryNum <= this.maxRetries) {
-        return this.executeRest({url, method, form, body, json}, retryNum)
+      if (retryNum <= this.maxRetries) {
+        return this.executeRest({ url, method, form, body, json }, retryNum);
       }
-      throw(error);
+      throw error;
     }
   }
 
@@ -179,13 +174,12 @@ export class ApiRequest {
     const options = this.getRequestOptions({ method: 'POST', host: this.config.graphQlUrl, url, json: gqlRequest });
     try {
       return await this.execute(options);
-    }
-    catch(error) {
+    } catch (error) {
       retryNum++;
-      if(retryNum <= this.maxRetries) {
+      if (retryNum <= this.maxRetries) {
         return this.executeGraphQl(gqlRequest, retryNum);
       }
-      throw(error);
+      throw error;
     }
   }
 
