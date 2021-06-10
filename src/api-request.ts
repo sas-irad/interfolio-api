@@ -86,6 +86,14 @@ export class ApiRequest {
 
   /** Flag indicating if the response should be output*/
   public outputResponse = false;
+
+  /** errors which were encountered */
+  public errors: {error: any, url: string | URL | undefined, headers: any, method: Method | undefined}[];
+
+  /** number of retries that should be attempted when encountering an error */
+  public maxRetries = 2;
+
+
   /**
    * Initialize the request object with the necessary config options
    *
@@ -93,6 +101,7 @@ export class ApiRequest {
    * @constructor
    */
   constructor(config: ApiConfig) {
+    this.errors = [];
     this.config = config;
   }
 
@@ -118,12 +127,13 @@ export class ApiRequest {
         return {};
       }
     } catch (error) {
+      this.errors.push({error: error, url: options.url, headers: options.headers, method: options.method });
       if (this.outputResponse) console.log(util.inspect(error, { showHidden: false, depth: null }));
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
         throw Error(error.response.body.errors[0].message);
       }
-      throw error;
+        throw error;
     }
   }
 
@@ -135,6 +145,7 @@ export class ApiRequest {
    * @param form    Form to include in the body (can include form/body or json).
    * @param body    TEXT of the Body of the request
    * @param json    JSON to include as body of request
+   * @param retryNum The number of retries that this request is currently attempting
    */
   public async executeRest({
     url,
@@ -142,22 +153,40 @@ export class ApiRequest {
     form = undefined,
     body = undefined,
     json = undefined,
-  }: RestRequest): Promise<any> {
+  }: RestRequest, retryNum= 0): Promise<any> {
     url = this.replaceSlugs(url);
     const options = this.getRequestOptions({ method, url, body, form, json, host: this.config.restUrl });
-    return await this.execute(options);
+    try {
+      return await this.execute(options);
+    }
+    catch(error) {
+      retryNum++;
+      if(retryNum <= this.maxRetries) {
+        return this.executeRest({url, method, form, body, json}, retryNum)
+      }
+      throw(error);
+    }
   }
 
   /**
    * Execute an API request against the GraphQL (caas-box) data endpoint
    *
    * @param gqlRequest
-   * @param gqlReust.operationName  {string}
+   * @param retryNum  The number of retries that this request is currently attempting
    */
-  public async executeGraphQl(gqlRequest: GraphQlRequest): Promise<any> {
+  public async executeGraphQl(gqlRequest: GraphQlRequest, retryNum = 0): Promise<any> {
     const url = this.replaceSlugs('/{tenant_id}/graphql');
     const options = this.getRequestOptions({ method: 'POST', host: this.config.graphQlUrl, url, json: gqlRequest });
-    return await this.execute(options);
+    try {
+      return await this.execute(options);
+    }
+    catch(error) {
+      retryNum++;
+      if(retryNum <= this.maxRetries) {
+        return this.executeGraphQl(gqlRequest, retryNum);
+      }
+      throw(error);
+    }
   }
 
   /**
