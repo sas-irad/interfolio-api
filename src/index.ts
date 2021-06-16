@@ -127,5 +127,29 @@ export class API {
       WorkflowStepCommittees: new WorkflowStepCommitteeApi(this.apiRequest),
     };
   }
+
+  /**
+   * Execute the designated module/subApi/function
+   * @param moduleName
+   * @param subApiName
+   * @param functionName
+   * @param functionParameters
+   */
+  async exec({
+    moduleName = 'Tenure',
+    subApiName,
+    functionName,
+    functionParameters,
+  }: {
+    moduleName?: 'Tenure';
+    subApiName: string;
+    functionName: string;
+    functionParameters: any | null;
+  }): Promise<any> {
+    const module = this[moduleName];
+    const subApi = module[subApiName as keyof typeof module];
+    const apiFunction = subApi.constructor.prototype[functionName as keyof typeof subApi];
+    return apiFunction.call(subApi, functionParameters);
+  }
 }
 export default API;
