@@ -524,21 +524,30 @@ export class WorkflowStepCommitteeApi {
     return new Promise((resolve, reject) => {
       //get the from committee
       this.getWorkflowStepCommitteeSummary({ packetId, workflowStepId, committeeId: fromCommitteeId })
+        //assign the new committee
         .then((fromCommittee) => {
           //assign the committee note
-          this.assign({
+          return this.assign({
             packetId,
             workflowStepId,
             committeeId: toCommitteeId,
             note: fromCommittee.note || '',
           });
         })
-        .then(() =>
-          this.copyRequirements({ packetId, workflowStepId, fromCommitteeId, toCommitteeId }).then(() =>
-            this.delete({ packetId, workflowStepId, committeeId: fromCommitteeId }),
-          ),
-        )
-        .then(() => resolve(true))
+        //copy the requirements
+        .then(() => {
+          return this.copyRequirements({ packetId, workflowStepId, fromCommitteeId, toCommitteeId });
+        })
+        //delete the original
+        .then(() => {
+          return this.delete({ packetId, workflowStepId, committeeId: fromCommitteeId });
+        })
+        //resolve to true
+        .then((deleted) => {
+          if (deleted) {
+            resolve(true);
+          } else reject('Previous Committee Not Deleted');
+        })
         .catch((e) => reject(e));
     });
   }

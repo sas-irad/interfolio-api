@@ -61,7 +61,7 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       workflowStepNote: 'Workflow Step Note',
     });
 
-    await api.Tenure.WorkflowSteps.addWorkflowStepStanding({
+    const step2 = await api.Tenure.WorkflowSteps.addWorkflowStepStanding({
       packetId: packetTemplate.id,
       workflowStepName: 'Workflow Step 2',
       committeeId: config.committee.id,
@@ -88,6 +88,24 @@ const setupConfigPacketTemplate = async (config: TestConfig): Promise<TestConfig
       packetId: config?.packetTemplate?.id ?? 1,
       workflowStepId: step1.id,
       committeeId: config.committee.id,
+      name: 'Test Required Document',
+      description: 'Description for test of the required document',
+    });
+
+    await api.Tenure.PlatformForms.addWorkflowStepForm({
+      committeeId: config?.committee2?.id ?? 1,
+      committeeManagerOnlySubmission: true,
+      formAccessLevel: 1,
+      formId: config.form.id,
+      sectionId: section?.id || config.packet?.packet_sections[2].id || 1,
+      packetId: packetTemplate.id,
+      workflowStepId: step2.id,
+    });
+
+    await api.Tenure.WorkflowStepCommittees.addDocumentRequirement({
+      packetId: config?.packetTemplate?.id ?? 1,
+      workflowStepId: step2.id,
+      committeeId: config.committee2?.id ?? 1,
       name: 'Test Required Document',
       description: 'Description for test of the required document',
     });

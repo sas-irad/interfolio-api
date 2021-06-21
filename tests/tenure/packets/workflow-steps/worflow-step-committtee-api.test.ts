@@ -182,4 +182,45 @@ describe('Workflow Step Committee API Test', () => {
       committeeId: Config.committee2.id,
     });
   });
+
+  it('Test Swapping Workflow Step Committees', async () => {
+    await api.swapCommittees({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+      fromCommitteeId: Config.packet.workflow_steps[2].committees[0].id,
+      toCommitteeId: Config.committee2.id,
+    });
+
+    //get the requirements to check
+    const newReqs = await api.getRequirements({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+      committeeId: Config.committee2.id,
+    });
+
+    //check docs successfully copied
+    expect(newReqs.required_documents[0].name).eq(
+      Config.committeeRequirements.required_documents[0].name,
+      'Document Name matches',
+    );
+
+    expect(newReqs.required_documents[0].description).eq(
+      Config.committeeRequirements.required_documents[0].description,
+      'Document Description matches',
+    );
+
+    //check forms successfully copied
+    expect(newReqs.required_platform_forms[0].form_name).eq(
+      Config.committeeRequirements.required_platform_forms[0].form_name,
+      'Form name matches',
+    );
+
+    //swap it back
+    await api.swapCommittees({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+      fromCommitteeId: Config.committee2.id,
+      toCommitteeId: Config.committee.id,
+    });
+  });
 });
