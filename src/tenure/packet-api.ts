@@ -6,6 +6,7 @@ export const PACKET_URL = PACKET_BASE_URL + '/{packet_id}';
 export const PACKET_CREATE_FROM_TEMPLATE_URL = PACKET_BASE_URL + '/create_from_template';
 export const PACKET_MOVE_FORWARD_URL = PACKET_URL + '/move_forward';
 export const PACKET_MOVE_BACKWARD_URL = PACKET_URL + '/move_backward';
+export const PACKET_ARCHIVE_URL = PACKET_URL + '/archive';
 
 //Imported after url consts since WorkflowStep uses them
 import WorkflowStepApi, { WorkflowStep } from './packets/workflow-step-api';
@@ -315,6 +316,29 @@ export class PacketApi {
     this.PlatformForms = new PlatformFormApi(config);
     this.WorkflowSteps = new WorkflowStepApi(config);
     this.EvaluatorSections = new EvaluatorSectionApi(config);
+  }
+
+  /**
+   *
+   * @param packetId
+   * @param statusId
+   */
+  public async archive({ packetId, statusId }: { packetId: number; statusId: number }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = PACKET_ARCHIVE_URL.replace('{packet_id}', packetId.toString());
+      const form = {
+        'packet[status_id]': statusId,
+        'packet[archived]': true,
+      };
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', form })
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 
   /**

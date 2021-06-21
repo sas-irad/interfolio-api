@@ -13,6 +13,26 @@ describe('Packet API Test', () => {
     expect(typeof api).to.equal('object', 'API created with type of object');
   });
 
+  it('Archive Packet', async () => {
+    const packetDetail = await api.create({
+      unitId: Config.unit.id,
+      candidateLastName: Config.user.last_name,
+      candidateFirstName: Config.user.first_name,
+      candidateEmail: Config.user.email,
+      candidateInvolvement: false,
+      packetTypeId: Config.packetType.id,
+    });
+    expect(packetDetail.candidate_first_name).to.equal(
+      Config.user.first_name,
+      'Packet Template Candidate first name matches',
+    );
+
+    const archived = await api.archive({ packetId: packetDetail.id, statusId: Config.status.id });
+    expect(archived).eq(true, 'Packet Archived');
+
+    await api.delete({ id: packetDetail.id });
+  });
+
   it('Create/Delete Packet', async () => {
     const packetDetail = await api.create({
       unitId: Config.unit.id,

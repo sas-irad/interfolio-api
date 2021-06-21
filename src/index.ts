@@ -13,6 +13,7 @@ import WorkflowStepCommitteeApi from './tenure/packets/workflow-steps/workflow-s
 import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
 import PacketAttachmentApi from './tenure/packets/packet-attachment-api';
 import ApiRequest from './api-request';
+import StatusApi from './tenure/status-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -85,6 +86,8 @@ export class API {
     PlatformForms: PlatformFormApi;
     /** Handle to the Report api */
     Reports: ReportApi;
+    /** Handle to the Status api */
+    Statuses: StatusApi;
     /** Handle to the Unit Api calls */
     Units: UnitApi;
     /** Handle to the User Api calls */
@@ -121,6 +124,7 @@ export class API {
       PacketTypes: new PacketTypeApi(this.apiRequest),
       PlatformForms: new PlatformFormApi(this.apiRequest),
       Reports: new ReportApi(this.apiRequest),
+      Statuses: new StatusApi(this.apiRequest),
       Units: new UnitApi(this.apiRequest),
       Users: new UserApi(this.apiRequest),
       WorkflowSteps: new WorkflowStepApi(this.apiRequest),
