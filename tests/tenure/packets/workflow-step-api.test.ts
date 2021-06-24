@@ -56,7 +56,7 @@ describe('Packet Workflow Step API Test', () => {
     });
   });
 
-  it.only('Update workflow Step', async () => {
+  it('Update workflow Step', async () => {
     const updated = await api.update({
       packetId: Config.packet.id,
       workflowStepId: Config.packet.workflow_steps[2].id,
