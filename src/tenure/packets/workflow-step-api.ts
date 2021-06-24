@@ -305,6 +305,54 @@ export class WorkflowStepApi {
   }
 
   /**
+   * Updates the name and due date for a workflow step
+   * @param packetId        ID of the Packet
+   * @param workflowStepId  ID of the Workflow Step
+   * @param name            Name of the workflow step
+   * @param dueDate         Due Date for the workflow step  (YYYY-MM-DD)
+   *
+   * @example
+   * ```javascript
+   * const updated = await api.Tenure.WorkflowStep.update({
+   *   packetId: 9999,
+   *   workflowStepId: 9999,
+   *   name: "New Workflow Step Name"
+   *   dueDate: '2021-01-01'
+   * });
+   * ```
+   */
+  public update({
+    packetId,
+    workflowStepId,
+    name,
+    dueDate,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    name: string;
+    dueDate?: string;
+  }): Promise<boolean> {
+    const json = {
+      workflow_step: {
+        name: name,
+        due_date: dueDate ? dueDate : null,
+      },
+    };
+    return new Promise((resolve, reject) => {
+      let url = WORKFLOW_STEP_URL;
+      url = url.replace('{packet_id}', packetId.toString()).replace('{workflow_step_id}', workflowStepId.toString());
+      this.apiRequest
+        .executeRest({ url, method: 'PUT', json: json })
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
    * Remove the cumbersome second level for committee members
    * @param apiResponse  The response from the API to remove the nesting from
    */

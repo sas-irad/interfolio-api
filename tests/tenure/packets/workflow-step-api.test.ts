@@ -55,4 +55,27 @@ describe('Packet Workflow Step API Test', () => {
       orderedWorkflowStepIds: [Config.packet.workflow_steps[1].id, Config.packet.workflow_steps[2].id],
     });
   });
+
+  it.only('Update workflow Step', async () => {
+    const updated = await api.update({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+      name: 'Changed Name',
+    });
+    expect(updated).eq(true, 'Update api call returns true');
+
+    const step = await api.getWorkflowStep({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+    });
+
+    expect(step.name).eq('Changed Name', 'Workflow step Name Changed Successfully');
+
+    //change it back
+    await api.update({
+      packetId: Config.packet.id,
+      workflowStepId: Config.packet.workflow_steps[2].id,
+      name: Config.packet.workflow_steps[2].name as string,
+    });
+  });
 });
