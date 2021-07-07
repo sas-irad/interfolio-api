@@ -1,6 +1,6 @@
 {
   "name": "@sas-irad/interfolio-api",
-  "version": "1.0.0-alpha.22",
+  "version": "1.0.0-alpha.23",
   "description": "Library which contains methods that utilize Interfolio's API to retrieve data from an Interfolio instance",
   "main": "index.js",
   "scripts": {
