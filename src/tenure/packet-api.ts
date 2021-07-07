@@ -290,7 +290,7 @@ export class PacketApi {
   /**
    * API request object for making the actual http requests
    */
-  private readonly apiRequest: ApiRequest;
+  public readonly apiRequest: ApiRequest;
 
   /** handle to PlatformFormApi */
   public PlatformForms: PlatformFormApi;

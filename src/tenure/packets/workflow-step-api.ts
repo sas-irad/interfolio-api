@@ -101,7 +101,7 @@ export class WorkflowStepApi {
   /**
    * API request object for making the actual http requests
    */
-  private readonly apiRequest: ApiRequest;
+  public readonly apiRequest: ApiRequest;
 
   /** Handle to the WorkflowStepCommitteeApi */
   public Committees: WorkflowStepCommitteeApi;

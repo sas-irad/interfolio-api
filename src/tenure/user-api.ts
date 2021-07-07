@@ -160,7 +160,7 @@ export class UserApi {
   /**
    * API request object for making the actual http requests
    */
-  private readonly apiRequest: ApiRequest;
+  public readonly apiRequest: ApiRequest;
 
   /**
    * Constructor for the object
