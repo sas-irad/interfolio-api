@@ -379,7 +379,7 @@ export class PacketApi {
         'packet[candidate_last_name]': candidateLastName,
         'packet[candidate_email]': candidateEmail,
         'packet[candidate_involvement]': candidateInvolvement,
-        'packet[packetTypeId]': packetTypeId,
+        'packet[packet_type_id]': packetTypeId,
       };
       this.apiRequest
         .executeRest({ url, form, method: 'POST' })

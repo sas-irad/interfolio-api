@@ -41,6 +41,7 @@ describe('Platform Form API Test', () => {
       responseValues: [
         { label: 'Test Form Question 1', value: 'Answer 1' },
         { label: 'Test Form Question 2', value: 'Question Option 2' },
+        { label: 'Test Form Question 3', value: '2021-03-03' },
       ],
     });
 
