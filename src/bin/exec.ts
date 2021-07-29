@@ -8,6 +8,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import API, { ApiConfig } from '../index';
 import { INTERFOLIO_GRAPHQL_URLS, INTERFOLIO_REST_URLS } from '../api-request';
+import fs from 'fs';
 
 //Run the command and retrieve arguments if supplied
 interface Arguments {
@@ -30,6 +31,11 @@ const argv: Arguments = yargs(hideBin(process.argv))
       console.log(argv);
     },
   )
+  .option('testConfigFile', {
+    alias: 'c',
+    description: 'The filename/path of the config file used for testing',
+    type: 'string',
+  })
   .option('restUrl', {
     alias: 'r',
     description: 'The rest-api url base (no trailing slash)',
@@ -84,6 +90,45 @@ const argv: Arguments = yargs(hideBin(process.argv))
 //Use prompts to gather additional information
 (async () => {
   try {
+    //use the test config file if it exists to set connection information
+    let testConfigFilename = argv.testConfigFile as string;
+    if (testConfigFilename == undefined) {
+      let choices = [];
+      if (fs.existsSync('tests/config/test-config.json')) {
+        choices.push({ title: 'Use the config information in test/config/test-config.json', value: 'test_config' });
+      }
+      choices.push({ title: 'Enter path for apiconfig file', value: 'other' });
+      choices.push({ title: 'Enter api config manually', value: 'manual' });
+      const configResponse = await prompts({
+        type: 'select',
+        name: 'configFile',
+        message: 'Would you like to enter a path for an api config file (same json format used for tests)?',
+        choices: choices,
+        initial: 0,
+      });
+
+      if (configResponse.configFile === 'test_config') {
+        testConfigFilename = 'tests/config/test-config.json';
+      } else if (configResponse.configFile === 'other') {
+        const filePathResponse = await prompts({
+          type: 'text',
+          name: 'filePath',
+          message: 'Enter the path to the config file',
+        });
+        testConfigFilename = filePathResponse.filePath;
+      }
+    }
+
+    if (testConfigFilename) {
+      const configFile = await fs.readFileSync(testConfigFilename);
+      const config = JSON.parse(configFile.toString());
+      if (argv.restUrl === undefined) argv.restUrl = config.apiConfig.restUrl;
+      if (argv.graphQlUrl === undefined) argv.graphQlUrl = config.apiConfig.graphQlUrl;
+      if (argv.tenantId === undefined) argv.tenantId = config.apiConfig.tenantId;
+      if (argv.publicKey === undefined) argv.publicKey = config.apiConfig.publicKey;
+      if (argv.privateKey === undefined) argv.privateKey = config.apiConfig.privateKey;
+    }
+
     //##############################################  Get the Rest URL ##################################### //
     let restUrl = argv.restUrl as string;
     if (restUrl === undefined) {
@@ -235,6 +280,11 @@ const argv: Arguments = yargs(hideBin(process.argv))
     });
     console.log(JSON.stringify(response, null, 2));
   } catch (error) {
-    console.error(JSON.stringify(error, null, 2));
+    try {
+      JSON.parse(error);
+      console.log(JSON.stringify(error, null, 2));
+    } catch {
+      console.log(error);
+    }
   }
 })();
