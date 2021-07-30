@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import Config from '../../config/test-config.json';
 import PlatformFormApi, { PlatformFormSubmission } from '../../../src/tenure/packets/platform-form-api';
+import PacketApi from '../../../src/tenure/packet-api';
+import WorkflowStepCommitteeApi from '../../../src/tenure/packets/workflow-steps/workflow-step-committee-api';
+import FormApi from '../../../lib/tenure/form-api';
 
 /**
  * Test for Packet Platform Form API
@@ -29,14 +32,14 @@ describe('Platform Form API Test', () => {
     expect(deleted).equal(true, 'Delete call returns true');
   });
 
-  it('Submit Values for form', async () => {
+  it('Get submission values for form', async () => {
     //get the form version so we can answer the questions
     const formVersion = await api.getFormVersionForWorkflowStep({
       formId: Config.form.id,
       originId: Config.committeeRequirements.required_platform_forms[0].id,
     });
 
-    const submission: PlatformFormSubmission = api.formSubmissionFromValues({
+    const submission: PlatformFormSubmission = PlatformFormApi.formSubmissionFromValues({
       formVersion,
       responseValues: [
         { label: 'Test Form Question 1', value: 'Answer 1' },
@@ -133,5 +136,177 @@ describe('Platform Form API Test', () => {
 
     //clean up form
     await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
+  });
+
+  it('test submit/resubmit form', async () => {
+    const packetApi = new PacketApi(Config.apiConfig);
+    const workflowStepCommiteeApi = new WorkflowStepCommitteeApi(Config.apiConfig);
+    const formApi = new FormApi(Config.apiConfig);
+
+    const packetDetail = await packetApi.createFromTemplate({
+      packetId: Config.packetTemplate.id,
+      candidateFirstName: Config.user.first_name,
+      candidateLastName: Config.user.last_name,
+      candidateEmail: Config.user.email,
+      candidateInvolvement: false,
+      unitId: Config.unit.id,
+    });
+
+    await packetApi.moveForward({
+      id: packetDetail.id,
+      sendNotification: false,
+    });
+
+    const requirements = await workflowStepCommiteeApi.getRequirements({
+      packetId: packetDetail.id,
+      workflowStepId: packetDetail.workflow_steps[1].id,
+      committeeId: packetDetail.workflow_steps[1].committees[0].id,
+    });
+    const originId = requirements.required_platform_forms[0].id;
+
+    //prepare the submission
+    const version = await api.getFormVersionForWorkflowStep({ formId: Config.form.id, originId });
+    const responseValues = [
+      { label: 'Test Form Question 1', value: 'Answer 1' },
+      { label: 'Test Form Question 2', value: 'Question Option 2' },
+      { label: 'Test Form Question 3', value: '2021-03-03T04:00:00.000Z' },
+    ];
+    let submission = PlatformFormApi.formSubmissionFromValues({ formVersion: version, responseValues });
+
+    //submit the response
+    await api.submitFormResponse({ packetId: packetDetail.id, originId, submission });
+
+    //get the response just submitted
+    let result = await formApi.getFormResponses({
+      formId: Config.form.id,
+      originId,
+      originType: 'PacketCommitteeForm',
+    });
+
+    //test that the correct values are returned
+    let values = PlatformFormApi.valuesFromFormResponse({ response: result[0], version });
+    for (let i = 0; i < 3; i++) {
+      expect(values[responseValues[i].label]).eq(
+        responseValues[i].value,
+        'Question ' + (i + 1).toString() + ' value matches',
+      );
+    }
+
+    //adjust values for resubmission
+    responseValues[0].value = 'Answer 1B';
+    responseValues[1].value = 'Question Option 1';
+    responseValues[2].value = '2021-03-05T04:00:00.000Z';
+    submission = PlatformFormApi.formSubmissionFromValues({ formVersion: version, responseValues });
+
+    //resubmit the response
+    await api.resubmitFormResponse({ packetId: packetDetail.id, originId, responseId: result[0].id, submission });
+
+    //get the response just resubmitted
+    result = await formApi.getFormResponses({ formId: Config.form.id, originId, originType: 'PacketCommitteeForm' });
+
+    //test that the correct values are returned
+    values = PlatformFormApi.valuesFromFormResponse({ response: result[0], version });
+    for (let i = 0; i < 3; i++) {
+      expect(values[responseValues[i].label]).eq(
+        responseValues[i].value,
+        'Question ' + (i + 1).toString() + ' value matches',
+      );
+    }
+
+    //delete the packet
+    await packetApi.archive({ packetId: packetDetail.id, statusId: Config.status.id });
+    await packetApi.delete({ id: packetDetail.id });
+  });
+
+  it('test submit/resubmit form by values', async () => {
+    const packetApi = new PacketApi(Config.apiConfig);
+    const formApi = new FormApi(Config.apiConfig);
+    const workflowStepCommitteeApi = new WorkflowStepCommitteeApi(Config.apiConfig);
+
+    const packetDetail = await packetApi.createFromTemplate({
+      packetId: Config.packetTemplate.id,
+      candidateFirstName: Config.user.first_name,
+      candidateLastName: Config.user.last_name,
+      candidateEmail: Config.user.email,
+      candidateInvolvement: false,
+      unitId: Config.unit.id,
+    });
+
+    await packetApi.moveForward({
+      id: packetDetail.id,
+      sendNotification: false,
+    });
+
+    const responseValues: { label: string; value: string | number }[] = [
+      { label: 'Test Form Question 1', value: 'Answer 1' },
+      { label: 'Test Form Question 2', value: 'Question Option 2' },
+      { label: 'Test Form Question 3', value: '2021-03-03T04:00:00.000Z' },
+    ];
+
+    const requirements = await workflowStepCommitteeApi.getRequirements({
+      packetId: packetDetail.id,
+      workflowStepId: packetDetail.workflow_steps[1].id,
+      committeeId: packetDetail.workflow_steps[1].committees[0].id,
+    });
+    const originId = requirements.required_platform_forms[0].id;
+
+    //prepare the submission
+    const version = await api.getFormVersionForWorkflowStep({ formId: Config.form.id, originId });
+
+    //submit the response
+    await api.submitCommitteeFormByValues({
+      packetId: packetDetail.id,
+      workflowStepName: packetDetail.workflow_steps[1].name as string,
+      committeeName: packetDetail.workflow_steps[1].committees[0].name as string,
+      formTitle: Config.form.title,
+      responseValues,
+    });
+
+    //get the response just resubmitted
+    let result = await formApi.getFormResponses({
+      formId: Config.form.id,
+      originId,
+      originType: 'PacketCommitteeForm',
+    });
+
+    //test that the correct values are returned
+    let values = PlatformFormApi.valuesFromFormResponse({ response: result[0], version });
+    for (let i = 0; i < 3; i++) {
+      expect(values[responseValues[i].label]).eq(
+        responseValues[i].value,
+        'Question ' + (i + 1).toString() + ' value matches',
+      );
+    }
+
+    //adjust values for resubmission
+    responseValues[0].value = 'Answer 1B';
+    responseValues[1].value = 'Question Option 1';
+    responseValues[2].value = '2021-03-05T04:00:00.000Z';
+
+    //resubmit the response
+    await api.resubmitCommitteeFormByValues({
+      packetId: packetDetail.id,
+      workflowStepName: packetDetail.workflow_steps[1].name as string,
+      committeeName: packetDetail.workflow_steps[1].committees[0].name as string,
+      formTitle: Config.form.title,
+      submitterEmail: Config.currentUser.email,
+      responseValues,
+    });
+
+    //get the response just resubmitted
+    result = await formApi.getFormResponses({ formId: Config.form.id, originId, originType: 'PacketCommitteeForm' });
+
+    //test that the correct values are returned
+    values = PlatformFormApi.valuesFromFormResponse({ response: result[0], version });
+    for (let i = 0; i < 3; i++) {
+      expect(values[responseValues[i].label]).eq(
+        responseValues[i].value,
+        'Question ' + (i + 1).toString() + ' value matches',
+      );
+    }
+
+    //delete the packet
+    await packetApi.archive({ packetId: packetDetail.id, statusId: Config.status.id });
+    await packetApi.delete({ id: packetDetail.id });
   });
 });

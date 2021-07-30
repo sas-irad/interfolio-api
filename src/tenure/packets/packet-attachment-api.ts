@@ -119,8 +119,6 @@ export class PacketAttachmentApi {
       formData.append('packet_attachment[display_name]', displayName);
       formData.append('packet_section_id', sectionId.toString());
       formData.append('packet_attachment[file]', file, fileName);
-      this.apiRequest.outputRequestOptions;
-      this.apiRequest.outputResponse;
       this.apiRequest
         .executeRest({ url, method: 'POST', body: formData })
         .then((response) => resolve(response))

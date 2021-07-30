@@ -93,7 +93,7 @@ const argv: Arguments = yargs(hideBin(process.argv))
     //use the test config file if it exists to set connection information
     let testConfigFilename = argv.testConfigFile as string;
     if (testConfigFilename == undefined) {
-      let choices = [];
+      const choices = [];
       if (fs.existsSync('tests/config/test-config.json')) {
         choices.push({ title: 'Use the config information in test/config/test-config.json', value: 'test_config' });
       }

@@ -2,6 +2,7 @@ import prompts from 'prompts';
 import { TestConfig } from './setup-config';
 import API from '../../src';
 import { PlatformFormSubmission } from '../../src/tenure/packets/platform-form-api';
+import PlatformFormApi from '../../lib/tenure/packets/platform-form-api';
 
 /**
  * prompts user to set up a committee for testing
@@ -56,7 +57,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
     formVersion.versionData.fieldsets[0].fields[1].meta !== undefined &&
     formVersion.versionData.fieldsets[0].fields[1].meta.options !== undefined
   ) {
-    const submission: PlatformFormSubmission = api.Tenure.Packets.PlatformForms.formSubmissionFromValues({
+    const submission: PlatformFormSubmission = PlatformFormApi.formSubmissionFromValues({
       formVersion,
       responseValues: [
         { label: 'Test Form Question 1', value: 'Answer 1' },
@@ -67,7 +68,7 @@ const setupConfigPacketForm = async (config: TestConfig): Promise<TestConfig> =>
 
     const submissionResponse = await api.Tenure.Packets.PlatformForms.submitFormResponse({
       packetId: config.packet.id,
-      platformFormId: form.id,
+      originId: form.id,
       submission,
     });
 

@@ -1,10 +1,12 @@
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
-import { PACKET_URL } from '../packet-api';
-import { FormVersion } from '../form-api';
+import PacketApi, { PACKET_URL } from '../packet-api';
+import FormApi, { FormResponse, FormVersion } from '../form-api';
+import WorkflowStepApi, { WorkflowStep, WorkflowStepCommitteeSummary } from './workflow-step-api';
+import WorkflowStepCommitteeApi, { CommitteeFormRequirement } from './workflow-steps/workflow-step-committee-api';
 
 export const PLATFORM_FORM_BASE_URL = PACKET_URL + '/platform_forms';
-export const PLATFORM_FORM_URL = PLATFORM_FORM_BASE_URL + '/{platform_form_id}';
+export const PLATFORM_FORM_URL = PLATFORM_FORM_BASE_URL + '/{origin_id}';
 export const PLATFORM_FORM_RESPONSE_BASE_URL = PLATFORM_FORM_URL + '/responses';
 export const PLATFORM_FORM_RESPONSE_URL = PLATFORM_FORM_RESPONSE_BASE_URL + '/{response_id}';
 export const PLATFORM_FORM_EXCLUDE_URL = PLATFORM_FORM_URL + '/exclusions/{committee_member_id}';
@@ -149,6 +151,18 @@ export class PlatformFormApi {
   public apiRequest: ApiRequest;
 
   /**
+   * Handle to workflow step committee api
+   * @private
+   */
+  private readonly workflowStepCommitteeApi: WorkflowStepCommitteeApi;
+
+  /**
+   * Handle to workflow step committee api
+   * @private
+   */
+  private readonly formApi: FormApi;
+
+  /**
    * Constructor for the object
    * @param config Configuration for API calls - of type either ApiConfig or ApiRequest
    *
@@ -161,6 +175,8 @@ export class PlatformFormApi {
       const apiConfig = config as ApiConfig;
       this.apiRequest = new ApiRequest(apiConfig);
     }
+    this.workflowStepCommitteeApi = new WorkflowStepCommitteeApi(this.apiRequest);
+    this.formApi = new FormApi(this.apiRequest);
   }
 
   /**
@@ -229,10 +245,7 @@ export class PlatformFormApi {
    */
   async deleteForm({ id, packetId }: { id: number; packetId: number }): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const url = PLATFORM_FORM_URL.replace('{platform_form_id}', id.toString()).replace(
-        '{packet_id}',
-        packetId.toString(),
-      );
+      const url = PLATFORM_FORM_URL.replace('{origin_id}', id.toString()).replace('{packet_id}', packetId.toString());
       this.apiRequest
         .executeRest({ url, method: 'DELETE' })
         .then(() => resolve(true))
@@ -302,7 +315,7 @@ export class PlatformFormApi {
   }): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = PLATFORM_FORM_EXCLUDE_URL.replace('{packet_id}', packetId.toString())
-        .replace('{platform_form_id}', originId.toString())
+        .replace('{origin_id}', originId.toString())
         .replace('{committee_member_id}', committeeMemberId.toString());
       this.apiRequest
         .executeRest({ url, method: 'PUT' })
@@ -372,7 +385,7 @@ export class PlatformFormApi {
   getFormResponders({ packetId, originId }: { packetId: number; originId: number }): Promise<PlatformFormResponder[]> {
     return new Promise((resolve, reject) => {
       const url = PLATFORM_FORM_RESPONSE_BASE_URL.replace('{packet_id}', packetId.toString()).replace(
-        '{platform_form_id}',
+        '{origin_id}',
         originId.toString(),
       );
       this.apiRequest
@@ -412,7 +425,7 @@ export class PlatformFormApi {
   }): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = PLATFORM_FORM_EXCLUDE_URL.replace('{packet_id}', packetId.toString())
-        .replace('{platform_form_id}', originId.toString())
+        .replace('{origin_id}', originId.toString())
         .replace('{committee_member_id}', committeeMemberId.toString());
       this.apiRequest
         .executeRest({ url, method: 'DELETE' })
@@ -425,10 +438,198 @@ export class PlatformFormApi {
     });
   }
   /**
+   * Resubmit an existing form response
+   *
+   * @param packetId   the packet id
+   * @param originId   id of the form assignment to the workflow step
+   * @param responseId id of the existing form response
+   * @param submission the submission information
+   *
+   * @example
+   * ```javascript
+   * let formVersion await api.Tenure.PlatformForms.getFormVersionForWorkflowStep({
+   *  formId: 9999,
+   *  originId: 9999
+   * });
+   *
+   * let submission = api.Tenure.PlatformForms.formSubmissionFromValues({
+   *   formVersion: formVersion,
+   *   responseValues: [{label: "Question 1", value: "Answer 1}, {label: "Question 2", value: "answer 2"}]
+   * };
+   *
+   * let response = api.Tenure.PlatformForms.resubmitFormResponse({
+   *   packetId: 9999,
+   *   originId: 9999,
+   *   responseId: 9999,
+   *   submission: submission
+   * }
+   * ```
+   *
+   */
+  resubmitFormResponse({
+    packetId,
+    originId,
+    responseId,
+    submission,
+  }: {
+    packetId: number;
+    originId: number;
+    responseId: number;
+    submission: PlatformFormSubmission;
+  }): Promise<PlatformFormSubmissionResponse> {
+    return new Promise((resolve, reject) => {
+      const url = PLATFORM_FORM_RESPONSE_URL.replace('{packet_id}', packetId.toString())
+        .replace('{origin_id}', originId.toString())
+        .replace('{response_id}', responseId.toString());
+      this.apiRequest
+        .executeRest({ url: url, method: 'PUT', json: submission })
+        .then((response) => {
+          resolve(response.data.updateFormResponse.formResponse);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Resubmit form response from values instead of ids
+   *
+   * @param packetId          id of the packet
+   * @param workflowStepName  workflow step name which contains the form to update
+   * @param committeeName     committee name to which the form is assigned in the workflow step
+   * @param formTitle         name of the form to submit
+   * @param submitterEmail    email address of the user who has already submitted a response
+   * @param responseValues    values to submit in the form of [{"label": "Question Label 1", "value": "Question value 1"}]
+   *
+   * @example
+   * ```javascript
+   * await api.Tenure.WorkflowStepCommittees.resubmitCommitteeFormByValues({
+   *   packetId: 9999,
+   *   workflowStepName: "Department Review",
+   *   committeeName: "Department Committee",
+   *   formTitle: "Department Information Form",
+   *   submitterEmail: "dept_chair@example.com",
+   *   responseValues: [{"label": "Question 1", "value": "Answer One"},{"label": "Question 2","value": "Answer 2"}]
+   * });
+   */
+  public resubmitCommitteeFormByValues({
+    packetId,
+    workflowStepName,
+    committeeName,
+    formTitle,
+    submitterEmail,
+    responseValues,
+  }: {
+    packetId: number;
+    workflowStepName: string;
+    committeeName: string;
+    formTitle: string;
+    submitterEmail: string;
+    responseValues: { label: string; value: string | number }[];
+  }): Promise<PlatformFormSubmissionResponse> {
+    return new Promise((resolve, reject) => {
+      //the objects we are looking to find based upon names
+      let workflowStep: WorkflowStep | null;
+      let committee: WorkflowStepCommitteeSummary;
+      let form: CommitteeFormRequirement;
+      let formVersion: FormVersion;
+      let submitterId: number | null;
+
+      const packetApi = new PacketApi(this.apiRequest);
+      //go get the packet detail
+
+      packetApi
+        .getPacket({ id: packetId })
+        //get committee requirements from workflow step name and committee name
+        .then((packetDetail) => {
+          //get the workflow step
+          workflowStep = WorkflowStepApi.findWorkflowStepFromName({ packetDetail, workflowStepName });
+          if (!workflowStep) {
+            reject('Workflow Step with name ' + workflowStepName + ' not found for packet ' + packetId);
+            return;
+          } else {
+            //search for the committee in the workflow step committees
+            for (const c of workflowStep.committees) {
+              if (c.name === committeeName) {
+                committee = c;
+                return this.workflowStepCommitteeApi.getRequirements({
+                  packetId,
+                  workflowStepId: workflowStep.id,
+                  committeeId: committee.id,
+                });
+              }
+            }
+            reject('Could not find workflow step committee with name ' + committeeName);
+          }
+        })
+
+        //get the form version based upon form requirements for the workflow step
+        .then((reqs) => {
+          if (!reqs) return;
+          for (const req of reqs.required_platform_forms) {
+            if (req.form_name === formTitle) {
+              form = req;
+              return this.getFormVersionForWorkflowStep({
+                formId: req.caasbox_form_id,
+                originId: req.id,
+              });
+            }
+          }
+          reject('Could not find form assigned to committee with name ' + formTitle);
+        })
+
+        //get the form responders so that we can match on email
+        .then((retrievedFormVersion) => {
+          if (!retrievedFormVersion) return;
+          formVersion = retrievedFormVersion;
+          return this.getFormResponders({ packetId, originId: form.id });
+        })
+
+        //Go get the responders and find the one with the matching email
+        .then((responders) => {
+          if (!responders) return;
+          for (const responder of responders) {
+            if (responder.committee_member_email === submitterEmail) {
+              submitterId = responder.pid;
+              return this.formApi.getFormResponses({
+                formId: form.caasbox_form_id,
+                originId: form.id,
+                originType: 'PacketCommitteeForm',
+              });
+            }
+          }
+          reject('Could not find a response to the form from committee member with email ' + submitterEmail);
+        })
+
+        //find the right form and submit the information
+        .then((formResponses) => {
+          if (!formResponses) return;
+          for (const response of formResponses) {
+            if (response.createdBy === submitterId) {
+              const submission = PlatformFormApi.formSubmissionFromValues({ formVersion, responseValues });
+              resolve(
+                this.resubmitFormResponse({
+                  packetId,
+                  responseId: response.id,
+                  originId: form.id,
+                  submission,
+                }),
+              );
+              return;
+            }
+          }
+          reject('Cound not find a response with the submitters id');
+        })
+        .catch((e) => reject(e));
+    });
+  }
+
+  /**
    * Submit a form response for the current user
    *
    * @param packetId   the packet id
-   * @param platformFormId  id of the platform form
+   * @param originId   id of the platform form assigned as assigned to the workflow step
    * @param submission  the form submission
    *
    * @example
@@ -445,7 +646,7 @@ export class PlatformFormApi {
    *
    * let response = api.Tenure.PlatformForms.submitFormResponse({
    *   packetId: 9999,
-   *   platformFormId: 9999,
+   *   originId: 9999,
    *   submission: submission
    * }
    * ```
@@ -453,18 +654,17 @@ export class PlatformFormApi {
    */
   submitFormResponse({
     packetId,
-    platformFormId,
-
+    originId,
     submission,
   }: {
     packetId: number;
-    platformFormId: number;
+    originId: number;
     submission: PlatformFormSubmission;
   }): Promise<PlatformFormSubmissionResponse> {
     return new Promise((resolve, reject) => {
       const url = PLATFORM_FORM_RESPONSE_BASE_URL.replace('{packet_id}', packetId.toString()).replace(
-        '{platform_form_id}',
-        platformFormId.toString(),
+        '{origin_id}',
+        originId.toString(),
       );
       this.apiRequest
         .executeRest({ url: url, method: 'POST', json: submission })
@@ -478,11 +678,122 @@ export class PlatformFormApi {
   }
 
   /**
+   * Submit form response from values instead of ids
+   *
+   * @param packetId          id of the packet
+   * @param workflowStepName  workflow step name which contains the form to update
+   * @param committeeName     committee name to which the form is assigned in the workflow step
+   * @param formTitle         name of the form to submit
+   * @param responseValues    values to submit in the form of [{"label": "Question Label 1", "value": "Question value 1"}]
+   *
+   * @example
+   * ```javascript
+   * await api.Tenure.WorkflowStepCommittees.submitCommitteeFormByValues({
+   *   packetId: 9999,
+   *   workflowStepName: "Department Review",
+   *   committeeName: "Department Committee",
+   *   formTitle: "Department Information Form",
+   *   responseValues: [{"label": "Question 1", "value": "Answer One"},{"label": "Question 2","value": "Answer 2"}]
+   * });
+   */
+  public submitCommitteeFormByValues({
+    packetId,
+    workflowStepName,
+    committeeName,
+    formTitle,
+    responseValues,
+  }: {
+    packetId: number;
+    workflowStepName: string;
+    committeeName: string;
+    formTitle: string;
+    responseValues: { label: string; value: string | number }[];
+  }): Promise<PlatformFormSubmissionResponse> {
+    return new Promise((resolve, reject) => {
+      //the objects we are looking to find based upon names
+      let workflowStep: WorkflowStep | null;
+      let committee: WorkflowStepCommitteeSummary;
+      let form: CommitteeFormRequirement;
+      let formVersion: FormVersion;
+
+      const packetApi = new PacketApi(this.apiRequest);
+      //go get the packet detail
+      packetApi
+        .getPacket({ id: packetId })
+        //get committee requirements from workflow step name and committee name
+        .then((packetDetail) => {
+          //get the workflow step
+          workflowStep = WorkflowStepApi.findWorkflowStepFromName({ packetDetail, workflowStepName });
+          if (!workflowStep) {
+            reject('Workflow Step with name ' + workflowStepName + ' not found for packet ' + packetId);
+            return;
+          } else {
+            //search for the committee in the workflow step committees
+            for (const c of workflowStep.committees) {
+              if (c.name === committeeName) {
+                committee = c;
+                return this.workflowStepCommitteeApi.getRequirements({
+                  packetId,
+                  workflowStepId: workflowStep.id,
+                  committeeId: committee.id,
+                });
+              }
+            }
+            reject('Could not find workflow step committee with name ' + committeeName);
+          }
+        })
+
+        //get the form version based upon form requirements for the workflow step
+        .then((reqs) => {
+          if (!reqs) return;
+          for (const req of reqs.required_platform_forms) {
+            if (req.form_name === formTitle) {
+              form = req;
+              return this.getFormVersionForWorkflowStep({
+                formId: req.caasbox_form_id,
+                originId: req.id,
+              });
+            }
+          }
+          reject('Could not find form assigned to committee with name ' + formTitle);
+        })
+
+        //submit the form
+        .then((retrievedFormVersion) => {
+          if (!retrievedFormVersion) return;
+          formVersion = retrievedFormVersion;
+          const submission = this.formSubmissionFromValues({ formVersion, responseValues });
+          resolve(this.submitFormResponse({ packetId, originId: form.id, submission }));
+        })
+
+        //Go get the responders and find the one with the matching email
+        .catch((e) => reject(e));
+    });
+  }
+
+  /**
    * given a form version and response values format the form submission
+   *
+   * note: just calls the static version of this function for backwards compatibility
    * @param formVersion
    * @param responseValues
    */
   public formSubmissionFromValues({
+    formVersion,
+    responseValues,
+  }: {
+    formVersion: FormVersion;
+    responseValues: { label: string; value: string | number }[];
+  }): PlatformFormSubmission {
+    return PlatformFormApi.formSubmissionFromValues({ formVersion, responseValues });
+  }
+
+  /**
+   * given a form version and response values format the form submission
+   * @param formVersion
+   * @param responseValues
+   */
+  public static formSubmissionFromValues({
     formVersion,
     responseValues,
   }: {
@@ -530,6 +841,49 @@ export class PlatformFormApi {
       }
     }
     return formSubmission;
+  }
+
+  /**
+   * Given a form response and the form version return the response in the format of
+   *  {"Question Label 1": "question value 1", "Question Label 2", "question value 2"}
+   * @param response
+   * @param version
+   */
+  public static valuesFromFormResponse({ response, version }: { response: FormResponse; version: FormVersion }): {
+    [label: string]: string | number;
+  } {
+    const values: { [label: string]: string | number } = {};
+    for (const fieldId in response.responseData) {
+      const fieldValue = response.responseData[fieldId];
+      for (const field of version.versionData.fieldsets[0].fields) {
+        if (fieldId === field.id) {
+          //standard text field
+          if (field.field_type === 'text') {
+            values[field.label] = fieldValue as string;
+          }
+          //radio fields
+          if (field.field_type === 'radio' && field.meta.options) {
+            for (const option of field.meta.options) {
+              if (option.value === fieldValue) {
+                values[field.label] = option.label;
+              }
+            }
+          }
+          //date fields
+          if (
+            field.field_type === 'collection' &&
+            field.meta !== undefined &&
+            field.meta.schema !== undefined &&
+            field.meta.schema[0] !== undefined &&
+            field.meta.schema[0].field_type === 'date' &&
+            Array.isArray(fieldValue)
+          ) {
+            values[field.label] = fieldValue[0][fieldId + '_date'];
+          }
+        }
+      }
+    }
+    return values;
   }
 }
 
