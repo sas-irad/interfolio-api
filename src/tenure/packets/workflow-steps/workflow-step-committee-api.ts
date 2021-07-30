@@ -9,7 +9,7 @@ const WORKFLOW_STEP_COMMITTEE_URL = WORKFLOW_STEP_COMMITTEE_BASE_URL + '/{commit
 const WORKFLOW_STEP_REQUIREMENTS_URL =
   INTERFOLIO_BYC_TENURE_V2 +
   '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees/{committee_id}/committee_required_documents';
-const WORKFLOW_STEP_COMITTEE_ASSIGN_URL = WORKFLOW_STEP_URL + '/assign_committee';
+const WORKFLOW_STEP_COMMITTEE_ASSIGN_URL = WORKFLOW_STEP_URL + '/assign_committee';
 const COMMITTEE_REQUIREMENT_BASE_URL = WORKFLOW_STEP_COMMITTEE_URL + '/committee_required_documents';
 const COMMITTEE_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}';
 const FULFILL_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}/fulfill';
@@ -131,7 +131,7 @@ export class WorkflowStepCommitteeApi {
     return new Promise((resolve, reject) => {
       const url = COMMITTEE_REQUIREMENT_BASE_URL.replace('{packet_id}', packetId.toString())
         .replace('{workflow_step_id}', workflowStepId.toString())
-        .replace('{committee_id', committeeId.toString());
+        .replace('{committee_id}', committeeId.toString());
       const form: {
         'committee_required_document[name]': string;
         'committee_required_document[description]'?: string;
@@ -183,7 +183,7 @@ export class WorkflowStepCommitteeApi {
   }): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url =
-        WORKFLOW_STEP_COMITTEE_ASSIGN_URL.replace('{packet_id}', packetId.toString()).replace(
+        WORKFLOW_STEP_COMMITTEE_ASSIGN_URL.replace('{packet_id}', packetId.toString()).replace(
           '{workflow_step_id}',
           workflowStepId.toString(),
         ) +
