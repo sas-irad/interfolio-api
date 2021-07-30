@@ -2830,7 +2830,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L85">tenure/packets/workflow-steps/workflow-step-committee-api.ts:85</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L84">tenure/packets/workflow-steps/workflow-step-committee-api.ts:84</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2860,7 +2860,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L84">tenure/packets/workflow-steps/workflow-step-committee-api.ts:84</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L84">tenure/packets/workflow-steps/workflow-step-committee-api.ts:84</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2882,9 +2882,26 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L101">tenure/packets/workflow-steps/workflow-step-committee-api.ts:101</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L118">tenure/packets/workflow-steps/workflow-step-committee-api.ts:118</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A a document requirement to a particular workflow step committee</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">addDocumentRequirement</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">committeeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Document requirement&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Required document for all cases&#039;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -2892,18 +2909,33 @@ img {
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>committee<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the committee</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> description<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>description of the document requirement</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>name of the document requirement</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the packet</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>workflow<wbr>Step<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>ID of the workflow step</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -2922,7 +2954,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L156">tenure/packets/workflow-steps/workflow-step-committee-api.ts:156</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L173">tenure/packets/workflow-steps/workflow-step-committee-api.ts:173</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2987,9 +3019,34 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L240">tenure/packets/workflow-steps/workflow-step-committee-api.ts:240</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L282">tenure/packets/workflow-steps/workflow-step-committee-api.ts:282</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>copy defined required documents to workflow step committee</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #000000"> </span><span style="color: #008000">//retrieve the requirements</span>
+<span style="color: #000000"> </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">requirements</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">getRequirements</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">committeeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span>
+<span style="color: #000000"> })</span>
+
+<span style="color: #000000"> </span><span style="color: #008000">//copy them to the new committee</span>
+<span style="color: #000000"> </span><span style="color: #001080">await</span><span style="color: #000000">.</span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">copyDocumentRequirements</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">toCommitteeId:</span><span style="color: #000000"> </span><span style="color: #098658">9998</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">documentRequirements:</span><span style="color: #000000"> </span><span style="color: #001080">requirements</span><span style="color: #000000">.</span><span style="color: #001080">required_documents</span>
+<span style="color: #000000"> })</span>
+
+</code></pre>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -2997,15 +3054,27 @@ img {
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>document<wbr>Requirements<span class="tsd-signature-symbol">: </span><a href="../modules/tenure_packets_workflow_steps_workflow_step_committee_api.html#committeedocumentrequirement" class="tsd-signature-type" data-tsd-kind="Type alias">CommitteeDocumentRequirement</a><span class="tsd-signature-symbol">[]</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the document requirements retrieved from the first workflow step</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the packet</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>to<wbr>Committee<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the committee to copy the requr</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>workflow<wbr>Step<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the workflow step</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -3024,9 +3093,34 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L266">tenure/packets/workflow-steps/workflow-step-committee-api.ts:266</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L333">tenure/packets/workflow-steps/workflow-step-committee-api.ts:333</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>copy all the form requirements to a second workflow step committee</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #000000"> </span><span style="color: #008000">//retrieve the requirements</span>
+<span style="color: #000000"> </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">requirements</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">getRequirements</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">committeeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span>
+<span style="color: #000000"> })</span>
+
+<span style="color: #000000"> </span><span style="color: #008000">//copy them to the new committee</span>
+<span style="color: #000000"> </span><span style="color: #001080">await</span><span style="color: #000000">.</span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">copyFormRequirements</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">toCommitteeId:</span><span style="color: #000000"> </span><span style="color: #098658">9998</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">documentRequirements:</span><span style="color: #000000"> </span><span style="color: #001080">requirements</span><span style="color: #000000">.</span><span style="color: #001080">required_forms</span>
+<span style="color: #000000"> })</span>
+
+</code></pre>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -3034,15 +3128,27 @@ img {
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>form<wbr>Requirements<span class="tsd-signature-symbol">: </span><a href="../modules/tenure_packets_workflow_steps_workflow_step_committee_api.html#committeeformrequirement" class="tsd-signature-type" data-tsd-kind="Type alias">CommitteeFormRequirement</a><span class="tsd-signature-symbol">[]</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the form requirements retrieved from the first workflow step</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>packet<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the packet</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>to<wbr>Committee<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the committee to copy the required forms to</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>workflow<wbr>Step<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>id of the workflow step</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -3061,7 +3167,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L206">tenure/packets/workflow-steps/workflow-step-committee-api.ts:206</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L223">tenure/packets/workflow-steps/workflow-step-committee-api.ts:223</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3070,12 +3176,12 @@ img {
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">newCommittee</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #001080">copy</span><span style="color: #000000">){</span>
-<span style="color: #000000">  </span><span style="color: #001080">packetId</span><span style="color: #000000">: </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">workflowStepId</span><span style="color: #000000">: </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">fromCommitteeId</span><span style="color: #000000">: </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">toCommitteeId</span><span style="color: #000000">: </span><span style="color: #098658">9999</span>
-<span style="color: #000000">}</span>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">newCommittee</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Tenure</span><span style="color: #000000">.</span><span style="color: #001080">WorkflowStepCommittees</span><span style="color: #000000">.</span><span style="color: #795E26">copy</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">packetId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">workflowStepId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">fromCommitteeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">toCommitteeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span>
+<span style="color: #000000">})</span>
 </code></pre>
 								</dd>
 							</dl>
@@ -3126,7 +3232,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L308">tenure/packets/workflow-steps/workflow-step-committee-api.ts:308</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L376">tenure/packets/workflow-steps/workflow-step-committee-api.ts:376</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3184,7 +3290,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L348">tenure/packets/workflow-steps/workflow-step-committee-api.ts:348</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L416">tenure/packets/workflow-steps/workflow-step-committee-api.ts:416</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3249,7 +3355,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L388">tenure/packets/workflow-steps/workflow-step-committee-api.ts:388</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L456">tenure/packets/workflow-steps/workflow-step-committee-api.ts:456</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3320,7 +3426,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L436">tenure/packets/workflow-steps/workflow-step-committee-api.ts:436</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L504">tenure/packets/workflow-steps/workflow-step-committee-api.ts:504</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3378,7 +3484,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L475">tenure/packets/workflow-steps/workflow-step-committee-api.ts:475</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L543">tenure/packets/workflow-steps/workflow-step-committee-api.ts:543</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3436,7 +3542,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L513">tenure/packets/workflow-steps/workflow-step-committee-api.ts:513</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L582">tenure/packets/workflow-steps/workflow-step-committee-api.ts:582</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3480,7 +3586,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/696cadf/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L572">tenure/packets/workflow-steps/workflow-step-committee-api.ts:572</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/7edea90/src/tenure/packets/workflow-steps/workflow-step-committee-api.ts#L641">tenure/packets/workflow-steps/workflow-step-committee-api.ts:641</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
