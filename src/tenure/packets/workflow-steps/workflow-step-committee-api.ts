@@ -1,15 +1,16 @@
-import ApiRequest, { RestRequest } from '../../../api-request';
+import ApiRequest, { INTERFOLIO_BYC_TENURE_V1, INTERFOLIO_BYC_TENURE_V2, RestRequest } from '../../../api-request';
 import { ApiConfig } from '../../../index';
-import WorkflowStepApi, { WORKFLOW_STEP_URL, WorkflowStepCommitteeSummary } from '../workflow-step-api';
+import WorkflowStepApi, { WorkflowStepCommitteeSummary } from '../workflow-step-api';
 import PlatformFormApi from '../platform-form-api';
-import { INTERFOLIO_BYC_TENURE_V2 } from '../../../api-request';
 
-const WORKFLOW_STEP_COMMITTEE_BASE_URL = WORKFLOW_STEP_URL + '/committees';
+const WORKFLOW_STEP_COMMITTEE_BASE_URL =
+  INTERFOLIO_BYC_TENURE_V1 + '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees';
 const WORKFLOW_STEP_COMMITTEE_URL = WORKFLOW_STEP_COMMITTEE_BASE_URL + '/{committee_id}';
 const WORKFLOW_STEP_REQUIREMENTS_URL =
   INTERFOLIO_BYC_TENURE_V2 +
   '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees/{committee_id}/committee_required_documents';
-const WORKFLOW_STEP_COMMITTEE_ASSIGN_URL = WORKFLOW_STEP_URL + '/assign_committee';
+const WORKFLOW_STEP_COMMITTEE_ASSIGN_URL =
+  INTERFOLIO_BYC_TENURE_V1 + '/packets/{packet_id}/workflow_steps/{workflow_step_id}' + '/assign_committee';
 const COMMITTEE_REQUIREMENT_BASE_URL = WORKFLOW_STEP_COMMITTEE_URL + '/committee_required_documents';
 const COMMITTEE_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}';
 const FULFILL_REQUIREMENT_URL = COMMITTEE_REQUIREMENT_BASE_URL + '/{requirement_id}/fulfill';
