@@ -87,6 +87,9 @@ export class ApiRequest {
   /** Flag indicating if the response should be output*/
   public outputResponse = false;
 
+  /** Flag indicating if upon an error the request and error should be output with console.error */
+  public outputErrors = false;
+
   /** errors which were encountered */
   public errors: { error: any; url: string | URL | undefined; headers: any; method: Method | undefined }[];
 
@@ -126,8 +129,13 @@ export class ApiRequest {
         return {};
       }
     } catch (error) {
-      this.errors.push({ error: error, url: options.url, headers: options.headers, method: options.method });
-      if (this.outputResponse) console.log(util.inspect(error, { showHidden: false, depth: null }));
+      const errorObject = { error: error, url: options.url, headers: options.headers, method: options.method };
+      this.errors.push(errorObject);
+      if (this.outputErrors) {
+        console.error(util.inspect(errorObject, { showHidden: false, depth: null }));
+      } else if (this.outputResponse) {
+        console.log(util.inspect(error, { showHidden: false, depth: null }));
+      }
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
         throw Error(error.response.body.errors[0].message);
