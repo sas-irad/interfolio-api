@@ -77,16 +77,21 @@ export type ReportPacket = {
   closed_date: string | null;
   /** date when the packet was created **/
   created_date: string;
+  /** current workflow step name **/
+  current_workflow_step_name: string | null;
   /** email of the candidate **/
   email: string | null;
   /** the formatted status of the packet **/
-  formatted_status: string;
-  /** First name of the candidate **/
   firstname: string | null;
   /** ID of the Packet/case **/
+  formatted_status: string;
+  /** First name of the candidate **/
   id: number;
   /** Last name of the candidate **/
   lastname: string | null;
+  /** template name from which the case was created **/
+  template_name: string | null;
+  /** the type of the
   /** name of the unit for this packet **/
   unit_name: string;
   /** current status of the packet **/
