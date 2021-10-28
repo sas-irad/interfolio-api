@@ -12,6 +12,18 @@ export type DeNestingDef = {
 };
 
 /**
+ * Check if an object is iterable
+ * @param obj
+ */
+function isIterable(obj: any) {
+  // checks for null and undefined
+  if (obj == null) {
+    return false;
+  }
+  return typeof obj[Symbol.iterator] === 'function';
+}
+
+/**
  * Function which takes an object returned from the API and removes unnecessary nesting according the the deNesting definition
  *
  * @param data Data (or subdata) returned from an API
@@ -35,17 +47,19 @@ export const deNest = function (data: ApiResponse, deNestingDefs: DeNestingDef):
         const newArray: ApiResponse[] = [];
 
         //loop through the array members
-        for (const obj of origArray) {
-          //remove the unnecessary layer
-          const deNested = obj[deNestingDef.nestedAttributeName] as ApiResponse;
+        if (isIterable(origArray)) {
+          for (const obj of origArray) {
+            //remove the unnecessary layer
+            const deNested = obj[deNestingDef.nestedAttributeName] as ApiResponse;
 
-          //if we need to go deeper into the structure do that
-          if (deNestingDef.nestedDefs) {
-            newArray.push(deNest(deNested, deNestingDef.nestedDefs));
-          }
-          //otherwise we are done
-          else {
-            newArray.push(deNested);
+            //if we need to go deeper into the structure do that
+            if (deNestingDef.nestedDefs) {
+              newArray.push(deNest(deNested, deNestingDef.nestedDefs));
+            }
+            //otherwise we are done
+            else {
+              newArray.push(deNested);
+            }
           }
         }
         deNested[key] = newArray;
