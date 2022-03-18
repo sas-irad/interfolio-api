@@ -34,5 +34,9 @@ describe('Packet Template API Test', () => {
     expect(template.name).to.eq(Config.packetTemplate.name);
     expect(template.description).to.eq(Config.packetTemplate.description);
     expect(template.unit_id).to.eq(Config.packetTemplate.unit_id);
+    expect(template.packet_sections[0].name).to.eq(
+      Config.packet.packet_sections[0].name,
+      'First Packet Section name matches',
+    );
   });
 });

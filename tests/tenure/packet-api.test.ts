@@ -18,6 +18,7 @@ describe('Packet API Test', () => {
       unitId: Config.unit.id,
       candidateLastName: Config.user.last_name,
       candidateFirstName: Config.user.first_name,
+      candidatePID: parseInt(Config.user.pid),
       candidateEmail: Config.user.email,
       candidateInvolvement: false,
       packetTypeId: Config.packetType.id,
@@ -36,6 +37,7 @@ describe('Packet API Test', () => {
   it('Create/Delete Packet', async () => {
     const packetDetail = await api.create({
       unitId: Config.unit.id,
+      candidatePID: parseInt(Config.user.pid),
       candidateLastName: Config.user.last_name,
       candidateFirstName: Config.user.first_name,
       candidateEmail: Config.user.email,
@@ -64,6 +66,7 @@ describe('Packet API Test', () => {
       candidateFirstName: Config.user.first_name,
       candidateLastName: Config.user.last_name,
       candidateEmail: Config.user.email,
+      candidatePID: parseInt(Config.user.pid),
       candidateInvolvement: false,
       unitId: Config.unit.id,
     });
@@ -83,6 +86,10 @@ describe('Packet API Test', () => {
     expect(packetDetail.candidate_first_name).to.eq(Config.user.first_name);
     expect(packetDetail.candidate_last_name).to.eq(Config.user.last_name);
     expect(packetDetail.unit_name).to.eq(Config.unit.name);
+    expect(packetDetail.packet_sections[0].name).to.eq(
+      Config.packet.packet_sections[0].name,
+      'First Packet Section name matches',
+    );
   });
 
   /**

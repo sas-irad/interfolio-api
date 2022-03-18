@@ -259,6 +259,8 @@ export type CreatePacketFromTemplateParams = {
   candidateLastName: string;
   /** Candidate Email address */
   candidateEmail: string;
+  /** if not using name and email - applicants PID **/
+  candidatePID?: number;
   /** If the candidate will be involved in the case */
   candidateInvolvement: boolean;
   /** Due date of the packet */
@@ -361,6 +363,7 @@ export class PacketApi {
     candidateFirstName,
     candidateLastName,
     candidateEmail,
+    candidatePID,
     candidateInvolvement = false,
     packetTypeId,
   }: {
@@ -368,19 +371,33 @@ export class PacketApi {
     candidateFirstName: string;
     candidateLastName: string;
     candidateEmail: string;
+    candidatePID?: number;
     candidateInvolvement: boolean;
     packetTypeId: number;
   }): Promise<Packet> {
     return new Promise((resolve, reject) => {
       const url = PACKET_BASE_URL;
-      const form = {
-        'packet[unit_id]': unitId,
-        'packet[candidate_first_name]': candidateFirstName,
-        'packet[candidate_last_name]': candidateLastName,
-        'packet[candidate_email]': candidateEmail,
-        'packet[candidate_involvement]': candidateInvolvement,
-        'packet[packet_type_id]': packetTypeId,
-      };
+      let form;
+      if (candidatePID) {
+        form = {
+          'packet[unit_id]': unitId,
+          'packet[candidate_pid]': candidatePID,
+          'packet[candidate_first_name]': candidateFirstName,
+          'packet[candidate_last_name]': candidateLastName,
+          'packet[candidate_email]': candidateEmail,
+          'packet[candidate_involvement]': candidateInvolvement,
+          'packet[packet_type_id]': packetTypeId,
+        };
+      } else {
+        form = {
+          'packet[unit_id]': unitId,
+          'packet[candidate_first_name]': candidateFirstName,
+          'packet[candidate_last_name]': candidateLastName,
+          'packet[candidate_email]': candidateEmail,
+          'packet[candidate_involvement]': candidateInvolvement,
+          'packet[packet_type_id]': packetTypeId,
+        };
+      }
       this.apiRequest
         .executeRest({ url, form, method: 'POST' })
         .then((response) => resolve(response))
