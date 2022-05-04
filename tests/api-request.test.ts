@@ -51,7 +51,7 @@ describe('API Request Test', () => {
       operationName: 'getForms',
       variables: { searchText: Config.form.title },
       query:
-        'query getForms($searchText: String!) {forms(limit: 50, page: 1, sortBy: id, searchText: $searchText, sortOrder: DESC, unitId: null) {results {description id title unitId __typename}__typename}}',
+        'query getForms($searchText: String!) {forms(limit: 50, page: 1, sortBy: "id", searchText: $searchText, sortOrder: DESC, unitId: null) {results {description id title unitId __typename}__typename}}',
     };
     const response = await request.executeGraphQl(gqlRequest);
     expect(response.data.forms.results[0].title).eq(Config.form.title, 'Graphql response form title matches');
