@@ -1,3 +1,5 @@
+import {ReportApi as SearchReportApi} from './search/report-api';
+import ApplicationApi from "./search/positions/application-api";
 import CommitteeApi from './tenure/committee-api';
 import FormApi from './tenure/form-api';
 import PacketTemplateApi from './tenure/packet-template-api';
@@ -14,6 +16,8 @@ import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
 import PacketAttachmentApi from './tenure/packets/packet-attachment-api';
 import ApiRequest from './api-request';
 import StatusApi from './tenure/status-api';
+import PositionApi from "./search/position-api";
+import ApplicationDocumentApi from "./search/positions/applications/application-document-api";
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -64,6 +68,19 @@ export type ApiConfig = {
 export class API {
   /** handle the the apiRequest object **/
   public readonly apiRequest: ApiRequest;
+
+  /** Faculty Search api calls */
+  public readonly Search: {
+    /** Handle to the Application Api calls */
+    Applications: ApplicationApi;
+    /** Handle to the Application Document api calls */
+    ApplicationDocuments: ApplicationDocumentApi;
+    /** Handle to the Search Position api calls */
+    Positions: PositionApi;
+    /** Handle to the Faculty Search Reports Api Calls*/
+    Reports: SearchReportApi;
+  }
+
   /** RPT (Review, Promotion and Tenure) api calls */
   public readonly Tenure: {
     /** Handle to the Committee Api calls */
@@ -130,6 +147,13 @@ export class API {
       WorkflowSteps: new WorkflowStepApi(this.apiRequest),
       WorkflowStepCommittees: new WorkflowStepCommitteeApi(this.apiRequest),
     };
+
+    this.Search = {
+      Applications: new ApplicationApi(this.apiRequest),
+      ApplicationDocuments: new ApplicationDocumentApi(this.apiRequest),
+      Positions: new PositionApi(this.apiRequest),
+      Reports: new SearchReportApi(this.apiRequest)
+    }
   }
 
   /**
