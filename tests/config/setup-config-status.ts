@@ -31,7 +31,6 @@ const setupConfigStatus = async (config: TestConfig): Promise<TestConfig> => {
   const api = new API(config.apiConfig);
 
   const statuses = await api.Tenure.Statuses.getList();
-  console.log(statuses);
   if (statuses.length == 0) {
     throw Error('No statuses are defined in this instance');
   }

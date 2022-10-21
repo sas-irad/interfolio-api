@@ -1,7 +1,6 @@
 import prompts from 'prompts';
 import { TestConfig } from './setup-config';
 import API from '../../src';
-import Config from './test-config.json';
 
 /**
  * prompts user to set up a committee for testing
@@ -37,7 +36,7 @@ const setupConfigForm = async (config: TestConfig): Promise<TestConfig> => {
 
   //if form is already defined then just update it
   if (config.form) {
-    config.form = await api.Tenure.Forms.getForm({ id: Config.form.id });
+    config.form = await api.Tenure.Forms.getForm({ id: config.form.id });
     keepTrying = false;
   }
   //prompt the user to create the committee form via the interface since it is not yet enabled in API

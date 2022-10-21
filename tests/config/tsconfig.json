@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./../../lib-tests-config",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["setup-config.ts"],
+  "exclude": [
+    "lib",
+    "lib-tests"
+  ]
+}
