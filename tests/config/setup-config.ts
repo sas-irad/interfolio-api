@@ -2,27 +2,31 @@ import prompts = require('prompts');
 import fs = require('fs');
 import setupConfigApi from './setup-config-api';
 import { ApiConfig } from '../../src';
-import { Unit } from '../../src/tenure/unit-api';
-import setupConfigUnit from './setup-config-unit';
+import { Unit } from '../../src/core/unit-api';
+import setupConfigUnit from './tenure/setup-config-unit';
 import { Committee } from '../../src/tenure/committee-api';
-import setupConfigCommittee from './setup-config-committee';
+import setupConfigCommittee from './tenure/setup-config-committee';
 import { User } from '../../src/tenure/user-api';
-import setupConfigUser from './setup-config-user';
+import setupConfigUser from './tenure/setup-config-user';
 import { CommitteeMember } from '../../src/tenure/committees/committee-member-api';
-import setupConfigCommitteeMember from './setup-config-committee-member';
+import setupConfigCommitteeMember from './tenure/setup-config-committee-member';
 import { PacketType } from '../../src/tenure/packet-type-api';
-import setupConfigPacketType from './setup-config-packet-type';
-import setupConfigPacketTemplate from './setup-config-packet-template';
+import setupConfigPacketType from './tenure/setup-config-packet-type';
+import setupConfigPacketTemplate from './tenure/setup-config-packet-template';
 import { PacketDetail } from '../../src/tenure/packet-api';
-import setupConfigPacket from './setup-config-packet';
+import setupConfigPacket from './tenure/setup-config-packet';
 import { PacketTemplateDetail } from '../../src/tenure/packet-template-api';
-import setupConfigForm from './setup-config-form';
+import setupConfigForm from './tenure/setup-config-form';
 import { Form } from '../../src/tenure/form-api';
-import setupConfigPacketForm from './setup-config-packet-form';
+import setupConfigPacketForm from './tenure/setup-config-packet-form';
 import { PlatformFormSubmissionResponse } from '../../src/tenure/packets/platform-form-api';
 import { CommitteeRequirements } from '../../src/tenure/packets/workflow-steps/workflow-step-committee-api';
 import { Status } from '../../src/tenure/status-api';
-import setupConfigStatus from './setup-config-status';
+import setupConfigStatus from './tenure/setup-config-status';
+import { PositionDetail } from "../../src/search/position-api";
+import setupConfigPosition from "./search/setup-config-position";
+import {ApplicationDetail} from "../../src/search/positions/application-api";
+import setupConfigApplication from "./search/setup-config-application";
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -40,13 +44,15 @@ export type TestConfig = {
   formResponse?: PlatformFormSubmissionResponse;
   committeeRequirements?: CommitteeRequirements;
   status?: Status;
+  position?: PositionDetail;
+  application?: ApplicationDetail;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
   const fileResponse = await prompts.prompt({
     type: 'text',
     name: 'filename',
-    initial: __dirname.replace('lib-tests/tests', 'tests') + '/test-config.json',
+    initial: __dirname.replace('lib-tests-config/tests', 'tests') + '/test-config.json',
     message: 'Config filename',
   });
 
@@ -115,6 +121,8 @@ export const run = async (): Promise<void> => {
     await setupConfigPacketTemplate(config);
     await setupConfigPacket(config);
     await setupConfigPacketForm(config);
+    await setupConfigPosition(config);
+    await setupConfigApplication(config);
 
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
     console.log('Config File Saved');

@@ -9,15 +9,15 @@ describe('Search Report API Test', () => {
   const api = new ReportApi(Config.apiConfig);
 
   //Test creation
-  it.only('Create Report Api', async () => {
+  it('Create Report Api', async () => {
     expect(typeof api).to.equal('object', 'API created with type of object');
   });
 
   //Test the application search
-  it.only('ApplicationSearch', async () => {
+  it('ApplicationSearch', async () => {
     const search = await api.applicationSearch({
       facets: {
-        position_id: 102305
+        position_id: Config.position.id
       },
     });
     expect(search.total).gt(0, 'Packet Search Returned at least one result');

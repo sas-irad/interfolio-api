@@ -1,7 +1,7 @@
 import { ApiConfig } from '../index';
 import ApiRequest, { ApiResponse } from '../api-request';
 import { INTERFOLIO_CORE_URL_V1, INTERFOLIO_CORE_URL_V2 } from '../api-request';
-import { Unit } from './unit-api';
+import { Unit } from '../core/unit-api';
 import Utils, { DeNestingDef } from '../utils';
 
 export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1 + '/users';

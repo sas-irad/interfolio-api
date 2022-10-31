@@ -8,17 +8,19 @@ import {createWriteStream} from "fs";
 import * as stream from "stream";
 
 /** The v1 core interfolio for global objects such as users and units */
-export const INTERFOLIO_CORE_URL_V1 = '/byc/core/tenure/{tenant_id}';
+export const INTERFOLIO_CORE_URL_V1 = '/byc/core/{module}/{tenant_id}';
 /** the v2 core interfolio url for global objects such as users/ units) */
-export const INTERFOLIO_CORE_URL_V2 = '/byc/core/v2/tenure/{tenant_id}';
+export const INTERFOLIO_CORE_URL_V2 = '/byc/core/v2/{module}/{tenant_id}';
+
 /** the v1 tenure information endpoint root */
 export const INTERFOLIO_BYC_TENURE_V1 = '/byc-tenure/{tenant_id}';
 /** the v2 tenure information endpoint root */
 export const INTERFOLIO_BYC_TENURE_V2 = '/byc-tenure/v2/{tenant_id}';
+
 /** the v1 search information endpoint root */
 export const INTERFOLIO_SEARCH_V1 = '/byc-search/{tenant_id}';
 /** the v2 serach information endpoint root */
-export const INTERFOLIO_SEARCH_V2 = '/byc-search/{tenant_id}';
+export const INTERFOLIO_SEARCH_V2 = '/byc-search/v2/{tenant_id}';
 
 /**
  * The current Interfolio base urls for REST calls

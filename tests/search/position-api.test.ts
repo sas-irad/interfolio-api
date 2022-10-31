@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import PositionApi from "../../src/search/position-api";
+import PositionApi, {PositionInsert} from "../../src/search/position-api";
 
 /**
  * Test for PositionAPI
@@ -14,12 +14,41 @@ describe('Position API Test', () => {
   });
 
 
-  it.only('Get Position', async () => {
-    const record = await api.getPosition({ id: 102305 });
-    expect(record.name).to.eq("Assistant or Associate Professor of African American History", 'Committee name matches');
-    // expect(record.name).to.eq(Config.committee.name, 'Committee name matches');
-    // expect(record.unit_id).to.eq(Config.committee.unit_id, 'Committee unit id matches');
-    // expect(record.committee_members[0].user_id).to.eq(Config.currentUser.id, 'Committee Member user id matches');
+  it('Get Position', async () => {
+    const record = await api.getPosition({ id: Config.position.id });
+    expect(record.name).to.eq(Config.position.name, 'position name matches');
+  });
+
+  it('Create/Delete Position', async () => {
+    const positionInsert = {
+      name: "Position for create/delete API test",
+      unit_id: Config.unit.id,
+      //@todo setup config for positionType instead of hardcoding
+      position_type_id: 396
+    }
+    //Insert the position
+    // api.apiRequest.outputRequestOptions = true;
+    const record = await api.create(positionInsert);
+    expect(record.name).to.eq(positionInsert.name, 'Position name matches');
+
+    //Delete the recently created position
+    // api.apiRequest.outputResponse = true;
+    const deleteSuccess = await api.delete({ id: record.id });
+    expect(deleteSuccess).to.equal(true, 'Expect the delete call to return a true value');
+  });
+
+
+  it.only('Filter Positions', async () => {
+    const records = await api.filterPositions({ search_term: Config.position.name});
+    expect(records.total_count).to.greaterThan(0, 'at least one position returned');
+    //look for our record
+    let found = false;
+    for(const  position of records.results) {
+      if(position.id === Config.position.id) {
+        found = true;
+      }
+    }
+    expect(found).to.eq(true, "Position found in filtered positions");
   });
 
 });

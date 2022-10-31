@@ -1,4 +1,4 @@
-import UnitApi from '../../src/tenure/unit-api';
+import UnitApi from '../../src/core/unit-api';
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
 
@@ -6,7 +6,7 @@ import Config from '../config/test-config.json';
  * Test for UnitApi
  */
 describe('Unit API Test', () => {
-  const unitApi = new UnitApi(Config.apiConfig);
+  const unitApi = new UnitApi(Config.apiConfig, "search");
 
   //Test creation
   it('Create Unit Api', async () => {

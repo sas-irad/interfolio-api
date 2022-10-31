@@ -1,7 +1,7 @@
 import prompts from 'prompts';
-import { TestConfig } from './setup-config';
-import API from '../../src';
-import EvaluatorSectionApi from '../../src/tenure/packets/evaluator-section-api';
+import { TestConfig } from '../setup-config';
+import API from '../../../src';
+import EvaluatorSectionApi from '../../../src/tenure/packets/evaluator-section-api';
 
 /**
  * prompts user to set up a committee for testing

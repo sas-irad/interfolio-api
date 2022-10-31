@@ -1,6 +1,6 @@
 import prompts from 'prompts';
-import { TestConfig } from './setup-config';
-import API from '../../src';
+import { TestConfig } from '../setup-config';
+import API from '../../../src';
 
 /**
  * Prompts user for api user credentials and main api urls

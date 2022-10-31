@@ -1,6 +1,6 @@
 import prompts from 'prompts';
-import { TestConfig } from './setup-config';
-import API from '../../src';
+import { TestConfig } from '../setup-config';
+import API from '../../../src';
 
 /**
  * prompts user to set up a committee for testing

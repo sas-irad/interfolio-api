@@ -6,7 +6,7 @@ import PacketTemplateApi from './tenure/packet-template-api';
 import PacketTypeApi from './tenure/packet-type-api';
 import PacketApi from './tenure/packet-api';
 import ReportApi from './tenure/report-api';
-import UnitApi from './tenure/unit-api';
+import UnitApi from './core/unit-api';
 import UserApi from './tenure/user-api';
 import CommitteeMemberApi from './tenure/committees/committee-member-api';
 import WorkflowStepApi from './tenure/packets/workflow-step-api';
@@ -115,6 +115,12 @@ export class API {
     WorkflowStepCommittees: WorkflowStepCommitteeApi;
   };
 
+  public readonly Core: {
+    Units: UnitApi;
+  }
+
+  public readonly Units: UnitApi;
+
   /**
    * Creates the Interfolio API class with the tenant info and endpoint roots for accessing Interfolio data
    *
@@ -130,6 +136,11 @@ export class API {
       const apiConfig = config as ApiConfig;
       this.apiRequest = new ApiRequest(apiConfig);
     }
+
+    this.Core = {
+      Units: new UnitApi(this.apiRequest)
+    };
+
     this.Tenure = {
       Committees: new CommitteeApi(this.apiRequest),
       CommitteeMembers: new CommitteeMemberApi(this.apiRequest),
@@ -154,6 +165,8 @@ export class API {
       Positions: new PositionApi(this.apiRequest),
       Reports: new SearchReportApi(this.apiRequest)
     }
+
+    this.Units = new UnitApi(this.apiRequest);
   }
 
   /**

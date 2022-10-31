@@ -1,10 +1,13 @@
 import ApiRequest, { INTERFOLIO_SEARCH_V1 } from '../api-request';
 import { ApiConfig } from '../index';
 
+/** the base url for the search/reports api */
 export const SEARCH_REPORT_BASE_URL = INTERFOLIO_SEARCH_V1 + '/reports';
+/** the application search url */
 export const REPORT_APPLICATION_SEARCH_URL = SEARCH_REPORT_BASE_URL + '/application_search';
 
 
+/** facets to list the criteria for the search for applications */
 export type ApplicationSearchFacets = {
   /** id of the position */
   position_id: number;
@@ -24,12 +27,27 @@ export type ApplicationSearchFacets = {
 };
 
 /**
+ * Criteria (or fields that can be returned) from an application search
+ */
+export type ApplicationCriteria =
+  'id' |
+  'firstname' |
+  'lastname' |
+  'highest_degree' |
+  'highest_degree_school' |
+  'application_status_name' |
+  'completeness_level' |
+  'last_date_sent' |
+  'labels' |
+  'my_average_rating';
+
+/**
  * Parameters to be sent to the report generate api call
  */
 export type ApplicationSearchParams = {
   /** which columns to include */
   criteria?: {
-    application: string[];
+    application: ApplicationCriteria[];
   };
   /** text to search for in packet */
   search_text?: string;
@@ -48,12 +66,54 @@ export type ApplicationSearchParams = {
   };
 };
 
+/** the data returned from an application search */
 export type ApplicationData = {
-  id: number
+  /** human readable name of the application status */
+  application_status_name: string;
+  /** completeness level of the application */
+  completeness_level: string;
+  /** first name of the applicant */
   firstname: string;
+  /** labels attached to the application */
+  formatted_labels: {
+    tagging_id: number;
+    user_id: number;
+    tag_name: string;
+    tag_id: number;
+    is_editable: boolean
+  }[];
+  /** formatted version of average rating for user */
+  formatted_my_average_rating: string;
+  /** highest degree of the applicant */
+  highest_degree: string;
+  /** school issuing the highest degree for the applicant */
+  highest_degree_school: string;
+  /** unique identifier for the application */
+  id: number;
+  /** formatted labels for the application */
+  labels: {
+    tagging_id: number,
+    user_id: number;
+    tag_name: string;
+    tag_id: number;
+    is_editable: boolean
+  }[];
+  /** date of the last time application was sent */
+  last_date_sent: string;
+  /** last name of the applicant */
   lastname: string;
+  /** average rating of user for applications */
+  my_average_rating: string;
+  /** position_id to which the application is connected */
+  position_id: number;
+  //@todo flesh out the questions data format
+  /** questions the applicant answered */
+  questions: any[];
 }
 
+/**
+ * data to be sent
+ */
 export type ApplicationSearchData = {
   applications: ApplicationData[];
   total: number;

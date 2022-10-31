@@ -1,7 +1,7 @@
 import prompts from 'prompts';
-import { TestConfig } from './setup-config';
-import API from '../../src';
-import { CommitteeMember } from '../../src/tenure/committees/committee-member-api';
+import { TestConfig } from '../setup-config';
+import API from '../../../src';
+import { CommitteeMember } from '../../../src/tenure/committees/committee-member-api';
 
 /**
  * prompts user to set up a committee member for testing

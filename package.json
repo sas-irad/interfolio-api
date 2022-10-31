@@ -14,7 +14,7 @@
     "version": "npm run format && npm run make-docs && git add -A src && git add -A docs",
     "postversion": "git push && git push --tags",
     "create-test-config": "test -f  tests/config/test-config.json || echo \"{}\" > tests/config/test-config.json",
-    "init-test-data": "tsc -p ./tests/config --esModuleInterop && node lib-tests/tests/config/setup-config.js",
+    "init-test-data": "tsc -p ./tests/config --esModuleInterop && node lib-tests-config/tests/config/setup-config.js",
     "exec": "tsc && node lib/bin/exec.js",
     "make-docs": "npx typedoc src"
   },
