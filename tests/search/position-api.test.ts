@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import PositionApi, {PositionInsert} from "../../src/search/position-api";
+import PositionApi from "../../src/search/position-api";
 
 /**
  * Test for PositionAPI
@@ -38,7 +38,7 @@ describe('Position API Test', () => {
   });
 
 
-  it.only('Filter Positions', async () => {
+  it('Filter Positions', async () => {
     const records = await api.filterPositions({ search_term: Config.position.name});
     expect(records.total_count).to.greaterThan(0, 'at least one position returned');
     //look for our record

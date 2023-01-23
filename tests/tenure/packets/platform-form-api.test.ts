@@ -145,9 +145,7 @@ describe('Platform Form API Test', () => {
 
     const packetDetail = await packetApi.createFromTemplate({
       packetId: Config.packetTemplate.id,
-      candidateFirstName: Config.user.first_name,
-      candidateLastName: Config.user.last_name,
-      candidateEmail: Config.user.email,
+      candidatePID: parseInt(Config.user.pid),
       candidateInvolvement: false,
       unitId: Config.unit.id,
     });
@@ -225,9 +223,7 @@ describe('Platform Form API Test', () => {
 
     const packetDetail = await packetApi.createFromTemplate({
       packetId: Config.packetTemplate.id,
-      candidateFirstName: Config.user.first_name,
-      candidateLastName: Config.user.last_name,
-      candidateEmail: Config.user.email,
+      candidatePID: parseInt(Config.user.pid),
       candidateInvolvement: false,
       unitId: Config.unit.id,
     });

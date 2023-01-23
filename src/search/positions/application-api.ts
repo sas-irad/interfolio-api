@@ -2,7 +2,6 @@ import { INTERFOLIO_SEARCH_V1} from '../../api-request';
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
 import ApplicationDocumentApi from "./applications/application-document-api";
-import {POSITION_BASE_URL, PositionDetail, PositionInsert} from "../position-api";
 
 export const APPLICATION_BASE_URL_V1 = INTERFOLIO_SEARCH_V1 + '/positions/{position_id}/applications';
 export const APPLICATION_URL = APPLICATION_BASE_URL_V1 + '/{application_id}';
@@ -236,7 +235,6 @@ export class ApplicationApi {
   async create({positionId, firstName, lastName, email}: {positionId: number; firstName: string; lastName: string; email: string}): Promise<Application> {
     return new Promise((resolve, reject) => {
       const url = APPLICATION_BASE_URL_V1.replace("{position_id}", positionId.toString());
-      console.log(url);
       this.apiRequest
           .executeRest({ url, method: 'POST', json: {
             first_name: firstName,

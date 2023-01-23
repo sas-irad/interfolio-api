@@ -14,12 +14,14 @@ describe('Application Document API Test', () => {
   });
 
 
+  //Test retrieval of document
   it('Get Document', async () => {
-    const record = await api.getDocument({ documentId: 34514872, positionId: 102305, applicationId:  3834216});
-    // expect(record.name).to.eq("Assistant or Associate Professor of African American History", 'Committee name matches');
-    // expect(record.name).to.eq(Config.committee.name, 'Committee name matches');
-    // expect(record.unit_id).to.eq(Config.committee.unit_id, 'Committee unit id matches');
-    // expect(record.committee_members[0].user_id).to.eq(Config.currentUser.id, 'Committee Member user id matches');
+    const record = await api.getDocument({
+      documentId: Config.application.application_documents[0].id,
+      positionId: Config.position.id,
+      applicationId:  Config.application.id
+    });
+    expect(record.substr(0,4)).to.eq("%PDF", 'PDF file retrieved');
   });
 
 });

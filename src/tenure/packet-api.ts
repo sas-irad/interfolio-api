@@ -254,11 +254,11 @@ export type CreatePacketFromTemplateParams = {
   /** Unit Id to create the case in */
   unitId: number;
   /** Candidate's first name */
-  candidateFirstName: string;
+  candidateFirstName?: string;
   /** Candidate's Last name */
-  candidateLastName: string;
+  candidateLastName?: string;
   /** Candidate Email address */
-  candidateEmail: string;
+  candidateEmail?: string;
   /** if not using name and email - applicants PID **/
   candidatePID?: number;
   /** If the candidate will be involved in the case */
@@ -349,6 +349,7 @@ export class PacketApi {
    * @param candidateFirstName Candidate's first (given) name
    * @param candidateLastName Candidate's last (family) name
    * @param candidateEmail Candidate's email address
+   * @param candidatePID Candidate's Interfolio PID
    * @param candidateInvolvement Flag indicating if the candidate will be involved in the case
    * @param packetTypeId Packet Type ID of the case (e.g. Appointment/Promotion etc)
    *
@@ -412,6 +413,7 @@ export class PacketApi {
    * @param candidateFirstName  Candidate's first name
    * @param candidateLastName  Candidate's last name
    * @param candidateEmail Candidate's email
+   * @param candidatePID Candidate's interfolio PID
    * @param candidateInvolvement  If the candidate will be involved in the case
    * @param name  ???
    * @param dueDate Due date for the case
@@ -436,20 +438,37 @@ export class PacketApi {
     candidateLastName,
     candidateEmail,
     candidateInvolvement,
+    candidatePID,
     name,
     dueDate,
     eppn,
   }: CreatePacketFromTemplateParams): Promise<PacketDetail> {
     return new Promise((resolve, reject) => {
-      const url = PACKET_CREATE_FROM_TEMPLATE_URL;
-      const form: any & { due_date?: string; name?: string; eppn?: string } = {
+      const url = PACKET_CREATE_FROM_TEMPLATE_URL;;
+      const form: {
+        'packet[packet_id]': number,
+        'packet[unit_id]': number,
+        'packet[candidate_involvement]': boolean,
+        'packet[applicant_pid]'?: number,
+        'packet[candidate_first_name]'?: string,
+        'packet[candidate_last_name]'?: string,
+        'packet[candidate_email]'?: string,
+        'due_date'?: string,
+        'name'? : string,
+        'eppn'?: string
+      } = {
         'packet[packet_id]': packetId,
         'packet[unit_id]': unitId,
-        'packet[candidate_first_name]': candidateFirstName,
-        'packet[candidate_last_name]': candidateLastName,
-        'packet[candidate_email]': candidateEmail,
         'packet[candidate_involvement]': candidateInvolvement,
       };
+      if(candidatePID) {
+        form['packet[applicant_pid]'] = candidatePID;
+      }
+      else {
+        form['packet[candidate_first_name]'] = candidateFirstName;
+        form['packet[candidate_last_name]'] = candidateLastName;
+        form['packet[candidate_email]'] = candidateEmail;
+      }
       if (dueDate) form.due_date = dueDate;
       if (name) form.name = name;
       if (eppn) form.eppn = eppn;
@@ -537,7 +556,7 @@ export class PacketApi {
       } = {
         send_step_change_notification: sendNotification,
       };
-      if (sendNotification === true) {
+      if (sendNotification) {
         form.step_change_notification_subject = notificationSubject
           ? notificationSubject
           : 'Interfolio Case Ready for Review';
@@ -593,7 +612,7 @@ export class PacketApi {
       } = {
         send_step_change_notification: sendNotification,
       };
-      if (sendNotification === true) {
+      if (sendNotification) {
         form.step_change_notification_subject = notificationSubject
           ? notificationSubject
           : 'Interfolio Case Ready for Review';

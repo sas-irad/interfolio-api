@@ -4,12 +4,12 @@ import { INTERFOLIO_CORE_URL_V1, INTERFOLIO_CORE_URL_V2 } from '../api-request';
 import { Unit } from '../core/unit-api';
 import Utils, { DeNestingDef } from '../utils';
 
-export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1 + '/users';
+export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1.replace('{module}', 'tenure') + '/users';
 export const USER_URL = USER_URL_BASE + '/{user_id}';
 export const USER_CURRENT_URL = '/byc-tenure/{tenant_id}/users/current';
 export const USER_SEARCH_URL =
-  INTERFOLIO_CORE_URL_V1 + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}&page={page}';
-export const USER_SSO_URL = INTERFOLIO_CORE_URL_V2 + '/institutions/{tenant_id}/users/{user_id}/sso_id';
+  INTERFOLIO_CORE_URL_V1.replace('{module}', 'tenure') + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}&page={page}';
+export const USER_SSO_URL = INTERFOLIO_CORE_URL_V2.replace('{module}','tenure') + '/institutions/{tenant_id}/users/{user_id}/sso_id';
 
 /**
  * Committee membership returned for a user
@@ -190,7 +190,7 @@ export class UserApi {
     return new Promise((resolve, reject) => {
       this.searchUsers({ searchTerm: email })
         .then((response) => {
-          //loop through all of the results and make sure that the email matche
+          //loop through all of the results and make sure that the email matches
           let user = null;
           for (const i in response.results) {
             if (response.results[i].email) user = response.results[i];
@@ -349,8 +349,7 @@ export class UserApi {
         nestedAttributeName: 'administrator_unit',
       },
     };
-    const user = Utils.deNest(response, denestDefs) as User;
-    return user;
+    return Utils.deNest(response, denestDefs) as User;
   }
 }
 export default UserApi;

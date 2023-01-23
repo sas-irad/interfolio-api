@@ -120,7 +120,7 @@ export class ApiRequest {
   /**
    * Execute the api using Got.js
    *
-   * @param {Options} got.js options
+   * @param options
    */
   private async execute(options: Options): Promise<any> {
     if (this.outputRequestOptions) console.log(util.inspect(options, { showHidden: false, depth: null }));
@@ -135,7 +135,7 @@ export class ApiRequest {
       else if (response.body && options.responseType === 'json' && typeof response.body === 'object') {
         //check for interfolio errors in the response body
         if (Object.hasOwnProperty.call(response.body, 'errors')) {
-          throw { response };
+          throw Error(response.body.errors[0].message);
         }
         //return the response body
         return response.body;
@@ -166,6 +166,7 @@ export class ApiRequest {
    * @param form    Form to include in the body (can include form/body or json).
    * @param body    TEXT of the Body of the request
    * @param json    JSON to include as body of request
+   * @param responseType  type of response expected (defaults to json)
    * @param retryNum The number of retries that this request is currently attempting
    */
   public async executeRest(
@@ -199,6 +200,10 @@ export class ApiRequest {
       );
     }
     catch (error) {
+      //if an error response from interfolio exists, then return the first error message
+      if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
+        throw Error(error.response.body.errors[0].message);
+      }
       throw error;
     }
   }
@@ -288,8 +293,6 @@ export class ApiRequest {
    * @param {RestRequest} request - The request to be sent
    * @param {string} request.url - The url (not including host)
    * @param {string} request.host - The domain host the url
-   * @param {string|any} data - any data for the body of the request
-   * @param formDataType - the format of the data in the body can be  [form / formData / json] this determines what to set request.option
    */
   private getRequestOptions({ url, host, method = "GET", form, body, json, responseType = "json" }: RestRequest & { host: string }): Options & { isStream?: true | undefined; } {
     const options: Options & {isStream?: true | undefined} = { encoding: "utf8", retry: 0 };

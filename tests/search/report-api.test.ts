@@ -22,13 +22,10 @@ describe('Search Report API Test', () => {
     });
     expect(search.total).gt(0, 'Packet Search Returned at least one result');
 
-    console.log(search.applications);
-
     //loop through the results to make sure we found our packet
     let found = false;
     for (const row of search.applications) {
-      found = true;
-      //if (row.id === Config.packet.id) found = true;
+      if (row.id === Config.application.id) found = true;
     }
     expect(found).eq(true, 'Test packet found by search');
   });

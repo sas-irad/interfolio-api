@@ -58,7 +58,7 @@ export class ApplicationDocumentApi {
     });
   }
   /**
-   * Save a position from the positionId
+   * Save a document from the positionId
    * @param id ID of the position
    *
    * @example
@@ -73,7 +73,7 @@ export class ApplicationDocumentApi {
     filePath: string
   }): Promise<string> {
     return new Promise((resolve, reject) => {
-      let url = APPLICATION_DOC_URL.replace('{position_id}', positionId.toString())
+      const url = APPLICATION_DOC_URL.replace('{position_id}', positionId.toString())
           .replace('{application_id}', applicationId.toString())
           .replace('{document_id}', documentId.toString());
       // url = url + "?download=0";
