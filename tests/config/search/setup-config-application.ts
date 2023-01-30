@@ -1,6 +1,7 @@
 import prompts from 'prompts';
 import { TestConfig } from '../setup-config';
 import API from '../../../src';
+import path from "path";
 
 /**
  * prompts user to set up a position application for testing
@@ -38,7 +39,9 @@ const setupConfigApplication = async (config: TestConfig): Promise<TestConfig> =
     // if config already exists then refresh it
     if(config.application) {
       const application = await api.Search.Applications.getDetail({applicationId: config.application.id, positionId: config.position.id});
-      config.application = application;
+      if(application) {
+        config.application = application;
+      }
     }
     else {
       //Look for a position with the right unit id and name
@@ -47,7 +50,9 @@ const setupConfigApplication = async (config: TestConfig): Promise<TestConfig> =
       for(const applicationRecord of search.applications) {
         if(applicationRecord.firstname === config.user.first_name && applicationRecord.lastname === config.user.last_name) {
           const application = await api.Search.Applications.getDetail({applicationId: applicationRecord.id, positionId: applicationRecord.position_id});
-          config.application = application;
+          if(application) {
+            config.application = application;
+          }
         }
         found = true;
       }
@@ -65,7 +70,30 @@ const setupConfigApplication = async (config: TestConfig): Promise<TestConfig> =
     config.application = await api.Search.Applications.getDetail({ applicationId: application.id, positionId: config.position.id });
   }
 
+  //check to see if a document has been uploaded
+  let docNeeded = true;
+  if(config.application?.application_documents) {
+    for(const doc of config.application.application_documents) {
+      if(doc.name === 'API Test Document') {
+        docNeeded = false;
+      }
+    }
+  }
+  if(config.application && docNeeded) {
+    const filePath = path.resolve(__dirname + "/../../../../tests/config/resources/TestPDF.pdf");
+    await api.Search.ApplicationDocuments.createDocumentOnBehalf({
+      applicationId: config.application.id,
+      positionId: config.position.id,
+      title: "API Test Document",
+      type: "Other Document",
+      format: "PDF",
+      filePath: filePath
+    });
+    config.application = await api.Search.Applications.getDetail({ applicationId: config.application.id, positionId: config.position.id });
+  }
+
   return config;
+
 };
 export { setupConfigApplication };
 export default setupConfigApplication;

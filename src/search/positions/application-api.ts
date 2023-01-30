@@ -1,7 +1,7 @@
 import { INTERFOLIO_SEARCH_V1} from '../../api-request';
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
-import ApplicationDocumentApi from "./applications/application-document-api";
+import ApplicationDocumentApi, {ApplicationDocumentListing} from "./applications/application-document-api";
 
 export const APPLICATION_BASE_URL_V1 = INTERFOLIO_SEARCH_V1 + '/positions/{position_id}/applications';
 export const APPLICATION_URL = APPLICATION_BASE_URL_V1 + '/{application_id}';
@@ -56,16 +56,7 @@ export type ApplicationDetail = {
   /** if application comments are allowed */
   application_comments_allowed: boolean;
   /** documents submitted for the application */
-  application_documents: {
-    id: number;
-    name: string;
-    type: string;
-    date_received: string;
-    bycommittee_uploaded: boolean;
-    conversion_status: string;
-    is_read: boolean;
-    is_received: boolean;
-  }[];
+  application_documents: ApplicationDocumentListing[];
   /** status of the application */
   application_status : string;
   /** of the application */
