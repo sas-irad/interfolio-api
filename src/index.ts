@@ -1,5 +1,5 @@
-import {ReportApi as SearchReportApi} from './search/report-api';
-import ApplicationApi from "./search/positions/application-api";
+import { ReportApi as SearchReportApi } from './search/report-api';
+import ApplicationApi from './search/positions/application-api';
 import CommitteeApi from './tenure/committee-api';
 import FormApi from './tenure/form-api';
 import PacketTemplateApi from './tenure/packet-template-api';
@@ -16,8 +16,8 @@ import EvaluatorSectionApi from './tenure/packets/evaluator-section-api';
 import PacketAttachmentApi from './tenure/packets/packet-attachment-api';
 import ApiRequest from './api-request';
 import StatusApi from './tenure/status-api';
-import PositionApi from "./search/position-api";
-import ApplicationDocumentApi from "./search/positions/applications/application-document-api";
+import PositionApi from './search/position-api';
+import ApplicationDocumentApi from './search/positions/applications/application-document-api';
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -79,7 +79,7 @@ export class API {
     Positions: PositionApi;
     /** Handle to the Faculty Search Reports Api Calls*/
     Reports: SearchReportApi;
-  }
+  };
 
   /** RPT (Review, Promotion and Tenure) api calls */
   public readonly Tenure: {
@@ -117,7 +117,7 @@ export class API {
 
   public readonly Core: {
     Units: UnitApi;
-  }
+  };
 
   public readonly Units: UnitApi;
 
@@ -138,7 +138,7 @@ export class API {
     }
 
     this.Core = {
-      Units: new UnitApi(this.apiRequest)
+      Units: new UnitApi(this.apiRequest),
     };
 
     this.Tenure = {
@@ -163,8 +163,8 @@ export class API {
       Applications: new ApplicationApi(this.apiRequest),
       ApplicationDocuments: new ApplicationDocumentApi(this.apiRequest),
       Positions: new PositionApi(this.apiRequest),
-      Reports: new SearchReportApi(this.apiRequest)
-    }
+      Reports: new SearchReportApi(this.apiRequest),
+    };
 
     this.Units = new UnitApi(this.apiRequest);
   }

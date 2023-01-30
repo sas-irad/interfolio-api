@@ -3,9 +3,9 @@ import got from 'got';
 import { Options, Method } from 'got';
 import { ApiConfig } from './index';
 import { Readable } from 'stream';
-import util, {promisify} from 'util';
-import {createWriteStream} from "fs";
-import * as stream from "stream";
+import util, { promisify } from 'util';
+import { createWriteStream } from 'fs';
+import * as stream from 'stream';
 
 /** The v1 core interfolio for global objects such as users and units */
 export const INTERFOLIO_CORE_URL_V1 = '/byc/core/{module}/{tenant_id}';
@@ -61,7 +61,7 @@ export type RestRequest = {
   /** The body of the request */
   body?: string | Readable | Buffer | undefined;
   /** The response type expected from the call*/
-  responseType?: "text" | "json" | "buffer"
+  responseType?: 'text' | 'json' | 'buffer';
 };
 
 /**
@@ -128,7 +128,7 @@ export class ApiRequest {
       const response: any = await got(options);
       if (this.outputResponse) console.log(util.inspect(response, { showHidden: false, depth: null }));
       //if we got a response and are expected text
-      if(response.body && options.responseType === 'text') {
+      if (response.body && options.responseType === 'text') {
         return response.body;
       }
       //if we gat a response and are expecting json
@@ -143,7 +143,12 @@ export class ApiRequest {
         return {};
       }
     } catch (error) {
-      const errorObject = { error: error, url: options.url, headers: options.headers, method: options.method as Method};
+      const errorObject = {
+        error: error,
+        url: options.url,
+        headers: options.headers,
+        method: options.method as Method,
+      };
       this.errors.push(errorObject);
       if (this.outputErrors) {
         console.error(util.inspect(errorObject, { showHidden: false, depth: null }));
@@ -170,7 +175,7 @@ export class ApiRequest {
    * @param retryNum The number of retries that this request is currently attempting
    */
   public async executeRest(
-    { url, method = 'GET', form = undefined, body = undefined, json = undefined, responseType="json"}: RestRequest,
+    { url, method = 'GET', form = undefined, body = undefined, json = undefined, responseType = 'json' }: RestRequest,
     retryNum = 0,
   ): Promise<any> {
     url = this.replaceSlugs(url);
@@ -187,19 +192,24 @@ export class ApiRequest {
   }
 
   public async executeFileStream(
-      { url, method = 'GET', form = undefined, body = undefined, json = undefined}: RestRequest,
-      filePath: string): Promise<any> {
+    { url, method = 'GET', form = undefined, body = undefined, json = undefined }: RestRequest,
+    filePath: string,
+  ): Promise<any> {
     url = this.replaceSlugs(url);
-    const options = this.getRequestOptions({ method, url, body, form, json, host: this.config.restUrl, responseType: "buffer"});
+    const options = this.getRequestOptions({
+      method,
+      url,
+      body,
+      form,
+      json,
+      host: this.config.restUrl,
+      responseType: 'buffer',
+    });
     try {
       const pipeline = promisify(stream.pipeline);
 
-      await pipeline(
-          got.stream({...options, isStream: true}),
-          createWriteStream(filePath)
-      );
-    }
-    catch (error) {
+      await pipeline(got.stream({ ...options, isStream: true }), createWriteStream(filePath));
+    } catch (error) {
       //if an error response from interfolio exists, then return the first error message
       if (Array.isArray(error?.response?.body?.errors) && error.response.body.errors.length > 0) {
         throw Error(error.response.body.errors[0].message);
@@ -208,7 +218,7 @@ export class ApiRequest {
     }
   }
 
-    /**
+  /**
    * Execute an API request against the GraphQL (caas-box) data endpoint
    *
    * @param gqlRequest
@@ -227,7 +237,6 @@ export class ApiRequest {
       throw error;
     }
   }
-
 
   /**
    * Tests if a string is parsable JSON
@@ -294,8 +303,16 @@ export class ApiRequest {
    * @param {string} request.url - The url (not including host)
    * @param {string} request.host - The domain host the url
    */
-  private getRequestOptions({ url, host, method = "GET", form, body, json, responseType = "json" }: RestRequest & { host: string }): Options & { isStream?: true | undefined; } {
-    const options: Options & {isStream?: true | undefined} = { encoding: "utf8", retry: 0 };
+  private getRequestOptions({
+    url,
+    host,
+    method = 'GET',
+    form,
+    body,
+    json,
+    responseType = 'json',
+  }: RestRequest & { host: string }): Options & { isStream?: true | undefined } {
+    const options: Options & { isStream?: true | undefined } = { encoding: 'utf8', retry: 0 };
     //add the host to url
     options.url = host + this.replaceSlugs(url);
     options.method = method;

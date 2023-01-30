@@ -8,8 +8,10 @@ export const USER_URL_BASE = INTERFOLIO_CORE_URL_V1.replace('{module}', 'tenure'
 export const USER_URL = USER_URL_BASE + '/{user_id}';
 export const USER_CURRENT_URL = '/byc-tenure/{tenant_id}/users/current';
 export const USER_SEARCH_URL =
-  INTERFOLIO_CORE_URL_V1.replace('{module}', 'tenure') + '/institutions/{tenant_id}/users/search?limit={limit}&search={search}&page={page}';
-export const USER_SSO_URL = INTERFOLIO_CORE_URL_V2.replace('{module}','tenure') + '/institutions/{tenant_id}/users/{user_id}/sso_id';
+  INTERFOLIO_CORE_URL_V1.replace('{module}', 'tenure') +
+  '/institutions/{tenant_id}/users/search?limit={limit}&search={search}&page={page}';
+export const USER_SSO_URL =
+  INTERFOLIO_CORE_URL_V2.replace('{module}', 'tenure') + '/institutions/{tenant_id}/users/{user_id}/sso_id';
 
 /**
  * Committee membership returned for a user

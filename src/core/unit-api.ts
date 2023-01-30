@@ -68,7 +68,7 @@ export class UnitApi {
    */
   public async create({ unitName, parentUnitId }: { unitName: string; parentUnitId: number }): Promise<Unit> {
     return new Promise((resolve, reject) => {
-      const url = UNITS_URL.replace("{module}", this.module);
+      const url = UNITS_URL.replace('{module}', this.module);
       this.apiRequest
         .executeRest({
           url: url,
@@ -96,7 +96,7 @@ export class UnitApi {
    */
   public async delete(unitId: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const url = UNITS_URL.replace("{module}", this.module) + '/' + unitId.toString();
+      const url = UNITS_URL.replace('{module}', this.module) + '/' + unitId.toString();
       this.apiRequest
         .executeRest({ url, method: 'DELETE' })
         .then(() => resolve(true))
@@ -144,7 +144,7 @@ export class UnitApi {
    * ```
    */
   public async getUnits(): Promise<Array<Unit>> {
-    const url = UNITS_URL.replace("{module}", this.module) + '/usage';
+    const url = UNITS_URL.replace('{module}', this.module) + '/usage';
     return this.apiRequest.executeRest({ url }).then((response) => {
       const units: Array<Unit> = [];
       for (const unit of response.user.administrator_units) {

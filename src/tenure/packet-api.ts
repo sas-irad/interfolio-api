@@ -444,27 +444,26 @@ export class PacketApi {
     eppn,
   }: CreatePacketFromTemplateParams): Promise<PacketDetail> {
     return new Promise((resolve, reject) => {
-      const url = PACKET_CREATE_FROM_TEMPLATE_URL;;
+      const url = PACKET_CREATE_FROM_TEMPLATE_URL;
       const form: {
-        'packet[packet_id]': number,
-        'packet[unit_id]': number,
-        'packet[candidate_involvement]': boolean,
-        'packet[applicant_pid]'?: number,
-        'packet[candidate_first_name]'?: string,
-        'packet[candidate_last_name]'?: string,
-        'packet[candidate_email]'?: string,
-        'due_date'?: string,
-        'name'? : string,
-        'eppn'?: string
+        'packet[packet_id]': number;
+        'packet[unit_id]': number;
+        'packet[candidate_involvement]': boolean;
+        'packet[applicant_pid]'?: number;
+        'packet[candidate_first_name]'?: string;
+        'packet[candidate_last_name]'?: string;
+        'packet[candidate_email]'?: string;
+        due_date?: string;
+        name?: string;
+        eppn?: string;
       } = {
         'packet[packet_id]': packetId,
         'packet[unit_id]': unitId,
         'packet[candidate_involvement]': candidateInvolvement,
       };
-      if(candidatePID) {
+      if (candidatePID) {
         form['packet[applicant_pid]'] = candidatePID;
-      }
-      else {
+      } else {
         form['packet[candidate_first_name]'] = candidateFirstName;
         form['packet[candidate_last_name]'] = candidateLastName;
         form['packet[candidate_email]'] = candidateEmail;

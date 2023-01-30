@@ -6,7 +6,6 @@ export const SEARCH_REPORT_BASE_URL = INTERFOLIO_SEARCH_V1 + '/reports';
 /** the application search url */
 export const REPORT_APPLICATION_SEARCH_URL = SEARCH_REPORT_BASE_URL + '/application_search';
 
-
 /** facets to list the criteria for the search for applications */
 export type ApplicationSearchFacets = {
   /** id of the position */
@@ -30,16 +29,16 @@ export type ApplicationSearchFacets = {
  * Criteria (or fields that can be returned) from an application search
  */
 export type ApplicationCriteria =
-  'id' |
-  'firstname' |
-  'lastname' |
-  'highest_degree' |
-  'highest_degree_school' |
-  'application_status_name' |
-  'completeness_level' |
-  'last_date_sent' |
-  'labels' |
-  'my_average_rating';
+  | 'id'
+  | 'firstname'
+  | 'lastname'
+  | 'highest_degree'
+  | 'highest_degree_school'
+  | 'application_status_name'
+  | 'completeness_level'
+  | 'last_date_sent'
+  | 'labels'
+  | 'my_average_rating';
 
 /**
  * Parameters to be sent to the report generate api call
@@ -80,7 +79,7 @@ export type ApplicationData = {
     user_id: number;
     tag_name: string;
     tag_id: number;
-    is_editable: boolean
+    is_editable: boolean;
   }[];
   /** formatted version of average rating for user */
   formatted_my_average_rating: string;
@@ -92,11 +91,11 @@ export type ApplicationData = {
   id: number;
   /** formatted labels for the application */
   labels: {
-    tagging_id: number,
+    tagging_id: number;
     user_id: number;
     tag_name: string;
     tag_id: number;
-    is_editable: boolean
+    is_editable: boolean;
   }[];
   /** date of the last time application was sent */
   last_date_sent: string;
@@ -109,7 +108,7 @@ export type ApplicationData = {
   //@todo flesh out the questions data format
   /** questions the applicant answered */
   questions: any[];
-}
+};
 
 /**
  * data to be sent
@@ -117,7 +116,7 @@ export type ApplicationData = {
 export type ApplicationSearchData = {
   applications: ApplicationData[];
   total: number;
-}
+};
 
 /**
  * Class representing Report calls
@@ -162,37 +161,46 @@ export class ReportApi {
    * });
    * ```
    */
-  public applicationSearch({ from, size, facets, criteria, search_text, sort}: ApplicationSearchParams): Promise<ApplicationSearchData> {
+  public applicationSearch({
+    from,
+    size,
+    facets,
+    criteria,
+    search_text,
+    sort,
+  }: ApplicationSearchParams): Promise<ApplicationSearchData> {
     return new Promise((resolve, reject) => {
       //handle optional params
       if (!from) from = 0;
       if (!size) size = 100;
-      if (!criteria) criteria = {"application": [
-        "id",
-        "firstname",
-        "lastname",
-        "highest_degree",
-        "highest_degree_school",
-        "application_status_name",
-        "completeness_level",
-        "last_date_sent",
-        "labels",
-        "my_average_rating"
-      ]};
-      if (!sort) sort = {column: "name", direction: "asc"};
+      if (!criteria)
+        criteria = {
+          application: [
+            'id',
+            'firstname',
+            'lastname',
+            'highest_degree',
+            'highest_degree_school',
+            'application_status_name',
+            'completeness_level',
+            'last_date_sent',
+            'labels',
+            'my_average_rating',
+          ],
+        };
+      if (!sort) sort = { column: 'name', direction: 'asc' };
       if (!search_text) search_text = '';
 
       const url = REPORT_APPLICATION_SEARCH_URL;
-      const searchParams = { facets, criteria, sort, from, size, search_text};
+      const searchParams = { facets, criteria, sort, from, size, search_text };
       this.apiRequest
-        .executeRest({ url: url, method: 'POST', json: searchParams  })
+        .executeRest({ url: url, method: 'POST', json: searchParams })
         .then((results) => {
           resolve(results);
         })
         .catch((error) => reject(error));
     });
   }
-
 }
 
 export default ReportApi;

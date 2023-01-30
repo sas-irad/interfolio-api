@@ -1,15 +1,16 @@
 import { ApiConfig } from '../index';
 import Utils, { DeNestingDef } from '../utils';
-import ApiRequest, {ApiResponse, INTERFOLIO_SEARCH_V2} from '../api-request';
+import ApiRequest, { ApiResponse, INTERFOLIO_SEARCH_V2 } from '../api-request';
 import { INTERFOLIO_SEARCH_V1 } from '../api-request';
-import ApplicationApi from "./positions/application-api";
+import ApplicationApi from './positions/application-api';
 
 /**
  * @const Base url for position api calls
  */
 export const POSITION_BASE_URL = INTERFOLIO_SEARCH_V1 + '/positions';
 export const POSITION_URL = POSITION_BASE_URL + '/{position_id}';
-export const POSITION_FILTER_URL = INTERFOLIO_SEARCH_V2 + '/positions/filter?limit={limit}&page={page}&sort_by={sort_by}&sort_order={sort_order}'
+export const POSITION_FILTER_URL =
+  INTERFOLIO_SEARCH_V2 + '/positions/filter?limit={limit}&page={page}&sort_by={sort_by}&sort_order={sort_order}';
 
 /**
  * Workflow steps in the position
@@ -38,10 +39,10 @@ export type PositionWorkflowStep = {
   assignments: any[];
   /** note associated with this workflow step */
   note: string;
-}
+};
 
-  /**
-   * An Interfolio position base definition on which PositionInsert and PositionDetail is based
+/**
+ * An Interfolio position base definition on which PositionInsert and PositionDetail is based
  */
 export type PositionBase = {
   /** Name of the position */
@@ -59,7 +60,7 @@ export type PositionBase = {
   /** application instructions for the position */
   instructions?: string;
   /** job requisition number */
-  job_requisition_number?:  string;
+  job_requisition_number?: string;
   /** salary range for the position */
   salary_range?: string;
   /** position term id for the position */
@@ -125,7 +126,7 @@ export type PositionDetail = PositionBase & {
   /** institution id for the position  */
   institution_id: number;
   /** eeo statement for the position */
-  eeo_statement:  string;
+  eeo_statement: string;
   /** time the position was created */
   created_at: string;
   /** time the position was last updated */
@@ -135,7 +136,7 @@ export type PositionDetail = PositionBase & {
   /** the template used to create the position */
   position_template_id: string;
   /** user_id of the user that created the position */
-  user_id: 153556,
+  user_id: 153556;
   /** if the derived eeo statement should be used*/
   use_derived_eeo_statement: boolean;
   /** id for the receipt message template for the position */
@@ -191,7 +192,7 @@ export type PositionDetail = PositionBase & {
   /** temp unit name for the position */
   unit_name_temp: string;
   /** step number in the category for the position (e.g. 1 of 5) */
-  step_number_in_category:  string;
+  step_number_in_category: string;
   /** strings to search for the position on */
   search_strings: string;
   /** number of active applications */
@@ -215,14 +216,14 @@ export type PositionDetail = PositionBase & {
   /** name of the unit to which this position belongs */
   unit_name: string;
   /** list of ancester units to the unit to which this position belongs */
-  ancestor_units: {id: number, name: string}[];
+  ancestor_units: { id: number; name: string }[];
   /** effective generated eeo statement for the position */
   effective_eeo_statement: string;
   /** position term name for the position */
   position_term_name: string;
   /** status for the position */
   position_status: string;
-  evaluation_scales: any[],
+  evaluation_scales: any[];
   /** if the position is editable  */
   editable: boolean;
   /** if the position is deleteable */
@@ -257,7 +258,7 @@ export type PositionDetail = PositionBase & {
     default: boolean;
     display_to_applicant: boolean;
     message_template_id: number;
-    sort_order:  number;
+    sort_order: number;
     unit_id: number;
     used: boolean;
   }[];
@@ -277,19 +278,19 @@ export type PositionDetail = PositionBase & {
   }[];
   /** @todo flesh out application tags and add to denesting */
   /** list of application tags for this position */
-  application_tags: any[],
+  application_tags: any[];
   /** @todo flesh out file_attachments and add to denesting */
   /** list of file attachments for this position */
-  file_attachments: any[],
+  file_attachments: any[];
   /** if the position is eeo flaggable */
   eeo_flaggable: boolean;
   /** total number of applications */
   total_application_count: number;
   /** ready for approval information for this position */
-  ready_for_approval_info: any,
+  ready_for_approval_info: any;
   /** @todo flesh out selected applicants and add to denesting */
   /** applicants that have been selected */
-  "selected_applicants": [],
+  selected_applicants: [];
   /** for the position */
   application_tagging_allowed: boolean;
   /** position forms attached to this position */
@@ -302,7 +303,7 @@ export type PositionDetail = PositionBase & {
     form_name: string;
     description: string;
     /** @todo flesh out questions and add to de-nesting */
-    questions: any[]
+    questions: any[];
   }[];
   /** @todo flesh out required documents and add to de-nesting */
   /** required documents for the position */
@@ -316,14 +317,14 @@ export type PositionDetail = PositionBase & {
   /** all workflow steps for the position */
   workflow_steps: PositionWorkflowStep[];
   /** committee members for the position */
-  "committee_members": {
-      "id": number;
-      "pid": number;
-      "role_id": number;
-      "user_id": number;
-      "first_name": string;
-      "last_name": string;
-      "email": string;
+  committee_members: {
+    id: number;
+    pid: number;
+    role_id: number;
+    user_id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
   }[];
   /** if the position can be moved*/
   can_move: boolean;
@@ -336,10 +337,10 @@ export type PositionDetail = PositionBase & {
   /** if the position can be resolved? */
   can_be_resolved: boolean;
   /** rejection information */
-  rejection_info: any,
-  selection_rejection_info: any,
+  rejection_info: any;
+  selection_rejection_info: any;
   disposition_codes: { id: number; code: string }[];
-}
+};
 
 /**
  * Class representing an Interfolio Position
@@ -376,13 +377,13 @@ export class PositionApi {
     return new Promise((resolve, reject) => {
       const url = POSITION_BASE_URL;
       this.apiRequest
-          .executeRest({ url, method: 'POST', json: { position }})
-          .then((response) => {
-            resolve(PositionApi.removePositionDetailNesting(response.position));
-          })
-          .catch((error) => {
-            reject(error);
-          });
+        .executeRest({ url, method: 'POST', json: { position } })
+        .then((response) => {
+          resolve(PositionApi.removePositionDetailNesting(response.position));
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -397,17 +398,16 @@ export class PositionApi {
     return new Promise((resolve, reject) => {
       const url = POSITION_URL.replace('{position_id}', id.toString());
       this.apiRequest
-          .executeRest({ url, method: 'DELETE' })
-          .then(() => resolve(true))
-          .catch((error) => {
-            //@todo remove this exception override once interfolio fixes the delete api call to to not throw this exception
-            if(error.message === "Couldn't find Position with 'id'=" + id.toString()) {
-              resolve(true);
-            }
-            else {
-              reject(error)
-            }
-          });
+        .executeRest({ url, method: 'DELETE' })
+        .then(() => resolve(true))
+        .catch((error) => {
+          //@todo remove this exception override once interfolio fixes the delete api call to to not throw this exception
+          if (error.message === "Couldn't find Position with 'id'=" + id.toString()) {
+            resolve(true);
+          } else {
+            reject(error);
+          }
+        });
     });
   }
 
@@ -422,36 +422,50 @@ export class PositionApi {
    * @param position_type_id
    * @param search_term
    */
-  async filterPositions({limit = 25, page=1, sort_by= "position_name", sort_order="asc", archived=null, current_status_name=null, position_type_id=null, search_term=null }: {
-     limit?: number;
-     page?: number;
-     sort_by?: string;
-     sort_order?: string;
-     archived?: boolean | null;
-     current_status_name?: string | null;
-     position_type_id?: number | null;
-     search_term?: string | null;
-  }): Promise<{limit: number, page: number, total_count: number, results: any[]}> {
+  async filterPositions({
+    limit = 25,
+    page = 1,
+    sort_by = 'position_name',
+    sort_order = 'asc',
+    archived = null,
+    current_status_name = null,
+    position_type_id = null,
+    search_term = null,
+  }: {
+    limit?: number;
+    page?: number;
+    sort_by?: string;
+    sort_order?: string;
+    archived?: boolean | null;
+    current_status_name?: string | null;
+    position_type_id?: number | null;
+    search_term?: string | null;
+  }): Promise<{ limit: number; page: number; total_count: number; results: any[] }> {
     return new Promise((resolve, reject) => {
-      const url = POSITION_FILTER_URL.replace("{limit}", limit.toString())
-        .replace("{page}", page.toString())
-        .replace("{sort_by}", sort_by)
-        .replace("{sort_order}", sort_order);
-      const json: {filter: {
-        archived?: boolean, current_status_name?: string, position_type_id?: number, search_term?: string
-      }} = {filter: { }};
-      if(archived !== null) json.filter.archived = archived;
-      if(current_status_name !== null) json.filter.current_status_name = current_status_name;
-      if(position_type_id !== null) json.filter.position_type_id = position_type_id;
-      if(search_term !== null) json.filter.search_term = search_term;
+      const url = POSITION_FILTER_URL.replace('{limit}', limit.toString())
+        .replace('{page}', page.toString())
+        .replace('{sort_by}', sort_by)
+        .replace('{sort_order}', sort_order);
+      const json: {
+        filter: {
+          archived?: boolean;
+          current_status_name?: string;
+          position_type_id?: number;
+          search_term?: string;
+        };
+      } = { filter: {} };
+      if (archived !== null) json.filter.archived = archived;
+      if (current_status_name !== null) json.filter.current_status_name = current_status_name;
+      if (position_type_id !== null) json.filter.position_type_id = position_type_id;
+      if (search_term !== null) json.filter.search_term = search_term;
       this.apiRequest
-          .executeRest({ url, method: 'POST', json })
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((error) => {
-            reject(error);
-          });
+        .executeRest({ url, method: 'POST', json })
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -490,24 +504,24 @@ export class PositionApi {
       },
       ancestor_units: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: 'ancestor_unit'
+        nestedAttributeName: 'ancestor_unit',
       },
       acting_committee_managers: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: 'committee_member'
+        nestedAttributeName: 'committee_member',
       },
       position_statuses: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: "position_status"
+        nestedAttributeName: 'position_status',
       },
       application_statuses: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: "application_status"
+        nestedAttributeName: 'application_status',
       },
       position_forms: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: "position_form"
-      }
+        nestedAttributeName: 'position_form',
+      },
     };
     const position: unknown = Utils.deNest(apiResponse, denestDef);
 

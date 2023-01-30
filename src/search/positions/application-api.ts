@@ -1,7 +1,7 @@
-import { INTERFOLIO_SEARCH_V1} from '../../api-request';
+import { INTERFOLIO_SEARCH_V1 } from '../../api-request';
 import ApiRequest from '../../api-request';
 import { ApiConfig } from '../../index';
-import ApplicationDocumentApi, {ApplicationDocumentListing} from "./applications/application-document-api";
+import ApplicationDocumentApi, { ApplicationDocumentListing } from './applications/application-document-api';
 
 export const APPLICATION_BASE_URL_V1 = INTERFOLIO_SEARCH_V1 + '/positions/{position_id}/applications';
 export const APPLICATION_URL = APPLICATION_BASE_URL_V1 + '/{application_id}';
@@ -58,13 +58,13 @@ export type ApplicationDetail = {
   /** documents submitted for the application */
   application_documents: ApplicationDocumentListing[];
   /** status of the application */
-  application_status : string;
+  application_status: string;
   /** of the application */
-  application_status_id : number;
+  application_status_id: number;
   /** if tagging is allowed */
-  application_tagging_allowed : boolean;
+  application_tagging_allowed: boolean;
   /** tags applied to this application */
-  application_taggings : {
+  application_taggings: {
     id: number;
     editable: boolean;
     application_tag_id: number;
@@ -74,7 +74,7 @@ export type ApplicationDetail = {
   /** if the application is archived */
   archived: boolean;
   /** available application statuses */
-  available_application_statuses : {
+  available_application_statuses: {
     allow_review: boolean;
     allow_update: boolean;
     current: boolean;
@@ -88,13 +88,13 @@ export type ApplicationDetail = {
     used: boolean;
   }[];
   /** tags available to apply to this application */
-  available_application_tags : {
-    id: number,
-    name: string,
-    position_id: number,
-    user_id: number,
-    pid: number,
-    editable: boolean
+  available_application_tags: {
+    id: number;
+    name: string;
+    position_id: number;
+    user_id: number;
+    pid: number;
+    editable: boolean;
   }[];
   /** average rating of the application */
   average_rating: number;
@@ -117,7 +117,7 @@ export type ApplicationDetail = {
   /** desired start date display of the application */
   desired_start_date_display: boolean;
   /** disposition codes for the application */
-  disposition_codes : {code: string, id: number}[];
+  disposition_codes: { code: string; id: number }[];
   /** document requirements met of the application */
   document_requirements_met: boolean;
   /** editable of the application */
@@ -127,15 +127,21 @@ export type ApplicationDetail = {
   /** email of the application */
   email: string;
   /** scales for rating */
-  evaluation_scales :
-      {id: number, application_rating_id: number, name: string, average_rating: number, my_rating: number, current: boolean}[];
+  evaluation_scales: {
+    id: number;
+    application_rating_id: number;
+    name: string;
+    average_rating: number;
+    my_rating: number;
+    current: boolean;
+  }[];
   /** first date sent of the application */
   first_date_sent: string;
   /** firstname of the applicant */
   firstname: string;
   //@todo flesh out form responses
   /** form responses for this application */
-  form_responses : any[];
+  form_responses: any[];
   /** general notes for the application */
   general_notes: string;
   /** highest degree of the application */
@@ -147,7 +153,7 @@ export type ApplicationDetail = {
   /** hiring notes of the applicant */
   hiring_notes: string;
   /** unique identifier for this application */
-  id : number;
+  id: number;
   /** institution user id of the application */
   institution_user_id: number;
   /** job requisition number of the application */
@@ -171,13 +177,13 @@ export type ApplicationDetail = {
   /** if an offer was made */
   offer_made: boolean;
   /** other negotiated items for the offer */
-  other_negotiated_items : null
+  other_negotiated_items: null;
   /** overall rating of the application */
   overall_rating: number;
   /** pid of hte applicant */
-  pid : 4486015
+  pid: 4486015;
   /** position id for the application */
-  position_id : 101152
+  position_id: 101152;
   /** position name of the position */
   position_name: string;
   /** state address of the applicant */
@@ -215,7 +221,6 @@ export class ApplicationApi {
     }
   }
 
-
   /**
    * Create a new application for a position
    * @param positionId position id for the application
@@ -223,21 +228,35 @@ export class ApplicationApi {
    * @param lastName   last name of the applicant
    * @param email      email of the applicant
    */
-  async create({positionId, firstName, lastName, email}: {positionId: number; firstName: string; lastName: string; email: string}): Promise<Application> {
+  async create({
+    positionId,
+    firstName,
+    lastName,
+    email,
+  }: {
+    positionId: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+  }): Promise<Application> {
     return new Promise((resolve, reject) => {
-      const url = APPLICATION_BASE_URL_V1.replace("{position_id}", positionId.toString());
+      const url = APPLICATION_BASE_URL_V1.replace('{position_id}', positionId.toString());
       this.apiRequest
-          .executeRest({ url, method: 'POST', json: {
+        .executeRest({
+          url,
+          method: 'POST',
+          json: {
             first_name: firstName,
             last_name: lastName,
-            email
-          }})
-          .then((response) => {
-            resolve(response.application);
-          })
-          .catch((error) => {
-            reject(error);
-          });
+            email,
+          },
+        })
+        .then((response) => {
+          resolve(response.application);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -250,22 +269,29 @@ export class ApplicationApi {
    * let position = await api.Search.Position.getPosition({id: 9999});
    * ```
    */
-  async getDetail({ applicationId, positionId }: { applicationId: number, positionId: number }): Promise<ApplicationDetail> {
+  async getDetail({
+    applicationId,
+    positionId,
+  }: {
+    applicationId: number;
+    positionId: number;
+  }): Promise<ApplicationDetail> {
     return new Promise((resolve, reject) => {
-      const url = APPLICATION_DETAIL_URL.replace('{position_id}', positionId.toString())
-          .replace('{application_id}', applicationId.toString());
+      const url = APPLICATION_DETAIL_URL.replace('{position_id}', positionId.toString()).replace(
+        '{application_id}',
+        applicationId.toString(),
+      );
 
       this.apiRequest
-          .executeRest({ url, method: 'GET'})
-          .then((response) => {
-            resolve(response.application);
-          })
-          .catch((error) => {
-            reject(error);
-          });
+        .executeRest({ url, method: 'GET' })
+        .then((response) => {
+          resolve(response.application);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
-
 }
 
 export default ApplicationApi;
