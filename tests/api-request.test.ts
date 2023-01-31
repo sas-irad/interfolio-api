@@ -10,7 +10,7 @@ describe('API Request Test', () => {
   //Test the rest request endpoint
   it('rest api request', async () => {
     const request = new ApiRequest(Config.apiConfig);
-    const url = (INTERFOLIO_CORE_URL_V1 + '/units/usage').replace("{module}", "search");
+    const url = (INTERFOLIO_CORE_URL_V1 + '/units/usage').replace('{module}', 'search');
     const response = await request.executeRest({ url });
     expect(typeof response.user).to.equal('object', 'Api returns an object with attribute user and type of object');
   });

@@ -23,10 +23,10 @@ import { PlatformFormSubmissionResponse } from '../../src/tenure/packets/platfor
 import { CommitteeRequirements } from '../../src/tenure/packets/workflow-steps/workflow-step-committee-api';
 import { Status } from '../../src/tenure/status-api';
 import setupConfigStatus from './tenure/setup-config-status';
-import { PositionDetail } from "../../src/search/position-api";
-import setupConfigPosition from "./search/setup-config-position";
-import {ApplicationDetail} from "../../src/search/positions/application-api";
-import setupConfigApplication from "./search/setup-config-application";
+import { PositionDetail } from '../../src/search/position-api';
+import setupConfigPosition from './search/setup-config-position';
+import { ApplicationDetail } from '../../src/search/positions/application-api';
+import setupConfigApplication from './search/setup-config-application';
 
 export type TestConfig = {
   apiConfig?: ApiConfig;

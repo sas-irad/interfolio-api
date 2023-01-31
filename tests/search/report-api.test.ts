@@ -17,7 +17,7 @@ describe('Search Report API Test', () => {
   it('ApplicationSearch', async () => {
     const search = await api.applicationSearch({
       facets: {
-        position_id: Config.position.id
+        position_id: Config.position.id,
       },
     });
     expect(search.total).gt(0, 'Packet Search Returned at least one result');
@@ -29,5 +29,4 @@ describe('Search Report API Test', () => {
     }
     expect(found).eq(true, 'Test packet found by search');
   });
-
 });
