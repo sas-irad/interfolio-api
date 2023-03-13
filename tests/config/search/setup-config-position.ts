@@ -27,6 +27,7 @@ const setupConfigPosition = async (config: TestConfig): Promise<TestConfig> => {
   if (config.apiConfig === undefined)
     throw Error('To run position test setup the apiConfig (keys & urls) must first be defined');
   if (config.unit === undefined) throw Error('To run position test setup the unit test config must already be defined');
+  if (config.positionType === undefined) throw Error('To run position test setup the positionType test config must already be defined');
 
   //go get the current units from the database
   const api = new API(config.apiConfig);
@@ -57,8 +58,7 @@ const setupConfigPosition = async (config: TestConfig): Promise<TestConfig> => {
   } catch (e) {
     const position = await api.Search.Positions.create({
       unit_id: config.unit.id,
-      //@todo setup config for positionType instead of hardcoding
-      position_type_id: 396,
+      position_type_id: config.positionType.id,
       name: positionTitle,
       open_date: '2022-10-10',
       published: true,

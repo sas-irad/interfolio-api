@@ -18,6 +18,8 @@ import ApiRequest from './api-request';
 import StatusApi from './tenure/status-api';
 import PositionApi from './search/position-api';
 import ApplicationDocumentApi from './search/positions/applications/application-document-api';
+import PositionStatusApi from "./search/position-status-api";
+import PositionTypeApi from "./search/position-type-api";
 
 /**
  * ApiConfig specifies the needed parameters to initialize API calls to Interfolio
@@ -79,6 +81,10 @@ export class API {
     Positions: PositionApi;
     /** Handle to the Faculty Search Reports Api Calls*/
     Reports: SearchReportApi;
+    /** Handle to the Position Status Api Calls */
+    PositionStatuses: PositionStatusApi;
+    /** Handle to the Position Type Api Calls */
+    PositionTypes: PositionTypeApi;
   };
 
   /** RPT (Review, Promotion and Tenure) api calls */
@@ -164,6 +170,8 @@ export class API {
       ApplicationDocuments: new ApplicationDocumentApi(this.apiRequest),
       Positions: new PositionApi(this.apiRequest),
       Reports: new SearchReportApi(this.apiRequest),
+      PositionStatuses: new PositionStatusApi(this.apiRequest),
+      PositionTypes: new PositionTypeApi(this.apiRequest)
     };
 
     this.Units = new UnitApi(this.apiRequest);

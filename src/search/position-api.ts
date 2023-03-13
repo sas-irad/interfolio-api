@@ -12,6 +12,33 @@ export const POSITION_URL = POSITION_BASE_URL + '/{position_id}';
 export const POSITION_FILTER_URL =
   INTERFOLIO_SEARCH_V2 + '/positions/filter?limit={limit}&page={page}&sort_by={sort_by}&sort_order={sort_order}';
 
+
+/**
+ * Type representing assignments to a position workflow step (returned by position detail api)
+ */
+export type PositionWorkflowStepAssignment = {
+  assignment_id : number,
+  assignment_type : string,
+  assignment_type_display : string,
+  committee_members : {
+    id: number,
+    pid: number,
+    manager: boolean,
+    first_name: string,
+    last_name: string
+  }[],
+  email : "pallant@math.upenn.edu"
+  first_name : "MONICA"
+  id : 1129198
+  last_name : "PALLANTI"
+  manager : true
+  pid : 2951294
+  complete : true
+  individual_committee : null,
+  name : string,
+  note : string,
+  restricted : boolean
+}
 /**
  * Workflow steps in the position
  */
@@ -34,9 +61,8 @@ export type PositionWorkflowStep = {
   category_id: number;
   /** category name of the workflow step */
   category_name: string;
-  /** @todo flesh out assignments and add to de-nesting */
   /** users assigned to the workflow step */
-  assignments: any[];
+  assignments: PositionWorkflowStepAssignment[];
   /** note associated with this workflow step */
   note: string;
 };
@@ -279,9 +305,17 @@ export type PositionDetail = PositionBase & {
   /** @todo flesh out application tags and add to denesting */
   /** list of application tags for this position */
   application_tags: any[];
-  /** @todo flesh out file_attachments and add to denesting */
   /** list of file attachments for this position */
-  file_attachments: any[];
+  file_attachments: {
+    //** the display name for the file attachment */
+    display_name : string,
+    /** the actual file location name for the attachment */
+    file_name : string,
+    /** id of the file attachment */
+    id : number,
+    /** status of the file attachment (eg. "received") */
+    status : string
+  },
   /** if the position is eeo flaggable */
   eeo_flaggable: boolean;
   /** total number of applications */
@@ -370,8 +404,13 @@ export class PositionApi {
 
   /**
    * Create a new position
-   * @param unitId
-   * @param positionTypeId
+   * @param unitId unitId of the position
+   * @param positionTypeId  position type id of the position
+   *
+   * @example
+   * ```javascript
+   * await api.Search.Positions.create({unitId: 9999, positionTypeId: 9999});
+   * ```
    */
   async create(position: PositionInsert): Promise<PositionDetail> {
     return new Promise((resolve, reject) => {
@@ -389,6 +428,7 @@ export class PositionApi {
 
   /**
    * Delete the position
+   * @param id  the ide of the position to delete
    * @example
    * ```javascript
    * await api.Search.Positions.delete({id: 9999});
@@ -413,14 +453,25 @@ export class PositionApi {
 
   /**
    * Find a position based upon search term
-   * @param limit
-   * @param page
-   * @param sort_by
-   * @param sort_order
-   * @param archived
-   * @param current_status_name
-   * @param position_type_id
-   * @param search_term
+   * @param limit the limit of the number of records to return
+   * @param page the page number of the given paged results
+   * @param sort_by  the field to sort by (default: "position_name")
+   * @param sort_order the order in which to sort the results ("asc"|"desc")
+   * @param archived if the results should include archived positions
+   * @param current_status_name filter for the current status name of the position
+   * @param position_type_id the id of the position type
+   * @param search_term the search term to filter for
+   *
+   * @example
+   * ```javascript
+   * let positions = await api.Search.Positions.filterPositions({
+   *   limit: 100,
+   *   page: 1,
+   *   sort_by: "position_name",
+   *   sort_order: "asc"
+   *   search_term: "biology"
+   * });
+   * ```
    */
   async filterPositions({
     limit = 25,
@@ -493,7 +544,7 @@ export class PositionApi {
   }
 
   /**
-   * Remove the cumbersome second level for committee members
+   * Remove the cumbersome second level for position detail
    * @param apiResponse  The response from the API to remove the nesting from
    */
   public static removePositionDetailNesting<T>(apiResponse: ApiResponse): T {
@@ -522,6 +573,10 @@ export class PositionApi {
         type: 'DENEST_ARRAY',
         nestedAttributeName: 'position_form',
       },
+      file_attachments: {
+        type: 'DENEST_ARRAY',
+        nestedAttributeName: 'file_attachment'
+      }
     };
     const position: unknown = Utils.deNest(apiResponse, denestDef);
 

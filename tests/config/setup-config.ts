@@ -27,6 +27,10 @@ import { PositionDetail } from '../../src/search/position-api';
 import setupConfigPosition from './search/setup-config-position';
 import { ApplicationDetail } from '../../src/search/positions/application-api';
 import setupConfigApplication from './search/setup-config-application';
+import { PositionStatus } from "../../src/search/position-status-api";
+import setupConfigPositionStatus from "./search/setup-config-position-status";
+import {PositionType} from "../../src/search/position-type-api";
+import setupConfigPositionType from "./search/setup-config-position-type";
 
 export type TestConfig = {
   apiConfig?: ApiConfig;
@@ -46,6 +50,8 @@ export type TestConfig = {
   status?: Status;
   position?: PositionDetail;
   application?: ApplicationDetail;
+  positionStatus?: PositionStatus;
+  positionType?: PositionType;
 };
 
 export const createConfig = async (): Promise<{ filename: string; config: TestConfig } | null> => {
@@ -121,6 +127,8 @@ export const run = async (): Promise<void> => {
     await setupConfigPacketTemplate(config);
     await setupConfigPacket(config);
     await setupConfigPacketForm(config);
+    await setupConfigPositionStatus(config);
+    await setupConfigPositionType(config);
     await setupConfigPosition(config);
     await setupConfigApplication(config);
 

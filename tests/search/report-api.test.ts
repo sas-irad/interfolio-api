@@ -20,13 +20,13 @@ describe('Search Report API Test', () => {
         position_id: Config.position.id,
       },
     });
-    expect(search.total).gt(0, 'Packet Search Returned at least one result');
+    expect(search.total).gt(0, 'Application Search Returned at least one result');
 
     //loop through the results to make sure we found our packet
     let found = false;
     for (const row of search.applications) {
       if (row.id === Config.application.id) found = true;
     }
-    expect(found).eq(true, 'Test packet found by search');
+    expect(found).eq(true, 'Test Application found by search');
   });
 });
