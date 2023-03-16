@@ -139,9 +139,25 @@ export type ApplicationDetail = {
   first_date_sent: string;
   /** firstname of the applicant */
   firstname: string;
-  //@todo flesh out form responses
   /** form responses for this application */
-  form_responses: any[];
+  form_responses: {
+    form_id: number,
+    form_name: string,
+    form_questions: {
+      question_text: string,
+      question_id: number,
+      answers: {
+        answer_id: number,
+        answer_order: number,
+        axis: string,
+        created_by: number,
+        custom_form_id: number,
+        data_answer_text: string,
+        display_answer_text: string,
+        last_update_by: number
+      }[]
+    }[]
+  }[];
   /** general notes for the application */
   general_notes: string;
   /** highest degree of the application */
@@ -227,6 +243,16 @@ export class ApplicationApi {
    * @param firstName  first name of the applicant
    * @param lastName   last name of the applicant
    * @param email      email of the applicant
+   *
+   * @example
+   * ```javascript
+   * let application = await api.Search.Applications.create({
+   *   positionId: 9999,
+   *   firstName: "Jane",
+   *   lastName: "Doe",
+   *   email: "janedoe@example.com"
+   *   });
+   * ```
    */
   async create({
     positionId,
@@ -261,12 +287,12 @@ export class ApplicationApi {
   }
 
   /**
-   * Get a position from the positionId
+   * Get an application from the application Id
    * @param id ID of the position
    *
    * @example
    * ```javascript
-   * let position = await api.Search.Position.getPosition({id: 9999});
+   * let application = await api.Search.Applications.getDetail({applicationId: 9999, positionId: 9999});
    * ```
    */
   async getDetail({

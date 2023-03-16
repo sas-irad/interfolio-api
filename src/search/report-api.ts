@@ -105,9 +105,11 @@ export type ApplicationData = {
   my_average_rating: string;
   /** position_id to which the application is connected */
   position_id: number;
-  //@todo flesh out the questions data format
   /** questions the applicant answered */
-  questions: any[];
+  questions: {
+    name: string,
+    responses: string[]
+  }[];
 };
 
 /**

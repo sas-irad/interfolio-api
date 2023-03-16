@@ -105,12 +105,19 @@ export class ApplicationDocumentApi {
   }
 
   /**
-   * Get a position from the positionId
-   * @param id ID of the position
+   * Get the contents of an application document that has been submitted
+   *
+   * @param documentId
+   * @param applicationId
+   * @param positionId
    *
    * @example
    * ```javascript
-   * let position = await api.Search.Position.getPosition({id: 9999});
+   * let document = await api.Search.ApplicationDocuments.getDocument({
+   *   documentId: 9999,
+   *   applicationId: 9999,
+   *   positionId: 9999
+   * });
    * ```
    */
   async getDocument({
@@ -126,7 +133,7 @@ export class ApplicationDocumentApi {
       let url = APPLICATION_DOC_URL.replace('{position_id}', positionId.toString())
         .replace('{application_id}', applicationId.toString())
         .replace('{document_id}', documentId.toString());
-      url = url + '?dowload=0';
+      url = url + '?download=0';
 
       this.apiRequest
         .executeRest({ url, method: 'GET', responseType: 'text' })
@@ -139,6 +146,34 @@ export class ApplicationDocumentApi {
     });
   }
 
+  /**
+   * Submit an application document on behalf of the applicant
+   *
+   * @param applicationId
+   * @param positionId
+   * @param title
+   * @param type          From the list of Interfolio document types e.g. Other Document, C.V.
+   * @param format        (PDF etc)
+   * @param filePath      local filepath where the document is located (either this or fileContents required)
+   * @param fileContents  actual contents of the file
+   * @param fileExtension (e.g. pdf, txt)
+   * @param requiredDocumentId
+   *
+   *
+   *
+   * @example
+   * ```javascript
+   * let doc = await api.Search.ApplicationDocuments.createDocumentOnBehalf({
+   *   applicationId: 9999,
+   *   positionId: 9999,
+   *   title: "Supplemental Information",
+   *   type: "Other Document",
+   *   format: "PDF",
+   *   fileContents: "Here is the text of my file",
+   *   fileExtension = 'txt',
+   * });
+   * ```
+   */
   async createDocumentOnBehalf({
     applicationId,
     positionId,
@@ -189,6 +224,18 @@ export class ApplicationDocumentApi {
     });
   }
 
+  /**
+   * Delete an application document
+   *
+   * @param documentId
+   * @param applicationId
+   * @param positionId
+   *
+   * @example
+   * ```javascript
+   * let deleted = await api.Search.ApplicationDocuments.deleteDocument({documentId: 9999, applicationId: 9999, positionId: 9999});
+   * ```
+   */
   async deleteDocument({
     documentId,
     applicationId,
@@ -232,13 +279,24 @@ export class ApplicationDocumentApi {
         });
     });
   }
+
   /**
-   * Save a document from the positionId
+   * Save an application document to the local file system
    * @param id ID of the position
+   *
+   * @param documentId
+   * @param applicationId
+   * @param positionId
+   * @param filePath
    *
    * @example
    * ```javascript
-   * let position = await api.Search.Position.getPosition({id: 9999});
+   * await api.Search.ApplicationDocuments.saveDocument({
+   *   documentId: 9999,
+   *   applicationId: 9999,
+   *   positionId: 9999,
+   *   filepath: "/Users/username/Documents/file.pdf"
+   * });
    * ```
    */
   async saveDocument({

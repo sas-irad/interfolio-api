@@ -68,6 +68,10 @@ export class PositionStatusApi {
     });
   }
 
+  /**
+   * remove the top level nesting of position_status which is returned from the api call
+   * @param apiResponse
+   */
   public static removePositionStatusNesting(apiResponse: ApiResponse): PositionStatus[] {
     const statuses: PositionStatus[] = [];
     if(Array.isArray(apiResponse)) {

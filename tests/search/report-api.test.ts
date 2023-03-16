@@ -2,6 +2,12 @@ import { expect } from 'chai';
 import Config from '../config/test-config.json';
 import ReportApi from '../../src/search/report-api';
 
+function sleep(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 /**
  * Test for Report API
  */
@@ -15,6 +21,8 @@ describe('Search Report API Test', () => {
 
   //Test the application search
   it('ApplicationSearch', async () => {
+    //this needed since the application-document-api test was causing the record to not be returned if run immediately after
+    await sleep(3000);
     const search = await api.applicationSearch({
       facets: {
         position_id: Config.position.id,

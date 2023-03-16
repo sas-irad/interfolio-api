@@ -22,8 +22,7 @@ describe('Position API Test', () => {
     const positionInsert = {
       name: 'Position for create/delete API test',
       unit_id: Config.unit.id,
-      //@todo setup config for positionType instead of hardcoding
-      position_type_id: 396,
+      position_type_id: Config.positionType.id,
     };
     //Insert the position
     // api.apiRequest.outputRequestOptions = true;
