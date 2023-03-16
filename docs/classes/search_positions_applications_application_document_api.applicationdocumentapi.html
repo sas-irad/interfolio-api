@@ -2811,7 +2811,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L92">search/positions/applications/application-document-api.ts:92</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L92">search/positions/applications/application-document-api.ts:92</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2841,7 +2841,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L92">search/positions/applications/application-document-api.ts:92</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L92">search/positions/applications/application-document-api.ts:92</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2863,9 +2863,28 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L142">search/positions/applications/application-document-api.ts:142</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L177">search/positions/applications/application-document-api.ts:177</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Submit an application document on behalf of the applicant</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">doc</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">ApplicationDocuments</span><span style="color: #000000">.</span><span style="color: #795E26">createDocumentOnBehalf</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">applicationId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">title:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Supplemental Information&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Other Document&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">format:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PDF&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">fileContents:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Here is the text of my file&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">fileExtension</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;txt&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -2876,27 +2895,44 @@ img {
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> file<wbr>Contents<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>actual contents of the file</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> file<wbr>Extension<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>(e.g. pdf, txt)</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> file<wbr>Path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>local filepath where the document is located (either this or fileContents required)</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>format<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>(PDF etc)</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>position<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> required<wbr>Document<wbr>Id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li class="tsd-parameter">
 										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>From the list of Interfolio document types e.g. Other Document, C.V.</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -2915,9 +2951,20 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L192">search/positions/applications/application-document-api.ts:192</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L239">search/positions/applications/application-document-api.ts:239</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Delete an application document</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">deleted</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">ApplicationDocuments</span><span style="color: #000000">.</span><span style="color: #795E26">deleteDocument</span><span style="color: #000000">({</span><span style="color: #001080">documentId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">, </span><span style="color: #001080">applicationId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">, </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -2931,6 +2978,8 @@ img {
 									</li>
 									<li class="tsd-parameter">
 										<h5>position<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -2949,7 +2998,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L214">search/positions/applications/application-document-api.ts:214</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L261">search/positions/applications/application-document-api.ts:261</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2983,16 +3032,20 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L116">search/positions/applications/application-document-api.ts:116</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L123">search/positions/applications/application-document-api.ts:123</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Get a position from the positionId</p>
+								<p>Get the contents of an application document that has been submitted</p>
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">position</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Position</span><span style="color: #000000">.</span><span style="color: #795E26">getPosition</span><span style="color: #000000">({</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">document</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">ApplicationDocuments</span><span style="color: #000000">.</span><span style="color: #795E26">getDocument</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">documentId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">applicationId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span>
+<span style="color: #000000">});</span>
 </code></pre>
 								</dd>
 							</dl>
@@ -3010,6 +3063,8 @@ img {
 									</li>
 									<li class="tsd-parameter">
 										<h5>position<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -3028,16 +3083,21 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/applications/application-document-api.ts#L244">search/positions/applications/application-document-api.ts:244</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/applications/application-document-api.ts#L302">search/positions/applications/application-document-api.ts:302</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Save a document from the positionId</p>
+								<p>Save an application document to the local file system</p>
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">position</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Position</span><span style="color: #000000">.</span><span style="color: #795E26">getPosition</span><span style="color: #000000">({</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+								<dd><pre><code class="language-javascript"><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">ApplicationDocuments</span><span style="color: #000000">.</span><span style="color: #795E26">saveDocument</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">documentId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">applicationId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">filepath:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;/Users/username/Documents/file.pdf&quot;</span>
+<span style="color: #000000">});</span>
 </code></pre>
 								</dd>
 							</dl>
@@ -3055,6 +3115,8 @@ img {
 									</li>
 									<li class="tsd-parameter">
 										<h5>file<wbr>Path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>position<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>

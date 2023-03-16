@@ -2800,7 +2800,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/application-api.ts#L208">search/positions/application-api.ts:208</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/application-api.ts#L224">search/positions/application-api.ts:224</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2830,7 +2830,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Documents<span class="tsd-signature-symbol">:</span> <a href="search_positions_applications_application_document_api.applicationdocumentapi.html" class="tsd-signature-type" data-tsd-kind="Class">ApplicationDocumentApi</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/application-api.ts#L208">search/positions/application-api.ts:208</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/application-api.ts#L224">search/positions/application-api.ts:224</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2840,7 +2840,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/application-api.ts#L206">search/positions/application-api.ts:206</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/application-api.ts#L222">search/positions/application-api.ts:222</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2862,13 +2862,24 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/application-api.ts#L231">search/positions/application-api.ts:231</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/application-api.ts#L257">search/positions/application-api.ts:257</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Create a new application for a position</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">application</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Applications</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">firstName:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Jane&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">lastName:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Doe&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">email:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;janedoe@example.com&quot;</span>
+<span style="color: #000000">  });</span>
+</code></pre>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -2916,16 +2927,16 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/positions/application-api.ts#L272">search/positions/application-api.ts:272</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/positions/application-api.ts#L298">search/positions/application-api.ts:298</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Get a position from the positionId</p>
+								<p>Get an application from the application Id</p>
 							</div>
 							<dl class="tsd-comment-tags">
 								<dt>example</dt>
-								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">position</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Position</span><span style="color: #000000">.</span><span style="color: #795E26">getPosition</span><span style="color: #000000">({</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">application</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Applications</span><span style="color: #000000">.</span><span style="color: #795E26">getDetail</span><span style="color: #000000">({</span><span style="color: #001080">applicationId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">, </span><span style="color: #001080">positionId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
 </code></pre>
 								</dd>
 							</dl>

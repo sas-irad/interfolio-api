@@ -2743,10 +2743,16 @@ img {
 			<a href="../modules/search_position_api.html#positiondetail" class="tsd-kind-icon">Position<wbr>Detail</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/search_position_api.html#positionformquestion" class="tsd-kind-icon">Position<wbr>Form<wbr>Question</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="../modules/search_position_api.html#positioninsert" class="tsd-kind-icon">Position<wbr>Insert</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 			<a href="../modules/search_position_api.html#positionworkflowstep" class="tsd-kind-icon">Position<wbr>Workflow<wbr>Step</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/search_position_api.html#positionworkflowstepassignment" class="tsd-kind-icon">Position<wbr>Workflow<wbr>Step<wbr>Assignment</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-parent-kind-module">
 			<a href="../modules/search_position_api.html#position_base_url" class="tsd-kind-icon">POSITION_<wbr>BASE_<wbr>URL</a>
@@ -2818,7 +2824,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L355">search/position-api.ts:355</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L430">search/position-api.ts:430</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2848,7 +2854,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Applications<span class="tsd-signature-symbol">:</span> <a href="search_positions_application_api.applicationapi.html" class="tsd-signature-type" data-tsd-kind="Class">ApplicationApi</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L355">search/position-api.ts:355</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L430">search/position-api.ts:430</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2858,7 +2864,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">api<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="api_request.apirequest.html" class="tsd-signature-type" data-tsd-kind="Class">ApiRequest</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L353">search/position-api.ts:353</a></li>
+						<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L428">search/position-api.ts:428</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2880,13 +2886,19 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L376">search/position-api.ts:376</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L456">search/position-api.ts:456</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Create a new position</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Positions</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">({</span><span style="color: #001080">unitId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">, </span><span style="color: #001080">positionTypeId:</span><span style="color: #000000"> </span><span style="color: #098658">9999</span><span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -2908,7 +2920,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L397">search/position-api.ts:397</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L478">search/position-api.ts:478</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2929,6 +2941,9 @@ img {
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the ide of the position to delete</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -2947,13 +2962,25 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L425">search/position-api.ts:425</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L517">search/position-api.ts:517</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Find a position based upon search term</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>example</dt>
+								<dd><pre><code class="language-javascript"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">positions</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">Search</span><span style="color: #000000">.</span><span style="color: #001080">Positions</span><span style="color: #000000">.</span><span style="color: #795E26">filterPositions</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">limit:</span><span style="color: #000000"> </span><span style="color: #098658">100</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">page:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">sort_by:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;position_name&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">sort_order:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;asc&quot;</span>
+<span style="color: #000000">  </span><span style="color: #001080">search_term</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;biology&quot;</span>
+<span style="color: #000000">});</span>
+</code></pre>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -2962,29 +2989,51 @@ img {
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> archived<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>if the results should include archived positions</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> current_<wbr>status_<wbr>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>filter for the current status name of the position</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> limit<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the limit of the number of records to return</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> page<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the page number of the given paged results</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> position_<wbr>type_<wbr>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the id of the position type</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> search_<wbr>term<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 										<div class="tsd-comment tsd-typography">
+											<p>the search term to filter for</p>
 										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> sort_<wbr>by<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the field to sort by (default: &quot;position_name&quot;)</p>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5><span class="tsd-flag ts-flagOptional">Optional</span> sort_<wbr>order<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<p>the order in which to sort the results (&quot;asc&quot;|&quot;desc&quot;)</p>
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -3003,7 +3052,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L481">search/position-api.ts:481</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L573">search/position-api.ts:573</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3045,12 +3094,12 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/fced903/src/search/position-api.ts#L499">search/position-api.ts:499</a></li>
+								<li>Defined in <a href="https://github.com/sas-irad/interfolio-api/blob/58ef2c2/src/search/position-api.ts#L591">search/position-api.ts:591</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Remove the cumbersome second level for committee members</p>
+								<p>Remove the cumbersome second level for position detail</p>
 							</div>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
