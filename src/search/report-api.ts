@@ -107,8 +107,8 @@ export type ApplicationData = {
   position_id: number;
   /** questions the applicant answered */
   questions: {
-    name: string,
-    responses: string[]
+    name: string;
+    responses: string[];
   }[];
 };
 

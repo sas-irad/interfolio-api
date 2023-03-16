@@ -1,15 +1,15 @@
-import ApiRequest, {INTERFOLIO_SEARCH_V1} from '../api-request';
+import ApiRequest, { INTERFOLIO_SEARCH_V1 } from '../api-request';
 import { ApiConfig } from '../index';
 
 /** the base url for the search/position_types api */
 export const POSITION_TYPE_BASE_URL = INTERFOLIO_SEARCH_V1 + '/position_types';
 
 export type PositionType = {
-  category_id: number,
-  id: number,
-  name: string,
-  template_count: number
-  tenant_id: number
+  category_id: number;
+  id: number;
+  name: string;
+  template_count: number;
+  tenant_id: number;
 };
 
 /**
@@ -46,9 +46,8 @@ export class PositionTypeApi {
    */
   public getPositionTypes(): Promise<PositionType[]> {
     return new Promise((resolve, reject) => {
-
       this.apiRequest
-        .executeRest({ url: POSITION_TYPE_BASE_URL})
+        .executeRest({ url: POSITION_TYPE_BASE_URL })
         .then((results) => {
           resolve(results);
         })

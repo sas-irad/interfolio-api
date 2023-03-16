@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Config from '../config/test-config.json';
-import PositionTypeApi from "../../src/search/position-type-api";
+import PositionTypeApi from '../../src/search/position-type-api';
 
 /**
  * Test for PositionTypeAPI

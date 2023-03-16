@@ -141,22 +141,22 @@ export type ApplicationDetail = {
   firstname: string;
   /** form responses for this application */
   form_responses: {
-    form_id: number,
-    form_name: string,
+    form_id: number;
+    form_name: string;
     form_questions: {
-      question_text: string,
-      question_id: number,
+      question_text: string;
+      question_id: number;
       answers: {
-        answer_id: number,
-        answer_order: number,
-        axis: string,
-        created_by: number,
-        custom_form_id: number,
-        data_answer_text: string,
-        display_answer_text: string,
-        last_update_by: number
-      }[]
-    }[]
+        answer_id: number;
+        answer_order: number;
+        axis: string;
+        created_by: number;
+        custom_form_id: number;
+        data_answer_text: string;
+        display_answer_text: string;
+        last_update_by: number;
+      }[];
+    }[];
   }[];
   /** general notes for the application */
   general_notes: string;

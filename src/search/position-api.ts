@@ -12,59 +12,58 @@ export const POSITION_URL = POSITION_BASE_URL + '/{position_id}';
 export const POSITION_FILTER_URL =
   INTERFOLIO_SEARCH_V2 + '/positions/filter?limit={limit}&page={page}&sort_by={sort_by}&sort_order={sort_order}';
 
-
 export type PositionFormQuestion = {
-  active: boolean,
-  answers : {
-    answer_order: number,
-    axis: string,
-    created_by: number,
-    data_answer_text: string,
-    display_answer_text: string,
-    id: number
-    last_update_by: number
-  }[],
-  created_by: number,
-  has_other: boolean,
-  id: number,
-  last_update_by: number,
-  question_help_text: string,
-  question_sort_order: number,
-  question_text: string,
-  question_type : {
-    id: number,
-    fixed_id: number,
-    name: string
-  },
-  required: boolean
-}
+  active: boolean;
+  answers: {
+    answer_order: number;
+    axis: string;
+    created_by: number;
+    data_answer_text: string;
+    display_answer_text: string;
+    id: number;
+    last_update_by: number;
+  }[];
+  created_by: number;
+  has_other: boolean;
+  id: number;
+  last_update_by: number;
+  question_help_text: string;
+  question_sort_order: number;
+  question_text: string;
+  question_type: {
+    id: number;
+    fixed_id: number;
+    name: string;
+  };
+  required: boolean;
+};
 
 /**
  * Type representing assignments to a position workflow step (returned by position detail api)
  */
 export type PositionWorkflowStepAssignment = {
-  assignment_id : number,
-  assignment_type : string,
-  assignment_type_display : string,
-  committee_members : {
-    id: number,
-    pid: number,
-    manager: boolean,
-    first_name: string,
-    last_name: string
-  }[],
-  email: string,
-  first_name: string,
-  id:  number,
-  last_name: string,
-  manager: boolean,
-  pid: number,
-  complete: boolean,
-  individual_committee: boolean,
-  name: string,
-  note : string,
-  restricted : boolean
-}
+  assignment_id: number;
+  assignment_type: string;
+  assignment_type_display: string;
+  committee_members: {
+    id: number;
+    pid: number;
+    manager: boolean;
+    first_name: string;
+    last_name: string;
+  }[];
+  email: string;
+  first_name: string;
+  id: number;
+  last_name: string;
+  manager: boolean;
+  pid: number;
+  complete: boolean;
+  individual_committee: boolean;
+  name: string;
+  note: string;
+  restricted: boolean;
+};
 /**
  * Workflow steps in the position
  */
@@ -330,24 +329,24 @@ export type PositionDetail = PositionBase & {
   }[];
   /** list of application tags for this position */
   application_tags: {
-    editable: boolean,
-    id: number,
-    name: string,
-    pid: number,
-    position_id: number,
-    user_id: number
-  }[],
+    editable: boolean;
+    id: number;
+    name: string;
+    pid: number;
+    position_id: number;
+    user_id: number;
+  }[];
   /** list of file attachments for this position */
   file_attachments: {
     //** the display name for the file attachment */
-    display_name : string,
+    display_name: string;
     /** the actual file location name for the attachment */
-    file_name : string,
+    file_name: string;
     /** id of the file attachment */
-    id : number,
+    id: number;
     /** status of the file attachment (eg. "received") */
-    status : string
-  },
+    status: string;
+  };
   /** if the position is eeo flaggable */
   eeo_flaggable: boolean;
   /** total number of applications */
@@ -356,10 +355,10 @@ export type PositionDetail = PositionBase & {
   ready_for_approval_info: any;
   /** applicants that have been selected */
   selected_applicants: {
-    email: string,
-    first_name: string,
-    id: number,
-    last_name: string
+    email: string;
+    first_name: string;
+    id: number;
+    last_name: string;
   }[];
   /** for the position */
   application_tagging_allowed: boolean;
@@ -376,13 +375,13 @@ export type PositionDetail = PositionBase & {
   }[];
   /** required documents for the position */
   required_documents: {
-    document_type_id: number,
-    document_type_name: string,
-    id: number,
-    notes: string,
-    order: number,
-    quantity: number,
-    single_user_letters : false
+    document_type_id: number;
+    document_type_name: string;
+    id: number;
+    notes: string;
+    order: number;
+    quantity: number;
+    single_user_letters: false;
   }[];
   /** the current workflow step in the position approval process */
   current_workflow_step: PositionWorkflowStep;
@@ -623,16 +622,16 @@ export class PositionApi {
       },
       file_attachments: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: 'file_attachment'
+        nestedAttributeName: 'file_attachment',
       },
       application_tags: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: 'application_tag'
+        nestedAttributeName: 'application_tag',
       },
       required_documents: {
         type: 'DENEST_ARRAY',
-        nestedAttributeName: 'required_document'
-      }
+        nestedAttributeName: 'required_document',
+      },
     };
     const position: unknown = Utils.deNest(apiResponse, denestDef);
 
