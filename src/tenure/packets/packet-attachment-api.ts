@@ -109,7 +109,7 @@ export class PacketAttachmentApi {
     displayName: string;
     fileName: string;
     sectionId: number;
-    file: Readable | Buffer;
+    file: Readable | Buffer | string;
   }): Promise<PacketDocument> {
     return new Promise((resolve, reject) => {
       const url = PACKET_ATTACHMENT_BASE_URL_V2.replace('{packet_id}', packetId.toString());
