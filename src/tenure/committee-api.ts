@@ -158,7 +158,7 @@ export class CommitteeApi {
         STANDING_COMMITTEES_URL +
         '?unit_id=' +
         unitId.toString() +
-        '&search_text=' +
+        '&search=' +
         ApiRequest.rfc3986EncodeURIComponent(committeeName);
       this.apiRequest
         .executeRest({ url })
