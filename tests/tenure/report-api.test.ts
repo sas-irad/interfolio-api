@@ -18,7 +18,7 @@ describe('Report API Test', () => {
     const search = await api.packetReport({
       from: 0,
       size: 100,
-      search_text: Config.packet.candidate_first_name + ' ' + Config.packet.candidate_last_name,
+      search_text: Config.packet.candidate_first_name,
       facets: {
         unit_names: [Config.unit.name],
       },

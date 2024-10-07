@@ -330,6 +330,7 @@ export class ReportApi {
   public async packetReport(params: PacketReportParams): Promise<{ total: number; data: ReportPacket[] }> {
     return new Promise((resolve, reject) => {
       const url = REPORT_PACKET_SEARCH_URL;
+      params = { ...ReportApi.getDefaultPacketReportParams(), ...params };
       this.apiRequest
         .executeRest({ url, method: 'POST', json: params })
         .then((response) => resolve(response))
