@@ -45,7 +45,7 @@ export class UnitApi {
    *
    * note pass in ApiRequest to keep all errors in one object instance
    */
-  constructor(config: ApiConfig | ApiRequest, module: 'tenure' | 'search' = 'search') {
+  constructor(config: ApiConfig | ApiRequest, module: 'tenure' | 'search' = 'tenure') {
     if (config.constructor && config.constructor.name === 'ApiRequest') {
       this.apiRequest = config as ApiRequest;
     } else {

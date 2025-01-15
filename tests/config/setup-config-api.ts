@@ -12,12 +12,14 @@ const setupConfigApi = async (config: TestConfig): Promise<TestConfig> => {
     { title: 'production', description: INTERFOLIO_REST_URLS.PRODUCTION, value: INTERFOLIO_REST_URLS.PRODUCTION },
     { title: 'sandbox', description: INTERFOLIO_REST_URLS.SANDBOX, value: INTERFOLIO_REST_URLS.SANDBOX },
     { title: 'beta', description: INTERFOLIO_REST_URLS.BETA, value: INTERFOLIO_REST_URLS.BETA },
+    { title: 'staging', description: INTERFOLIO_REST_URLS.STAGING, value: INTERFOLIO_REST_URLS.STAGING },
   ];
 
   const graphQlUrls = [
     { title: 'production', description: INTERFOLIO_GRAPHQL_URLS.PRODUCTION, value: INTERFOLIO_GRAPHQL_URLS.PRODUCTION },
     { title: 'sandbox', description: INTERFOLIO_GRAPHQL_URLS.SANDBOX, value: INTERFOLIO_GRAPHQL_URLS.SANDBOX },
     { title: 'beta', description: INTERFOLIO_GRAPHQL_URLS.BETA, value: INTERFOLIO_GRAPHQL_URLS.BETA },
+    { title: 'staging', description: INTERFOLIO_GRAPHQL_URLS.STAGING, value: INTERFOLIO_GRAPHQL_URLS.STAGING },
   ];
   // Set up the basic questions for urls and credentials
   const questions: PromptObject[] = [

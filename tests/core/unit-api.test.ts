@@ -6,7 +6,7 @@ import Config from '../config/test-config.json';
  * Test for UnitApi
  */
 describe('Unit API Test', () => {
-  const unitApi = new UnitApi(Config.apiConfig, 'search');
+  const unitApi = new UnitApi(Config.apiConfig, 'tenure');
 
   //Test creation
   it('Create Unit Api', async () => {

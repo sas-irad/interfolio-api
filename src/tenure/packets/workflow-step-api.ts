@@ -175,7 +175,8 @@ export class WorkflowStepApi {
             const step = await this.getWorkflowStep({ packetId: packetId, workflowStepId: response.id });
             resolve(step);
           } catch (error) {
-            reject(error);
+            //if we can't get the step, just return the response - most likely a template workstep
+            resolve(response);
           }
         })
         .catch((error) => {

@@ -70,14 +70,14 @@ describe('Platform Form API Test', () => {
     const omitted = await api.addCommitteeMemberExclusion({
       packetId: Config.packet.id,
       originId: newForm.id,
-      committeeMemberId: Config.committeeMember.id,
+      committeeMemberId: Config.committee2.committee_members[0].id,
     });
     expect(omitted).eq(true, 'Committee member successfully omitted');
 
     const required = await api.removeCommitteeMemberExclusion({
       packetId: Config.packet.id,
       originId: newForm.id,
-      committeeMemberId: Config.committeeMember.id,
+      committeeMemberId: Config.committee2.committee_members[0].id,
     });
     expect(required).eq(true, 'Committee member exclusion removed');
     await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
@@ -99,7 +99,7 @@ describe('Platform Form API Test', () => {
       packetId: Config.packet.id,
       originId: newForm.id,
     });
-    expect(responders[0].committee_member_id).eq(Config.committeeMember.id, 'Responder user id matches');
+    expect(responders[0].committee_member_id).eq(Config.committee2.committee_members[0].id, 'Responder user id matches');
 
     await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
   });
@@ -131,7 +131,7 @@ describe('Platform Form API Test', () => {
     await api.removeCommitteeMemberExclusion({
       packetId: Config.packet.id,
       originId: newForm.id,
-      committeeMemberId: Config.committeeMember.id,
+      committeeMemberId: Config.committee2.committee_members[0].id,
     });
 
     //clean up form
@@ -167,7 +167,7 @@ describe('Platform Form API Test', () => {
     const responseValues = [
       { label: 'Test Form Question 1', value: 'Answer 1' },
       { label: 'Test Form Question 2', value: 'Question Option 2' },
-      { label: 'Test Form Question 3', value: '2021-03-03T04:00:00.000Z' },
+      { label: 'Test Form Question 3', value: '2021-03-05' },
     ];
     let submission = PlatformFormApi.formSubmissionFromValues({ formVersion: version, responseValues });
 
@@ -193,7 +193,7 @@ describe('Platform Form API Test', () => {
     //adjust values for resubmission
     responseValues[0].value = 'Answer 1B';
     responseValues[1].value = 'Question Option 1';
-    responseValues[2].value = '2021-03-05T04:00:00.000Z';
+    responseValues[2].value = '2021-03-05';
     submission = PlatformFormApi.formSubmissionFromValues({ formVersion: version, responseValues });
 
     //resubmit the response
@@ -236,7 +236,7 @@ describe('Platform Form API Test', () => {
     const responseValues: { label: string; value: string | number }[] = [
       { label: 'Test Form Question 1', value: 'Answer 1' },
       { label: 'Test Form Question 2', value: 'Question Option 2' },
-      { label: 'Test Form Question 3', value: '2021-03-03T04:00:00.000Z' },
+      { label: 'Test Form Question 3', value: '2021-03-03' },
     ];
 
     const requirements = await workflowStepCommitteeApi.getRequirements({
@@ -277,7 +277,7 @@ describe('Platform Form API Test', () => {
     //adjust values for resubmission
     responseValues[0].value = 'Answer 1B';
     responseValues[1].value = 'Question Option 1';
-    responseValues[2].value = '2021-03-05T04:00:00.000Z';
+    responseValues[2].value = '2021-03-05';
 
     //resubmit the response
     await api.resubmitCommitteeFormByValues({

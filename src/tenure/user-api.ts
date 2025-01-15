@@ -243,6 +243,8 @@ export class UserApi {
    * @param welcomeMessage  Welcome message
    * @param copySelf  Flag Indicating if the welcome email should be copied to the current user
    * @param unitId Unit id of the user
+   * @param externalUser Flag indicating if the user is external
+   * @param userType Type of the user (external, internal, etc)
    *
    * @example
    * ```javascript
@@ -257,6 +259,8 @@ export class UserApi {
     welcomeMessage = '',
     copySelf = false,
     unitId,
+    externalUser = true,
+    userType = 'external',
   }: {
     firstName: string;
     lastName: string;
@@ -265,6 +269,8 @@ export class UserApi {
     welcomeMessage?: string;
     copySelf?: boolean;
     unitId?: number;
+    externalUser?: boolean;
+    userType?: string;
   }): Promise<User> {
     return new Promise((resolve, reject) => {
       const url = USER_URL_BASE;
@@ -272,6 +278,8 @@ export class UserApi {
         'user[first_name]': firstName,
         'user[last_name]': lastName,
         'user[email]': email,
+        'user[user_type]': userType,
+        external_user: externalUser,
         suppress_welcome_email: suppressWelcomeEmail,
         welcome_message: welcomeMessage,
         copy_self: copySelf,

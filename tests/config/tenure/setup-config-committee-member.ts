@@ -36,6 +36,8 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
     throw Error('To run committee test setup the user test config must already be defined');
   if (config.committee === undefined)
     throw Error('To run committee member test setup the committee test config must already be defined');
+  if (config.committee2 === undefined)
+    throw Error('To run committee member test setup the committee2 test config must already be defined');
 
   //go get the current units from the database
   const api = new API(config.apiConfig);
@@ -51,7 +53,6 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
   }
   //if we haven't yet found a committee member then create one
   if (committeeMember === null) {
-    console.log('Creating Committee Member: ' + config.currentUser.id.toString());
     try {
       const member = await api.Tenure.CommitteeMembers.create({
         committeeId: config.committee.id,
@@ -69,6 +70,31 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
     config.committeeMember = committeeMember;
   }
 
+    //look to see if the test committee already exists
+  let committeeMember2: CommitteeMember | null = null;
+  if (config.committee2.committee_members.length > 0) {
+    for (const cm of config.committee2.committee_members) {
+      if (cm.user_id === config.currentUser.id) {
+        committeeMember = cm;
+      }
+    }
+  }
+
+  //if we haven't yet found a committee member2 then create one
+   if (committeeMember2 === null) {
+    try {
+      const member = await api.Tenure.CommitteeMembers.create({
+        committeeId: config.committee2.id,
+        userId: config.currentUser.id,
+        manager: true,
+      });
+      //add it the to the committee list
+      config.committee2.committee_members.push(member);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
   return config;
 };
 export { setupConfigCommitteeMember };

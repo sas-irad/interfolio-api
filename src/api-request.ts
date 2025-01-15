@@ -31,7 +31,9 @@ export const INTERFOLIO_REST_URLS = {
   /** The Sandbox REST URL */
   SANDBOX: 'https://logic-sandbox.interfolio.com',
   /** The BETA REST URL */
-  BETA: 'https://logic-beta.interfoio.com',
+  BETA: 'https://logic-beta.interfolio.com',
+  /** The STAGIN REST URL */
+  STAGING: 'https://logic.staging.interfolio.com',
 };
 
 /**
@@ -43,7 +45,9 @@ export const INTERFOLIO_GRAPHQL_URLS = {
   /** The Sandbox GraphQL URL */
   SANDBOX: 'https://caasbox-sandbox.interfolio.com',
   /** The BETA GraphQL URL */
-  BETA: 'https://caasbox-beta.interfoio.com',
+  BETA: 'https://caasbox-beta.interfolio.com',
+  /** The STAGING GraphQL URL */
+  STAGING: 'https://caasbox.staging.interfolio.com',
 };
 
 /**

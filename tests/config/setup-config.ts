@@ -117,22 +117,50 @@ export const run = async (): Promise<void> => {
 
     //setup connection
     await setupConfigApi(config);
-    await setupConfigUnit(config);
-    await setupConfigUser(config);
-    await setupConfigCommittee(config);
-    await setupConfigCommitteeMember(config);
-    await setupConfigForm(config);
-    await setupConfigPacketType(config);
-    await setupConfigStatus(config);
-    await setupConfigPacketTemplate(config);
-    await setupConfigPacket(config);
-    await setupConfigPacketForm(config);
-    await setupConfigPositionStatus(config);
-    await setupConfigPositionType(config);
-    await setupConfigPosition(config);
-    await setupConfigApplication(config);
-
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+    
+    await setupConfigUnit(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigUser(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigCommittee(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigCommitteeMember(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigForm(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPacketType(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigStatus(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPacketTemplate(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPacket(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPacketForm(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPositionStatus(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPositionType(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigPosition(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
+    await setupConfigApplication(config);
+    fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
+
     console.log('Config File Saved');
   } catch (error) {
     console.log('There was an error');

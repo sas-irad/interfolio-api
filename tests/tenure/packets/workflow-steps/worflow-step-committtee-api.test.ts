@@ -188,14 +188,14 @@ describe('Workflow Step Committee API Test', () => {
       packetId: Config.packet.id,
       workflowStepId: Config.packet.workflow_steps[2].id,
       fromCommitteeId: Config.packet.workflow_steps[2].committees[0].id,
-      toCommitteeId: Config.committee2.id,
+      toCommitteeId: Config.committee.id,
     });
 
     //get the requirements to check
     const newReqs = await api.getRequirements({
       packetId: Config.packet.id,
       workflowStepId: Config.packet.workflow_steps[2].id,
-      committeeId: Config.committee2.id,
+      committeeId: Config.committee.id,
     });
 
     //check docs successfully copied
@@ -219,8 +219,8 @@ describe('Workflow Step Committee API Test', () => {
     await api.swapCommittees({
       packetId: Config.packet.id,
       workflowStepId: Config.packet.workflow_steps[2].id,
-      fromCommitteeId: Config.committee2.id,
-      toCommitteeId: Config.committee.id,
+      fromCommitteeId: Config.committee.id,
+      toCommitteeId: Config.committee2.id,
     });
   });
 });

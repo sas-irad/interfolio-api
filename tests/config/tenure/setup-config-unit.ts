@@ -40,7 +40,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
   }
   //add the parent to the title if parent exists
   for (const i in units) {
-    if (units[i].parent_unit_id && unitMap[units[i].id] !== undefined) {
+    if (units[i].parent_unit_id && unitMap[units[i].parent_unit_id] !== undefined) {
       unitLookup[i].title += ' (' + units[unitMap[units[i].parent_unit_id]].name + ')';
     }
   }
@@ -92,7 +92,6 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     ancestor_institution_id: config.apiConfig.tenantId,
     child_unit_ids: [subUnit1.id, subUnit2.id],
   };
-  console.log('creating units id');
 
   return config;
 };

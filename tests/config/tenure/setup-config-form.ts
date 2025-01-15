@@ -54,7 +54,11 @@ const setupConfigForm = async (config: TestConfig): Promise<TestConfig> => {
           'Creating a form has not yet been enabled via Interfolio API.\n' +
           '    Use the Interface to create a committee form in the ' +
           config.unit.name +
-          ' unit entitled  "Test Committee Form for API"',
+          ' unit entitled  "Test Committee Form for API"' +
+          ' Question 1: "Test Form Question 1" with a type of short text\n' +
+          ' Question 2: "Test Form Question 2" with a type of single select with options\n' +
+          '    "Question Option 1", "Question Option 2", "Question Option 3"\n' +
+          ' Question 3: "Test Form Question 3" with a type of date\n' ,
         type: 'select',
         name: 'manual',
         choices: [
