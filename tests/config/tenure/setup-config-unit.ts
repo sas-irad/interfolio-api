@@ -65,7 +65,7 @@ const setupConfigUnit = async (config: TestConfig): Promise<TestConfig> => {
     {
       type: 'text',
       name: 'unitName',
-      message: 'Choose the name for the test units',
+      message: 'Choose the name for the test unit',
       initial: defaultUnitName,
     },
   ]);
