@@ -75,7 +75,7 @@ const setupConfigCommitteeMember = async (config: TestConfig): Promise<TestConfi
   if (config.committee2.committee_members.length > 0) {
     for (const cm of config.committee2.committee_members) {
       if (cm.user_id === config.currentUser.id) {
-        committeeMember = cm;
+        committeeMember2 = cm;
       }
     }
   }
