@@ -99,7 +99,10 @@ describe('Platform Form API Test', () => {
       packetId: Config.packet.id,
       originId: newForm.id,
     });
-    expect(responders[0].committee_member_id).eq(Config.committee2.committee_members[0].id, 'Responder user id matches');
+    expect(responders[0].committee_member_id).eq(
+      Config.committee2.committee_members[0].id,
+      'Responder user id matches',
+    );
 
     await api.deleteForm({ id: newForm.id, packetId: Config.packet.id });
   });

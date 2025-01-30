@@ -118,7 +118,7 @@ export const run = async (): Promise<void> => {
     //setup connection
     await setupConfigApi(config);
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
-    
+
     await setupConfigUnit(config);
     fs.writeFileSync(fileAndConfig.filename, JSON.stringify(config, null, '  '));
 
