@@ -6,6 +6,9 @@ import PlatformFormApi from '../platform-form-api';
 const WORKFLOW_STEP_COMMITTEE_BASE_URL =
   INTERFOLIO_BYC_TENURE_V1 + '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees';
 const WORKFLOW_STEP_COMMITTEE_URL = WORKFLOW_STEP_COMMITTEE_BASE_URL + '/{committee_id}';
+const WORKFLOW_STEP_COMMITTEE_REPLACE_URL =
+  INTERFOLIO_BYC_TENURE_V1 +
+  '/packets/{packet_id}/workflow_steps/{workflow_step_id}/workflow_step_committees/{committee_id}/replace';
 const WORKFLOW_STEP_REQUIREMENTS_URL =
   INTERFOLIO_BYC_TENURE_V2 +
   '/packets/{packet_id}/workflow_steps/{workflow_step_id}/committees/{committee_id}/committee_required_documents';
@@ -566,6 +569,47 @@ export class WorkflowStepCommitteeApi {
           } else {
             resolve(committeeMatch);
           }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * Replace a workflow step committee with another committee
+   *
+   * @param packetId         ID of the packet
+   * @param workflowStepId   ID of the workflow step
+   * @param fromCommitteeId  ID of the committee to be replaced
+   * @param toCommitteeId    ID of the committee to replace with
+   */
+  public replaceCommittee({
+    packetId,
+    workflowStepId,
+    fromCommitteeId,
+    toCommitteeId,
+  }: {
+    packetId: number;
+    workflowStepId: number;
+    fromCommitteeId: number;
+    toCommitteeId: number;
+  }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const url = WORKFLOW_STEP_COMMITTEE_REPLACE_URL.replace('{packet_id}', packetId.toString())
+        .replace('{workflow_step_id}', workflowStepId.toString())
+        .replace('{committee_id}', fromCommitteeId.toString());
+      this.apiRequest
+        .executeRest({
+          url,
+          method: 'POST',
+          form: {
+            committee_id: toCommitteeId,
+            original_committee_id: fromCommitteeId,
+          },
+        })
+        .then(() => {
+          resolve(true);
         })
         .catch((error) => {
           reject(error);
