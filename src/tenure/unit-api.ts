@@ -1,4 +1,4 @@
-import {UnitApi, Unit} from '../core/unit-api';
+import { UnitApi, Unit } from '../core/unit-api';
 
 /**
  * unit api moved to core folder
